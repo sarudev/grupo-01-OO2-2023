@@ -40,7 +40,6 @@ public class Aula{
 	
 	public Aula(int idAula, String nombre, boolean baja, Edificio edificio, Lugar lugar) {
 		super();
-		this.idAula = idAula;
 		this.nombre = nombre;
 		this.baja = baja;
 		this.edificio = edificio;

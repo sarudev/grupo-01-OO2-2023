@@ -35,7 +35,6 @@ public class Edificio  {
 	}
 
 	public Edificio(int idEdificio, String nombre, Lugar lugar) {
-		this.idEdificio = idEdificio;
 		this.nombre = nombre;
 		this.lugar = lugar;
 	}

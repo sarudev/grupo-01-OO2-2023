@@ -30,7 +30,6 @@ public class EspacioVerde {
 
 	public EspacioVerde(int idEspacioVerde, boolean baja, Lugar lugar) {
 		super();
-		this.idEspacioVerde = idEspacioVerde;
 		this.baja = baja;
 		this.lugar = lugar;
 	}
@@ -39,7 +38,7 @@ public class EspacioVerde {
 		return idEspacioVerde;
 	}
 
-	public void setIdEspacioVerde(int idEspacioVerde) {
+	protected void setIdEspacioVerde(int idEspacioVerde) {
 		this.idEspacioVerde = idEspacioVerde;
 	}
 

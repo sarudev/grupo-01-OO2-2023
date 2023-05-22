@@ -30,9 +30,7 @@ public class Sensor {
 	public Sensor() {
 	}
 
-	public Sensor(int idSensor, String nombreSensor, boolean activo, Lugar lugar) {
-		super();
-		this.idSensor = idSensor;
+	public Sensor(String nombreSensor, boolean activo, Lugar lugar) {
 		this.nombreSensor = nombreSensor;
 		this.activo = activo;
 		this.lugar = lugar;

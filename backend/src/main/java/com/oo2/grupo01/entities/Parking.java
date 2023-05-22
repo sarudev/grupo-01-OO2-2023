@@ -39,9 +39,8 @@ public class Parking  {
 	public Parking() {
 	}
 
-	public Parking(int idParking, boolean baja, String ubicacion, Lugar lugar) {
+	public Parking(boolean baja, String ubicacion, Lugar lugar) {
 		super();
-		this.idParking = idParking;
 		this.baja = baja;
 		this.ubicacion = ubicacion;
 		this.lugar = lugar;

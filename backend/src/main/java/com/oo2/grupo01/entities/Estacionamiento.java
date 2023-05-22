@@ -40,7 +40,6 @@ public class Estacionamiento  {
 
 	public Estacionamiento(int idEstacionamiento, boolean baja, Parking parking, Lugar lugar, boolean libre) {
 		super();
-		this.idEstacionamiento = idEstacionamiento;
 		this.baja = baja;
 		this.parking = parking;
 		this.lugar = lugar;
@@ -53,7 +52,7 @@ public class Estacionamiento  {
 	}
 
 
-	public void setIdEstacionamiento(int idEstacionamiento) {
+	protected void setIdEstacionamiento(int idEstacionamiento) {
 		this.idEstacionamiento = idEstacionamiento;
 	}
 

@@ -43,12 +43,17 @@ public class Lugar {
 	}
 
 
+	public Lugar(String nombreLugar) {
+		this.nombreLugar = nombreLugar;
+	}
+
+
 
 	public int getIdLugar() {
 		return idLugar;
 	}
 
-	public void setIdLugar(int idLugar) {
+	protected void setIdLugar(int idLugar) {
 		this.idLugar = idLugar;
 	}
 
