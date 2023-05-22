@@ -15,9 +15,6 @@ public class SensorHumedad extends Sensor {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public double nivelHumedad() {
-		return 1;
-	}
 	
 	
 }

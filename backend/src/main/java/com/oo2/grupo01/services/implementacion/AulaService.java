@@ -2,25 +2,25 @@ package com.oo2.grupo01.services.implementacion;
 
 import org.springframework.stereotype.Service;
 
-import com.oo2.grupo01.services.ISensorBasculaService;
+import com.oo2.grupo01.services.IAulaService;
 
-@Service("sensorBasculaService")
-public class SensorBasculaService implements ISensorBasculaService{
+@Service("aulaService")
+public class AulaService implements IAulaService{
 
 	@Override
-	public double pesoLimite() {
+	public boolean hayGente() {
 		// TODO Auto-generated method stub
-		return 0;
+		return false;
 	}
 
 	@Override
-	public double pesoActual() {
+	public boolean lucesEncendidas() {
 		// TODO Auto-generated method stub
-		return 0;
+		return false;
 	}
 
 	@Override
-	public boolean superoLimite() {
+	public boolean cortinasAbiertas() {
 		// TODO Auto-generated method stub
 		return false;
 	}

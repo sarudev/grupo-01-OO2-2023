@@ -16,15 +16,5 @@ public class SensorTiempo extends Sensor {
 		super(nombreSensor, activo, lugar);
 		// TODO Auto-generated constructor stub
 	}
-
-
-
-	public LocalTime horaActual(){
-		return LocalTime.now();
-	}
-	
-	public boolean hayLuzSolar() {
-		return true;
-	}
 	
 }
