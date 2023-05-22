@@ -7,9 +7,9 @@ import org.springframework.stereotype.Repository;
 
 import com.oo2.grupo01.entities.Aula;
 
-@Repository
-public interface IAulaRepository extends JpaRepository<Aula, Serializable>{
+@Repository("aulaRepository")
+public interface IAulaRepository extends JpaRepository<Aula, Serializable> {
 
-	public Aula traerConSensores(int id);
-	
+  public Aula traerConSensores(int id);
+
 }

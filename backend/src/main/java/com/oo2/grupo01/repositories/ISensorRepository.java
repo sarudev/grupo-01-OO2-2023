@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import com.oo2.grupo01.entities.Sensor;
 
 @Repository("sensorRepository")
-public interface ISensorRepository extends JpaRepository<Sensor, Serializable>{
-	public Sensor switchSensor(int idSensor, boolean estado);
+public interface ISensorRepository extends JpaRepository<Sensor, Serializable> {
+  public Sensor switchSensor(int idSensor, boolean estado);
 }

@@ -1,5 +1,6 @@
 package com.oo2.grupo01.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -10,66 +11,63 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="sensor")
+@Table(name = "sensor")
 public class Sensor {
 
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idSensor;
-	
-	private String nombreSensor;
-	
-	private boolean activo;
-	
-	//fk lugar
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "lugar_id")
-	Lugar lugar;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int idSensor;
 
-	public Sensor() {
-	}
+  @Column(name = "nombreSensor")
+  private String nombreSensor;
 
-	public Sensor(String nombreSensor, boolean activo, Lugar lugar) {
-		this.nombreSensor = nombreSensor;
-		this.activo = activo;
-		this.lugar = lugar;
-	}
+  @Column(name = "activo")
+  private boolean activo;
 
-	public int getIdSensor() {
-		return idSensor;
-	}
+  // fk lugar
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "lugar_id")
+  Lugar lugar;
 
-	protected void setIdSensor(int idSensor) {
-		this.idSensor = idSensor;
-	}
+  public Sensor() {
+  }
 
-	public String getNombreSensor() {
-		return nombreSensor;
-	}
+  public Sensor(String nombreSensor, boolean activo, Lugar lugar) {
+    this.nombreSensor = nombreSensor;
+    this.activo = activo;
+    this.lugar = lugar;
+  }
 
-	public void setNombreSensor(String nombreSensor) {
-		this.nombreSensor = nombreSensor;
-	}
+  public int getIdSensor() {
+    return idSensor;
+  }
 
-	public boolean isActivo() {
-		return activo;
-	}
+  protected void setIdSensor(int idSensor) {
+    this.idSensor = idSensor;
+  }
 
-	public void setActivo(boolean activo) {
-		this.activo = activo;
-	}
+  public String getNombreSensor() {
+    return nombreSensor;
+  }
 
-	public Lugar getLugar() {
-		return lugar;
-	}
+  public void setNombreSensor(String nombreSensor) {
+    this.nombreSensor = nombreSensor;
+  }
 
-	public void setLugar(Lugar lugar) {
-		this.lugar = lugar;
-	}
-	
-	
-	
-	
-	
+  public boolean isActivo() {
+    return activo;
+  }
+
+  public void setActivo(boolean activo) {
+    this.activo = activo;
+  }
+
+  public Lugar getLugar() {
+    return lugar;
+  }
+
+  public void setLugar(Lugar lugar) {
+    this.lugar = lugar;
+  }
+
 }

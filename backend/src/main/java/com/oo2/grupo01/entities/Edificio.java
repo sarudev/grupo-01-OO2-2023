@@ -13,66 +13,61 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="edificio")
-public class Edificio  {
+@Table(name = "edificio")
+public class Edificio {
 
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idEdificio;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int idEdificio;
 
-	@Column(name="nombre")
-	private String nombre;
-	
-	@OneToMany(mappedBy = "edificio")
-	private Set<Aula> aulas;
-	
-	@ManyToOne
-	@JoinColumn(name = "id_lugar") // Nombre de la columna que actúa como clave externa en la tabla de Propietario
-	 private Lugar lugar;
+  @Column(name = "nombre")
+  private String nombre;
 
-	public Edificio() {
-	}
+  @OneToMany(mappedBy = "edificio")
+  private Set<Aula> aulas;
 
-	public Edificio(int idEdificio, String nombre, Lugar lugar) {
-		this.nombre = nombre;
-		this.lugar = lugar;
-	}
+  @ManyToOne
+  @JoinColumn(name = "id_lugar") // Nombre de la columna que actúa como clave externa en la tabla de Propietario
+  private Lugar lugar;
 
-	public int getIdEdificio() {
-		return idEdificio;
-	}
+  public Edificio() {
+  }
 
-	protected void setIdEdificio(int idEdificio) {
-		this.idEdificio = idEdificio;
-	}
+  public Edificio(int idEdificio, String nombre, Lugar lugar) {
+    this.nombre = nombre;
+    this.lugar = lugar;
+  }
 
-	public String getNombre() {
-		return nombre;
-	}
+  public int getIdEdificio() {
+    return idEdificio;
+  }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+  protected void setIdEdificio(int idEdificio) {
+    this.idEdificio = idEdificio;
+  }
 
-	public Set<Aula> getAulas() {
-		return aulas;
-	}
+  public String getNombre() {
+    return nombre;
+  }
 
-	public void setAulas(Set<Aula> aulas) {
-		this.aulas = aulas;
-	}
+  public void setNombre(String nombre) {
+    this.nombre = nombre;
+  }
 
-	public Lugar getLugar() {
-		return lugar;
-	}
+  public Set<Aula> getAulas() {
+    return aulas;
+  }
 
-	public void setLugar(Lugar lugar) {
-		this.lugar = lugar;
-	}
+  public void setAulas(Set<Aula> aulas) {
+    this.aulas = aulas;
+  }
 
-	
-	
-	
-	
+  public Lugar getLugar() {
+    return lugar;
+  }
+
+  public void setLugar(Lugar lugar) {
+    this.lugar = lugar;
+  }
+
 }

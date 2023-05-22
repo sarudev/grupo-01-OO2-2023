@@ -12,112 +12,102 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="lugar")
+@Table(name = "lugar")
 public class Lugar {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idLugar;
-	
-	@OneToMany(mappedBy = "lugar")
-	private Set<Aula> aulas =  new HashSet<Aula>();
-	
-	@OneToMany(mappedBy = "lugar")
-	private Set<Edificio> edificios = new HashSet<Edificio>();
-	
-	@OneToMany(fetch=FetchType.LAZY, mappedBy = "lugar")
-	private Set<EspacioVerde> espacioVerdes = new HashSet<EspacioVerde>();
-	
-	@OneToMany(fetch=FetchType.LAZY, mappedBy = "lugar")
-	private Set<Estacionamiento> estacionamientos = new HashSet<Estacionamiento>();
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
-	private Set<Parking> parkings = new HashSet<Parking>();
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
-	private Set<Sensor> sensores = new HashSet<Sensor>();
-	
-	private String nombreLugar;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int idLugar;
 
-	public Lugar() {
-	}
+  @OneToMany(mappedBy = "lugar")
+  private Set<Aula> aulas = new HashSet<Aula>();
 
+  @OneToMany(mappedBy = "lugar")
+  private Set<Edificio> edificios = new HashSet<Edificio>();
 
-	public Lugar(String nombreLugar) {
-		this.nombreLugar = nombreLugar;
-	}
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
+  private Set<EspacioVerde> espacioVerdes = new HashSet<EspacioVerde>();
 
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
+  private Set<Estacionamiento> estacionamientos = new HashSet<Estacionamiento>();
 
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
+  private Set<Parking> parkings = new HashSet<Parking>();
 
-	public int getIdLugar() {
-		return idLugar;
-	}
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
+  private Set<Sensor> sensores = new HashSet<Sensor>();
 
-	protected void setIdLugar(int idLugar) {
-		this.idLugar = idLugar;
-	}
+  private String nombreLugar;
 
-	public Set<Aula> getAulas() {
-		return aulas;
-	}
+  public Lugar() {
+  }
 
-	public void setAulas(Set<Aula> aulas) {
-		this.aulas = aulas;
-	}
+  public Lugar(String nombreLugar) {
+    this.nombreLugar = nombreLugar;
+  }
 
-	public Set<Edificio> getEdificios() {
-		return edificios;
-	}
+  public int getIdLugar() {
+    return idLugar;
+  }
 
-	public void setEdificios(Set<Edificio> edificios) {
-		this.edificios = edificios;
-	}
+  protected void setIdLugar(int idLugar) {
+    this.idLugar = idLugar;
+  }
 
-	public Set<EspacioVerde> getEspacioVerdes() {
-		return espacioVerdes;
-	}
+  public Set<Aula> getAulas() {
+    return aulas;
+  }
 
-	public void setEspacioVerdes(Set<EspacioVerde> espacioVerdes) {
-		this.espacioVerdes = espacioVerdes;
-	}
+  public void setAulas(Set<Aula> aulas) {
+    this.aulas = aulas;
+  }
 
-	public Set<Estacionamiento> getEstacionamientos() {
-		return estacionamientos;
-	}
+  public Set<Edificio> getEdificios() {
+    return edificios;
+  }
 
-	public void setEstacionamientos(Set<Estacionamiento> estacionamientos) {
-		this.estacionamientos = estacionamientos;
-	}
+  public void setEdificios(Set<Edificio> edificios) {
+    this.edificios = edificios;
+  }
 
-	public Set<Parking> getParkings() {
-		return parkings;
-	}
+  public Set<EspacioVerde> getEspacioVerdes() {
+    return espacioVerdes;
+  }
 
-	public void setParkings(Set<Parking> parkings) {
-		this.parkings = parkings;
-	}
+  public void setEspacioVerdes(Set<EspacioVerde> espacioVerdes) {
+    this.espacioVerdes = espacioVerdes;
+  }
 
-	public Set<Sensor> getSensores() {
-		return sensores;
-	}
+  public Set<Estacionamiento> getEstacionamientos() {
+    return estacionamientos;
+  }
 
-	public void setSensores(Set<Sensor> sensores) {
-		this.sensores = sensores;
-	}
+  public void setEstacionamientos(Set<Estacionamiento> estacionamientos) {
+    this.estacionamientos = estacionamientos;
+  }
 
-	public String getNombreLugar() {
-		return nombreLugar;
-	}
+  public Set<Parking> getParkings() {
+    return parkings;
+  }
 
-	public void setNombreLugar(String nombreLugar) {
-		this.nombreLugar = nombreLugar;
-	}
+  public void setParkings(Set<Parking> parkings) {
+    this.parkings = parkings;
+  }
 
-	
-	
+  public Set<Sensor> getSensores() {
+    return sensores;
+  }
 
+  public void setSensores(Set<Sensor> sensores) {
+    this.sensores = sensores;
+  }
 
-	
-	
-	
+  public String getNombreLugar() {
+    return nombreLugar;
+  }
+
+  public void setNombreLugar(String nombreLugar) {
+    this.nombreLugar = nombreLugar;
+  }
+
 }

@@ -7,8 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.oo2.grupo01.entities.Lugar;
 
-
 @Repository("lugarRepository")
-public interface ILugarRepository extends JpaRepository<Lugar, Serializable>{
+public interface ILugarRepository extends JpaRepository<Lugar, Serializable> {
 
 }

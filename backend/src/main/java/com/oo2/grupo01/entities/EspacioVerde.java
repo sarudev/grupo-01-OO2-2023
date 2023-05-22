@@ -1,5 +1,6 @@
 package com.oo2.grupo01.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -10,55 +11,50 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="espacioVerde")
+@Table(name = "espacioVerde")
 public class EspacioVerde {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idEspacioVerde;
-	
-	private boolean baja;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_lugar") // Nombre de la columna que actúa como clave externa en la tabla de Propietario
-	 private Lugar lugar;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int idEspacioVerde;
 
-	
-	public EspacioVerde() {
-		super();
-	}
+  @Column(name = "baja")
+  private boolean baja;
 
-	public EspacioVerde(int idEspacioVerde, boolean baja, Lugar lugar) {
-		super();
-		this.baja = baja;
-		this.lugar = lugar;
-	}
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "id_lugar") // Nombre de la columna que actúa como clave externa en la tabla de Propietario
+  private Lugar lugar;
 
-	public int getIdEspacioVerde() {
-		return idEspacioVerde;
-	}
+  public EspacioVerde() {
+  }
 
-	protected void setIdEspacioVerde(int idEspacioVerde) {
-		this.idEspacioVerde = idEspacioVerde;
-	}
+  public EspacioVerde(int idEspacioVerde, boolean baja, Lugar lugar) {
+    this.baja = baja;
+    this.lugar = lugar;
+  }
 
-	public boolean isBaja() {
-		return baja;
-	}
+  public int getIdEspacioVerde() {
+    return idEspacioVerde;
+  }
 
-	public void setBaja(boolean baja) {
-		this.baja = baja;
-	}
+  protected void setIdEspacioVerde(int idEspacioVerde) {
+    this.idEspacioVerde = idEspacioVerde;
+  }
 
-	public Lugar getLugar() {
-		return lugar;
-	}
+  public boolean isBaja() {
+    return baja;
+  }
 
-	public void setLugar(Lugar lugar) {
-		this.lugar = lugar;
-	}
-	
-	
-	
-	
+  public void setBaja(boolean baja) {
+    this.baja = baja;
+  }
+
+  public Lugar getLugar() {
+    return lugar;
+  }
+
+  public void setLugar(Lugar lugar) {
+    this.lugar = lugar;
+  }
+
 }
