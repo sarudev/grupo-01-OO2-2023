@@ -1,0 +1,24 @@
+{
+  "properties": [
+    {
+      "name": "enviroment.db.host.url",
+      "type": "java.lang.String",
+      "description": "The db host url"
+    },
+    {
+      "name": "enviroment.db.host.port",
+      "type": "java.lang.String",
+      "description": "The db host port"
+    },
+    {
+      "name": "enviroment.db.host.username",
+      "type": "java.lang.String",
+      "description": "Thr db host username"
+    },
+    {
+      "name": "enviroment.db.host.password",
+      "type": "java.lang.String",
+      "description": "The db host password"
+    }
+  ]
+}
