@@ -53,7 +53,7 @@ public class Aula{
 		return idAula;
 	}
 
-	public void setIdAula(int idAula) {
+	protected void setIdAula(int idAula) {
 		this.idAula = idAula;
 	}
 

@@ -4,7 +4,6 @@ import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -20,7 +19,7 @@ public class Edificio  {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int idEdificio;
+	private int idEdificio;
 
 	@Column(name="nombre")
 	private String nombre;
@@ -31,36 +30,22 @@ public class Edificio  {
 	@ManyToOne
 	@JoinColumn(name = "id_lugar") // Nombre de la columna que actúa como clave externa en la tabla de Propietario
 	 private Lugar lugar;
-	
-	
-	
+
 	public Edificio() {
 	}
 
-
-	public Edificio(int idEdificio, String nombre, Set<Aula> aulas, Lugar lugar) {
+	public Edificio(int idEdificio, String nombre, Lugar lugar) {
 		this.idEdificio = idEdificio;
 		this.nombre = nombre;
-		this.aulas = aulas;
 		this.lugar = lugar;
 	}
-
-
 
 	public int getIdEdificio() {
 		return idEdificio;
 	}
 
-	public void setIdEdificio(int idEdificio) {
+	protected void setIdEdificio(int idEdificio) {
 		this.idEdificio = idEdificio;
-	}
-
-	public Set<Aula> getAulas() {
-		return aulas;
-	}
-
-	public void setAulas(Set<Aula> aulas) {
-		this.aulas = aulas;
 	}
 
 	public String getNombre() {
@@ -69,6 +54,14 @@ public class Edificio  {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public Set<Aula> getAulas() {
+		return aulas;
+	}
+
+	public void setAulas(Set<Aula> aulas) {
+		this.aulas = aulas;
 	}
 
 	public Lugar getLugar() {
@@ -80,8 +73,6 @@ public class Edificio  {
 	}
 
 	
-	
-
 	
 	
 	
