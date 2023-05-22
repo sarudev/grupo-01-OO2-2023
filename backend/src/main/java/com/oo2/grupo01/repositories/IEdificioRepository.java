@@ -9,5 +9,4 @@ import com.oo2.grupo01.entities.Edificio;
 
 @Repository("edificioRepository")
 public interface IEdificioRepository extends JpaRepository<Edificio, Serializable> {
-  public Edificio traerPorIdConDependencias(int it);
 }
