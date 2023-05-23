@@ -1,6 +1,5 @@
 package com.oo2.grupo01.entities;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.Entity;
@@ -12,9 +11,12 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "lugar")
@@ -23,16 +25,20 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
+@ToString
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Lugar {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idLugar;
+	@EqualsAndHashCode.Include()
+	@Setter(AccessLevel.PROTECTED)
+	protected Long idLugar;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
-	private Set<Sensor> sensores;
+	protected Set<Sensor> sensores;
 
-	private String nombreLugar;
+	protected String nombreLugar;
 
 	public Lugar(String nombreLugar) {
 		this.nombreLugar = nombreLugar;
