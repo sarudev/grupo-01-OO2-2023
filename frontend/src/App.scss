@@ -1,0 +1,26 @@
+#cartelitowo {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(10%) translateY(-110%);
+  padding: 10px;
+  border-radius: 10px;
+  transition: opacity .25s ease;
+}
+
+#cartelitowo.visible {
+  opacity: 1;
+}
+
+g[id^="edificio-"] {
+  rect[id^="background-"] {
+    stroke-width: 5px;
+
+    &:hover {
+      stroke: cornflowerblue;
+    }
+  }
+}
+
+path[id^="num-"] {
+  pointer-events: none;
+}
