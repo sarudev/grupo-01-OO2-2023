@@ -8,6 +8,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -20,36 +22,20 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Lugar {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int idLugar;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int idLugar;
 
-  @OneToMany(mappedBy = "lugar")
-  private Set<Aula> aulas = new HashSet<Aula>();
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
+	private Set<Sensor> sensores;
 
-  @OneToMany(mappedBy = "lugar")
-  private Set<Edificio> edificios = new HashSet<Edificio>();
+	private String nombreLugar;
 
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
-  private Set<EspacioVerde> espacioVerdes = new HashSet<EspacioVerde>();
-
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
-  private Set<Estacionamiento> estacionamientos = new HashSet<Estacionamiento>();
-
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
-  private Set<Parking> parkings = new HashSet<Parking>();
-
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
-  private Set<Sensor> sensores = new HashSet<Sensor>();
-
-  private String nombreLugar;
-
-
-
-  public Lugar(String nombreLugar) {
-    this.nombreLugar = nombreLugar;
-  }
+	public Lugar(String nombreLugar) {
+		this.nombreLugar = nombreLugar;
+	}
 
 }

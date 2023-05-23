@@ -21,25 +21,25 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Sensor {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int idSensor;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int idSensor;
 
-  @Column(name = "nombreSensor")
-  private String nombreSensor;
+	@Column(name = "nombreSensor")
+	private String nombreSensor;
 
-  @Column(name = "activo")
-  private boolean activo;
+	@Column(name = "activo")
+	private boolean activo;
 
-  // fk lugar
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "lugar_id")
-  Lugar lugar;
+	// fk lugar
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "lugar_id")
+	Lugar lugar;
 
-  public Sensor(String nombreSensor, boolean activo, Lugar lugar) {
-    this.nombreSensor = nombreSensor;
-    this.activo = activo;
-    this.lugar = lugar;
-  }
+	public Sensor(String nombreSensor, boolean activo, Lugar lugar) {
+		this.nombreSensor = nombreSensor;
+		this.activo = activo;
+		this.lugar = lugar;
+	}
 
 }
