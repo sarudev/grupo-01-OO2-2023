@@ -9,9 +9,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "estacionamiento")
+
+@Getter
+@Setter
+@NoArgsConstructor
 public class Estacionamiento {
 
   @Id
@@ -31,9 +38,6 @@ public class Estacionamiento {
   @JoinColumn(name = "id_lugar")
   private Lugar lugar;
 
-  public Estacionamiento() {
-  }
-
   public Estacionamiento(int idEstacionamiento, boolean baja, Parking parking, Lugar lugar) {
     super();
     this.baja = baja;
@@ -41,35 +45,4 @@ public class Estacionamiento {
     this.lugar = lugar;
   }
 
-  public int getIdEstacionamiento() {
-    return idEstacionamiento;
-  }
-
-  protected void setIdEstacionamiento(int idEstacionamiento) {
-    this.idEstacionamiento = idEstacionamiento;
-  }
-
-  public boolean isBaja() {
-    return baja;
-  }
-
-  public void setBaja(boolean baja) {
-    this.baja = baja;
-  }
-
-  public Parking getParking() {
-    return parking;
-  }
-
-  public void setParking(Parking parking) {
-    this.parking = parking;
-  }
-
-  public Lugar getLugar() {
-    return lugar;
-  }
-
-  public void setLugar(Lugar lugar) {
-    this.lugar = lugar;
-  }
 }

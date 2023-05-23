@@ -11,17 +11,21 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "edificio")
+
+@Getter
+@Setter
+@NoArgsConstructor
 public class Edificio {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int idEdificio;
-
-  @Column(name = "nombre")
-  private String nombre;
 
   @OneToMany(mappedBy = "edificio")
   private Set<Aula> aulas;
@@ -30,44 +34,10 @@ public class Edificio {
   @JoinColumn(name = "id_lugar") // Nombre de la columna que actúa como clave externa en la tabla de Propietario
   private Lugar lugar;
 
-  public Edificio() {
-  }
 
-  public Edificio(int idEdificio, String nombre, Lugar lugar) {
-    this.nombre = nombre;
+  public Edificio(int idEdificio, Lugar lugar) {
     this.lugar = lugar;
   }
 
-  public int getIdEdificio() {
-    return idEdificio;
-  }
-
-  protected void setIdEdificio(int idEdificio) {
-    this.idEdificio = idEdificio;
-  }
-
-  public String getNombre() {
-    return nombre;
-  }
-
-  public void setNombre(String nombre) {
-    this.nombre = nombre;
-  }
-
-  public Set<Aula> getAulas() {
-    return aulas;
-  }
-
-  public void setAulas(Set<Aula> aulas) {
-    this.aulas = aulas;
-  }
-
-  public Lugar getLugar() {
-    return lugar;
-  }
-
-  public void setLugar(Lugar lugar) {
-    this.lugar = lugar;
-  }
-
+  
 }

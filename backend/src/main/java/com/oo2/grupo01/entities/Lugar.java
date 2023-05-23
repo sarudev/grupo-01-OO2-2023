@@ -10,9 +10,16 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "lugar")
+
+@Getter
+@Setter
+@NoArgsConstructor
 public class Lugar {
 
   @Id
@@ -39,74 +46,9 @@ public class Lugar {
 
   private String nombreLugar;
 
-  public Lugar() {
-  }
+
 
   public Lugar(String nombreLugar) {
-    this.nombreLugar = nombreLugar;
-  }
-
-  public int getIdLugar() {
-    return idLugar;
-  }
-
-  protected void setIdLugar(int idLugar) {
-    this.idLugar = idLugar;
-  }
-
-  public Set<Aula> getAulas() {
-    return aulas;
-  }
-
-  public void setAulas(Set<Aula> aulas) {
-    this.aulas = aulas;
-  }
-
-  public Set<Edificio> getEdificios() {
-    return edificios;
-  }
-
-  public void setEdificios(Set<Edificio> edificios) {
-    this.edificios = edificios;
-  }
-
-  public Set<EspacioVerde> getEspacioVerdes() {
-    return espacioVerdes;
-  }
-
-  public void setEspacioVerdes(Set<EspacioVerde> espacioVerdes) {
-    this.espacioVerdes = espacioVerdes;
-  }
-
-  public Set<Estacionamiento> getEstacionamientos() {
-    return estacionamientos;
-  }
-
-  public void setEstacionamientos(Set<Estacionamiento> estacionamientos) {
-    this.estacionamientos = estacionamientos;
-  }
-
-  public Set<Parking> getParkings() {
-    return parkings;
-  }
-
-  public void setParkings(Set<Parking> parkings) {
-    this.parkings = parkings;
-  }
-
-  public Set<Sensor> getSensores() {
-    return sensores;
-  }
-
-  public void setSensores(Set<Sensor> sensores) {
-    this.sensores = sensores;
-  }
-
-  public String getNombreLugar() {
-    return nombreLugar;
-  }
-
-  public void setNombreLugar(String nombreLugar) {
     this.nombreLugar = nombreLugar;
   }
 
