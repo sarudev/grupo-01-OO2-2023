@@ -13,14 +13,13 @@
 
 .building {
   &.selected .background[data-invisible] {
-    stroke-width: 5px;
     stroke: cornflowerblue;
   }
 
   .background {
     fill: #423E3F;
     stroke: transparent;
-    stroke-width: 3px;
+    stroke-width: 5px;
     transition: stroke .25s ease;
 
     &:hover {
