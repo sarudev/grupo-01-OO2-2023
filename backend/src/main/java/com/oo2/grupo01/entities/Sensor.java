@@ -2,6 +2,8 @@ package com.oo2.grupo01.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -31,9 +33,9 @@ public class Sensor {
 	@EqualsAndHashCode.Include
 	@Setter(AccessLevel.PROTECTED)
 	private Long idSensor;
-
-	@Column(name = "nombreSensor")
-	private String nombreSensor;
+	
+	@Enumerated(EnumType.ORDINAL)
+	private Sensores tipo;
 
 	@Column(name = "activo")
 	private boolean activo;
@@ -43,10 +45,13 @@ public class Sensor {
 	@JoinColumn(name = "lugar_id")
 	Lugar lugar;
 
-	public Sensor(String nombreSensor, boolean activo, Lugar lugar) {
-		this.nombreSensor = nombreSensor;
-		this.activo = activo;
+	public Sensor(Sensores tipo, Lugar lugar) {
+		super();
+		this.tipo = tipo;
+		this.activo = true;
 		this.lugar = lugar;
 	}
+
+
 
 }

@@ -2,6 +2,7 @@ package com.oo2.grupo01.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -11,6 +12,8 @@ import lombok.ToString;
 
 @Entity
 @Table(name = "espacioVerde")
+@PrimaryKeyJoinColumn(referencedColumnName = "idLugar")
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,12 +21,14 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 public class EspacioVerde extends Lugar {
 
-	@Column(name = "baja")
-	private boolean baja;
+	@Column(name = "ubicacion")
+	private String ubicacion;
 
-	public EspacioVerde(String nombreLugar, boolean baja) {
-		super(nombreLugar);
-		this.baja = baja;
+	public EspacioVerde(Lugares lugar, String ubicacion) {
+		super( lugar);
+		this.ubicacion = ubicacion;
 	}
 
+	
+	
 }

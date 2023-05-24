@@ -11,9 +11,6 @@ public class SensorTiempo extends Sensor {
     // TODO Auto-generated constructor stub
   }
 
-  public SensorTiempo(String nombreSensor, boolean activo, Lugar lugar) {
-    super(nombreSensor, activo, lugar);
-    // TODO Auto-generated constructor stub
-  }
+  
 
 }

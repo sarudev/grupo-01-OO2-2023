@@ -9,9 +9,6 @@ public class SensorHumedad extends Sensor {
     // TODO Auto-generated constructor stub
   }
 
-  public SensorHumedad(String nombreSensor, boolean activo, Lugar lugar) {
-    super(nombreSensor, activo, lugar);
-    // TODO Auto-generated constructor stub
-  }
+  
 
 }

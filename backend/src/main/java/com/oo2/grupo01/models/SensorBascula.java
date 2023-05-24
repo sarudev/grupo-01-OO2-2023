@@ -9,9 +9,5 @@ public class SensorBascula extends Sensor {
     // TODO Auto-generated constructor stub
   }
 
-  public SensorBascula(String nombreSensor, boolean activo, Lugar lugar) {
-    super(nombreSensor, activo, lugar);
-    // TODO Auto-generated constructor stub
-  }
 
 }

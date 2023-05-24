@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -14,6 +15,7 @@ import lombok.ToString;
 
 @Entity
 @Table(name = "estacionamiento")
+@PrimaryKeyJoinColumn(referencedColumnName = "idLugar")
 
 @Getter
 @Setter
@@ -22,17 +24,18 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 public class Estacionamiento extends Lugar {
 
-	@Column(name = "baja")
-	private boolean baja;
-
 	// fk parking
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_parking")
 	private Parking parking;
 
-	public Estacionamiento(String nombreLugar, boolean baja) {
-		super(nombreLugar);
-		this.baja = baja;
+	@Column(name = "numero")
+	private int numero;
+
+	public Estacionamiento(Lugares lugar, Parking parking, int numero) {
+		super( lugar);
+		this.parking = parking;
+		this.numero = numero;
 	}
 
 }
