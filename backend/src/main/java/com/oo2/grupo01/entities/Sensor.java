@@ -52,6 +52,11 @@ public class Sensor {
 		this.lugar = lugar;
 	}
 
-
+	public Sensor(Sensor sensor) {
+		this.idSensor = sensor.idSensor;
+		this.tipo = sensor.tipo;
+		this.activo = sensor.activo;
+		this.lugar = sensor.lugar;
+	}
 
 }
