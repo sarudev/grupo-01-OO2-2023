@@ -1,17 +1,20 @@
 package com.oo2.grupo01.models;
 
-import com.oo2.grupo01.entities.Lugar;
 import com.oo2.grupo01.entities.Sensor;
 
+import lombok.ToString;
+
+@ToString
 public class SensorHumedad extends Sensor {
-  public SensorHumedad() {
-    super();
-    // TODO Auto-generated constructor stub
-  }
-
-  public SensorHumedad(String nombreSensor, boolean activo, Lugar lugar) {
-    super(nombreSensor, activo, lugar);
-    // TODO Auto-generated constructor stub
-  }
-
+	
+	private double humedad;
+	
+	public SensorHumedad(Sensor sensor) {
+		super(sensor);
+		humedad = humedad();
+	}
+	
+	public double humedad() {
+		return Math.random() % 75+ 25;
+	}
 }

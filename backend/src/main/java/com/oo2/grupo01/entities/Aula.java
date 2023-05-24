@@ -1,84 +1,39 @@
 package com.oo2.grupo01.entities;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "aula")
-public class Aula {
+@PrimaryKeyJoinColumn(referencedColumnName = "idLugar")
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int idAula;
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+public class Aula extends Lugar{
 
-  @Column(name = "nombre")
-  private String nombre;
+	@ManyToOne
+	@JoinColumn(name = "id_edificio") // Nombre de la columna que actúa como clave externa en la tabla de Propietario
+	private Edificio edificio;
 
-  @Column(name = "baja")
-  private boolean baja;
+	private String nombre;
 
-  @ManyToOne
-  @JoinColumn(name = "id_edificio") // Nombre de la columna que actúa como clave externa en la tabla de Propietario
-  private Edificio edificio;
-
-  @ManyToOne
-  @JoinColumn(name = "id_lugar") // Nombre de la columna que actúa como clave externa en la tabla de Propietario
-  private Lugar lugar;
-
-  public Aula() {
-  }
-
-  public Aula(int idAula, String nombre, boolean baja, Edificio edificio, Lugar lugar) {
-    this.nombre = nombre;
-    this.baja = baja;
-    this.edificio = edificio;
-    this.lugar = lugar;
-  }
-
-  public int getIdAula() {
-    return idAula;
-  }
-
-  protected void setIdAula(int idAula) {
-    this.idAula = idAula;
-  }
-
-  public String getNombre() {
-    return nombre;
-  }
-
-  public void setNombre(String nombre) {
-    this.nombre = nombre;
-  }
-
-  public boolean isBaja() {
-    return baja;
-  }
-
-  public void setBaja(boolean baja) {
-    this.baja = baja;
-  }
-
-  public Edificio getEdificio() {
-    return edificio;
-  }
-
-  public void setEdificio(Edificio edificio) {
-    this.edificio = edificio;
-  }
-
-  public Lugar getLugar() {
-    return lugar;
-  }
-
-  public void setLugar(Lugar lugar) {
-    this.lugar = lugar;
-  }
+	public Aula(Lugares lugar, Edificio edificio, String nombre) {
+		super(lugar);
+		this.edificio = edificio;
+		this.nombre = nombre;
+	}
+	
+	
 
 }

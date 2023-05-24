@@ -2,59 +2,33 @@ package com.oo2.grupo01.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "espacioVerde")
-public class EspacioVerde {
+@PrimaryKeyJoinColumn(referencedColumnName = "idLugar")
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int idEspacioVerde;
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+public class EspacioVerde extends Lugar {
 
-  @Column(name = "baja")
-  private boolean baja;
+	@Column(name = "ubicacion")
+	private String ubicacion;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "id_lugar") // Nombre de la columna que actúa como clave externa en la tabla de Propietario
-  private Lugar lugar;
+	public EspacioVerde(Lugares lugar, String ubicacion) {
+		super( lugar);
+		this.ubicacion = ubicacion;
+	}
 
-  public EspacioVerde() {
-  }
-
-  public EspacioVerde(int idEspacioVerde, boolean baja, Lugar lugar) {
-    this.baja = baja;
-    this.lugar = lugar;
-  }
-
-  public int getIdEspacioVerde() {
-    return idEspacioVerde;
-  }
-
-  protected void setIdEspacioVerde(int idEspacioVerde) {
-    this.idEspacioVerde = idEspacioVerde;
-  }
-
-  public boolean isBaja() {
-    return baja;
-  }
-
-  public void setBaja(boolean baja) {
-    this.baja = baja;
-  }
-
-  public Lugar getLugar() {
-    return lugar;
-  }
-
-  public void setLugar(Lugar lugar) {
-    this.lugar = lugar;
-  }
-
+	
+	
 }
