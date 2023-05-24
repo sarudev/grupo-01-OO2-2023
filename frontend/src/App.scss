@@ -11,16 +11,70 @@
   opacity: 1;
 }
 
-g[id^="edificio-"] {
-  rect[id^="background-"] {
+.building {
+  &.selected .background[data-invisible] {
     stroke-width: 5px;
+    stroke: cornflowerblue;
+  }
+
+  .background {
+    fill: #423E3F;
+    stroke: transparent;
+    stroke-width: 3px;
+    transition: stroke .25s ease;
 
     &:hover {
       stroke: cornflowerblue;
     }
+
+    &[data-invisible] {
+      fill: black;
+      fill-opacity: 0;
+
+      &+.num {
+        fill: #423E3F;
+      }
+    }
+  }
+
+  &[data-building-number="10"] .background {
+    fill: #9D9AA1;
+  }
+
+  &[data-building-number="29"] .background {
+    stroke: transparent;
+  }
+
+  .canchas,
+  .num {
+    pointer-events: none;
+  }
+
+  .num {
+    fill: white;
   }
 }
 
-path[id^="num-"] {
-  pointer-events: none;
+.building-name {
+  &:hover {
+    .text {
+      fill: cornflowerblue;
+    }
+  }
+
+  .background {
+    fill: black;
+    fill-opacity: 0;
+  }
+
+  .text {
+    fill: #423E3F;
+    stroke: cornflowerblue;
+    stroke-width: 0px;
+    transition: all .25s ease;
+
+    &.selected {
+      fill: cornflowerblue;
+    }
+  }
 }
