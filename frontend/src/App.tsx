@@ -4,6 +4,7 @@ import { ReactComponent as Campus } from './assets/campus.svg'
 import useBuildingSelector from './hooks/useBuildingSelector'
 import useBuildingNameSelector from './hooks/useBuildingNameSelector'
 import { useLoaderData, createBrowserRouter, RouterProvider } from 'react-router-dom'
+import useBuildingNavigation from './hooks/useBuildingNavigation'
 
 const campus = {
   edificios: [
@@ -38,6 +39,8 @@ function App () {
   const [currentBuilding, setCurrentBuilding] = useState('')
   useBuildingSelector('cartelitowo', setCurrentBuilding)
   useBuildingNameSelector()
+
+  useBuildingNavigation()
 
   return (
     <div style={{ width: '100%', height: '100%' }}>
@@ -90,7 +93,7 @@ const router = createBrowserRouter([
     path: '/edificio/:buildingId',
     loader: async ({ params }) => {
       const { buildingId } = params
-      return campus.edificios.find(e => e.id === Number(buildingId))
+      return campus.edificios.find(e => e.id === Number(buildingId)) ?? { error: '404 | Not Found' }
     },
     element: <Building />
   },
@@ -98,7 +101,7 @@ const router = createBrowserRouter([
     path: '/edificio/:buildingId/aula/:aulaId',
     loader: async ({ params }) => {
       const { buildingId, aulaId } = params
-      return campus.edificios.find(e => e.id === Number(buildingId))?.aulas.find(a => a.id === Number(aulaId))
+      return campus.edificios.find(e => e.id === Number(buildingId))?.aulas.find(a => a.id === Number(aulaId)) ?? { error: '404 | Not Found' }
     },
     element: <Aula />
   }
