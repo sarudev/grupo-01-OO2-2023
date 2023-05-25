@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { getSvgCampusDataset } from '../utils/utils'
+import { getBuildingDataset } from '../utils/utils'
 
 export default function useBuildingSelector () {
   useEffect(() => {
@@ -7,7 +7,7 @@ export default function useBuildingSelector () {
     const svgtext = (buildingNumber: string) => document.querySelector(`.building-name[data-building-number="${buildingNumber}"]>.text`)
 
     function mouseEnter (e: Event) {
-      const { dataset } = getSvgCampusDataset(e)
+      const { dataset } = getBuildingDataset(e)
       if (dataset.buildingName === 'N/A') return
 
       const text = svgtext(dataset.buildingNumber)!
@@ -16,7 +16,7 @@ export default function useBuildingSelector () {
     }
 
     function mouseLeave (e: Event) {
-      const { dataset } = getSvgCampusDataset(e)
+      const { dataset } = getBuildingDataset(e)
       if (dataset.buildingName === 'N/A') return
 
       const text = svgtext(dataset.buildingNumber)!

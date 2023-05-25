@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getSvgCampusDataset } from '../utils/utils'
+import { getBuildingDataset } from '../utils/utils'
 
 export default function useBuildingNavigation () {
   const navigate = useNavigate()
@@ -10,7 +10,7 @@ export default function useBuildingNavigation () {
     const texts = document.querySelectorAll('.building-name')
 
     function click (e: Event) {
-      const { dataset } = getSvgCampusDataset(e)
+      const { dataset } = getBuildingDataset(e)
       navigate(`/edificio/${dataset.buildingName.replaceAll(' ', '-')}`)
     }
 

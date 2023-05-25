@@ -1,6 +1,7 @@
-export function getSvgCampusDataset (e: Event) {
-  const elem = e.target as SVGGElement
+export function getBuildingDataset (e: Event) {
+  const elem = e.currentTarget as SVGGElement
   const dataset = elem.dataset as { buildingName: string, buildingNumber: string }
+  console.log(dataset)
 
   return {
     elem,
