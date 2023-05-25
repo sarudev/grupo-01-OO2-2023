@@ -1,17 +1,23 @@
 #cartelitowo {
+  position: absolute;
+  background-color: #242424;
+  color: white;
+  font-size: 20px;
+  white-space: nowrap;
   opacity: 0;
   pointer-events: none;
   transform: translateX(10%) translateY(-110%);
   padding: 10px;
   border-radius: 10px;
   transition: opacity .25s ease;
-}
 
-#cartelitowo.visible {
-  opacity: 1;
+  &.visible {
+    opacity: 1;
+  }
 }
 
 .building {
+
   &.selected .background[data-invisible] {
     stroke: cornflowerblue;
   }
@@ -21,6 +27,7 @@
     stroke: transparent;
     stroke-width: 5px;
     transition: stroke .25s ease;
+    cursor: pointer;
 
     &:hover {
       stroke: cornflowerblue;
@@ -42,6 +49,7 @@
 
   &[data-building-number="29"] .background {
     stroke: transparent;
+    cursor: default;
   }
 
   .canchas,
@@ -55,6 +63,8 @@
 }
 
 .building-name {
+  cursor: pointer;
+
   &:hover {
     .text {
       fill: cornflowerblue;

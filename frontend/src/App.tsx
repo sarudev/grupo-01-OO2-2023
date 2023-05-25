@@ -52,7 +52,7 @@ function App () {
 
 function MouseCartelito ({ text }: { text: string }) {
   return (
-    <div style={{ position: 'absolute', backgroundColor: '#242424', color: 'white', fontSize: '20px', whiteSpace: 'nowrap' }} id='cartelitowo'>
+    <div id='cartelitowo'>
       {text}
     </div>
   )
