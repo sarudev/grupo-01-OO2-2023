@@ -90,18 +90,18 @@ const router = createBrowserRouter([
     element: <App />
   },
   {
-    path: '/edificio/:buildingId',
+    path: '/edificio/:buildingName',
     loader: async ({ params }) => {
-      const { buildingId } = params
-      return campus.edificios.find(e => e.id === Number(buildingId)) ?? { error: '404 | Not Found' }
+      const { buildingName } = params
+      return campus.edificios.find(e => e.nombre === buildingName!.replaceAll('-', ' ')) ?? { error: '404 | Not Found' }
     },
     element: <Building />
   },
   {
-    path: '/edificio/:buildingId/aula/:aulaId',
+    path: '/edificio/:buildingId/aula/:aulaName',
     loader: async ({ params }) => {
-      const { buildingId, aulaId } = params
-      return campus.edificios.find(e => e.id === Number(buildingId))?.aulas.find(a => a.id === Number(aulaId)) ?? { error: '404 | Not Found' }
+      const { buildingName, aulaName } = params
+      return campus.edificios.find(e => e.nombre === buildingName!.replaceAll('-', ' '))?.aulas.find(a => a.nombre === aulaName!.replaceAll('-', '')) ?? { error: '404 | Not Found' }
     },
     element: <Aula />
   }
