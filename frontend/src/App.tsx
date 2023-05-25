@@ -6,35 +6,7 @@ import useBuildingNameSelector from './hooks/useBuildingNameSelector'
 import { useLoaderData, createBrowserRouter, RouterProvider } from 'react-router-dom'
 import useBuildingNavigation from './hooks/useBuildingNavigation'
 import useCartelitowo from './hooks/useCarteliowo'
-
-const campus = {
-  edificios: [
-    {
-      id: 1,
-      nombre: 'José Hernández',
-      sensores: [
-        {
-          id: 1,
-          type: 'tiempo'
-        }
-      ],
-      aulas: [
-        {
-          id: 1,
-          nombre: '11',
-          sensores: [
-            {
-              id: 2,
-              type: 'tiempo'
-            }
-          ]
-        }
-      ]
-    }
-  ],
-  espaciosVerdes: [],
-  parkings: []
-}
+import campus from './assets/campus'
 
 function App () {
   const [currentBuilding, setCurrentBuilding] = useState('')
@@ -100,9 +72,10 @@ const router = createBrowserRouter([
     element: <Building />
   },
   {
-    path: '/edificio/:buildingId/aula/:aulaName',
+    path: '/edificio/:buildingName/aula/:aulaName',
     loader: async ({ params }) => {
       const { buildingName, aulaName } = params
+      console.log({ buildingName, aulaName })
       return campus.edificios.find(e => e.nombre === buildingName!.replaceAll('-', ' '))?.aulas.find(a => a.nombre === aulaName!.replaceAll('-', '')) ?? { error: '404 | Not Found' }
     },
     element: <Aula />

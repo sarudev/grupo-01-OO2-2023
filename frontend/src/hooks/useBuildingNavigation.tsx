@@ -11,6 +11,8 @@ export default function useBuildingNavigation () {
 
     function click (e: Event) {
       const { dataset } = getBuildingDataset(e)
+      if (dataset.buildingName === 'N/A') return
+
       navigate(`/edificio/${dataset.buildingName.replaceAll(' ', '-')}`)
     }
 
