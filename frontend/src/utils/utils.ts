@@ -7,3 +7,11 @@ export function getBuildingDataset (e: Event) {
     dataset
   }
 }
+
+export function strToUrl (str: string) {
+  return str.replaceAll(' ', '-')
+}
+
+export function urlToStr (str: string) {
+  return str.replaceAll('-', ' ')
+}

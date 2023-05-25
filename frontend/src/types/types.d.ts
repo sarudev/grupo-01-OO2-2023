@@ -30,3 +30,11 @@ export interface Estacionamiento extends Lugar {}
 export interface Parking extends Lugar {
   estacionamientos: Estacionamiento[]
 }
+
+export type Status = {
+  code: 200
+  message: 'Continue'
+} | {
+  code: 404
+  message: 'Not Found'
+}
