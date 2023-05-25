@@ -1,38 +1,49 @@
 import { useEffect } from 'react'
 import { getSvgCampusDataset } from '../utils/utils'
 
-export default function useBuildingSelector () {
+export default function useCartelitowo (cartelitoId: string, setCurrentBuilding: React.Dispatch<React.SetStateAction<string>>) {
   useEffect(() => {
     const svgs = document.querySelectorAll('.building')
-    const svgtext = (buildingNumber: string) => document.querySelector(`.building-name[data-building-number="${buildingNumber}"]>.text`)
+    const cartelitowo = document.querySelector(`#${cartelitoId}`) as HTMLDivElement
 
     function mouseEnter (e: Event) {
       const { dataset } = getSvgCampusDataset(e)
       if (dataset.buildingName === 'N/A') return
 
-      const text = svgtext(dataset.buildingNumber)!
-
-      text.classList.add('selected')
+      setCurrentBuilding(dataset.buildingName)
+      cartelitowo.classList.add('visible')
     }
 
     function mouseLeave (e: Event) {
       const { dataset } = getSvgCampusDataset(e)
       if (dataset.buildingName === 'N/A') return
 
-      const text = svgtext(dataset.buildingNumber)!
+      cartelitowo.classList.remove('visible')
+    }
 
-      text.classList.remove('selected')
+    function mousemove (event: Event) {
+      const e = event as MouseEvent
+
+      const { dataset } = getSvgCampusDataset(e)
+      if (dataset.buildingName === 'N/A') return
+
+      const { pageX: x, pageY: y } = e
+
+      cartelitowo.style.top = `${y}px`
+      cartelitowo.style.left = `${x}px`
     }
 
     for (const svg of svgs) {
       svg.addEventListener('mouseenter', mouseEnter)
       svg.addEventListener('mouseleave', mouseLeave)
+      svg.addEventListener('mousemove', mousemove)
     }
 
     return () => {
       for (const svg of svgs) {
         svg.removeEventListener('mouseenter', mouseEnter)
         svg.removeEventListener('mouseleave', mouseLeave)
+        svg.removeEventListener('mousemove', mousemove)
       }
     }
   }, [])

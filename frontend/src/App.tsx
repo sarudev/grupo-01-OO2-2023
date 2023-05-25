@@ -5,6 +5,7 @@ import useBuildingSelector from './hooks/useBuildingSelector'
 import useBuildingNameSelector from './hooks/useBuildingNameSelector'
 import { useLoaderData, createBrowserRouter, RouterProvider } from 'react-router-dom'
 import useBuildingNavigation from './hooks/useBuildingNavigation'
+import useCartelitowo from './hooks/useCarteliowo'
 
 const campus = {
   edificios: [
@@ -37,8 +38,9 @@ const campus = {
 
 function App () {
   const [currentBuilding, setCurrentBuilding] = useState('')
-  useBuildingSelector('cartelitowo', setCurrentBuilding)
+  useBuildingSelector()
   useBuildingNameSelector()
+  useCartelitowo('cartelitowo', setCurrentBuilding)
 
   useBuildingNavigation()
 
