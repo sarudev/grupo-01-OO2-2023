@@ -2,7 +2,6 @@ package com.oo2.grupo01.entities;
 
 import java.util.Set;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -34,24 +33,19 @@ import lombok.ToString;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Lugar {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@EqualsAndHashCode.Include()
-	@Setter(AccessLevel.PROTECTED)
-	protected Long idLugar;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @EqualsAndHashCode.Include()
+  @Setter(AccessLevel.PROTECTED)
+  protected Long idLugar;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
-	protected Set<Sensor> sensores;
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
+  protected Set<Sensor> sensores;
 
-	@Column(name = "baja")
-	protected boolean baja;
-	
-	@Enumerated(EnumType.ORDINAL)
-	protected Lugares lugar;
-	
-	public Lugar(Lugares lugar) {
-		this.lugar = lugar;
-		baja = false;
-	}
+  @Enumerated(EnumType.ORDINAL)
+  protected Lugares lugar;
 
+  public Lugar(Lugares lugar) {
+    this.lugar = lugar;
+  }
 }

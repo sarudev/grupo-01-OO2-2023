@@ -1,34 +1,40 @@
 package com.oo2.grupo01.services.implementacion;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.oo2.grupo01.dto.EspacioVerdeDTO;
+import com.oo2.grupo01.entities.EspacioVerde;
+import com.oo2.grupo01.repositories.IEspacioVerdeRepository;
 import com.oo2.grupo01.services.IEspacioVerdeService;
 
 @Service("espacioVerdeService")
-public class EspacioVerdeService implements IEspacioVerdeService{
+public class EspacioVerdeService implements IEspacioVerdeService {
+  @Qualifier
+  IEspacioVerdeRepository repository;
 
-	@Override
-	public boolean lucesEncendidas() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+  @Override
+  public void agregar(EspacioVerde object) {
+    if (object != null)
+      repository.save(object);
+  }
 
-	@Override
-	public double nivelHumedad() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+  @Override
+  public EspacioVerdeDTO traer(Long id) {
+    EspacioVerde est = repository.findById(id).orElse(null);
 
-	@Override
-	public boolean hayHumedadAlta() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    return new EspacioVerdeDTO(est);
+  }
 
-	@Override
-	public boolean hayHumedadBaja() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+  @Override
+  public EspacioVerdeDTO traerPorUbicacion(String ubicacion) {
+    EspacioVerde est = repository.traerPorUbicacion(ubicacion).orElse(null);
 
+    return new EspacioVerdeDTO(est);
+  }
+
+  @Override
+  public void eliminar(Long id) {
+    repository.deleteById(id);
+  }
 }

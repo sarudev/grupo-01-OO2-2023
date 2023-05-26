@@ -4,9 +4,8 @@ import com.oo2.grupo01.entities.Lugar;
 import com.oo2.grupo01.entities.Sensor;
 import com.oo2.grupo01.entities.Sensores;
 
-public interface ISensorService {
-	public Sensor traerSensor(Long id);
-	public void switchSensor(Long id);
-	public void agregarSensor(Sensores tipo, Lugar lugar);
-	public void eliminarSensor(Long id);
+public interface ISensorService extends IGenericService<Sensor, Sensor> {
+  public void agregar(Sensores tipo, Lugar lugar);
+
+  public void switchSensor(Long id);
 }
