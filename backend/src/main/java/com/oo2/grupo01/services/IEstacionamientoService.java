@@ -1,5 +1,8 @@
 package com.oo2.grupo01.services;
 
-public interface IEstacionamientoService {
-	public boolean estaOcupado();
+import com.oo2.grupo01.dto.EstacionamientoDTO;
+import com.oo2.grupo01.entities.Estacionamiento;
+
+public interface IEstacionamientoService extends IGenericService<Estacionamiento, EstacionamientoDTO> {
+  public EstacionamientoDTO traerPorNumero(int numero, Long idParking);
 }

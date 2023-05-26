@@ -1,8 +1,8 @@
 package com.oo2.grupo01.services;
 
-public interface IEdificioService {
-	public boolean lucesEncendidas();
-	
-	public boolean estaAbierto();
-	
+import com.oo2.grupo01.dto.EdificioDTO;
+import com.oo2.grupo01.entities.Edificio;
+
+public interface IEdificioService extends IGenericService<Edificio, EdificioDTO> {
+  public EdificioDTO traerPorNombre(String nombre);
 }

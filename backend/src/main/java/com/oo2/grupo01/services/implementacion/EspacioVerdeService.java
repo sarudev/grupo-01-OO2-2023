@@ -2,33 +2,40 @@ package com.oo2.grupo01.services.implementacion;
 
 import org.springframework.stereotype.Service;
 
+import com.oo2.grupo01.dto.EspacioVerdeDTO;
+import com.oo2.grupo01.entities.EspacioVerde;
+import com.oo2.grupo01.repositories.IEspacioVerdeRepository;
 import com.oo2.grupo01.services.IEspacioVerdeService;
 
+import lombok.AllArgsConstructor;
+
 @Service("espacioVerdeService")
-public class EspacioVerdeService implements IEspacioVerdeService{
+@AllArgsConstructor
+public class EspacioVerdeService implements IEspacioVerdeService {
+	private IEspacioVerdeRepository repository;
 
 	@Override
-	public boolean lucesEncendidas() {
-		// TODO Auto-generated method stub
-		return false;
+	public void agregar(EspacioVerde object) {
+		if (object != null)
+			repository.save(object);
 	}
 
 	@Override
-	public double nivelHumedad() {
-		// TODO Auto-generated method stub
-		return 0;
+	public EspacioVerdeDTO traer(Long id) {
+		EspacioVerde est = repository.findById(id).orElse(null);
+
+		return new EspacioVerdeDTO(est);
 	}
 
 	@Override
-	public boolean hayHumedadAlta() {
-		// TODO Auto-generated method stub
-		return false;
+	public EspacioVerdeDTO traerPorUbicacion(String ubicacion) {
+		EspacioVerde est = repository.traerPorUbicacion(ubicacion).orElse(null);
+
+		return new EspacioVerdeDTO(est);
 	}
 
 	@Override
-	public boolean hayHumedadBaja() {
-		// TODO Auto-generated method stub
-		return false;
+	public void eliminar(Long id) {
+		repository.deleteById(id);
 	}
-
 }

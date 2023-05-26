@@ -11,22 +11,10 @@ import com.oo2.grupo01.services.ISensorService;
 
 import lombok.AllArgsConstructor;
 
-@Service
 @AllArgsConstructor
+@Service("sensorService")
 public class SensorService implements ISensorService {
-
 	private ISensorRepository repository;
-
-	@Override
-	public Sensor traerSensor(Long id) {
-		Sensor sensor = repository.findById(id).orElse(null);
-
-		if (sensor != null) {
-			Util.convertirSensor(sensor);
-		}
-
-		return sensor;
-	}
 
 	@Override
 	public void switchSensor(Long id) {
@@ -34,22 +22,39 @@ public class SensorService implements ISensorService {
 
 		if (sensor != null) {
 			sensor.setActivo(!sensor.isActivo());
-			
+
 			repository.save(sensor);
 		}
 
 	}
 
 	@Override
-	public void agregarSensor(Sensores tipo, Lugar lugar) {
-		if(tipo != null && lugar != null) {
-			repository.save(new Sensor(tipo, lugar));
+	public void agregar(Sensor sensor) {
+		if (sensor != null) {
+			repository.save(sensor);
 		}
-
 	}
 
 	@Override
-	public void eliminarSensor(Long id) {
+	public void agregar(Sensores tipo, Lugar lugar) {
+		if (tipo != null && lugar != null) {
+			repository.save(new Sensor(tipo, lugar));
+		}
+	}
+
+	@Override
+	public Sensor traer(Long id) {
+		Sensor sensor = repository.findById(id).orElse(null);
+
+		if (sensor != null) {
+			sensor = Util.convertirSensor(sensor);
+		}
+
+		return sensor;
+	}
+
+	@Override
+	public void eliminar(Long id) {
 		repository.deleteById(id);
 	}
 
