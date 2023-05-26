@@ -20,6 +20,8 @@ public class ParkingDTO extends GenericDTO<Parking> {
     this.ubicacion = parking.getUbicacion();
     this.estacionamientos = parking.getEstacionamientos();
 
+    this.luces = null;
+    
     for (var sensor : sensores) {
       if (sensor.getTipo() == Sensores.TIEMPO && ((SensorTiempo) sensor).isActivo()) {
         this.luces = !((SensorTiempo) sensor).hayLuzSolar();

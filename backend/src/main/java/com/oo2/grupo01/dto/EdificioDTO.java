@@ -14,7 +14,9 @@ public class EdificioDTO extends GenericDTO<Edificio> {
   public EdificioDTO(Edificio edificio) {
     super(edificio.getIdLugar(), edificio.getLugar(), edificio.getSensores());
     this.nombre = edificio.getNombre();
-
+    
+    this.luces = null;
+    
     for (var sensor : sensores) {
       if (sensor.getTipo() == Sensores.TIEMPO && ((SensorTiempo) sensor).isActivo()) {
         this.luces = !((SensorTiempo) sensor).hayLuzSolar();

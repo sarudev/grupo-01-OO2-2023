@@ -14,7 +14,9 @@ public class AulaDTO extends GenericDTO<Aula> {
   public AulaDTO(Aula aula) {
     super(aula.getIdLugar(), aula.getLugar(), aula.getSensores());
     this.nombre = aula.getNombre();
-
+    
+    this.luces = null;
+    
     for (var sensor : sensores) {
       if (sensor.getTipo() == Sensores.TIEMPO && ((SensorTiempo) sensor).isActivo()) {
         this.luces = !((SensorTiempo) sensor).hayLuzSolar();

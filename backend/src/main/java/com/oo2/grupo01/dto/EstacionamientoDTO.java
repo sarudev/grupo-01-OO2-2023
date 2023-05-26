@@ -14,7 +14,9 @@ public class EstacionamientoDTO extends GenericDTO<Estacionamiento> {
   public EstacionamientoDTO(Estacionamiento est) {
     super(est.getIdLugar(), est.getLugar(), est.getSensores());
     this.numero = est.getNumero();
-
+    
+    this.ocupado = null;
+    
     for (var sensor : sensores) {
       if (sensor.getTipo() == Sensores.BASCULA && ((SensorBascula) sensor).isActivo()) {
         this.ocupado = ((SensorBascula) sensor).superoLimite();

@@ -16,7 +16,9 @@ public class EspacioVerdeDTO extends GenericDTO<EspacioVerde> {
   public EspacioVerdeDTO(EspacioVerde espacioVerde) {
     super(espacioVerde.getIdLugar(), espacioVerde.getLugar(), espacioVerde.getSensores());
     this.ubicacion = espacioVerde.getUbicacion();
-
+    
+    this.humedad = null;
+    this.luces = null; 
     for (var sensor : sensores) {
       if (sensor.getTipo() == Sensores.HUMEDAD && ((SensorHumedad) sensor).isActivo()) {
         this.humedad = ((SensorHumedad) sensor).humedad();
