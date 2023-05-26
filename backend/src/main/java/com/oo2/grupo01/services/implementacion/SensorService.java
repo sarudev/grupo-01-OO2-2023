@@ -11,7 +11,7 @@ import com.oo2.grupo01.services.ISensorService;
 
 import lombok.AllArgsConstructor;
 
-@Service
+@Service("sensorService")
 @AllArgsConstructor
 public class SensorService implements ISensorService {
 
