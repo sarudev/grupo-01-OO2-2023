@@ -7,6 +7,9 @@ import com.oo2.grupo01.entities.Parking;
 import com.oo2.grupo01.entities.Sensores;
 import com.oo2.grupo01.models.SensorTiempo;
 
+import lombok.Getter;
+
+@Getter
 public class ParkingDTO extends GenericDTO<Parking> {
   String ubicacion;
   Boolean luces;
@@ -22,17 +25,5 @@ public class ParkingDTO extends GenericDTO<Parking> {
         this.luces = !((SensorTiempo) sensor).hayLuzSolar();
       }
     }
-  }
-
-  public String getUbicacion() {
-    return ubicacion;
-  }
-
-  public Boolean getLuces() {
-    return luces;
-  }
-
-  public Set<Estacionamiento> getEstacionamientos() {
-    return estacionamientos;
   }
 }

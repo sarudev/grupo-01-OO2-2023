@@ -4,6 +4,9 @@ import com.oo2.grupo01.entities.Edificio;
 import com.oo2.grupo01.entities.Sensores;
 import com.oo2.grupo01.models.SensorTiempo;
 
+import lombok.Getter;
+
+@Getter
 public class EdificioDTO extends GenericDTO<Edificio> {
   private String nombre;
   private Boolean luces;
@@ -17,13 +20,5 @@ public class EdificioDTO extends GenericDTO<Edificio> {
         this.luces = !((SensorTiempo) sensor).hayLuzSolar();
       }
     }
-  }
-
-  public String getNombre() {
-    return nombre;
-  }
-
-  public Boolean getLuces() {
-    return luces;
   }
 }

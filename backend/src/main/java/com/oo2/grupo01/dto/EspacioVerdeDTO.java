@@ -5,6 +5,9 @@ import com.oo2.grupo01.entities.Sensores;
 import com.oo2.grupo01.models.SensorHumedad;
 import com.oo2.grupo01.models.SensorTiempo;
 
+import lombok.Getter;
+
+@Getter
 public class EspacioVerdeDTO extends GenericDTO<EspacioVerde> {
   private String ubicacion;
   private Double humedad;
@@ -22,17 +25,5 @@ public class EspacioVerdeDTO extends GenericDTO<EspacioVerde> {
         this.luces = !((SensorTiempo) sensor).hayLuzSolar();
       }
     }
-  }
-
-  public String getUbicacion() {
-    return ubicacion;
-  }
-
-  public Double getHumedad() {
-    return humedad;
-  }
-
-  public Boolean getLuces() {
-    return luces;
   }
 }

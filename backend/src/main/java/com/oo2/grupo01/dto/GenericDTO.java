@@ -5,6 +5,9 @@ import java.util.Set;
 import com.oo2.grupo01.entities.Lugares;
 import com.oo2.grupo01.entities.Sensor;
 
+import lombok.Getter;
+
+@Getter
 public abstract class GenericDTO<T> {
   Long id;
   Lugares type;
@@ -14,17 +17,5 @@ public abstract class GenericDTO<T> {
     this.id = id;
     this.type = type;
     this.sensores = sensores;
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public Lugares getType() {
-    return type;
-  }
-
-  public Set<Sensor> getSensores() {
-    return sensores;
   }
 }
