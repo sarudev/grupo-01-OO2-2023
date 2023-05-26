@@ -9,5 +9,7 @@ import com.oo2.grupo01.entities.EspacioVerde;
 
 @Repository("espacioVerdeRepository")
 public interface IEspacioVerdeRepository extends JpaRepository<EspacioVerde, Long> {
-  public Optional<EspacioVerde> traerPorUbicacion(String ubicacion);
+	
+	//implementar query que traiga los espacios verdes con sus sensores
+	public Optional<EspacioVerde> traerPorUbicacion(String ubicacion);
 }

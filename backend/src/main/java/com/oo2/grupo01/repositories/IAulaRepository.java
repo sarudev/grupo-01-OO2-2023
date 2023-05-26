@@ -9,5 +9,7 @@ import com.oo2.grupo01.entities.Aula;
 
 @Repository("aulaRepository")
 public interface IAulaRepository extends JpaRepository<Aula, Long> {
-  public Optional<Aula> traerPorNombre(String nombre, Long idEdificio);
+
+	//implementar query donde se trae el aula junto con sus sensores
+	public Optional<Aula> traerPorNombre(String nombre, Long idEdificio);
 }

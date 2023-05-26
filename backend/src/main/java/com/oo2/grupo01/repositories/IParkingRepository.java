@@ -9,5 +9,9 @@ import com.oo2.grupo01.entities.Parking;
 
 @Repository("parkingRepository")
 public interface IParkingRepository extends JpaRepository<Parking, Long> {
-  public Optional<Parking> traerPorUbicacion(String ubicacion);
+	
+	//implementar query que traiga el parking con los estacionamientos
+	// y los sensores del parking y de cada estacionamiento
+	public Optional<Parking> traerPorUbicacion(String ubicacion);
+	
 }

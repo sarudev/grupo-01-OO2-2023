@@ -9,5 +9,7 @@ import com.oo2.grupo01.entities.Estacionamiento;
 
 @Repository("estacionamientoRepository")
 public interface IEstacionamientoRepository extends JpaRepository<Estacionamiento, Long> {
-  public Optional<Estacionamiento> traerPorNumero(int numero, Long idParking);
+	
+	//implementar query que traiga el estacionamiento con sus sensores
+	public Optional<Estacionamiento> traerPorNumero(int numero, Long idParking);
 }
