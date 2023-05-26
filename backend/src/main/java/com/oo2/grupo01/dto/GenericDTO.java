@@ -9,13 +9,13 @@ import lombok.Getter;
 
 @Getter
 public abstract class GenericDTO<T> {
-  Long id;
-  Lugares type;
-  Set<Sensor> sensores;
+	protected Long id;
+	protected Lugares type;
+	protected Set<Sensor> sensores;
 
-  protected GenericDTO(Long id, Lugares type, Set<Sensor> sensores) {
-    this.id = id;
-    this.type = type;
-    this.sensores = sensores;
-  }
+	protected GenericDTO(Long id, Lugares type, Set<Sensor> sensores) {
+		this.id = id;
+		this.type = type;
+		this.sensores = sensores;
+	}
 }

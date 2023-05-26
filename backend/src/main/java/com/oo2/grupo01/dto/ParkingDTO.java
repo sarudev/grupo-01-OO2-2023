@@ -11,21 +11,21 @@ import lombok.Getter;
 
 @Getter
 public class ParkingDTO extends GenericDTO<Parking> {
-  String ubicacion;
-  Boolean luces;
-  List<EstacionamientoDTO> estacionamientos;
+	private String ubicacion;
+	private Boolean luces;
+	private List<EstacionamientoDTO> estacionamientos;
 
-  public ParkingDTO(Parking parking) {
-    super(parking.getIdLugar(), parking.getLugar(), parking.getSensores());
-    this.ubicacion = parking.getUbicacion();
-    this.estacionamientos = EstacionamientoMapeos.toDtoList(parking.getEstacionamientos());
+	public ParkingDTO(Parking parking) {
+		super(parking.getIdLugar(), parking.getLugar(), parking.getSensores());
+		this.ubicacion = parking.getUbicacion();
+		this.estacionamientos = EstacionamientoMapeos.toDtoList(parking.getEstacionamientos());
 
-    this.luces = null;
-    
-    for (var sensor : sensores) {
-      if (sensor.getTipo() == Sensores.TIEMPO && ((SensorTiempo) sensor).isActivo()) {
-        this.luces = !((SensorTiempo) sensor).hayLuzSolar();
-      }
-    }
-  }
+		this.luces = null;
+
+		for (var sensor : sensores) {
+			if (sensor.getTipo() == Sensores.TIEMPO && ((SensorTiempo) sensor).isActivo()) {
+				this.luces = !((SensorTiempo) sensor).hayLuzSolar();
+			}
+		}
+	}
 }
