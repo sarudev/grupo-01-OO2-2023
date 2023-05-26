@@ -12,7 +12,10 @@ Se debe tener instalado `MySQL server`, que se puede obtener junto a [`MySQL Wor
 
 # Antes de empezar...
 
-En la carpeta raíz se puede encontrar el archivo `database.sql` que al ejecutarlo en `MySQL` genera la base de datos necesaria para ejecutar el programa.
+Se debe ejecutar la siguiente petición a `MySQL` mediante `MySQL Workbench` (u otro):
+```sql
+CREATE DATABASE IF NOT EXISTS `campus`;
+```
 
 En el directorio `backend/src/main/resources` se debe crear el archivo `application.properties` con la siguiente configuración:
 ```properties
