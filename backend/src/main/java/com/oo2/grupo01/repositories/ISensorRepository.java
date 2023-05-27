@@ -7,4 +7,6 @@ import com.oo2.grupo01.entities.Sensor;
 
 @Repository("sensorRepository")
 public interface ISensorRepository extends JpaRepository<Sensor, Long> {
+	
+	
 }
