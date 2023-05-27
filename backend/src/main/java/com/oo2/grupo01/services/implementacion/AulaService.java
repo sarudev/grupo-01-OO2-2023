@@ -28,8 +28,8 @@ public class AulaService implements IAulaService {
 	}
 
 	@Override
-	public AulaDTO traerPorNombre(String nombre, Long idEdificio) {
-		Aula aula = repository.traerPorNombre(nombre, idEdificio).orElse(null);
+	public AulaDTO traerPorNombre(String nombre) {
+		Aula aula = repository.traerPorNombre(nombre).orElse(null);
 
 		return new AulaDTO(aula);
 	}

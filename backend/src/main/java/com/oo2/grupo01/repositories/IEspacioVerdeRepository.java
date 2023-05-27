@@ -12,7 +12,9 @@ import com.oo2.grupo01.entities.EspacioVerde;
 public interface IEspacioVerdeRepository extends JpaRepository<EspacioVerde, Long> {
 	
 	//implementar query que traiga los espacios verdes con sus sensores
-	@Query(value = "SELECT * FROM EspacioVerde ev WHERE ev.ubicacion=?1", nativeQuery = true)
+	@Query("FROM EspacioVerde ev "
+			+ "inner join fetch ev.sensores "
+			+ "WHERE ev.ubicacion=?1")
 	public Optional<EspacioVerde> traerPorUbicacion(String ubicacion);
 	
 	

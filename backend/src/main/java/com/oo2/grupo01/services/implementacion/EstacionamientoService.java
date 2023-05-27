@@ -28,8 +28,8 @@ public class EstacionamientoService implements IEstacionamientoService {
 	}
 
 	@Override
-	public EstacionamientoDTO traerPorNumero(int numero, Long idParking) {
-		Estacionamiento est = repository.traerPorNumero(numero, idParking).orElse(null);
+	public EstacionamientoDTO traerPorNumero(int numero) {
+		Estacionamiento est = repository.traerPorNumero(numero).orElse(null);
 
 		return new EstacionamientoDTO(est);
 	}

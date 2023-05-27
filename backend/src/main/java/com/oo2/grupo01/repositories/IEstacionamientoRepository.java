@@ -12,8 +12,10 @@ import com.oo2.grupo01.entities.Estacionamiento;
 public interface IEstacionamientoRepository extends JpaRepository<Estacionamiento, Long> {
 	
 	//implementar query que traiga el estacionamiento con sus sensores
-	@Query(value = "SELECT * FROM Estacionamiento e INNER JOIN Parking p WHERE p.idParking=?2 AND e.numero=?1", nativeQuery=true)
-	public Optional<Estacionamiento> traerPorNumero(int numero, Long idParking);
+	@Query("FROM Estacionamiento e "
+			+ "INNER JOIN fetch e.parking "
+			+ "WHERE e.numero=?1")
+	public Optional<Estacionamiento> traerPorNumero(int numero);
 	
 	
 	public Optional<Estacionamiento> findByNumeroAndParking_IdLugar(int numero, Long idParking);

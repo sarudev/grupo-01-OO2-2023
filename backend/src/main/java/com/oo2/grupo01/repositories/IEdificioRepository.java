@@ -13,7 +13,11 @@ public interface IEdificioRepository extends JpaRepository<Edificio, Long> {
 
 	//implementar querys donde se traiga el edificio con sus aulas
 	//y los sensores del edificio y cada aula
-	@Query(value = "SELECT * FROM Edificio e WHERE e.nombre=?1", nativeQuery = true)
+	@Query(value = "FROM Edificio e "
+			+ "inner join fetch e.aulas a "
+			+ "inner join fetch e.sensores "
+			+ "inner join fetch a.sensores "
+			+ "WHERE e.nombre=?1 ")
 	public Optional<Edificio> traerPorNombre(String nombre);
 	
 	public Optional<Edificio> findByNombre(String nombre);

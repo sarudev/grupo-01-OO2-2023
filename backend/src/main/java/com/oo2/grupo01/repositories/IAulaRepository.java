@@ -11,8 +11,8 @@ import com.oo2.grupo01.entities.Aula;
 @Repository("aulaRepository")
 public interface IAulaRepository extends JpaRepository<Aula, Long> {
 
-	@Query(value = "SELECT * FROM Aula a INNER JOIN Edificio e WHERE e.idEdificio=?2 AND a.nombre=?1", nativeQuery = true)
-	public Optional<Aula> traerPorNombre(String nombre, long idEdificio);
+	@Query("FROM Aula a inner join fetch a.edificio inner join fetch a.sensores where a.nombre=?1")
+	public Optional<Aula> traerPorNombre(String nombre);
 	
 	
 	//implementar query donde se trae el aula junto con sus sensores

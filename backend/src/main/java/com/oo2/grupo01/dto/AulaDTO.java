@@ -10,19 +10,22 @@ import lombok.Getter;
 public class AulaDTO extends GenericDTO<Aula> {
 	private String nombre;
 	private Boolean luces;
+	private Boolean persianasAbiertas;
 
 	public AulaDTO(Aula aula) {
 		super(aula.getIdLugar(), aula.getLugar(), aula.getSensores());
 		this.nombre = aula.getNombre();
 
 		this.luces = null;
-
+		this.persianasAbiertas = null;
+		
 		for (var s : sensores) {
 			if (s.isActivo()) {
 				switch (s.getTipo()) {
 				case CAMARA:
 					SensorCamara sensor = (SensorCamara) Util.convertirSensor(s);
-					luces = sensor.cantPersonas() > 0;
+					luces = persianasAbiertas = sensor.cantPersonas() > 0;
+					
 					break;
 				default:
 					break;
