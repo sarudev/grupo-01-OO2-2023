@@ -7,11 +7,8 @@ import lombok.ToString;
 @ToString
 public class SensorHumedad extends Sensor {
 	
-	private double humedad;
-	
 	public SensorHumedad(Sensor sensor) {
 		super(sensor);
-		humedad = humedad();
 	}
 	
 	public double humedad() {

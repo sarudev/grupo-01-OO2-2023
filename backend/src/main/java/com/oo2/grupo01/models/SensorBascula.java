@@ -9,12 +9,10 @@ public class SensorBascula extends Sensor {
 
 	public final static double pesoLimite = 300;
 	private double pesoActual;
-	private boolean superoLimite;
 	
 	public SensorBascula(Sensor sensor) {
 		super(sensor);
 		pesoActual = pesoActual();
-		superoLimite = superoLimite();
 	}
 
 	public double pesoActual() {

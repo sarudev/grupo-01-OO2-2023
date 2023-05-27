@@ -7,11 +7,8 @@ import lombok.ToString;
 @ToString
 public class SensorCamara extends Sensor {
 	
-	private int cantPersonas;
-	
 	public SensorCamara(Sensor sensor) {
 		super(sensor);
-		cantPersonas = cantPersonas();
 	}
 	
 	public int cantPersonas() {

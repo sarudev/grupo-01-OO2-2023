@@ -1,7 +1,7 @@
 package com.oo2.grupo01.dto;
 
+import com.oo2.grupo01.Utils.Util;
 import com.oo2.grupo01.entities.Estacionamiento;
-import com.oo2.grupo01.entities.Sensores;
 import com.oo2.grupo01.models.SensorBascula;
 
 import lombok.Getter;
@@ -18,8 +18,16 @@ public class EstacionamientoDTO extends GenericDTO<Estacionamiento> {
 		this.ocupado = null;
 
 		for (var sensor : sensores) {
-			if (sensor.getTipo() == Sensores.BASCULA && ((SensorBascula) sensor).isActivo()) {
-				this.ocupado = ((SensorBascula) sensor).superoLimite();
+			if (sensor.isActivo()) {
+				switch(sensor.getTipo()) {
+				case BASCULA:
+					SensorBascula sensorBascula = (SensorBascula) Util.convertirSensor(sensor);
+					ocupado = sensorBascula.superoLimite();
+					break;
+				default:
+					break;
+				
+				}
 			}
 		}
 	}

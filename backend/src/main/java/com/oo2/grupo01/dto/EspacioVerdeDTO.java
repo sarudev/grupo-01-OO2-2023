@@ -1,7 +1,7 @@
 package com.oo2.grupo01.dto;
 
+import com.oo2.grupo01.Utils.Util;
 import com.oo2.grupo01.entities.EspacioVerde;
-import com.oo2.grupo01.entities.Sensores;
 import com.oo2.grupo01.models.SensorHumedad;
 import com.oo2.grupo01.models.SensorTiempo;
 
@@ -12,6 +12,7 @@ public class EspacioVerdeDTO extends GenericDTO<EspacioVerde> {
 	private String ubicacion;
 	private Double humedad;
 	private Boolean luces;
+	private Boolean aspersoresEncendidos;
 
 	public EspacioVerdeDTO(EspacioVerde espacioVerde) {
 		super(espacioVerde.getIdLugar(), espacioVerde.getLugar(), espacioVerde.getSensores());
@@ -19,12 +20,25 @@ public class EspacioVerdeDTO extends GenericDTO<EspacioVerde> {
 
 		this.humedad = null;
 		this.luces = null;
+		this.aspersoresEncendidos = null;
 		for (var sensor : sensores) {
-			if (sensor.getTipo() == Sensores.HUMEDAD && ((SensorHumedad) sensor).isActivo()) {
-				this.humedad = ((SensorHumedad) sensor).humedad();
-			}
-			if (sensor.getTipo() == Sensores.TIEMPO && ((SensorTiempo) sensor).isActivo()) {
-				this.luces = !((SensorTiempo) sensor).hayLuzSolar();
+			if (sensor.isActivo()) {
+				switch (sensor.getTipo()) {
+				case HUMEDAD:
+					SensorHumedad sensorHumedad = (SensorHumedad) Util.convertirSensor(sensor);
+
+					humedad = sensorHumedad.humedad();
+					aspersoresEncendidos = humedad < 50;
+
+					break;
+				case TIEMPO:
+					SensorTiempo sensorTiempo = (SensorTiempo) Util.convertirSensor(sensor);
+					luces = sensorTiempo.hayLuzSolar();
+					break;
+				default:
+					break;
+
+				}
 			}
 		}
 	}
