@@ -21,21 +21,13 @@ public class EstacionamientoService implements IEstacionamientoService {
 	}
 
 	@Override
-	public EstacionamientoDTO traer(Long id) {
-		Estacionamiento est = repository.findById(id).orElse(null);
-
-		return new EstacionamientoDTO(est);
-	}
-
-	@Override
-	public EstacionamientoDTO traerPorNumero(int numero) {
-		Estacionamiento est = repository.traerPorNumero(numero).orElse(null);
-
-		return new EstacionamientoDTO(est);
-	}
-
-	@Override
 	public void eliminar(Long id) {
 		repository.deleteById(id);
+	}
+
+	@Override
+	public EstacionamientoDTO traerConDependencias(Long id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -1,9 +1,12 @@
 package com.oo2.grupo01.services.implementacion;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.oo2.grupo01.dto.EspacioVerdeDTO;
 import com.oo2.grupo01.entities.EspacioVerde;
+import com.oo2.grupo01.mapeos.EspacioVerdeMapeo;
 import com.oo2.grupo01.repositories.IEspacioVerdeRepository;
 import com.oo2.grupo01.services.IEspacioVerdeService;
 
@@ -21,10 +24,8 @@ public class EspacioVerdeService implements IEspacioVerdeService {
 	}
 
 	@Override
-	public EspacioVerdeDTO traer(Long id) {
-		EspacioVerde est = repository.findById(id).orElse(null);
-
-		return new EspacioVerdeDTO(est);
+	public void eliminar(Long id) {
+		repository.deleteById(id);
 	}
 
 	@Override
@@ -35,7 +36,14 @@ public class EspacioVerdeService implements IEspacioVerdeService {
 	}
 
 	@Override
-	public void eliminar(Long id) {
-		repository.deleteById(id);
+	public List<EspacioVerdeDTO> traerTodos() {
+		return EspacioVerdeMapeo.toDtoList(repository.findAll());
 	}
+
+	@Override
+	public EspacioVerdeDTO traerConDependencias(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -21,21 +21,13 @@ public class AulaService implements IAulaService {
 	}
 
 	@Override
-	public AulaDTO traer(Long id) {
-		Aula aula = repository.findById(id).orElse(null);
-
-		return new AulaDTO(aula);
-	}
-
-	@Override
-	public AulaDTO traerPorNombre(String nombre) {
-		Aula aula = repository.traerPorNombre(nombre).orElse(null);
-
-		return new AulaDTO(aula);
-	}
-
-	@Override
 	public void eliminar(Long id) {
 		repository.deleteById(id);
+	}
+
+	@Override
+	public AulaDTO traerConDependencias(Long id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -29,13 +29,6 @@ public class SensorService implements ISensorService {
 	}
 
 	@Override
-	public void agregar(Sensor sensor) {
-		if (sensor != null) {
-			repository.save(sensor);
-		}
-	}
-
-	@Override
 	public void agregar(Sensores tipo, Lugar lugar) {
 		if (tipo != null && lugar != null) {
 			repository.save(new Sensor(tipo, lugar));
