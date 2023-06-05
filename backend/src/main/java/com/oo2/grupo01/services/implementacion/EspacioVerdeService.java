@@ -29,21 +29,14 @@ public class EspacioVerdeService implements IEspacioVerdeService {
 	}
 
 	@Override
-	public EspacioVerdeDTO traerPorUbicacion(String ubicacion) {
-		EspacioVerde est = repository.traerPorUbicacion(ubicacion).orElse(null);
-
-		return new EspacioVerdeDTO(est);
-	}
-
-	@Override
 	public List<EspacioVerdeDTO> traerTodos() {
 		return EspacioVerdeMapeo.toDtoList(repository.findAll());
 	}
 
 	@Override
 	public EspacioVerdeDTO traerConDependencias(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		EspacioVerde espacioVerde = repository.traerConDependencias(id).orElse(null);
+		return new EspacioVerdeDTO(espacioVerde);
 	}
 
 }

@@ -27,7 +27,8 @@ public class AulaService implements IAulaService {
 
 	@Override
 	public AulaDTO traerConDependencias(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Aula aula = repository.traerConDependencias(id).orElse(null);
+		
+		return new AulaDTO(aula);
 	}
 }

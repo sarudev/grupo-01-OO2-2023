@@ -7,6 +7,4 @@ import com.oo2.grupo01.entities.EspacioVerde;
 
 public interface IEspacioVerdeService extends IGenericService<EspacioVerde, EspacioVerdeDTO> {
 	public List<EspacioVerdeDTO> traerTodos();
-
-	public EspacioVerdeDTO traerPorUbicacion(String ubicacion);
 }

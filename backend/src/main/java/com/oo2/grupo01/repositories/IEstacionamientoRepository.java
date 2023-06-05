@@ -14,11 +14,9 @@ public interface IEstacionamientoRepository extends JpaRepository<Estacionamient
 	//implementar query que traiga el estacionamiento con sus sensores
 	@Query("FROM Estacionamiento e "
 			+ "INNER JOIN fetch e.parking "
-			+ "WHERE e.numero=?1")
-	public Optional<Estacionamiento> traerPorNumero(int numero);
-	
-	
-	public Optional<Estacionamiento> findByNumeroAndParking_IdLugar(int numero, Long idParking);
+			+ "INNER JOIN FETCH e.sensores "
+			+ "WHERE e.idLugar=?1")
+	public Optional<Estacionamiento> traerConDependencias(Long idLugar);
 	
 	
 	

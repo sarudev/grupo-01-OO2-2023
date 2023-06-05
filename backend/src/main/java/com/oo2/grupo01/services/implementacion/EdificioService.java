@@ -30,8 +30,9 @@ public class EdificioService implements IEdificioService {
 
 	@Override
 	public EdificioDTO traerConDependencias(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Edificio edificio = repository.traerConDependencias(id).orElse(null);
+		
+		return new EdificioDTO(edificio);
 	}
 
 	@Override

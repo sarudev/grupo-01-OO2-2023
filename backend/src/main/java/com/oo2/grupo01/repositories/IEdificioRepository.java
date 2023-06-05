@@ -16,9 +16,6 @@ public interface IEdificioRepository extends JpaRepository<Edificio, Long> {
 	@Query(value = "FROM Edificio e "
 			+ "inner join fetch e.aulas a "
 			+ "inner join fetch e.sensores "
-			+ "inner join fetch a.sensores "
-			+ "WHERE e.nombre=?1 ")
-	public Optional<Edificio> traerPorNombre(String nombre);
-	
-	public Optional<Edificio> findByNombre(String nombre);
+			+ "WHERE e.idLugar=?1 ")
+	public Optional<Edificio> traerConDependencias(Long idLugar);
 }

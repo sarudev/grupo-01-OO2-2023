@@ -17,10 +17,7 @@ public interface IParkingRepository extends JpaRepository<Parking, Long> {
 			+ "inner join fetch p.estacionamientos e "
 			+ "inner join fetch p.sensores "
 			+ "inner join fetch e.sensores "
-			+ "WHERE p.ubicacion=?1")
-	public Optional<Parking> traerPorUbicacion(String ubicacion);
-	
-	
-	public Optional<Parking> findByUbicacion(String ubicacion);
+			+ "WHERE p.idLugar=?1")
+	public Optional<Parking> traerConDependencias(Long idLugar);
 	
 }

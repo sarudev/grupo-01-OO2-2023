@@ -27,7 +27,7 @@ public class EstacionamientoService implements IEstacionamientoService {
 
 	@Override
 	public EstacionamientoDTO traerConDependencias(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Estacionamiento estacionamiento = repository.traerConDependencias(id).orElse(null);
+		return new EstacionamientoDTO(estacionamiento);
 	}
 }
