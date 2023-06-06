@@ -13,7 +13,8 @@ public interface IAulaRepository extends JpaRepository<Aula, Long> {
 
 	@Query("FROM Aula a "
 			+ "inner join fetch a.edificio "
-			+ "inner join fetch a.sensores "
+			+ "inner join fetch a.sensores s "
+			+ "inner join fetch s.registros "
 			+ "where a.idLugar=?1")
 	public Optional<Aula> traerConDependencias(Long idLugar);
 }
