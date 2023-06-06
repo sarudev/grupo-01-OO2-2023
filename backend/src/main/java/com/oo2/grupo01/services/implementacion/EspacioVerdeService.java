@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.oo2.grupo01.dto.EspacioVerdeDTO;
 import com.oo2.grupo01.entities.EspacioVerde;
+import com.oo2.grupo01.entities.Lugares;
 import com.oo2.grupo01.mapeos.EspacioVerdeMapeo;
 import com.oo2.grupo01.repositories.IEspacioVerdeRepository;
 import com.oo2.grupo01.services.IEspacioVerdeService;
@@ -17,10 +18,9 @@ import lombok.AllArgsConstructor;
 public class EspacioVerdeService implements IEspacioVerdeService {
 	private IEspacioVerdeRepository repository;
 
-	@Override
-	public void agregar(EspacioVerde object) {
-		if (object != null)
-			repository.save(object);
+	public void agregar(Lugares lugar, String ubicacion) {
+		if (ubicacion != null)
+			repository.save(new EspacioVerde(lugar, ubicacion));
 	}
 
 	@Override

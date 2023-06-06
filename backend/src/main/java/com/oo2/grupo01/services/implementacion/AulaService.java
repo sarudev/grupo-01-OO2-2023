@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 
 import com.oo2.grupo01.dto.AulaDTO;
 import com.oo2.grupo01.entities.Aula;
+import com.oo2.grupo01.entities.Edificio;
+import com.oo2.grupo01.entities.Lugares;
 import com.oo2.grupo01.repositories.IAulaRepository;
 import com.oo2.grupo01.services.IAulaService;
 
@@ -14,10 +16,10 @@ import lombok.AllArgsConstructor;
 public class AulaService implements IAulaService {
 	private IAulaRepository repository;
 
-	@Override
-	public void agregar(Aula object) {
-		if (object != null)
-			repository.save(object);
+	public void agregar(Lugares lugar, Edificio edificio, String nombre) {
+		if(nombre!=null) {
+			repository.save(new Aula(lugar,edificio,nombre));
+		}
 	}
 
 	@Override

@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 
 import com.oo2.grupo01.dto.EstacionamientoDTO;
 import com.oo2.grupo01.entities.Estacionamiento;
+import com.oo2.grupo01.entities.Lugares;
+import com.oo2.grupo01.entities.Parking;
 import com.oo2.grupo01.repositories.IEstacionamientoRepository;
 import com.oo2.grupo01.services.IEstacionamientoService;
 
@@ -14,10 +16,9 @@ import lombok.AllArgsConstructor;
 public class EstacionamientoService implements IEstacionamientoService {
 	private IEstacionamientoRepository repository;
 
-	@Override
-	public void agregar(Estacionamiento object) {
-		if (object != null)
-			repository.save(object);
+	public void agregar(Lugares lugar, Parking parking, Integer numero) {
+		if (numero != null)
+			repository.save(new Estacionamiento(lugar, parking, numero.intValue()));
 	}
 
 	@Override

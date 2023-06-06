@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.oo2.grupo01.dto.ParkingDTO;
+import com.oo2.grupo01.entities.Lugares;
 import com.oo2.grupo01.entities.Parking;
 import com.oo2.grupo01.mapeos.ParkingMapeo;
 import com.oo2.grupo01.repositories.IParkingRepository;
@@ -17,10 +18,9 @@ import lombok.AllArgsConstructor;
 public class ParkingService implements IParkingService {
 	private IParkingRepository repository;
 
-	@Override
-	public void agregar(Parking parking) {
-		if (parking != null) {
-			repository.save(parking);
+	public void agregar(Lugares lugar, String ubicacion) {
+		if (ubicacion != null) {
+			repository.save(new Parking(lugar, ubicacion));
 		}
 	}
 
