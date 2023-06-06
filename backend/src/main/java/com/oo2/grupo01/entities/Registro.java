@@ -1,5 +1,7 @@
 package com.oo2.grupo01.entities;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -35,9 +37,13 @@ public class Registro {
 	@Column(name = "informacion")
 	private String informacion;
 	
-	public Registro(Sensor sensor, String informacion) {
+	@Column(name = "fechaHora")
+	private LocalDateTime fechaHora;
+	
+	public Registro(Sensor sensor, String informacion, LocalDateTime fechaHora) {
 		this.sensor = sensor;
 		this.informacion = informacion;
+		this.fechaHora = fechaHora;
 	}
 	
 }

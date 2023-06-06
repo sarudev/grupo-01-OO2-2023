@@ -1,5 +1,7 @@
 package com.oo2.grupo01.services.implementacion;
 
+import java.time.LocalDateTime;
+
 import org.springframework.stereotype.Service;
 
 import com.oo2.grupo01.entities.Registro;
@@ -15,9 +17,9 @@ public class RegistroService implements IRegistroService{
 	private IRegistroRepository repository;
 	
 	@Override
-	public void agregar(Sensor sensor, String informacion) {
+	public void agregar(Sensor sensor, String informacion, LocalDateTime fechaHora) {
 		if(informacion!=null)
-			repository.save(new Registro(sensor, informacion));
+			repository.save(new Registro(sensor, informacion, fechaHora));
 	}
 
 	@Override
