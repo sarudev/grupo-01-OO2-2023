@@ -1,9 +1,11 @@
 package com.oo2.grupo01.dto;
 
 import java.util.List;
+import java.util.Set;
 
 import com.oo2.grupo01.Utils.Util;
 import com.oo2.grupo01.entities.Edificio;
+import com.oo2.grupo01.entities.Registro;
 import com.oo2.grupo01.mapeos.AulaMapeos;
 import com.oo2.grupo01.models.SensorTiempo;
 
@@ -14,6 +16,7 @@ public class EdificioDTO extends GenericDTO<Edificio> {
 	private String nombre;
 	private Boolean luces;
 	private List<AulaDTO> aulas;
+	private Set<Registro> registros;
 
 	public EdificioDTO(Edificio edificio) {
 		super(edificio.getIdLugar(), edificio.getLugar(), edificio.getSensores());
@@ -22,6 +25,7 @@ public class EdificioDTO extends GenericDTO<Edificio> {
 		this.aulas = AulaMapeos.toDtoList(edificio.getAulas());
 
 		this.luces = null;
+		this.registros = null;
 
 		for (var sensor : sensores) {
 			if (sensor.isActivo()) {
@@ -38,6 +42,7 @@ public class EdificioDTO extends GenericDTO<Edificio> {
 				}
 
 			}
+			this.registros.addAll(sensor.getRegistros());
 		}
 	}
 }

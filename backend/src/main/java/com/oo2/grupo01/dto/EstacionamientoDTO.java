@@ -1,7 +1,10 @@
 package com.oo2.grupo01.dto;
 
+import java.util.Set;
+
 import com.oo2.grupo01.Utils.Util;
 import com.oo2.grupo01.entities.Estacionamiento;
+import com.oo2.grupo01.entities.Registro;
 import com.oo2.grupo01.models.SensorBascula;
 
 import lombok.Getter;
@@ -10,12 +13,14 @@ import lombok.Getter;
 public class EstacionamientoDTO extends GenericDTO<Estacionamiento> {
 	private Integer numero;
 	private Boolean ocupado;
+	private Set<Registro> registros;
 
 	public EstacionamientoDTO(Estacionamiento est) {
 		super(est.getIdLugar(), est.getLugar(), est.getSensores());
 		this.numero = est.getNumero();
 
 		this.ocupado = null;
+		this.registros = null;
 
 		for (var sensor : sensores) {
 			if (sensor.isActivo()) {
@@ -29,6 +34,9 @@ public class EstacionamientoDTO extends GenericDTO<Estacionamiento> {
 				
 				}
 			}
+			
+			this.registros.addAll(sensor.getRegistros());
+			
 		}
 	}
 }
