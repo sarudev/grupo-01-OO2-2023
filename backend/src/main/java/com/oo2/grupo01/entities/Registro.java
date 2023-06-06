@@ -34,4 +34,10 @@ public class Registro {
 
 	@Column(name = "informacion")
 	private String informacion;
+	
+	public Registro(Sensor sensor, String informacion) {
+		this.sensor = sensor;
+		this.informacion = informacion;
+	}
+	
 }
