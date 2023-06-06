@@ -22,7 +22,7 @@ public class EstacionamientoDTO extends GenericDTO<Estacionamiento> {
 		this.ocupado = null;
 		this.registros = null;
 
-		for (var sensor : sensores) {
+		for (var sensor : est.getSensores() ) {
 			if (sensor.isActivo()) {
 				switch(sensor.getTipo()) {
 				case BASCULA:

@@ -27,7 +27,7 @@ public class EspacioVerdeDTO extends GenericDTO<EspacioVerde> {
 		this.aspersoresEncendidos = null;
 		this.registros = null;
 		
-		for (var sensor : sensores) {
+		for (var sensor : espacioVerde.getSensores()) {
 			if (sensor.isActivo()) {
 				switch (sensor.getTipo()) {
 				case HUMEDAD:

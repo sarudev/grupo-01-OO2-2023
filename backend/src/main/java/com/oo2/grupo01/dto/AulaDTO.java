@@ -25,7 +25,7 @@ public class AulaDTO extends GenericDTO<Aula> {
 		this.persianasAbiertas = null;
 		this.registros = null;
 		
-		for (var s : sensores) {
+		for (var s : aula.getSensores() ) {
 			if (s.isActivo()) {
 				switch (s.getTipo()) {
 				case CAMARA:

@@ -27,7 +27,7 @@ public class EdificioDTO extends GenericDTO<Edificio> {
 		this.luces = null;
 		this.registros = null;
 
-		for (var sensor : sensores) {
+		for (var sensor : edificio.getSensores()) {
 			if (sensor.isActivo()) {
 
 				switch (sensor.getTipo()) {

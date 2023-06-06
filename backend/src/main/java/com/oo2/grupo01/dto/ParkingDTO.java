@@ -26,7 +26,7 @@ public class ParkingDTO extends GenericDTO<Parking> {
 		this.luces = null;
 		this.registros = null;
 
-		for (var sensor : sensores) {
+		for (var sensor : parking.getSensores() ) {
 			if (sensor.isActivo()) {
 				switch (sensor.getTipo()) {
 				case TIEMPO:
