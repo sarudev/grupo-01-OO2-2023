@@ -30,14 +30,19 @@ public class ParkingService implements IParkingService {
 	}
 
 	@Override
-	public ParkingDTO traerConDependencias(Long id) {
+	public Parking traerConDependencias(Long id) {
 		Parking parking = repository.traerConDependencias(id).orElse(null);
-		return new ParkingDTO(parking);
+		return parking;
 	}
 
 	@Override
 	public List<ParkingDTO> traerTodos() {
 		// TODO Auto-generated method stub
 		return ParkingMapeo.toDtoList(repository.findAll());
+	}
+
+	@Override
+	public Parking traer(Long id) {
+		return repository.findById(id).orElse(null);
 	}
 }

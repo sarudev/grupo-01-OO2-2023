@@ -12,7 +12,7 @@ import com.oo2.grupo01.models.SensorTiempo;
 import lombok.Getter;
 
 @Getter
-public class ParkingDTO extends GenericDTO<Parking> {
+public class ParkingDTO extends GenericDTO {
 	private String ubicacion;
 	private Boolean luces;
 	private List<EstacionamientoDTO> estacionamientos;
@@ -43,4 +43,12 @@ public class ParkingDTO extends GenericDTO<Parking> {
 			this.registros.addAll(sensor.getRegistros());
 		}
 	}
+
+	//ToString modificado para que pueda usarse como registro de los sensores
+	@Override
+	public String toString() {
+		return "luces=" + luces;
+	}
+	
+	
 }

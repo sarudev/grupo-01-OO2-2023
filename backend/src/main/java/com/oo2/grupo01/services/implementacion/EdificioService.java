@@ -30,14 +30,19 @@ public class EdificioService implements IEdificioService {
 	}
 
 	@Override
-	public EdificioDTO traerConDependencias(Long id) {
+	public Edificio traerConDependencias(Long id) {
 		Edificio edificio = repository.traerConDependencias(id).orElse(null);
 		
-		return new EdificioDTO(edificio);
+		return edificio;
 	}
 
 	@Override
 	public List<EdificioDTO> traerTodos() {
 		return EdificioMapeo.toDtoList(repository.findAll());
+	}
+
+	@Override
+	public Edificio traer(Long id) {
+		return repository.findById(id).orElse(null);
 	}
 }

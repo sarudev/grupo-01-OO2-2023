@@ -11,7 +11,7 @@ import com.oo2.grupo01.entities.Registro;
 import lombok.Getter;
 
 @Getter
-public class AulaDTO extends GenericDTO<Aula> {
+public class AulaDTO extends GenericDTO {
 	private String nombre;
 	private Boolean luces;
 	private Boolean persianasAbiertas;
@@ -43,4 +43,12 @@ public class AulaDTO extends GenericDTO<Aula> {
 			
 		}
 	}
+
+	//ToString modificado para que pueda usarse como registro de los sensores
+	@Override
+	public String toString() {
+		return "luces=" + luces + ", persianasAbiertas=" + persianasAbiertas;
+	}
+	
+	
 }

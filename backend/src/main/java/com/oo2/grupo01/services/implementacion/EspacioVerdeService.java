@@ -18,9 +18,11 @@ import lombok.AllArgsConstructor;
 public class EspacioVerdeService implements IEspacioVerdeService {
 	private IEspacioVerdeRepository repository;
 
-	public void agregar(Lugares lugar, String ubicacion) {
+	public void agregar(Lugares lugar, String ubicacion) throws Exception {
 		if (ubicacion != null)
-			repository.save(new EspacioVerde(lugar, ubicacion));
+			throw new Exception("Error: la ubicacion es requerida");
+		
+		repository.save(new EspacioVerde(lugar, ubicacion));
 	}
 
 	@Override
@@ -34,9 +36,14 @@ public class EspacioVerdeService implements IEspacioVerdeService {
 	}
 
 	@Override
-	public EspacioVerdeDTO traerConDependencias(Long id) {
+	public EspacioVerde traerConDependencias(Long id) {
 		EspacioVerde espacioVerde = repository.traerConDependencias(id).orElse(null);
-		return new EspacioVerdeDTO(espacioVerde);
+		return espacioVerde;
+	}
+
+	@Override
+	public EspacioVerde traer(Long id) {
+		return repository.findById(id).orElse(null);
 	}
 
 }

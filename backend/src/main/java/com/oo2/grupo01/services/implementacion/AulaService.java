@@ -2,7 +2,6 @@ package com.oo2.grupo01.services.implementacion;
 
 import org.springframework.stereotype.Service;
 
-import com.oo2.grupo01.dto.AulaDTO;
 import com.oo2.grupo01.entities.Aula;
 import com.oo2.grupo01.entities.Edificio;
 import com.oo2.grupo01.entities.Lugares;
@@ -28,9 +27,14 @@ public class AulaService implements IAulaService {
 	}
 
 	@Override
-	public AulaDTO traerConDependencias(Long id) {
+	public Aula traerConDependencias(Long id) {
 		Aula aula = repository.traerConDependencias(id).orElse(null);
 		
-		return new AulaDTO(aula);
+		return aula;
+	}
+
+	@Override
+	public Aula traer(Long id) {
+		return repository.findById(id).orElse(null);
 	}
 }

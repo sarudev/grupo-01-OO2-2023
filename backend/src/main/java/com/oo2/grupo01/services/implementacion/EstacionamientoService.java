@@ -2,7 +2,6 @@ package com.oo2.grupo01.services.implementacion;
 
 import org.springframework.stereotype.Service;
 
-import com.oo2.grupo01.dto.EstacionamientoDTO;
 import com.oo2.grupo01.entities.Estacionamiento;
 import com.oo2.grupo01.entities.Lugares;
 import com.oo2.grupo01.entities.Parking;
@@ -27,8 +26,13 @@ public class EstacionamientoService implements IEstacionamientoService {
 	}
 
 	@Override
-	public EstacionamientoDTO traerConDependencias(Long id) {
+	public Estacionamiento traerConDependencias(Long id) {
 		Estacionamiento estacionamiento = repository.traerConDependencias(id).orElse(null);
-		return new EstacionamientoDTO(estacionamiento);
+		return estacionamiento;
+	}
+
+	@Override
+	public Estacionamiento traer(Long id) {
+		return repository.findById(id).orElse(null);
 	}
 }

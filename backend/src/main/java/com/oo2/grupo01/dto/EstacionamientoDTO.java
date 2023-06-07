@@ -10,7 +10,7 @@ import com.oo2.grupo01.models.SensorBascula;
 import lombok.Getter;
 
 @Getter
-public class EstacionamientoDTO extends GenericDTO<Estacionamiento> {
+public class EstacionamientoDTO extends GenericDTO {
 	private Integer numero;
 	private Boolean ocupado;
 	private Set<Registro> registros;
@@ -39,4 +39,13 @@ public class EstacionamientoDTO extends GenericDTO<Estacionamiento> {
 			
 		}
 	}
+
+	//ToString modificado para que pueda usarse como registro de los sensores
+	@Override
+	public String toString() {
+		return "ocupado=" + ocupado;
+	}
+	
+	
+	
 }

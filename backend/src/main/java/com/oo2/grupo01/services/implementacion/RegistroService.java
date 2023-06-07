@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Service;
 
+import com.oo2.grupo01.dto.GenericDTO;
 import com.oo2.grupo01.entities.Registro;
 import com.oo2.grupo01.entities.Sensor;
 import com.oo2.grupo01.repositories.IRegistroRepository;
@@ -29,5 +30,12 @@ public class RegistroService implements IRegistroService{
 		if(registro!=null)
 			repository.delete(registro);
 		
+	}
+
+	@Override
+	public void agregar(GenericDTO generic) {
+		for(Sensor s : generic.getSensores()) {
+			agregar(s, generic.toString(), LocalDateTime.now());
+		}
 	}
 }

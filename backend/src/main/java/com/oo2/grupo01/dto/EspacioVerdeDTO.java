@@ -11,7 +11,7 @@ import com.oo2.grupo01.models.SensorTiempo;
 import lombok.Getter;
 
 @Getter
-public class EspacioVerdeDTO extends GenericDTO<EspacioVerde> {
+public class EspacioVerdeDTO extends GenericDTO {
 	private String ubicacion;
 	private Double humedad;
 	private Boolean luces;
@@ -50,4 +50,14 @@ public class EspacioVerdeDTO extends GenericDTO<EspacioVerde> {
 			this.registros.addAll(sensor.getRegistros());
 		}
 	}
+
+	
+	//ToString modificado para que pueda usarse como registro de los sensores
+	@Override
+	public String toString() {
+		return "humedad=" + humedad + ", luces=" + luces + ", aspersoresEncendidos="
+				+ aspersoresEncendidos;
+	}
+	
+	
 }
