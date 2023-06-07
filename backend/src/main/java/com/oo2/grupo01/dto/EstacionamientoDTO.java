@@ -20,12 +20,6 @@ public class EstacionamientoDTO extends GenericDTO {
 
 	}
 
-	// ToString modificado para que pueda usarse como registro de los sensores
-	@Override
-	public String toString() {
-		return "ocupado=" + ocupado;
-	}
-
 	@Override
 	public void inicializarVariables() {
 		for (var sensor : sensores) {

@@ -20,12 +20,6 @@ public class AulaDTO extends GenericDTO {
 		this.persianasAbiertas = null;
 	}
 
-	// ToString modificado para que pueda usarse como registro de los sensores
-	@Override
-	public String toString() {
-		return "luces=" + luces + ", persianasAbiertas=" + persianasAbiertas;
-	}
-
 	@Override
 	public void inicializarVariables() {
 		for (var s : sensores) {

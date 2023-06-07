@@ -71,7 +71,8 @@ public class EspacioVerdeController {
 		// se crean los registros de esta solicitud a este espacio verde
 		if (espacioVerde != null) {
 			eVDto = new EspacioVerdeDTO(espacioVerde);
-			registroService.agregar(eVDto);
+			eVDto.inicializarVariables();
+			registroService.agregar(eVDto.getSensores());
 		}
 
 		return new ResponseEntity<EspacioVerdeDTO>(eVDto, HttpStatus.OK);

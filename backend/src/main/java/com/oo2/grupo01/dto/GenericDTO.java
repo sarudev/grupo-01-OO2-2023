@@ -18,13 +18,13 @@ public abstract class GenericDTO {
 	protected Lugares type;
 	protected Set<Sensor> sensores;
 	protected Set<Registro> registros;
-	
+
 	protected GenericDTO(Long id, Lugares type, Set<Sensor> sensores) {
 		this.id = id;
 		this.type = type;
-		
-		for(var sensor : sensores) {
-			switch(sensor.getTipo()) {
+
+		for (var sensor : sensores) {
+			switch (sensor.getTipo()) {
 			case BASCULA:
 				this.sensores.add(new SensorBascula(sensor));
 				break;
@@ -36,14 +36,14 @@ public abstract class GenericDTO {
 				break;
 			case TIEMPO:
 				this.sensores.add(new SensorTiempo(sensor));
-				break;	
+				break;
 			}
-			
+
 			this.registros.addAll(sensor.getRegistros());
 		}
-		
+
 	}
-	
+
 	public abstract void inicializarVariables();
-	
+
 }

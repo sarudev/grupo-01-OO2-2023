@@ -25,12 +25,6 @@ public class EspacioVerdeDTO extends GenericDTO {
 
 	}
 
-	// ToString modificado para que pueda usarse como registro de los sensores
-	@Override
-	public String toString() {
-		return "humedad=" + humedad + ", luces=" + luces + ", aspersoresEncendidos=" + aspersoresEncendidos;
-	}
-
 	@Override
 	public void inicializarVariables() {
 		for (var sensor : sensores) {

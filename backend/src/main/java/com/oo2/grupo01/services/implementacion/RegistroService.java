@@ -1,10 +1,10 @@
 package com.oo2.grupo01.services.implementacion;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
-import com.oo2.grupo01.dto.GenericDTO;
 import com.oo2.grupo01.entities.Registro;
 import com.oo2.grupo01.entities.Sensor;
 import com.oo2.grupo01.repositories.IRegistroRepository;
@@ -33,9 +33,9 @@ public class RegistroService implements IRegistroService{
 	}
 
 	@Override
-	public void agregar(GenericDTO generic) {
-		for(Sensor s : generic.getSensores()) {
-			agregar(s, generic.toString(), LocalDateTime.now());
+	public void agregar(Set<Sensor> sensores) {
+		for(Sensor s : sensores) {
+			agregar(s, s.toString(), LocalDateTime.now());
 		}
 	}
 }
