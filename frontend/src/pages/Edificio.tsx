@@ -8,9 +8,5 @@ export default function Edificio () {
 
   if (building == null) return <NotFound />
 
-  return (
-    <Lugar
-      lugar={building}
-    />
-  )
+  return <Lugar lugar={building} />
 }

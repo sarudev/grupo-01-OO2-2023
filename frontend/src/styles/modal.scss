@@ -1,3 +1,7 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
 .background {
   position: fixed;
   top: 0;
@@ -8,32 +12,13 @@
   z-index: 990;
 }
 
-.modal {
-  position: relative;
-  width: max-content;
-  height: max-content;
-  min-width: 200px;
-  min-height: 200px;
-  border-radius: 10px;
-  background-color: #1f1f1f;
-  z-index: 1000;
-  padding: 20px;
-
-  .close {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    width: 32px;
-    height: 32px;
-    font-size: 24px;
-    font-weight: bolder;
-    border: none;
-    border-radius: 10px;
-    background-color: #1f1f1f;
-    transition: all .1s linear;
-
-    &:hover {
-      background-color: #242424;
-    }
-  }
+.close-message {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  bottom: -50px;
+  color: rgba(128, 128, 128, .5);
+  font-size: 16px;
 }

@@ -9,11 +9,9 @@ export default function Modal ({ children, open, closeModal }: { children: React
 
   return createPortal(
     <>
+      <div className='close-message'>Haz click fuera del recuadro para cerrarlo</div>
       <div className="background" onClick={closeModal} />
-      <div className='modal'>
-        <button className="close" onClick={closeModal}>x</button>
-        <div className="content">{children}</div>
-      </div>
+      {children}
     </>,
     modalElem
   )

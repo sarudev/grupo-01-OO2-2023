@@ -13,6 +13,7 @@ export interface Sensor {
 }
 
 export type LugarTipo = 'aula' | 'edificio' | 'parking' | 'espacioVerde' | 'estacionamiento'
+export type DependenciaTipo = 'aula' | 'estacionamiento'
 
 export interface Historial {
   tipo: SensorType
@@ -24,7 +25,7 @@ export interface LugarExtends {
   tipo: LugarTipo
   id: number
   nombre: string
-  luces: true
+  luces: boolean
   historial: Historial[]
   sensores: Sensor[]
 }

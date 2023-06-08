@@ -1,3 +1,5 @@
+import { type DependenciaTipo, type LugarTipo } from './types'
+
 export enum SensorType {
   Temperatura = 'Temperatura',
   Bascula = 'Bascula',
@@ -6,10 +8,10 @@ export enum SensorType {
   Tiempo = 'Tiempo'
 }
 
-export const lugarDependencia: Record<string, string> = {
+export const lugarDependencia: Record<LugarTipo, string | null> = {
   edificio: 'aulas',
   parking: 'estacionamientos',
-  espacioVerde: '',
-  aula: '',
-  estacionamiento: ''
+  espacioVerde: null,
+  aula: null,
+  estacionamiento: null
 }
