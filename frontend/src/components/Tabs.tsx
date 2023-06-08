@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useState, useEffect, useLayoutEffect } from 'react'
 import { firstUpper } from '../utils/utils'
 
 interface ITab {
@@ -7,8 +7,16 @@ interface ITab {
   tabName: string
 }
 
-export default function Tabs ({ tabsNames }: { tabsNames: string[] }) {
-  const [currentTab, setCurrentTab] = useState(tabsNames[0])
+export default function Tabs ({ tabsNames, onTabChange }: { tabsNames: string[], onTabChange: (tabName: string) => void }) {
+  const [currentTab, setCurrentTab] = useState('')
+
+  useLayoutEffect(() => {
+    setCurrentTab(tabsNames[0])
+  }, [tabsNames])
+
+  useEffect(() => {
+    onTabChange(currentTab)
+  }, [currentTab])
 
   function handleTabSelect (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     setCurrentTab(e.currentTarget.dataset.tab!)
