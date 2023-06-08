@@ -1,0 +1,102 @@
+.campus-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  #cartelitowo {
+    position: absolute;
+    background-color: #242424;
+    color: white;
+    font-size: 1rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(10%) translateY(-110%);
+    padding: 10px;
+    border-radius: 10px;
+    transition: opacity .25s ease;
+
+    &.visible {
+      opacity: 1;
+    }
+  }
+
+  .campus {
+    width: min(1200px, 100%);
+    height: max-content;
+
+    .building {
+      &.selected .background[data-invisible] {
+        stroke: cornflowerblue;
+      }
+
+      .background {
+        fill: #423E3F;
+        stroke: transparent;
+        stroke-width: 5px;
+        transition: stroke .25s ease;
+        cursor: pointer;
+
+        &:hover {
+          stroke: cornflowerblue;
+        }
+
+        &[data-invisible] {
+          fill: black;
+          fill-opacity: 0;
+
+          & + .num {
+            fill: #423E3F;
+          }
+        }
+      }
+
+      &[data-building-number="10"] .background {
+        fill: #9D9AA1;
+      }
+
+      &[data-building-number="29"] .background {
+        stroke: transparent;
+        cursor: default;
+      }
+
+      .canchas,
+      .num {
+        pointer-events: none;
+      }
+
+      .num {
+        fill: white;
+      }
+    }
+
+    .building-name {
+      cursor: pointer;
+
+      &:hover {
+        .text {
+          fill: cornflowerblue;
+        }
+      }
+
+      .background {
+        fill: black;
+        fill-opacity: 0;
+      }
+
+      .text {
+        fill: #423E3F;
+        stroke: cornflowerblue;
+        stroke-width: 0px;
+        transition: all .25s ease;
+
+        &.selected {
+          fill: cornflowerblue;
+        }
+      }
+    }
+
+  }
+}

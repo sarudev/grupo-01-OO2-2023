@@ -6,7 +6,10 @@ export enum SensorType {
   Tiempo = 'Tiempo'
 }
 
-export const statusMessage = {
-  200: 'Continue',
-  404: 'Not Found'
+export const lugarDependencia: Record<string, string> = {
+  edificio: 'aulas',
+  parking: 'estacionamientos',
+  espacioVerde: '',
+  aula: '',
+  estacionamiento: ''
 }

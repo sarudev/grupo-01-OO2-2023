@@ -1,9 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom'
 import Index from './pages/Index'
-import Edificio, { loader as edificioLoader } from './pages/Edificio'
-import Aula, { loader as aulaLoader } from './pages/Aula'
+import Edificio from './pages/Edificio'
+import Aula from './pages/Aula'
+import aulaLoader from './pages/loaders/aula'
 import NotFound from './pages/NotFound'
-import './styles/App.scss'
+import edificioLoader from './pages/loaders/edificio'
 
 const router = createBrowserRouter([
   {

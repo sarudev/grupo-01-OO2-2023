@@ -15,3 +15,7 @@ export function strToUrl (str: string) {
 export function urlToStr (str: string) {
   return str.replaceAll('-', ' ')
 }
+
+export function firstUpper (str: string) {
+  return str.replace(str[0], str[0].toUpperCase())
+}

@@ -5,6 +5,7 @@ import useBuildingNameSelector from '../hooks/useBuildingNameSelector'
 import useBuildingNavigation from '../hooks/useBuildingNavigation'
 import useCartelitowo from '../hooks/useCarteliowo'
 import MouseCartelito from '../components/Cartelitowo'
+import '../styles/campus.scss'
 
 export default function Index () {
   const [currentBuilding, setCurrentBuilding] = useState('')
@@ -15,7 +16,7 @@ export default function Index () {
   useBuildingNavigation()
 
   return (
-    <div style={{ width: '100%', height: '100%' }}>
+    <div className="campus-container">
       <MouseCartelito text={currentBuilding} />
       <Campus />
     </div>

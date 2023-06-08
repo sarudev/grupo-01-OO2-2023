@@ -1,32 +1,38 @@
-import { type LoaderFunctionArgs, useLoaderData } from 'react-router-dom'
-import campus from '../assets/campus'
-import { urlToStr } from '../utils/utils'
-import { type Status, type Edificio as IEdificio } from '../types/types'
-import { statusMessage } from '../types/enums'
-import useInvalidDynamicPage from '../hooks/useInvalidDynamicPage'
+import { useLoaderData } from 'react-router-dom'
+import { firstUpper } from '../utils/utils'
+import { type Edificio as IEdificio } from '../types/types'
 import NotFound from './NotFound'
+import { useCallback } from 'react'
+import { lugarDependencia } from '../types/enums'
+import Lugar from '../components/Lugar'
+import Tabs from '../components/Tabs'
+import '../styles/edificio.scss'
 
 export default function Edificio () {
-  const building = useLoaderData() as LoaderData
+  const building = useLoaderData() as IEdificio
 
-  const notFound = useInvalidDynamicPage(building.status)
-  if (notFound) return <NotFound />
+  if (building == null) return <NotFound />
+
+  const TabsElem = useCallback(function TabsElem () {
+    let tabs = ['sensores', 'historial']
+    const dependencia = lugarDependencia[building.tipo].length > 0 ? [lugarDependencia[building.tipo], ...tabs] : null
+
+    tabs = dependencia ?? tabs
+
+    return <Tabs tabsNames={tabs}/>
+  }, [])
+
+  const ContentElem = useCallback(function TabsElem () {
+    return <></>
+  }, [])
 
   return (
-    <div>
-      {JSON.stringify(building, null, 2)}
-    </div>
+    <Lugar
+      svgName={building.tipo}
+      title={firstUpper(building.tipo)}
+      description={building.nombre}
+      tabs={TabsElem}
+      content={ContentElem}
+    />
   )
-}
-
-export async function loader ({ params }: LoaderFunctionArgs) {
-  const { buildingName } = params
-  const edificio = campus.edificios.find(e => e.nombre === urlToStr(buildingName!))
-  const statusCode = edificio == null ? 404 : 200
-  return { status: { code: statusCode, message: statusMessage[statusCode] }, edificio } as LoaderData
-}
-
-interface LoaderData {
-  status: Status
-  edificio: IEdificio | null
 }

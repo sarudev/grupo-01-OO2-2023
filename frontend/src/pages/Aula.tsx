@@ -1,33 +1,37 @@
-import { type LoaderFunctionArgs, useLoaderData } from 'react-router-dom'
-import { type Status, type Aula as IAula } from '../types/types'
-import campus from '../assets/campus'
-import { urlToStr } from '../utils/utils'
-import useInvalidDynamicPage from '../hooks/useInvalidDynamicPage'
+import { useLoaderData } from 'react-router-dom'
+import { type Aula as IAula } from '../types/types'
+import { firstUpper } from '../utils/utils'
 import NotFound from './NotFound'
-import { statusMessage } from '../types/enums'
+import { useCallback } from 'react'
+import { lugarDependencia } from '../types/enums'
+import Tabs from '../components/Tabs'
+import Lugar from '../components/Lugar'
 
 export default function Aula () {
-  const aula = useLoaderData() as LoaderData
+  const aula = useLoaderData() as IAula
+  console.log(aula)
+  if (aula == null) return <NotFound />
 
-  const notFound = useInvalidDynamicPage(aula.status)
-  if (notFound) return <NotFound />
+  const TabsElem = useCallback(function TabsElem () {
+    let tabs = ['sensores', 'historial']
+    const dependencia = lugarDependencia[aula.tipo].length > 0 ? [lugarDependencia[aula.tipo], ...tabs] : null
+
+    tabs = dependencia ?? tabs
+
+    return <Tabs tabsNames={tabs}/>
+  }, [])
+
+  const ContentElem = useCallback(function TabsElem () {
+    return <></>
+  }, [])
 
   return (
-    <div>
-      {JSON.stringify(aula, null, 2)}
-    </div>
+    <Lugar
+      svgName={aula.tipo}
+      title={firstUpper(aula.tipo)}
+      description={aula.nombre}
+      tabs={TabsElem}
+      content={ContentElem}
+    />
   )
-}
-
-export async function loader ({ params }: LoaderFunctionArgs) {
-  const { buildingName, aulaName } = params
-  const edificio = campus.edificios.find(e => e.nombre === urlToStr(buildingName!))
-  const aula = edificio?.aulas.find(a => a.nombre === urlToStr(aulaName!))
-  const statusCode = edificio == null || aula == null ? 404 : 200
-  return { status: { code: statusCode, message: statusMessage[statusCode] }, aula } as LoaderData
-}
-
-interface LoaderData {
-  status: Status
-  aula: IAula | null
 }

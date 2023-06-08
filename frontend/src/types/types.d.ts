@@ -11,7 +11,10 @@ export interface Sensor {
   type: SensorType
 }
 
+export type LugarTipo = 'aula' | 'edificio' | 'parking' | 'espacioVerde' | 'estacionamiento'
+
 export interface Lugar {
+  tipo: LugarTipo
   id: number
   nombre: string
   sensores: Sensor[]
@@ -29,12 +32,4 @@ export interface Estacionamiento extends Lugar {}
 
 export interface Parking extends Lugar {
   estacionamientos: Estacionamiento[]
-}
-
-export type Status = {
-  code: 200
-  message: 'Continue'
-} | {
-  code: 404
-  message: 'Not Found'
 }
