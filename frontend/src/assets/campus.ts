@@ -1,5 +1,5 @@
 import { SensorType } from '../types/enums'
-import { type Campus } from '../types/types'
+import { type Campus as ICampus } from '../types/types'
 
 export default {
   edificios: [
@@ -285,4 +285,4 @@ export default {
   ],
   espaciosVerdes: [],
   parkings: []
-} as Campus
+} as ICampus
