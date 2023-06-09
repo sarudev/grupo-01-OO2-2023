@@ -4,7 +4,7 @@ import { type SensorType, lugarDependencia } from '../types/enums'
 import Tabs from './Tabs'
 import AddButton from './AddButton'
 import Modal from './Modal'
-import type { Aula, Estacionamiento, Lugar as ILugar, Sensor } from '../types/types'
+import type { Aula, Lugar as ILugar, Sensor } from '../types/types'
 import { firstUpper } from '../utils/utils'
 import Dependencias from './Dependencias'
 import Sensores from './Sensores'
@@ -12,23 +12,10 @@ import Historial from './Historial'
 import AddLugar from './modal/AddLugar'
 import AddSensor from './modal/AddSensor'
 import campus from '../assets/campus'
-import useForceReRender from '../hooks/useForceReRender'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import '../styles/lugar.scss'
 
-export default function Lugar ({ lugar }: { lugar: ILugar & { lugar: ILugar | null } }) {
-  const dependencia = useMemo(() => {
-    if ('aulas' in lugar) return lugar.aulas
-    if ('estacionamientos' in lugar) return lugar.estacionamientos
-    return null
-  }, [])
-
-  const [currentTab, setCurrentTab] = useState('')
-  const [showModal, setShowModal] = useState(false)
-  const [sortedSensores, setSortedSensores] = useState(lugar.sensores)
-  const [sortedDependencias, setSortedDependencias] = useState(dependencia)
-  const forceReRender = useForceReRender()
-
+function useVariables (lugar: ILugar, currentTab: string) {
   const tabs = useMemo(() => {
     const tabs = ['sensores', 'historial']
     const ld = lugarDependencia[lugar.tipo]
@@ -41,11 +28,42 @@ export default function Lugar ({ lugar }: { lugar: ILugar & { lugar: ILugar | nu
   const isSensor = useMemo(() => currentTab === 'sensores', [currentTab])
   const isHistorial = useMemo(() => currentTab === 'historial', [currentTab])
 
+  const dependencia = useMemo(() => {
+    if ('aulas' in lugar) return lugar.aulas
+    if ('estacionamientos' in lugar) return lugar.estacionamientos
+    return null
+  }, [])
+
+  return {
+    dependencia,
+    tabs,
+    isDependencia,
+    isSensor,
+    isHistorial
+  }
+}
+
+function useModal () {
+  const [showModal, setShowModal] = useState(false)
   const handleOpenModal = () => setShowModal(true)
   const handleCloseModal = () => setShowModal(false)
+
+  return {
+    showModal,
+    handleOpenModal,
+    handleCloseModal
+  }
+}
+
+export default function Lugar ({ lugar }: { lugar: ILugar }) {
+  // console.log(useParams())
+  const [currentTab, setCurrentTab] = useState('')
+
+  const { dependencia, tabs, isDependencia, isSensor, isHistorial } = useVariables(lugar, currentTab)
+  const { showModal, handleOpenModal, handleCloseModal } = useModal()
+
   const sensorHandleToggle = (sensor: Sensor) => {
     sensor.activo = !sensor.activo
-    onOptionChange(document.querySelector('select#filter-sensor')!.value)
   }
   // SOLO FUNCIONA PARA CREAR AULAS
   // SE DEBE ADAPTAR PARA FUNCIONAR
@@ -59,6 +77,7 @@ export default function Lugar ({ lugar }: { lugar: ILugar & { lugar: ILugar | nu
     const aula: Aula = {
       id: 0,
       tipo: lugarDependencia[lugar.tipo]!.slice(0, -1) as 'aula' | 'estacionamiento',
+      lugar: null,
       nombre: input.value,
       luces: false,
       sensores: [],
@@ -67,7 +86,6 @@ export default function Lugar ({ lugar }: { lugar: ILugar & { lugar: ILugar | nu
 
     campus.edificios.find(e => e.nombre === lugar.nombre)!.aulas.push(aula)
     handleCloseModal()
-    onInputChange('')
   }
   const handleCreateSensor: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault()
@@ -85,31 +103,6 @@ export default function Lugar ({ lugar }: { lugar: ILugar & { lugar: ILugar | nu
       lugar.sensores.push(sensor)
     }
     handleCloseModal()
-  }
-
-  const onOptionChange = (value: string) => {
-    const sensores: Sensor[] = []
-
-    for (const sensor of lugar.sensores) {
-      if (value === 'todos') sensores.push(sensor)
-      if (value === 'activo' && sensor.activo) sensores.push(sensor)
-      if (value === 'inactivo' && !sensor.activo) sensores.push(sensor)
-    }
-
-    setSortedSensores(sensores)
-  }
-  const onInputChange = (value: string) => {
-    const lugares: ILugar[] = []
-
-    const dep = lugarDependencia[lugar.tipo] as 'aulas' | 'estacionamientos'
-
-    const lugArr = lugar as ILugar & { lugar: ILugar | null } & { aulas: Aula[], estacionamientos: Estacionamiento[] }
-
-    for (const lug of lugArr[dep]) {
-      if (lug.nombre.includes(value)) lugares.push(lug)
-    }
-
-    setSortedDependencias(lugares)
   }
 
   return (
@@ -131,12 +124,9 @@ export default function Lugar ({ lugar }: { lugar: ILugar & { lugar: ILugar | nu
           <Tabs tabsNames={tabs} onTabChange={setCurrentTab}/>
         </nav>
         <div className="content">
-          {isDependencia && <FiltroDependencia onInputChange={onInputChange} />}
-          {isSensor && <FiltroSensor onOptionChange={onOptionChange}/>}
-          {isHistorial && null}
           <div className='content-list'>
-            {isDependencia && sortedDependencias != null && <Dependencias dependencias={sortedDependencias} nombreDependencia={lugarDependencia[lugar.tipo]!} />}
-            {isSensor && <Sensores sensores={sortedSensores} handleToggle={sensorHandleToggle} />}
+            {isDependencia && dependencia != null && <Dependencias originalDependencias={dependencia} nombreDependencia={lugarDependencia[lugar.tipo]!} />}
+            {isSensor && <Sensores originalSensores={lugar.sensores} handleToggle={sensorHandleToggle} />}
             {isHistorial && <Historial historial={lugar.historial} />}
           </div>
           {isDependencia && <AddButton text={lugarDependencia[lugar.tipo]!.slice(0, -1)} onClick={handleOpenModal} />}
@@ -149,28 +139,6 @@ export default function Lugar ({ lugar }: { lugar: ILugar & { lugar: ILugar | nu
           {isSensor && <AddSensor onCreate={handleCreateSensor} />}
         </>
       </Modal>
-    </div>
-  )
-}
-
-function FiltroDependencia ({ onInputChange }: { onInputChange: (string: string) => void }) {
-  return (
-    <div className='filter'>
-      <div className='text'>Filtrar: </div>
-      <input id='filter-dependencia' type="text" placeholder='Nombre del aula' onChange={(e) => onInputChange(e.target.value)} />
-    </div>
-  )
-}
-
-function FiltroSensor ({ onOptionChange }: { onOptionChange: (string: string) => void }) {
-  return (
-    <div className='filter'>
-      <div className='text'>Mostrar: </div>
-      <select onChange={(e) => onOptionChange(e.target.value)} id="filter-sensor">
-        <option value="todos">Todos</option>
-        <option value="activo">Activo</option>
-        <option value="inactivo">Inactivo</option>
-      </select>
     </div>
   )
 }

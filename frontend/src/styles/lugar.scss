@@ -122,59 +122,59 @@
       display: flex;
       flex-direction: column;
 
-      .filter {
-        border-bottom: 1px solid rgba(128, 128, 128, .5);
-        font-size: 24px;
-        height: 48px;
-        padding-left: 16px;
-        color: white;
-        display: flex;
-        align-items: center;
-        gap: 15px;
-
-        .text {
-          display: flex;
-          align-items: center;
-          height: 100%;
-        }
-
-        #filter-dependencia {
-          border: 1px solid gray;
-          padding: 0 10px;
-          height: 70%;
-          font-size: 16px;
-          color: white;
-          background-color: transparent;
-
-          &:focus-visible {
-            outline: none;
-          }
-
-          option {
-            color: black;
-          }
-        }
-
-        #filter-sensor {
-          border: none;
-          padding: 0 10px;
-          height: 70%;
-          font-size: 16px;
-          color: white;
-          background-color: transparent;
-
-          &:focus-visible {
-            outline: none;
-          }
-
-          option {
-            color: black;
-          }
-        }
-      }
-
       .content-list {
         flex-grow: 1;
+
+        .filter {
+          border-bottom: 1px solid rgba(128, 128, 128, .5);
+          font-size: 24px;
+          height: 48px;
+          padding-left: 16px;
+          color: white;
+          display: flex;
+          align-items: center;
+          gap: 15px;
+
+          .text {
+            display: flex;
+            align-items: center;
+            height: 100%;
+          }
+
+          #filter-dependencia {
+            border: 1px solid gray;
+            padding: 0 10px;
+            height: 70%;
+            font-size: 16px;
+            color: white;
+            background-color: transparent;
+
+            &:focus-visible {
+              outline: none;
+            }
+
+            option {
+              color: black;
+            }
+          }
+
+          #filter-sensor {
+            border: none;
+            padding: 0 10px;
+            height: 70%;
+            font-size: 16px;
+            color: white;
+            background-color: transparent;
+
+            &:focus-visible {
+              outline: none;
+            }
+
+            option {
+              color: black;
+            }
+          }
+        }
 
         .list {
           width: 100%;

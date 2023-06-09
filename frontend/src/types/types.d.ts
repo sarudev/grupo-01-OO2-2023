@@ -28,6 +28,7 @@ export interface LugarExtends {
   luces: boolean
   historial: Historial[]
   sensores: Sensor[]
+  lugar: Edificio | Parking | null
 }
 
 export interface Aula extends LugarExtends {}
