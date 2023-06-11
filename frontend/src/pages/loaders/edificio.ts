@@ -1,9 +1,10 @@
 import { type LoaderFunctionArgs } from 'react-router-dom'
-import campus from '../../assets/campus'
-import { urlToStr } from '../../utils/utils'
+import axios from 'axios'
 
 export default async function edificioLoader ({ params }: LoaderFunctionArgs) {
-  const { buildingName } = params
-  const edificio = campus.edificios.find(e => e.nombre === urlToStr(buildingName!)) ?? null
-  return { ...edificio, lugar: null }
+  const { buildingName } = params as { buildingName: string }
+
+  const { data } = await axios.get(`http://localhost:5282/edificio/${buildingName.replaceAll(' ', '-')}`)
+
+  return data
 }

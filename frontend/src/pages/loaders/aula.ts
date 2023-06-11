@@ -1,10 +1,9 @@
 import { type LoaderFunctionArgs } from 'react-router-dom'
-import { urlToStr } from '../../utils/utils'
-import campus from '../../assets/campus'
-
+import axios from 'axios'
 export default async function aulaLoader ({ params }: LoaderFunctionArgs) {
-  const { buildingName, aulaName } = params
-  const edificio = campus.edificios.find(e => e.nombre === urlToStr(buildingName!))
-  const aula = edificio?.aulas.find(a => a.nombre === urlToStr(aulaName!)) ?? null
-  return { ...aula, lugar: edificio }
+  const { buildingName, aulaName } = params as { buildingName: string, aulaName: string }
+
+  const { data } = await axios.get(`http://localhost:5282/edificio/${buildingName}/aula/${aulaName}`)
+
+  return data
 }

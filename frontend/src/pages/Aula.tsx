@@ -1,5 +1,5 @@
 import { useLoaderData } from 'react-router-dom'
-import { type Aula as IAula } from '../types/types'
+import { type IAula } from '../types/types'
 import NotFound from './NotFound'
 import Lugar from '../components/Lugar'
 
@@ -8,9 +8,5 @@ export default function Aula () {
 
   if (aula == null) return <NotFound />
 
-  return (
-    <Lugar
-      lugar={aula}
-    />
-  )
+  return <Lugar lugar={aula} />
 }

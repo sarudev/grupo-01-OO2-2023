@@ -1,12 +1,12 @@
+import { type ISensor } from '../types/types'
 import List from './List'
-import { type Sensor, type Sensor as ISensor } from '../types/types'
 import { useState } from 'react'
 
-export default function Sensores ({ originalSensores, handleToggle }: { originalSensores: ISensor[], handleToggle: (sensor: Sensor) => void }) {
+export default function Sensores ({ originalSensores, handleToggle }: { originalSensores: ISensor[], handleToggle: (sensor: ISensor) => void }) {
   const [sortedSensores, setSortedSensores] = useState(originalSensores)
 
   const onOptionChange = (value: string) => {
-    const sensores: Sensor[] = []
+    const sensores: ISensor[] = []
 
     for (const sensor of originalSensores) {
       if (value === 'todos') sensores.push(sensor)

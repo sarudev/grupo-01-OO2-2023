@@ -1,109 +1,79 @@
-import { useState, useMemo } from 'react'
+import { useMemo, useLayoutEffect } from 'react'
 import Icon from './Icon'
-import { type SensorType, lugarDependencia } from '../types/enums'
 import Tabs from './Tabs'
 import AddButton from './AddButton'
 import Modal from './Modal'
-import type { Aula, Lugar as ILugar, Sensor } from '../types/types'
+import { type Lugares, type IHistorial, type ISensor, type ILugar, type Dependencia, type IAula, type IEstacionamiento, type IEdificio, type IParking } from '../types/types'
 import { firstUpper } from '../utils/utils'
 import Dependencias from './Dependencias'
-import Sensores from './Sensores'
+// import Sensores from './Sensores'
 import Historial from './Historial'
 import AddLugar from './modal/AddLugar'
-import AddSensor from './modal/AddSensor'
-import campus from '../assets/campus'
-import { Link, useParams } from 'react-router-dom'
+// import AddSensor from './modal/AddSensor'
+// import campus from '../assets/campus'
+// import { Link, useParams } from 'react-router-dom'
 import '../styles/lugar.scss'
+import { ILugarTipo, LugarDependencia } from '../types/enums'
+import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { useAppDispatch, useAppSelector } from '../hooks/Redux.'
+import { setDependencias } from '../redux/reducer/dependencias'
+import { setSensores } from '../redux/reducer/sensores'
+import { setHistorial } from '../redux/reducer/historial'
+// import { DependenciaHija } from '../types/helpers'
+import axios from 'axios'
+import { isEdificio, isParking } from '../types/typeguards'
+import { closeModal } from '../redux/reducer/modal'
 
-function useVariables (lugar: ILugar, currentTab: string) {
-  const tabs = useMemo(() => {
-    const tabs = ['sensores', 'historial']
-    const ld = lugarDependencia[lugar.tipo]
-    const dependencia = ld != null && ld.length > 0 ? [ld, ...tabs] : null
+export default function Lugar <T extends Lugares> ({ lugar }: { lugar: T }) {
+  const currentTab = useAppSelector(s => s.currentTab)
+  const dependencias = useAppSelector(s => s.dependencias)
+  const sensores = useAppSelector(s => s.sensores)
+  const historial = useAppSelector(s => s.historial)
+  const dispatch = useAppDispatch()
 
-    return dependencia ?? tabs
+  useLayoutEffect(() => {
+    const dependencias = isEdificio(lugar) ? lugar.aulas : isParking(lugar) ? lugar.estacionamientos : null
+    dispatch(setDependencias(dependencias))
+    dispatch(setSensores(lugar.sensores))
+    dispatch(setHistorial(lugar.historial))
   }, [])
 
-  const isDependencia = useMemo(() => currentTab != null && currentTab === lugarDependencia[lugar.tipo], [currentTab])
+  const isDependencia = useMemo(() => currentTab != null && currentTab === LugarDependencia[lugar.tipo], [currentTab])
   const isSensor = useMemo(() => currentTab === 'sensores', [currentTab])
   const isHistorial = useMemo(() => currentTab === 'historial', [currentTab])
 
-  const dependencia = useMemo(() => {
-    if ('aulas' in lugar) return lugar.aulas
-    if ('estacionamientos' in lugar) return lugar.estacionamientos
-    return null
-  }, [])
-
-  return {
-    dependencia,
-    tabs,
-    isDependencia,
-    isSensor,
-    isHistorial
+  // const sensorHandleToggle = (sensor: Sensor) => {
+  //   sensor.activo = !sensor.activo
+  // }
+  const handleCreateDependencia = () => {
+    const lugarTipo = lugar.tipo === ILugarTipo.Edificio ? ILugarTipo.Edificio : ILugarTipo.Parking
+    void axios.get(`http://localhost:5282/${lugarTipo}/${lugar.nombre}`)
+      .then(({ data }: { data: IEdificio | IParking }) => {
+        const dependencias = isEdificio(data) ? data.aulas : isParking(data) ? data.estacionamientos : null
+        dispatch(setDependencias(dependencias))
+        dispatch(closeModal())
+      })
   }
-}
+  // const handleCreateSensor: React.FormEventHandler<HTMLFormElement> = (e) => {
+  //   e.preventDefault()
+  //   const form = e.target as HTMLFormElement
 
-function useModal () {
-  const [showModal, setShowModal] = useState(false)
-  const handleOpenModal = () => setShowModal(true)
-  const handleCloseModal = () => setShowModal(false)
+  //   const input = form[0] as HTMLInputElement & { value: SensorType }
 
-  return {
-    showModal,
-    handleOpenModal,
-    handleCloseModal
-  }
-}
+  //   if (lugar.sensores.find(s => s.tipo === input.value) == null) {
+  //     const sensor: Sensor = {
+  //       activo: false,
+  //       id: 0,
+  //       tipo: input.value
+  //     }
 
-export default function Lugar ({ lugar }: { lugar: ILugar }) {
-  // console.log(useParams())
-  const [currentTab, setCurrentTab] = useState('')
+  //     lugar.sensores.push(sensor)
+  //   }
+  //   handleCloseModal()
+  // }
 
-  const { dependencia, tabs, isDependencia, isSensor, isHistorial } = useVariables(lugar, currentTab)
-  const { showModal, handleOpenModal, handleCloseModal } = useModal()
-
-  const sensorHandleToggle = (sensor: Sensor) => {
-    sensor.activo = !sensor.activo
-  }
-  // SOLO FUNCIONA PARA CREAR AULAS
-  // SE DEBE ADAPTAR PARA FUNCIONAR
-  // CON PARKINGS
-  const handleCreateDependencia: React.FormEventHandler<HTMLFormElement> = (e) => {
-    e.preventDefault()
-    const form = e.target as HTMLFormElement
-
-    const input = form[0] as HTMLInputElement
-
-    const aula: Aula = {
-      id: 0,
-      tipo: lugarDependencia[lugar.tipo]!.slice(0, -1) as 'aula' | 'estacionamiento',
-      lugar: null,
-      nombre: input.value,
-      luces: false,
-      sensores: [],
-      historial: []
-    }
-
-    campus.edificios.find(e => e.nombre === lugar.nombre)!.aulas.push(aula)
-    handleCloseModal()
-  }
-  const handleCreateSensor: React.FormEventHandler<HTMLFormElement> = (e) => {
-    e.preventDefault()
-    const form = e.target as HTMLFormElement
-
-    const input = form[0] as HTMLInputElement & { value: SensorType }
-
-    if (lugar.sensores.find(s => s.tipo === input.value) == null) {
-      const sensor: Sensor = {
-        activo: false,
-        id: 0,
-        tipo: input.value
-      }
-
-      lugar.sensores.push(sensor)
-    }
-    handleCloseModal()
-  }
+  // mover los arrays states dentro de cada "contenido"
 
   return (
     <div className='container'>
@@ -121,22 +91,22 @@ export default function Lugar ({ lugar }: { lugar: ILugar }) {
       </div>
       <div className="bot">
         <nav>
-          <Tabs tabsNames={tabs} onTabChange={setCurrentTab}/>
+          <Tabs tabsNames={[LugarDependencia[lugar.tipo], 'sensores', 'historial']} />
         </nav>
         <div className="content">
           <div className='content-list'>
-            {isDependencia && dependencia != null && <Dependencias originalDependencias={dependencia} nombreDependencia={lugarDependencia[lugar.tipo]!} />}
-            {isSensor && <Sensores originalSensores={lugar.sensores} handleToggle={sensorHandleToggle} />}
-            {isHistorial && <Historial historial={lugar.historial} />}
+            {isDependencia && dependencias != null && <Dependencias nombreDependencia={LugarDependencia[lugar.tipo]!} />}
+            {/* {isSensor && <Sensores originalSensores={sensores} />} */}
+            {isHistorial && <Historial historial={historial} />}
           </div>
-          {isDependencia && <AddButton text={lugarDependencia[lugar.tipo]!.slice(0, -1)} onClick={handleOpenModal} />}
-          {isSensor && <AddButton text='sensor' onClick={handleOpenModal} />}
+          {isDependencia && <AddButton text={LugarDependencia[lugar.tipo]!.slice(0, -1)} />}
+          {isSensor && <AddButton text='sensor' />}
         </div>
       </div>
-      <Modal closeModal={handleCloseModal} open={showModal}>
+      <Modal>
         <>
-          {isDependencia && <AddLugar dependencia={lugarDependencia[lugar.tipo]!.slice(0, -1)!} onCreate={handleCreateDependencia} />}
-          {isSensor && <AddSensor onCreate={handleCreateSensor} />}
+          {isDependencia && <AddLugar lugar={lugar} onCreate={handleCreateDependencia} />}
+          {/* {isSensor && <AddSensor />} */}
         </>
       </Modal>
     </div>

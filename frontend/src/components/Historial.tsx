@@ -1,5 +1,5 @@
+import { type IHistorial } from '../types/types'
 import List from './List'
-import { type Historial as IHistorial } from '../types/types'
 
 export default function Historial ({ historial }: { historial: IHistorial[] }) {
   return (

@@ -1,48 +1,58 @@
-import { type SensorType } from './enums'
+import { type ILugarTipo, type SensorType } from './enums'
 
-export interface Campus {
-  edificios: Edificio[]
-  espaciosVerdes: EspacioVerde[]
-  parkings: Parking[]
+export type Lugares = IEdificio | IAula | IEspacioVerde | IParking | IEstacionamiento
+export type Dependencia = IAula[] | IEstacionamiento[] | null
+export type DependenciaTipo = 'aula' | 'estacionamiento'
+
+export interface ILugar {
+  id: number
+  nombre: string
+  luces: boolean
+  historial: IHistorial[]
+  sensores: ISensor[]
 }
 
-export interface Sensor {
+export interface IEdificio extends ILugar {
+  tipo: ILugarTipo.Edificio
+  aulas: IAula[]
+  lugar: null
+}
+
+export interface IAula extends ILugar {
+  tipo: ILugarTipo.Aula
+  lugar: IEdificio
+}
+
+export interface IEspacioVerde extends ILugar {
+  tipo: ILugarTipo.EspacioVerde
+  lugar: null
+}
+
+export interface IParking extends ILugar {
+  tipo: ILugarTipo.Parking
+  estacionamientos: IEstacionamiento[]
+  lugar: null
+}
+
+export interface IEstacionamiento extends ILugar {
+  tipo: ILugarTipo.Estacionamiento
+  lugar: IParking
+}
+
+export interface ICampus {
+  edificios: IEdificio[]
+  espaciosVerdes: IEspacioVerde[]
+  parkings: IParking[]
+}
+
+export interface ISensor {
   id: number
   tipo: SensorType
   activo: boolean
 }
 
-export type LugarTipo = 'aula' | 'edificio' | 'parking' | 'espacioVerde' | 'estacionamiento'
-export type DependenciaTipo = 'aula' | 'estacionamiento'
-
-export interface Historial {
+export interface IHistorial {
   tipo: SensorType
   mensaje: string
   fecha: number
 }
-
-export interface LugarExtends {
-  tipo: LugarTipo
-  id: number
-  nombre: string
-  luces: boolean
-  historial: Historial[]
-  sensores: Sensor[]
-  lugar: Edificio | Parking | null
-}
-
-export interface Aula extends LugarExtends {}
-
-export interface Edificio extends LugarExtends {
-  aulas: Aula[]
-}
-
-export interface EspacioVerde extends LugarExtends {}
-
-export interface Estacionamiento extends LugarExtends {}
-
-export interface Parking extends LugarExtends {
-  estacionamientos: Estacionamiento[]
-}
-
-export type Lugar = Aula | Edificio | EspacioVerde | Estacionamiento | Parking

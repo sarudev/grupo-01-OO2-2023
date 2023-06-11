@@ -1,34 +1,34 @@
-import { useCallback, useState, useEffect, useLayoutEffect } from 'react'
+import { useCallback, useLayoutEffect } from 'react'
 import { firstUpper } from '../utils/utils'
+import { useAppSelector } from '../hooks/Redux.'
+import { useDispatch } from 'react-redux'
+import { setTab } from '../redux/reducer/currentTab'
 
 interface ITab {
-  handleTabSelect: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
   currentTab: string
   tabName: string
 }
 
-export default function Tabs ({ tabsNames, onTabChange }: { tabsNames: string[], onTabChange: (tabName: string) => void }) {
-  const [currentTab, setCurrentTab] = useState('')
+export default function Tabs ({ tabsNames }: { tabsNames: Array<string | null> }) {
+  const currentTab = useAppSelector(s => s.currentTab)
+  const dispatch = useDispatch()
 
   useLayoutEffect(() => {
-    setCurrentTab(tabsNames[0])
-  }, [tabsNames])
+    for (const tab of tabsNames) {
+      if (tab != null) {
+        dispatch(setTab(tab))
+        break
+      }
+    }
+  }, [])
 
-  useEffect(() => {
-    onTabChange(currentTab)
-  }, [currentTab])
-
-  function handleTabSelect (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-    setCurrentTab(e.currentTarget.dataset.tab!)
-  }
-
-  const Tab = useCallback(function Tab ({ handleTabSelect, currentTab, tabName }: ITab) {
-    return <button onClick={handleTabSelect} data-tab={tabName} className={`tab ${tabName} ${currentTab === tabName ? 'selected' : ''}`}>{firstUpper(tabName)}</button>
+  const Tab = useCallback(function Tab ({ currentTab, tabName }: ITab) {
+    return <button onClick={(e) => dispatch(setTab(e.currentTarget.dataset.tab!))} data-tab={tabName} className={`tab ${tabName} ${currentTab === tabName ? 'selected' : ''}`}>{firstUpper(tabName)}</button>
   }, [currentTab])
 
   return (
     <>
-      {tabsNames.map((e, i) => <Tab currentTab={currentTab} handleTabSelect={handleTabSelect} tabName={e} key={i} />)}
+      {tabsNames.map((e, i) => e != null ? <Tab currentTab={currentTab} tabName={e} key={i} /> : null)}
     </>
   )
 }

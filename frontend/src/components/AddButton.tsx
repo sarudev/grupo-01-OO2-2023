@@ -1,9 +1,13 @@
 import { firstUpper } from '../utils/utils'
 import '../styles/addbutton.scss'
+import { useDispatch } from 'react-redux'
+import { openModal } from '../redux/reducer/modal'
 
-export default function AddButton ({ text, onClick }: { text: string, onClick: () => void }) {
+export default function AddButton ({ text }: { text: string }) {
+  const dispatch = useDispatch()
+
   return (
-    <button onClick={onClick} className='add'>
+    <button onClick={() => dispatch(openModal())} className='add'>
       <span className='mas'>+</span>
       <span className='text'>Añadir {firstUpper(text)}</span>
     </button>
