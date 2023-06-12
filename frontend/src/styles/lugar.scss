@@ -1,15 +1,15 @@
 .container {
   width: min(800px, 100%);
-  height: 100%;
+  height: 100vh;
   padding: 20px;
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
   gap: 20px;
 
   .top {
     width: 100%;
+    flex-grow: 0;
     flex-shrink: 0;
     height: max-content;
     display: flex;
@@ -78,7 +78,6 @@
     flex-grow: 1;
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
 
     nav {
@@ -95,15 +94,22 @@
         color: white;
         border: none;
         padding: 15px;
-        font-size: 1.25rem;
+        font-size: 16.25px;
         cursor: pointer;
+
+        & {
+          border-right: 1px solid rgba(128, 128, 128, .5);
+        }
+
+        &:last-child {
+          border-right: none;
+        }
 
         &:nth-child(1) {
           border-top-left-radius: 20px;
         }
 
         &:hover:not(.selected) {
-          // box-shadow: inset 0px 0px 0px .5px cornflowerblue;
           text-decoration: underline;
         }
 
@@ -117,6 +123,7 @@
     .content {
       border-radius: 0 0 20px 20px;
       width: 100%;
+      flex-grow: 1;
       background-color: #1f1f1f;
       flex-grow: 1;
       display: flex;
@@ -178,7 +185,8 @@
 
         .list {
           width: 100%;
-          height: 100%;
+          height: calc(100vh - 304px);
+          overflow-y: auto;
 
           &.empty {
             display: flex;
@@ -200,6 +208,10 @@
             * {
               padding: 0 16px;
               border-left: 1px solid rgba(128, 128, 128, .5);
+            }
+
+            &:last-child {
+              border-bottom: none;
             }
 
             &.sensores {

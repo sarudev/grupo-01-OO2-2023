@@ -1,9 +1,38 @@
-import { SensorType } from '../../types/enums'
+import { ILugarTipo, SensorType } from '../../types/enums'
+import { useEffect, useState } from 'react'
+import { type Lugares } from '../../types/types'
+import axios from 'axios'
 import '../../styles/modalcontent.scss'
 
-export default function AddLugar ({ onCreate }: { onCreate: React.FormEventHandler<HTMLFormElement> }) {
+export default function AddLugar ({ lugar, onCreate }: { lugar: Lugares, onCreate?: () => void }) {
+  const [error, setError] = useState('')
+
+  const handleCreate: React.FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault()
+    const form = e.target as HTMLFormElement
+    const input = form[0] as HTMLInputElement
+    const sensorTipo = input.value
+
+    let url = 'http://localhost:5282'
+    if (lugar.tipo === ILugarTipo.Aula || lugar.tipo === ILugarTipo.Estacionamiento) url += `/${lugar.lugar.tipo}/${lugar.lugar.nombre.replaceAll(' ', '-')}/${lugar.tipo}/${lugar.nombre}`
+    else url += `/${lugar.tipo}/${lugar.nombre.replaceAll(' ', '-')}`
+
+    void axios.post(url, { sensorTipo }).then(() => {
+      onCreate?.()
+    }).catch((res) => {
+      const err = JSON.parse(res.request.response).error
+      setError(err)
+    })
+  }
+
+  useEffect(() => {
+    setTimeout(() => {
+      setError('')
+    }, 5000)
+  }, [error])
+
   return (
-    <form onSubmit={onCreate}>
+    <form onSubmit={handleCreate}>
       <div>
         <span>Crear Sensor</span>
       </div>
@@ -19,6 +48,7 @@ export default function AddLugar ({ onCreate }: { onCreate: React.FormEventHandl
         </div>
       </div>
       <button className="send" type="submit">Crear Sensor</button>
+      {error.length > 0 && <div className='error'>{ error }</div>}
     </form>
   )
 }

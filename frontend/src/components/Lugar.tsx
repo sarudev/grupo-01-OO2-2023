@@ -3,38 +3,32 @@ import Icon from './Icon'
 import Tabs from './Tabs'
 import AddButton from './AddButton'
 import Modal from './Modal'
-import { type Lugares, type IHistorial, type ISensor, type ILugar, type Dependencia, type IAula, type IEstacionamiento, type IEdificio, type IParking } from '../types/types'
+import { type Lugares, type IEdificio, type IParking } from '../types/types'
 import { firstUpper } from '../utils/utils'
 import Dependencias from './Dependencias'
-// import Sensores from './Sensores'
+import Sensores from './Sensores'
 import Historial from './Historial'
 import AddLugar from './modal/AddLugar'
-// import AddSensor from './modal/AddSensor'
-// import campus from '../assets/campus'
+import AddSensor from './modal/AddSensor'
 // import { Link, useParams } from 'react-router-dom'
 import '../styles/lugar.scss'
 import { ILugarTipo, LugarDependencia } from '../types/enums'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
 import { useAppDispatch, useAppSelector } from '../hooks/Redux.'
 import { setDependencias } from '../redux/reducer/dependencias'
 import { setSensores } from '../redux/reducer/sensores'
 import { setHistorial } from '../redux/reducer/historial'
-// import { DependenciaHija } from '../types/helpers'
 import axios from 'axios'
 import { isEdificio, isParking } from '../types/typeguards'
 import { closeModal } from '../redux/reducer/modal'
 
 export default function Lugar <T extends Lugares> ({ lugar }: { lugar: T }) {
   const currentTab = useAppSelector(s => s.currentTab)
-  const dependencias = useAppSelector(s => s.dependencias)
-  const sensores = useAppSelector(s => s.sensores)
-  const historial = useAppSelector(s => s.historial)
   const dispatch = useAppDispatch()
 
   useLayoutEffect(() => {
-    const dependencias = isEdificio(lugar) ? lugar.aulas : isParking(lugar) ? lugar.estacionamientos : null
-    dispatch(setDependencias(dependencias))
+    const deps = isEdificio(lugar) ? lugar.aulas : isParking(lugar) ? lugar.estacionamientos : null
+    dispatch(setDependencias(deps))
     dispatch(setSensores(lugar.sensores))
     dispatch(setHistorial(lugar.historial))
   }, [])
@@ -43,37 +37,28 @@ export default function Lugar <T extends Lugares> ({ lugar }: { lugar: T }) {
   const isSensor = useMemo(() => currentTab === 'sensores', [currentTab])
   const isHistorial = useMemo(() => currentTab === 'historial', [currentTab])
 
-  // const sensorHandleToggle = (sensor: Sensor) => {
-  //   sensor.activo = !sensor.activo
-  // }
   const handleCreateDependencia = () => {
     const lugarTipo = lugar.tipo === ILugarTipo.Edificio ? ILugarTipo.Edificio : ILugarTipo.Parking
-    void axios.get(`http://localhost:5282/${lugarTipo}/${lugar.nombre}`)
+    void axios.get(`http://186.129.26.42:5282/${lugarTipo}/${lugar.nombre}`)
       .then(({ data }: { data: IEdificio | IParking }) => {
         const dependencias = isEdificio(data) ? data.aulas : isParking(data) ? data.estacionamientos : null
         dispatch(setDependencias(dependencias))
         dispatch(closeModal())
       })
   }
-  // const handleCreateSensor: React.FormEventHandler<HTMLFormElement> = (e) => {
-  //   e.preventDefault()
-  //   const form = e.target as HTMLFormElement
 
-  //   const input = form[0] as HTMLInputElement & { value: SensorType }
+  const handleCreateSensor = () => {
+    let url = 'http://localhost:5282'
+    if (lugar.tipo === ILugarTipo.Aula || lugar.tipo === ILugarTipo.Estacionamiento) url += `/${lugar.lugar.tipo}/${lugar.lugar.nombre.replaceAll(' ', '-')}/${lugar.tipo}/${lugar.nombre}`
+    else url += `/${lugar.tipo}/${lugar.nombre.replaceAll(' ', '-')}`
 
-  //   if (lugar.sensores.find(s => s.tipo === input.value) == null) {
-  //     const sensor: Sensor = {
-  //       activo: false,
-  //       id: 0,
-  //       tipo: input.value
-  //     }
-
-  //     lugar.sensores.push(sensor)
-  //   }
-  //   handleCloseModal()
-  // }
-
-  // mover los arrays states dentro de cada "contenido"
+    void axios.get(url)
+      .then(({ data }: { data: Lugares }) => {
+        const sensores = data.sensores
+        dispatch(setSensores(sensores))
+        dispatch(closeModal())
+      })
+  }
 
   return (
     <div className='container'>
@@ -95,8 +80,8 @@ export default function Lugar <T extends Lugares> ({ lugar }: { lugar: T }) {
         </nav>
         <div className="content">
           <div className='content-list'>
-            {isDependencia && dependencias != null && <Dependencias nombreDependencia={LugarDependencia[lugar.tipo]!} />}
-            {/* {isSensor && <Sensores originalSensores={sensores} />} */}
+            {isDependencia && <Dependencias nombreDependencia={LugarDependencia[lugar.tipo]!} />}
+            {isSensor && <Sensores lugar={lugar} />}
             {isHistorial && <Historial historial={historial} />}
           </div>
           {isDependencia && <AddButton text={LugarDependencia[lugar.tipo]!.slice(0, -1)} />}
@@ -106,7 +91,7 @@ export default function Lugar <T extends Lugares> ({ lugar }: { lugar: T }) {
       <Modal>
         <>
           {isDependencia && <AddLugar lugar={lugar} onCreate={handleCreateDependencia} />}
-          {/* {isSensor && <AddSensor />} */}
+          {isSensor && <AddSensor lugar={lugar} onCreate={handleCreateSensor} />}
         </>
       </Modal>
     </div>

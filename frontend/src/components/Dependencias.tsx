@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useLayoutEffect } from 'react'
 import List from './List'
 import type { IAula, IEstacionamiento } from '../types/types'
 import { Link } from 'react-router-dom'
@@ -9,7 +9,7 @@ export default function Dependencias ({ nombreDependencia }: { nombreDependencia
   const [input, setInput] = useState('')
   const [sortedDependencias, setSortedDependencias] = useState<IAula[] | IEstacionamiento[]>(dependencias as IAula[] | IEstacionamiento[])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (dependencias == null) return
     const deps = dependencias.toSorted((a, b) => a.nombre.localeCompare(b.nombre)).filter(e => e.nombre.includes(input)) as IAula[] | IEstacionamiento[]
     setSortedDependencias(deps)
@@ -19,7 +19,7 @@ export default function Dependencias ({ nombreDependencia }: { nombreDependencia
     <>
       <div className='filter'>
         <div className='text'>Filtrar: </div>
-        <input value={input} id='filter-dependencia' type="text" placeholder='Nombre del aula' onChange={(e) => setInput(e.target.value)} />
+        <input value={input} id='filter-dependencia' type="text" placeholder={`Nombre del ${nombreDependencia.slice(0, -1)}`} onChange={(e) => setInput(e.target.value)} />
       </div>
       <List<IAula | IEstacionamiento> array={sortedDependencias} itemName={nombreDependencia} dependencia>
         {(d) => {
