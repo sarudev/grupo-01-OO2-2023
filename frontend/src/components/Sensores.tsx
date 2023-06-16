@@ -5,19 +5,24 @@ import List from './List'
 import { useLayoutEffect, useState } from 'react'
 import { ILugarTipo } from '../types/enums'
 import { setSensores } from '../redux/reducer/sensores'
+import Modal from './Modal'
+import AddSensor from './modal/AddSensor'
+import AddButton from './AddButton'
+import useSelect from '../hooks/useSelect'
+const { VITE_API_URL } = import.meta.env as Record<string, string>
 
 export default function Sensores ({ lugar }: { lugar: Lugares }) {
   const sensores = useAppSelector(s => s.sensores)
-  const [option, setOption] = useState('todos')
+  const { Select, option } = useSelect(['Todos', 'Activo', 'Inactivo'])
   const [sortedSensores, setSortedSensores] = useState(sensores)
 
   const dispatch = useAppDispatch()
 
   useLayoutEffect(() => {
     const sens = sensores.filter(s => {
-      if (option === 'todos') return true
-      if (option === 'activo' && s.activo) return true
-      if (option === 'inactivo' && !s.activo) return true
+      if (option === 'Todos') return true
+      if (option === 'Activo' && s.activo) return true
+      if (option === 'Inactivo' && !s.activo) return true
       return false
     })
 
@@ -25,7 +30,7 @@ export default function Sensores ({ lugar }: { lugar: Lugares }) {
   }, [option, sensores])
 
   const handleToggle = (s: ISensor) => {
-    let url = 'http://localhost:5282'
+    let url = `http://${VITE_API_URL}:5282`
     if (lugar.tipo === ILugarTipo.Aula || lugar.tipo === ILugarTipo.Estacionamiento) url += `/${lugar.lugar.tipo}/${lugar.lugar.nombre.replaceAll(' ', '-')}/${lugar.tipo}/${lugar.nombre}`
     else url += `/${lugar.tipo}/${lugar.nombre.replaceAll(' ', '-')}`
     url += '/sensor'
@@ -45,13 +50,9 @@ export default function Sensores ({ lugar }: { lugar: Lugares }) {
 
   return (
     <>
-      <div className='filter'>
+      <div className='filter sensores'>
         <div className='text'>Mostrar: </div>
-        <select onChange={(e) => setOption(e.target.value)} id="filter-sensor">
-          <option value="todos">Todos</option>
-          <option value="activo">Activo</option>
-          <option value="inactivo">Inactivo</option>
-        </select>
+        <Select />
       </div>
       <List array={sortedSensores} itemName='sensores'>
         {(s) => {
@@ -66,6 +67,10 @@ export default function Sensores ({ lugar }: { lugar: Lugares }) {
           )
         }}
       </List>
+      <AddButton text='sensor' />
+      <Modal>
+        <AddSensor lugar={lugar} />
+      </Modal>
     </>
   )
 }

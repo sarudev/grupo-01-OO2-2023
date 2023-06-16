@@ -1,5 +1,6 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --border-color: rgba(128, 128, 128, .5);
 }
 
 *,
@@ -32,4 +33,5 @@ body {
 
 #modal {
   position: fixed;
+  z-index: 950;
 }

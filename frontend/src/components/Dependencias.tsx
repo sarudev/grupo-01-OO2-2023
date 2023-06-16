@@ -1,13 +1,19 @@
 import { useState, useLayoutEffect } from 'react'
 import List from './List'
-import type { IAula, IEstacionamiento } from '../types/types'
+import type { IAula, IEstacionamiento, Lugares } from '../types/types'
 import { Link } from 'react-router-dom'
 import { useAppSelector } from '../hooks/Redux.'
+import Modal from './Modal'
+import AddLugar from './modal/AddLugar'
+import AddButton from './AddButton'
+import useLugarDependencia from '../hooks/useLugarDependencia'
+import useInput from '../hooks/useInput'
 
-export default function Dependencias ({ nombreDependencia }: { nombreDependencia: string }) {
+export default function Dependencias ({ lugar }: { lugar: Lugares }) {
   const dependencias = useAppSelector(s => s.dependencias)
-  const [input, setInput] = useState('')
   const [sortedDependencias, setSortedDependencias] = useState<IAula[] | IEstacionamiento[]>(dependencias as IAula[] | IEstacionamiento[])
+  const { withoutS: nombreDependencia, withS: nombreDependenciaS } = useLugarDependencia(lugar.tipo)
+  const { Input, input } = useInput(`Nombre del ${nombreDependenciaS!}`)
 
   useLayoutEffect(() => {
     if (dependencias == null) return
@@ -17,23 +23,27 @@ export default function Dependencias ({ nombreDependencia }: { nombreDependencia
 
   return (
     <>
-      <div className='filter'>
+      <div className='filter dependencias'>
         <div className='text'>Filtrar: </div>
-        <input value={input} id='filter-dependencia' type="text" placeholder={`Nombre del ${nombreDependencia.slice(0, -1)}`} onChange={(e) => setInput(e.target.value)} />
+        <Input />
       </div>
-      <List<IAula | IEstacionamiento> array={sortedDependencias} itemName={nombreDependencia} dependencia>
+      <List<IAula | IEstacionamiento> array={sortedDependencias} itemName={nombreDependencia!} dependencia>
         {(d) => {
           if (d == null) return <></>
           return (
             <>
               <div className="nombre">{d.nombre}</div>
-              <Link className='link' to={`${nombreDependencia.slice(0, -1)}/${d.nombre}`}>
+              <Link className='link' to={`${nombreDependenciaS!}/${d.nombre}`}>
                 Visitar
               </Link>
             </>
           )
         }}
       </List>
+      <AddButton text={nombreDependenciaS!} />
+      <Modal>
+        <AddLugar lugar={lugar} />
+      </Modal>
     </>
   )
 }

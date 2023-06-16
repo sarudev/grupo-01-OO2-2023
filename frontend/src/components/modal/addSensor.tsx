@@ -1,11 +1,16 @@
-import { ILugarTipo, SensorType } from '../../types/enums'
-import { useEffect, useState } from 'react'
+import { SensorType } from '../../types/enums'
 import { type Lugares } from '../../types/types'
 import axios from 'axios'
+import { useAppDispatch } from '../../hooks/Redux.'
+import { setSensores } from '../../redux/reducer/sensores'
+import { closeModal } from '../../redux/reducer/modal'
+import { apiUrl } from '../../utils/utils'
 import '../../styles/modalcontent.scss'
+import useErrorMessage from '../../hooks/useErrorMessage'
 
-export default function AddLugar ({ lugar, onCreate }: { lugar: Lugares, onCreate?: () => void }) {
-  const [error, setError] = useState('')
+export default function AddLugar ({ lugar }: { lugar: Lugares }) {
+  const { Message, setError } = useErrorMessage()
+  const dispatch = useAppDispatch()
 
   const handleCreate: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault()
@@ -13,23 +18,24 @@ export default function AddLugar ({ lugar, onCreate }: { lugar: Lugares, onCreat
     const input = form[0] as HTMLInputElement
     const sensorTipo = input.value
 
-    let url = 'http://localhost:5282'
-    if (lugar.tipo === ILugarTipo.Aula || lugar.tipo === ILugarTipo.Estacionamiento) url += `/${lugar.lugar.tipo}/${lugar.lugar.nombre.replaceAll(' ', '-')}/${lugar.tipo}/${lugar.nombre}`
-    else url += `/${lugar.tipo}/${lugar.nombre.replaceAll(' ', '-')}`
+    const url = apiUrl(lugar)
 
-    void axios.post(url, { sensorTipo }).then(() => {
-      onCreate?.()
-    }).catch((res) => {
-      const err = JSON.parse(res.request.response).error
-      setError(err)
-    })
+    async function request () {
+      try {
+        await axios.post(url, { sensorTipo })
+
+        const { data } = await axios.get(url)
+
+        const sensores = data.sensores
+        dispatch(setSensores(sensores))
+        dispatch(closeModal())
+      } catch (e: any) {
+        setError(`Ya existe un sensor ${sensorTipo} para este ${lugar.tipo}`)
+      }
+    }
+
+    void request()
   }
-
-  useEffect(() => {
-    setTimeout(() => {
-      setError('')
-    }, 5000)
-  }, [error])
 
   return (
     <form onSubmit={handleCreate}>
@@ -39,16 +45,16 @@ export default function AddLugar ({ lugar, onCreate }: { lugar: Lugares, onCreat
       <div className="inputs">
         <div className="container-input">
         <select className="input">
-          <option value={SensorType.Temperatura}>{SensorType.Temperatura}</option>
           <option value={SensorType.Bascula}>{SensorType.Bascula}</option>
-          <option value={SensorType.Humedad}>{SensorType.Humedad}</option>
           <option value={SensorType.Camara}>{SensorType.Camara}</option>
+          <option value={SensorType.Humedad}>{SensorType.Humedad}</option>
+          <option value={SensorType.Temperatura}>{SensorType.Temperatura}</option>
           <option value={SensorType.Tiempo}>{SensorType.Tiempo}</option>
         </select>
         </div>
       </div>
       <button className="send" type="submit">Crear Sensor</button>
-      {error.length > 0 && <div className='error'>{ error }</div>}
+      <Message />
     </form>
   )
 }

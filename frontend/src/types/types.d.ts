@@ -48,11 +48,13 @@ export interface ICampus {
 export interface ISensor {
   id: number
   tipo: SensorType
+  edificioTipo: string
   activo: boolean
 }
 
 export interface IHistorial {
-  tipo: SensorType
-  mensaje: string
-  fecha: number
+  sensorTipo: SensorType
+  descripcion: string
+  edificioTipo: string
+  fecha: string
 }

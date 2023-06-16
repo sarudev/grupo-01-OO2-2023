@@ -2,10 +2,20 @@ import { firstUpper } from '../../utils/utils'
 import { useRef, useEffect } from 'react'
 import { type Lugares } from '../../types/types'
 import axios from 'axios'
+import { ILugarTipo } from '../../types/enums'
+import { useAppDispatch } from '../../hooks/Redux.'
+import { setDependencias } from '../../redux/reducer/dependencias'
+import { closeModal } from '../../redux/reducer/modal'
+import { isEdificio, isParking } from '../../types/typeguards'
 import '../../styles/modalcontent.scss'
-import { ILugarTipo, LugarDependencia } from '../../types/enums'
+import useLugarDependencia from '../../hooks/useLugarDependencia'
+import useErrorMessage from '../../hooks/useErrorMessage'
+const { VITE_API_URL } = import.meta.env as Record<string, string>
 
-export default function AddLugar ({ lugar, onCreate }: { lugar: Lugares, onCreate?: () => void }) {
+export default function AddLugar ({ lugar }: { lugar: Lugares }) {
+  const { withoutS: nombreDependencia } = useLugarDependencia(lugar.tipo)
+  const { Message, setError } = useErrorMessage()
+  const dispatch = useAppDispatch()
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -18,25 +28,39 @@ export default function AddLugar ({ lugar, onCreate }: { lugar: Lugares, onCreat
     const input = form[0] as HTMLInputElement
     const dependenciaName = input.value
 
-    const lugarTipo = lugar.tipo === ILugarTipo.Edificio ? ILugarTipo.Edificio : ILugarTipo.Parking
     const dependenciaTipo = lugar.tipo === ILugarTipo.Edificio ? ILugarTipo.Aula : ILugarTipo.Estacionamiento
 
-    void axios.post(`http://localhost:5282/${lugarTipo}/${lugar.nombre}/${dependenciaTipo}`, {
-      [`${dependenciaTipo}Name`]: dependenciaName
-    }).then(() => onCreate?.())
+    async function requests () {
+      try {
+        await axios.post(`http://localhost:5282/${lugar.tipo}/${lugar.nombre}/${dependenciaTipo}`, {
+          [`${dependenciaTipo}Name`]: dependenciaName
+        })
+
+        const { data } = await axios.get(`http://${VITE_API_URL}:5282/${lugar.tipo}/${lugar.nombre}`) as { data: Lugares }
+
+        const dependencias = isEdificio(data) ? data.aulas : isParking(data) ? data.estacionamientos : null
+        dispatch(setDependencias(dependencias))
+        dispatch(closeModal())
+      } catch (e: any) {
+        setError(`Ya existe un ${lugar.tipo} con ese nombre. `)
+      }
+    }
+
+    void requests()
   }
 
   return (
     <form onSubmit={handleCreate}>
       <div>
-        <span>Crear {firstUpper(LugarDependencia[lugar.tipo]!.slice(0, -1))}</span>
+        <span>Crear {firstUpper(nombreDependencia!)}</span>
       </div>
       <div className="inputs">
         <div className="container-input">
-          <input required ref={inputRef} className='input' type="text" placeholder={'Nombre del ' + firstUpper(LugarDependencia[lugar.tipo]!.slice(0, -1))}/>
+          <input required ref={inputRef} className='input' type="text" placeholder={'Nombre del ' + firstUpper(nombreDependencia!)}/>
         </div>
       </div>
-      <button className="send" type="submit">Crear {firstUpper(LugarDependencia[lugar.tipo]!.slice(0, -1))}</button>
+      <button className="send" type="submit">Crear {firstUpper(nombreDependencia!)}</button>
+      <Message />
     </form>
   )
 }
