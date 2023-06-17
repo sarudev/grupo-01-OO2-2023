@@ -58,3 +58,12 @@ export interface IHistorial {
   edificioTipo: string
   fecha: string
 }
+
+export interface LoaderResponse {
+  lugar: Lugares | null
+  status: number
+  userRole: UserRole | null
+  serverWorking: boolean
+}
+
+export type UserRole = 'admin' | 'user'

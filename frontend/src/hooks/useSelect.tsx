@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useCallback, useState } from 'react'
 
 export default function useSelect <T extends string> (options: T[]) {
   const [option, setOption] = useState<T>(options[0] as T)

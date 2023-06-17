@@ -1,11 +1,10 @@
-import { createBrowserRouter, useRouteError } from 'react-router-dom'
+import { createBrowserRouter } from 'react-router-dom'
 import Index from './pages/Index'
-import Edificio from './pages/Edificio'
-import Aula from './pages/Aula'
-import aulaLoader from './pages/loaders/aula'
 import NotFound from './pages/NotFound'
-import edificioLoader from './pages/loaders/edificio'
-import { type AxiosError } from 'axios'
+import Login from './pages/Login'
+import Lugar from './pages/Lugar'
+import loader from './pages/router/loader'
+import ErrorBoundary from './pages/router/ErrorBoundary'
 
 const router = createBrowserRouter([
   {
@@ -14,23 +13,23 @@ const router = createBrowserRouter([
   },
   {
     path: '/edificio/:buildingName',
-    loader: edificioLoader,
-    element: <Edificio />,
+    loader: loader(({ buildingName }) => `/edificio/${buildingName!}`),
+    element: <Lugar />,
     errorElement: <ErrorBoundary />
   },
   {
     path: '/edificio/:buildingName/aula/:aulaName',
-    loader: aulaLoader,
-    element: <Aula />
+    loader: loader(({ buildingName, aulaName }) => `/edificio/${buildingName!}/aula/${aulaName!}`),
+    element: <Lugar />
+  },
+  {
+    path: '/login',
+    element: <Login />
   },
   {
     path: '*',
     element: <NotFound />
   }
 ])
-function ErrorBoundary () {
-  const error = useRouteError() as AxiosError
-  console.error(error)
-  return <div>Dang!</div>
-}
+
 export default router

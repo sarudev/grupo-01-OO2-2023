@@ -1,21 +1,31 @@
 import { useMemo, useLayoutEffect } from 'react'
-import Icon from './Icon'
-import Tabs from './Tabs'
-import { type Lugares } from '../types/types'
+import Icon from '../components/Icon'
+import Tabs from '../components/Tabs'
+import { type LoaderResponse, type Lugares } from '../types/types'
 import { firstUpper } from '../utils/utils'
-import Dependencias from './Dependencias'
-import Sensores from './Sensores'
-import Historial from './Historial'
-import { Link } from 'react-router-dom'
+import Dependencias from '../components/Dependencias'
+import Sensores from '../components/Sensores'
+import Historial from '../components/Historial'
+import { Link, Navigate, useLoaderData, useLocation } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../hooks/Redux.'
 import { setDependencias } from '../redux/reducer/dependencias'
 import { setSensores } from '../redux/reducer/sensores'
 import { setHistorial } from '../redux/reducer/historial'
 import { isEdificio, isParking } from '../types/typeguards'
 import useLugarDependencia from '../hooks/useLugarDependencia'
+import Modal from '../components/Modal'
+import Login from './Login'
+import NotFound from './NotFound'
 import '../styles/lugar.scss'
 
-export default function Lugar <T extends Lugares> ({ lugar }: { lugar: T }) {
+export default function Lugar () {
+  const { lugar, status, userRole, serverWorking } = useLoaderData() as LoaderResponse
+  const { pathname } = useLocation()
+
+  if (status === 401 || userRole == null) return <Navigate to='/login' replace state={{ from: pathname }} />
+  if (status === 500 || !serverWorking) return <NotFound />
+  if (lugar == null) return <NotFound />
+
   const currentTab = useAppSelector(s => s.currentTab)
   const { withoutS: nombreDependencia } = useLugarDependencia(lugar.tipo)
   const dispatch = useAppDispatch()
@@ -56,6 +66,9 @@ export default function Lugar <T extends Lugares> ({ lugar }: { lugar: T }) {
           {isHistorial && <Historial lugar={lugar} />}
         </div>
       </div>
+      <Modal>
+        <Login />
+      </Modal>
     </div>
   )
 }
