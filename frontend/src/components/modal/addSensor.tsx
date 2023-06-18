@@ -1,12 +1,12 @@
 import { SensorType } from '../../types/enums'
 import { type Lugares } from '../../types/types'
-import axios from 'axios'
 import { useAppDispatch } from '../../hooks/Redux.'
 import { setSensores } from '../../redux/reducer/sensores'
 import { closeModal } from '../../redux/reducer/modal'
 import { apiUrl } from '../../utils/utils'
-import '../../styles/modalcontent.scss'
 import useErrorMessage from '../../hooks/useErrorMessage'
+import axios from 'axios'
+import '../../styles/modalcontent.scss'
 
 export default function AddLugar ({ lugar }: { lugar: Lugares }) {
   const { Message, setError } = useErrorMessage()
@@ -22,14 +22,15 @@ export default function AddLugar ({ lugar }: { lugar: Lugares }) {
 
     async function request () {
       try {
-        await axios.post(url, { sensorTipo })
+        await axios.post(url + '/sensor', { sensorTipo }, { withCredentials: true })
 
-        const { data } = await axios.get(url)
+        const { data } = await axios.get(url, { withCredentials: true })
 
         const sensores = data.sensores
         dispatch(setSensores(sensores))
         dispatch(closeModal())
       } catch (e: any) {
+        console.log(e)
         setError(`Ya existe un sensor ${sensorTipo} para este ${lugar.tipo}`)
       }
     }

@@ -1,7 +1,5 @@
-import { ILugarTipo } from '../types/enums'
+import { ILugarTipo, Routes } from '../types/enums'
 import { type Lugares } from '../types/types'
-
-const { VITE_API_URL } = import.meta.env as Record<string, string>
 
 export function getBuildingDataset (e: Event) {
   const elem = e.currentTarget as SVGGElement
@@ -26,7 +24,7 @@ export function firstUpper (str: string) {
 }
 
 export function apiUrl (lugar: Lugares) {
-  let url = `http://${VITE_API_URL}:5282`
+  let url = Routes.BaseUrl as string
   if (lugar.tipo === ILugarTipo.Aula || lugar.tipo === ILugarTipo.Estacionamiento) url += `/${lugar.lugar.tipo}/${lugar.lugar.nombre.replaceAll(' ', '-')}/${lugar.tipo}/${lugar.nombre}`
   else url += `/${lugar.tipo}/${lugar.nombre.replaceAll(' ', '-')}`
 

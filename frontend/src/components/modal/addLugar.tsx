@@ -2,15 +2,14 @@ import { firstUpper } from '../../utils/utils'
 import { useRef, useEffect } from 'react'
 import { type Lugares } from '../../types/types'
 import axios from 'axios'
-import { ILugarTipo } from '../../types/enums'
+import { ILugarTipo, Routes } from '../../types/enums'
 import { useAppDispatch } from '../../hooks/Redux.'
 import { setDependencias } from '../../redux/reducer/dependencias'
 import { closeModal } from '../../redux/reducer/modal'
 import { isEdificio, isParking } from '../../types/typeguards'
-import '../../styles/modalcontent.scss'
 import useLugarDependencia from '../../hooks/useLugarDependencia'
 import useErrorMessage from '../../hooks/useErrorMessage'
-const { VITE_API_URL } = import.meta.env as Record<string, string>
+import '../../styles/modalcontent.scss'
 
 export default function AddLugar ({ lugar }: { lugar: Lugares }) {
   const { withoutS: nombreDependencia } = useLugarDependencia(lugar.tipo)
@@ -32,11 +31,11 @@ export default function AddLugar ({ lugar }: { lugar: Lugares }) {
 
     async function requests () {
       try {
-        await axios.post(`http://localhost:5282/${lugar.tipo}/${lugar.nombre}/${dependenciaTipo}`, {
+        await axios.post(`${Routes.BaseUrl}/${lugar.tipo}/${lugar.nombre}/${dependenciaTipo}`, {
           [`${dependenciaTipo}Name`]: dependenciaName
-        })
+        }, { withCredentials: true })
 
-        const { data } = await axios.get(`http://${VITE_API_URL}:5282/${lugar.tipo}/${lugar.nombre}`) as { data: Lugares }
+        const { data } = await axios.get(`${Routes.BaseUrl}/${lugar.tipo}/${lugar.nombre}`, { withCredentials: true }) as { data: Lugares }
 
         const dependencias = isEdificio(data) ? data.aulas : isParking(data) ? data.estacionamientos : null
         dispatch(setDependencias(dependencias))

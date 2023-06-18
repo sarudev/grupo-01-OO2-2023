@@ -1,7 +1,8 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import '../styles/modalcontent.scss'
 import useErrorMessage from '../hooks/useErrorMessage'
-const { VITE_API_URL } = import.meta.env as Record<string, string>
+import { Routes } from '../types/enums'
+import axios, { AxiosError } from 'axios'
 
 export default function Login () {
   const { Message, setError } = useErrorMessage()
@@ -20,42 +21,22 @@ export default function Login () {
       username,
       password
     }
-    void fetch('http://localhost:5282/login', {
-      method: 'post',
-      credentials: 'include',
-      headers: {
-        'Access-Control-Allow-Origin': 'http://localhost:5173/',
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify(loginForm)
-    })
-      .then(async res => await res.json()
-        .then(res => console.log(res))
-      )
-    // void fetch('http://localhost:5282/login', {
-    //   method: 'post',
-    //   credentials: 'include',
-    //   headers: {
-    //     'Access-Control-Allow-Origin': 'http://localhost:5173/',
-    //     'content-type': 'application/json'
-    //   },
-    //   body: JSON.stringify(loginForm)
-    // })
-    //   .then(res => {
-    //     console.log(res)
-    //     console.log(res.headers)
 
-    //     void res.json().then(res => {
-    //       console.log(res)
-    //     })
-    //     // navigate(state?.from ?? '/')
-    //   })
-    //   .catch((err: unknown) => {
-    //     console.log(err)
-    //     // const data = err.response?.data as { error: string }
-    //     // if (data.error != null) setError(data.error)
-    //     // console.error(err)
-    //   })
+    void axios.post(Routes.BaseUrl + Routes.Login, loginForm, {
+      withCredentials: true
+    }).then(res => {
+      console.log(res)
+      console.log(res.headers)
+      console.log(res)
+      navigate(state?.from ?? '/')
+    })
+      .catch((err: unknown) => {
+        if (err instanceof AxiosError) {
+          setError(err.response?.data.error ?? '')
+        } else {
+          console.error(err)
+        }
+      })
   }
 
   return (

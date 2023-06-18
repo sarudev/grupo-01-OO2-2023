@@ -1,4 +1,4 @@
-import { type ILugarTipo, type SensorType } from './enums'
+import { type UserRole, type ILugarTipo, type SensorType } from './enums'
 
 export type Lugares = IEdificio | IAula | IEspacioVerde | IParking | IEstacionamiento
 export type Dependencia = IAula[] | IEstacionamiento[] | null
@@ -66,4 +66,8 @@ export interface LoaderResponse {
   serverWorking: boolean
 }
 
-export type UserRole = 'admin' | 'user'
+export interface UserData {
+  id: number
+  username: string
+  role: UserRole
+}

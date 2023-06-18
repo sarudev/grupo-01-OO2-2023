@@ -1,7 +1,7 @@
 import { useMemo, useLayoutEffect } from 'react'
 import Icon from '../components/Icon'
 import Tabs from '../components/Tabs'
-import { type LoaderResponse, type Lugares } from '../types/types'
+import { type LoaderResponse } from '../types/types'
 import { firstUpper } from '../utils/utils'
 import Dependencias from '../components/Dependencias'
 import Sensores from '../components/Sensores'
@@ -13,16 +13,15 @@ import { setSensores } from '../redux/reducer/sensores'
 import { setHistorial } from '../redux/reducer/historial'
 import { isEdificio, isParking } from '../types/typeguards'
 import useLugarDependencia from '../hooks/useLugarDependencia'
-import Modal from '../components/Modal'
-import Login from './Login'
 import NotFound from './NotFound'
 import '../styles/lugar.scss'
+import { Routes } from '../types/enums'
 
 export default function Lugar () {
   const { lugar, status, userRole, serverWorking } = useLoaderData() as LoaderResponse
   const { pathname } = useLocation()
 
-  if (status === 401 || userRole == null) return <Navigate to='/login' replace state={{ from: pathname }} />
+  if (status === 401 || userRole == null) return <Navigate to={Routes.Login} replace state={{ from: pathname }} />
   if (status === 500 || !serverWorking) return <NotFound />
   if (lugar == null) return <NotFound />
 
@@ -53,7 +52,13 @@ export default function Lugar () {
             <div className="title">{firstUpper(lugar.tipo)}</div>
             <div className="description">{lugar.nombre}</div>
           </div>
-          <Link className="back" to={lugar.lugar == null ? '/' : `/${lugar.lugar.tipo}/${lugar.lugar.nombre}`}>Volver a {lugar?.lugar?.nombre ?? 'Campus'}</Link>
+          <div className="session-container">
+            <Link className="back" to={lugar.lugar == null ? '/' : `/${lugar.lugar.tipo}/${lugar.lugar.nombre}`}>Volver a {lugar?.lugar?.nombre ?? 'Campus'}</Link>
+            <div className="session">
+              <span>Sesión iniciada como {userRole}</span>
+              <Link className="logout" to={Routes.Logout}>Cerrar sesión</Link>
+            </div>
+          </div>
         </div>
       </div>
       <div className="bot">
@@ -61,14 +66,11 @@ export default function Lugar () {
           <Tabs tabsNames={[nombreDependencia, 'sensores', 'historial']} />
         </nav>
         <div className="content">
-          {isDependencia && <Dependencias lugar={lugar} />}
-          {isSensor && <Sensores lugar={lugar} />}
-          {isHistorial && <Historial lugar={lugar} />}
+          {isDependencia && <Dependencias lugar={lugar} userRole={userRole} />}
+          {isSensor && <Sensores lugar={lugar} userRole={userRole} />}
+          {isHistorial && <Historial />}
         </div>
       </div>
-      <Modal>
-        <Login />
-      </Modal>
     </div>
   )
 }

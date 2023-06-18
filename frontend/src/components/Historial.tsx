@@ -3,10 +3,9 @@ import { useAppSelector } from '../hooks/Redux.'
 import useInput from '../hooks/useInput'
 import useSelect from '../hooks/useSelect'
 import { SensorType } from '../types/enums'
-import { type Lugares } from '../types/types'
 import List from './List'
 
-export default function Historial ({ lugar }: { lugar: Lugares }) {
+export default function Historial () {
   const historial = useAppSelector(s => s.historial)
   const [sortedHistorial, setSortedHistorial] = useState(historial)
 
@@ -28,7 +27,6 @@ export default function Historial ({ lugar }: { lugar: Lugares }) {
     else if (option === 'Tipo del sensor') setSortedHistorial(historial.filter(el => el.sensorTipo === optionTipo))
     else if (option === 'Descripción') setSortedHistorial(historial.filter(el => el.descripcion.toLowerCase().includes(inputNombre.toLowerCase())))
     else if (option === 'Fecha') {
-      // sort "historial" by "dateDesde" date and "dateHasta" date
       setSortedHistorial(historial.filter(el => el.fecha.localeCompare(dateDesde) > 0 && el.fecha.localeCompare(dateHasta) < 0))
     }
   }, [option, optionTipo, inputNombre, dateDesde, dateHasta])

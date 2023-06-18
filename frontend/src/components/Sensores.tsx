@@ -3,15 +3,15 @@ import { useAppDispatch, useAppSelector } from '../hooks/Redux.'
 import { type Lugares, type ISensor } from '../types/types'
 import List from './List'
 import { useLayoutEffect, useState } from 'react'
-import { ILugarTipo } from '../types/enums'
+import { UserRole } from '../types/enums'
 import { setSensores } from '../redux/reducer/sensores'
 import Modal from './Modal'
 import AddSensor from './modal/AddSensor'
 import AddButton from './AddButton'
 import useSelect from '../hooks/useSelect'
-const { VITE_API_URL } = import.meta.env as Record<string, string>
+import { apiUrl } from '../utils/utils'
 
-export default function Sensores ({ lugar }: { lugar: Lugares }) {
+export default function Sensores ({ lugar, userRole }: { lugar: Lugares, userRole: UserRole }) {
   const sensores = useAppSelector(s => s.sensores)
   const { Select, option } = useSelect(['Todos', 'Activo', 'Inactivo'])
   const [sortedSensores, setSortedSensores] = useState(sensores)
@@ -30,18 +30,15 @@ export default function Sensores ({ lugar }: { lugar: Lugares }) {
   }, [option, sensores])
 
   const handleToggle = (s: ISensor) => {
-    let url = `http://${VITE_API_URL}:5282`
-    if (lugar.tipo === ILugarTipo.Aula || lugar.tipo === ILugarTipo.Estacionamiento) url += `/${lugar.lugar.tipo}/${lugar.lugar.nombre.replaceAll(' ', '-')}/${lugar.tipo}/${lugar.nombre}`
-    else url += `/${lugar.tipo}/${lugar.nombre.replaceAll(' ', '-')}`
-    url += '/sensor'
+    const url = apiUrl(lugar)
 
-    void axios.put(url, {
+    void axios.put(url + '/sensor', {
       sensorId: s.id,
       activo: !s.activo
-    }).then(() => {
-      void axios.get(url.replace('/sensor', '')).then(({ data }: { data: Lugares }) => {
+    }, { withCredentials: true }).then(() => {
+      void axios.get(url, { withCredentials: true }).then(({ data }: { data: Lugares }) => {
         dispatch(setSensores(data.sensores))
-      })
+      }).catch(e => console.error(e))
     }).catch((err) => {
       console.error('Esto no deberia hacer sucedido...')
       console.error(err)
@@ -62,12 +59,12 @@ export default function Sensores ({ lugar }: { lugar: Lugares }) {
                 <div className="activo" data-activo={s.activo} />
                 <div className="tipo">{s.tipo}</div>
               </div>
-              <button onClick={() => handleToggle(s)} className='btn'>{s.activo ? 'Desactivar' : 'Activar'}</button>
+              {userRole === UserRole.Admin && <button onClick={() => handleToggle(s)} className='btn'>{s.activo ? 'Desactivar' : 'Activar'}</button>}
             </>
           )
         }}
       </List>
-      <AddButton text='sensor' />
+      {userRole === UserRole.Admin && <AddButton text='sensor' />}
       <Modal>
         <AddSensor lugar={lugar} />
       </Modal>

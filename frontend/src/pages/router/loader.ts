@@ -1,25 +1,17 @@
 import { type LoaderFunction, type Params } from 'react-router-dom'
-import { type LoaderResponse } from '../../types/types'
+import { type UserData, type LoaderResponse } from '../../types/types'
 import axios, { AxiosError } from 'axios'
-const { VITE_API_URL } = import.meta.env as Record<string, string>
+import { Routes } from '../../types/enums'
 
 export default function loader (path: (params: Params<string>) => string): LoaderFunction {
   return async ({ params }) => {
     let response: LoaderResponse
 
     try {
-      axios.defaults.withCredentials = true
-      const res = await axios.get(`http://${VITE_API_URL}:5282${path(params)}`)
-      // const data = await fetch(`http://${VITE_API_URL}:5282${path(params)}`, {
-      //   method: 'get',
-      //   mode: 'cors',
-      //   credentials: 'include',
-      //   headers: {
-      //     accept: 'application/json'
-      //   }
-      // })
-      // const res = await data.json()
-      response = { lugar: res.data, status: res.status, userRole: null, serverWorking: true }
+      const res = await axios.get(Routes.BaseUrl + path(params), { withCredentials: true })
+      const { data: userData } = await axios.get(Routes.BaseUrl + Routes.UserData, { withCredentials: true }) as { data: UserData }
+
+      response = { lugar: res.data, status: res.status, userRole: userData.role, serverWorking: true }
     } catch (err: unknown) {
       console.log(err)
       if (err instanceof AxiosError) {

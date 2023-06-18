@@ -8,8 +8,9 @@ import AddLugar from './modal/AddLugar'
 import AddButton from './AddButton'
 import useLugarDependencia from '../hooks/useLugarDependencia'
 import useInput from '../hooks/useInput'
+import { UserRole } from '../types/enums'
 
-export default function Dependencias ({ lugar }: { lugar: Lugares }) {
+export default function Dependencias ({ lugar, userRole }: { lugar: Lugares, userRole: UserRole }) {
   const dependencias = useAppSelector(s => s.dependencias)
   const [sortedDependencias, setSortedDependencias] = useState<IAula[] | IEstacionamiento[]>(dependencias as IAula[] | IEstacionamiento[])
   const { withoutS: nombreDependencia, withS: nombreDependenciaS } = useLugarDependencia(lugar.tipo)
@@ -40,7 +41,7 @@ export default function Dependencias ({ lugar }: { lugar: Lugares }) {
           )
         }}
       </List>
-      <AddButton text={nombreDependenciaS!} />
+      {userRole === UserRole.Admin && <AddButton text={nombreDependenciaS!} />}
       <Modal>
         <AddLugar lugar={lugar} />
       </Modal>

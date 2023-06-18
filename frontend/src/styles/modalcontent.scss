@@ -108,10 +108,14 @@ form {
 
   .error {
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: rgba(219, 164, 175, 0.1);
     border-radius: 10px;
     font-size: 16px;
     color: white;
+    width: 100%;
     padding: 10px;
   }
 
