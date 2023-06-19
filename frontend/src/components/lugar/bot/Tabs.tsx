@@ -1,8 +1,8 @@
 import { useCallback, useLayoutEffect } from 'react'
-import { firstUpper } from '../utils/utils'
-import { useAppSelector } from '../hooks/Redux.'
+import { firstUpper } from '../../../utils/utils'
+import { useAppSelector } from '../../../hooks/Redux.'
 import { useDispatch } from 'react-redux'
-import { setTab } from '../redux/reducer/currentTab'
+import { setTab } from '../../../redux/reducer/currentTab'
 
 interface ITab {
   currentTab: string

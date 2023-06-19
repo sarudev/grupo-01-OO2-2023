@@ -1,14 +1,14 @@
 import { useState, useLayoutEffect } from 'react'
-import List from './List'
-import type { IAula, IEstacionamiento, Lugares } from '../types/types'
+import List from '../../List'
+import type { IAula, IEstacionamiento, Lugares } from '../../../types/types'
 import { Link } from 'react-router-dom'
-import { useAppSelector } from '../hooks/Redux.'
-import Modal from './Modal'
-import AddLugar from './modal/AddLugar'
-import AddButton from './AddButton'
-import useLugarDependencia from '../hooks/useLugarDependencia'
-import useInput from '../hooks/useInput'
-import { UserRole } from '../types/enums'
+import { useAppSelector } from '../../../hooks/Redux.'
+import Modal from '../../Modal'
+import AddLugar from '../../modal/AddLugar'
+import AddButton from '../../AddButton'
+import useLugarDependencia from '../../../hooks/useLugarDependencia'
+import useInput from '../../../hooks/useInput'
+import { UserRole } from '../../../types/enums'
 
 export default function Dependencias ({ lugar, userRole, visible }: { lugar: Lugares, userRole: UserRole, visible: boolean }) {
   const dependencias = useAppSelector(s => s.dependencias)
@@ -21,6 +21,8 @@ export default function Dependencias ({ lugar, userRole, visible }: { lugar: Lug
     const deps = dependencias.toSorted((a, b) => a.nombre.localeCompare(b.nombre)).filter(e => e.nombre.includes(input)) as IAula[] | IEstacionamiento[]
     setSortedDependencias(deps)
   }, [input, dependencias])
+
+  if (!visible) return null
 
   return (
     <>

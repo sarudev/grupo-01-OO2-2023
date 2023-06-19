@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom'
-import Icon from '../components/Icon'
-import { firstUpper } from '../utils/utils'
-import { Routes, type UserRole } from '../types/enums'
-import { type Lugares } from '../types/types'
+import Icon from '../Icon'
+import { firstUpper } from '../../utils/utils'
+import { Routes, type UserRole } from '../../types/enums'
+import { type Lugares } from '../../types/types'
+import '../../styles/lugar/top.scss'
 
-export default function LugarTop ({ lugar, userRole }: { lugar: Lugares, userRole: UserRole }) {
+export default function Top ({ lugar, userRole }: { lugar: Lugares, userRole: UserRole }) {
   return (
     <div className="top">
       <div className="icon">
@@ -12,7 +13,7 @@ export default function LugarTop ({ lugar, userRole }: { lugar: Lugares, userRol
       </div>
       <div className="text">
         <div className="text-container">
-          <div className="title">{firstUpper(lugar.tipo)}</div>
+          <div className="title">{firstUpper(lugar.tipo === 'espacioVerde' ? 'espacio Verde' : lugar.tipo)}</div>
           <div className="description">{lugar.nombre}</div>
         </div>
         <div className="session-container">

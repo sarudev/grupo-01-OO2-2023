@@ -1,9 +1,9 @@
-import { useState, useCallback, useEffect, useMemo, useLayoutEffect } from 'react'
-import { useAppSelector } from '../hooks/Redux.'
-import useInput from '../hooks/useInput'
-import useSelect from '../hooks/useSelect'
-import { SensorType } from '../types/enums'
-import List from './List'
+import { useState, useCallback, useEffect, useMemo, useLayoutEffect, useRef } from 'react'
+import { useAppSelector } from '../../../hooks/Redux.'
+import useInput from '../../../hooks/useInput'
+import useSelect from '../../../hooks/useSelect'
+import { SensorType } from '../../../types/enums'
+import List from '../../List'
 
 export default function Historial ({ visible }: { visible: boolean }) {
   const historial = useAppSelector(s => s.historial)
@@ -26,10 +26,10 @@ export default function Historial ({ visible }: { visible: boolean }) {
     if (option === 'Todos') setSortedHistorial(historial.toSorted((a, b) => a.descripcion.localeCompare(b.descripcion)))
     else if (option === 'Tipo del sensor') setSortedHistorial(historial.filter(el => el.sensorTipo === optionTipo))
     else if (option === 'Descripción') setSortedHistorial(historial.filter(el => el.descripcion.toLowerCase().includes(inputNombre.toLowerCase())))
-    else if (option === 'Fecha') {
-      setSortedHistorial(historial.filter(el => el.fecha.localeCompare(dateDesde) > 0 && el.fecha.localeCompare(dateHasta) < 0))
-    }
-  }, [option, optionTipo, inputNombre, dateDesde, dateHasta])
+    else if (option === 'Fecha') setSortedHistorial(historial.filter(el => el.fecha.localeCompare(dateDesde) > 0 && el.fecha.localeCompare(dateHasta) < 0))
+  }, [historial, option, optionTipo, inputNombre, dateDesde, dateHasta])
+
+  if (!visible) return null
 
   return (
     <>
@@ -65,9 +65,14 @@ export default function Historial ({ visible }: { visible: boolean }) {
 }
 function useCalendar (minValue: string, maxValue: string) {
   const [date, setDate] = useState('')
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  useLayoutEffect(() => {
+    if (inputRef.current != null) inputRef.current.focus()
+  }, [date])
 
   const Calendar = useCallback(() => (
-    <input type="datetime-local" min={minValue} max={maxValue} value={date} onChange={e => setDate(e.currentTarget.value)} className='filter-input filter-historial'/>
+    <input ref={inputRef} type="datetime-local" min={minValue} max={maxValue} value={date} onChange={e => setDate(e.currentTarget.value)} className='filter-input filter-historial'/>
   ), [date, minValue, maxValue])
 
   return {

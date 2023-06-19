@@ -4,7 +4,7 @@ form {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(7.4px);
   -webkit-backdrop-filter: blur(7.4px);
-  width: 300px;
+  width: 500px;
   height: max-content;
   display: flex;
   flex-direction: column;
@@ -23,6 +23,7 @@ form {
       height: 50px;
       color: black;
       font-size: 35px;
+      white-space: nowrap;
       display: flex;
       align-items: center;
       justify-content: center;

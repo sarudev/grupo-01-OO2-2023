@@ -25,15 +25,13 @@ export default function AddLugar ({ lugar }: { lugar: Lugares }) {
     e.preventDefault()
     const form = e.target as HTMLFormElement
     const input = form[0] as HTMLInputElement
-    const dependenciaName = input.value
+    const dependencyName = input.value
 
     const dependenciaTipo = lugar.tipo === ILugarTipo.Edificio ? ILugarTipo.Aula : ILugarTipo.Estacionamiento
 
     async function requests () {
       try {
-        await axios.post(`${Routes.BaseUrl}/${lugar.tipo}/${lugar.nombre}/${dependenciaTipo}`, {
-          [`${dependenciaTipo}Name`]: dependenciaName
-        }, { withCredentials: true })
+        await axios.post(`${Routes.BaseUrl}/${lugar.tipo}/${lugar.nombre}/${dependenciaTipo}`, { dependencyName }, { withCredentials: true })
 
         const { data } = await axios.get(`${Routes.BaseUrl}/${lugar.tipo}/${lugar.nombre}`, { withCredentials: true }) as { data: Lugares }
 
@@ -41,6 +39,7 @@ export default function AddLugar ({ lugar }: { lugar: Lugares }) {
         dispatch(setDependencias(dependencias))
         dispatch(closeModal())
       } catch (e: any) {
+        console.log(e)
         setError(`Ya existe un ${lugar.tipo} con ese nombre. `)
       }
     }

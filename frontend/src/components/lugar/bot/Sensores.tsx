@@ -1,15 +1,15 @@
 import axios from 'axios'
-import { useAppDispatch, useAppSelector } from '../hooks/Redux.'
-import { type Lugares, type ISensor } from '../types/types'
-import List from './List'
+import { useAppDispatch, useAppSelector } from '../../../hooks/Redux.'
+import { type Lugares, type ISensor } from '../../../types/types'
+import List from '../../List'
 import { useLayoutEffect, useState } from 'react'
-import { UserRole } from '../types/enums'
-import { setSensores } from '../redux/reducer/sensores'
-import Modal from './Modal'
-import AddSensor from './modal/AddSensor'
-import AddButton from './AddButton'
-import useSelect from '../hooks/useSelect'
-import { apiUrl } from '../utils/utils'
+import { Routes, UserRole } from '../../../types/enums'
+import { setSensores } from '../../../redux/reducer/sensores'
+import Modal from '../../Modal'
+import AddSensor from '../../modal/AddSensor'
+import AddButton from '../../AddButton'
+import useSelect from '../../../hooks/useSelect'
+import { apiUrl } from '../../../utils/utils'
 
 export default function Sensores ({ lugar, userRole, visible }: { lugar: Lugares, userRole: UserRole, visible: boolean }) {
   const sensores = useAppSelector(s => s.sensores)
@@ -32,7 +32,7 @@ export default function Sensores ({ lugar, userRole, visible }: { lugar: Lugares
   const handleToggle = (s: ISensor) => {
     const url = apiUrl(lugar)
 
-    void axios.put(url + '/sensor', {
+    void axios.put(Routes.BaseUrl + '/sensor', {
       sensorId: s.id,
       activo: !s.activo
     }, { withCredentials: true }).then(() => {
@@ -44,6 +44,8 @@ export default function Sensores ({ lugar, userRole, visible }: { lugar: Lugares
       console.error(err)
     })
   }
+
+  if (!visible) return null
 
   return (
     <>

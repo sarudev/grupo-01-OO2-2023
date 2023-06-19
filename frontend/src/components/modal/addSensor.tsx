@@ -16,13 +16,13 @@ export default function AddLugar ({ lugar }: { lugar: Lugares }) {
     e.preventDefault()
     const form = e.target as HTMLFormElement
     const input = form[0] as HTMLInputElement
-    const sensorTipo = input.value
+    const sensorType = input.value
 
     const url = apiUrl(lugar)
-
+    console.log(url)
     async function request () {
       try {
-        await axios.post(url + '/sensor', { sensorTipo }, { withCredentials: true })
+        await axios.post(url + '/sensor', { sensorType }, { withCredentials: true })
 
         const { data } = await axios.get(url, { withCredentials: true })
 
@@ -31,7 +31,7 @@ export default function AddLugar ({ lugar }: { lugar: Lugares }) {
         dispatch(closeModal())
       } catch (e: any) {
         console.log(e)
-        setError(`Ya existe un sensor ${sensorTipo} para este ${lugar.tipo}`)
+        setError(`Ya existe un sensor ${sensorType} para este ${lugar.tipo}`)
       }
     }
 

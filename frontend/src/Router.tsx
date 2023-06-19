@@ -15,15 +15,15 @@ const router = createBrowserRouter([
     element: <Index />
   },
   {
-    path: Routes.Edificio,
-    loader: loader(({ buildingName }) => `/edificio/${buildingName!}`),
-    element: <LugarRouter tipo='edificio' />,
+    path: Routes.Building,
+    loader: loader(({ buildingType, buildingName }) => `/${buildingType!}/${buildingName!}`),
+    element: <LugarRouter tipo='Building' />,
     errorElement: <ErrorBoundary />
   },
   {
-    path: Routes.Aula,
-    loader: loader(({ buildingName, aulaName }) => `/edificio/${buildingName!}/aula/${aulaName!}`),
-    element: <LugarRouter tipo='aula' />
+    path: Routes.Dependency,
+    loader: loader(({ buildingType, buildingName, dependencyType, dependencyName }) => `/${buildingType!}/${buildingName!}/${dependencyType!}/${dependencyName!}`),
+    element: <LugarRouter tipo='Dependency' />
   },
   {
     path: Routes.Login,

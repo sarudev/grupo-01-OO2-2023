@@ -25,22 +25,19 @@ export const LugarDependencia: Record<ILugarTipo, string | null> = {
 export const enum Routes {
   BaseUrl = 'http://localhost:5282',
 
-  // PostAulaSensor = '/edificio/:buildingName/aula/:aulaName/sensor',
-  // PostAula = '/edificio/:buildingName/aula',
-  Aula = '/edificio/:buildingName/aula/:aulaName',
-
-  // PostEdificioSensor = '/edificio/:buildingName/sensor',
-  Edificio = '/edificio/:buildingName',
-
-  // PutEdificioSensor = '/edificio/:buildingName/sensor',
-  // PutAulaSensor = '/edificio/:buildingName/aula/:aulaName/sensor',
-
   Login = '/account/login',
+  UserRole = '/account/userRole/:username',
   UserData = '/account/userData',
-  Logout = '/account/logout'
+  Logout = '/account/logout',
+
+  Sensor = '/sensor',
+  Building = '/:buildingType/:buildingName',
+  Dependency = '/:buildingType/:buildingName/:dependencyType/:dependencyName'
 }
 
 export const enum UserRole {
   Admin = 'admin',
   User = 'user'
 }
+
+export const lugarProperties = ['tipo', 'historial', 'id', 'lugar', 'lugarId', 'nombre', 'sensores', 'aulas', 'estacionamientos']

@@ -10,6 +10,7 @@ export interface ILugar {
   luces: boolean
   historial: IHistorial[]
   sensores: ISensor[]
+  [Symbol.iterator]: () => IterableIterator<number>
 }
 
 export interface IEdificio extends ILugar {
