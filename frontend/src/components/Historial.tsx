@@ -5,7 +5,7 @@ import useSelect from '../hooks/useSelect'
 import { SensorType } from '../types/enums'
 import List from './List'
 
-export default function Historial () {
+export default function Historial ({ visible }: { visible: boolean }) {
   const historial = useAppSelector(s => s.historial)
   const [sortedHistorial, setSortedHistorial] = useState(historial)
 

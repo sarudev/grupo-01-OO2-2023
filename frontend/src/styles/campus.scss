@@ -2,6 +2,7 @@
   width: 100%;
   height: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 
@@ -20,6 +21,23 @@
 
     &.visible {
       opacity: 1;
+    }
+  }
+
+  .session {
+    color: white;
+    width: 100%;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 24px;
+
+    a {
+      font-size: 16px;
     }
   }
 

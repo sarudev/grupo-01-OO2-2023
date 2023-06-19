@@ -1,8 +1,8 @@
-import { useEffect } from 'react'
+import { useLayoutEffect } from 'react'
 import { getBuildingDataset } from '../utils/utils'
 
 export default function useCartelitowo (cartelitoId: string, setCurrentBuilding: React.Dispatch<React.SetStateAction<string>>) {
-  useEffect(() => {
+  useLayoutEffect(() => {
     const svgs = document.querySelectorAll('.building')
     const cartelitowo = document.querySelector(`#${cartelitoId}`) as HTMLDivElement
 

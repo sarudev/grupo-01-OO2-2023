@@ -11,7 +11,7 @@ import AddButton from './AddButton'
 import useSelect from '../hooks/useSelect'
 import { apiUrl } from '../utils/utils'
 
-export default function Sensores ({ lugar, userRole }: { lugar: Lugares, userRole: UserRole }) {
+export default function Sensores ({ lugar, userRole, visible }: { lugar: Lugares, userRole: UserRole, visible: boolean }) {
   const sensores = useAppSelector(s => s.sensores)
   const { Select, option } = useSelect(['Todos', 'Activo', 'Inactivo'])
   const [sortedSensores, setSortedSensores] = useState(sensores)

@@ -10,7 +10,7 @@ import useLugarDependencia from '../hooks/useLugarDependencia'
 import useInput from '../hooks/useInput'
 import { UserRole } from '../types/enums'
 
-export default function Dependencias ({ lugar, userRole }: { lugar: Lugares, userRole: UserRole }) {
+export default function Dependencias ({ lugar, userRole, visible }: { lugar: Lugares, userRole: UserRole, visible: boolean }) {
   const dependencias = useAppSelector(s => s.dependencias)
   const [sortedDependencias, setSortedDependencias] = useState<IAula[] | IEstacionamiento[]>(dependencias as IAula[] | IEstacionamiento[])
   const { withoutS: nombreDependencia, withS: nombreDependenciaS } = useLugarDependencia(lugar.tipo)
