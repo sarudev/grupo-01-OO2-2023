@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -19,55 +20,36 @@ import com.oo2.grupo01.entities.User;
 import com.oo2.grupo01.repositories.IUserRepository;
 import com.oo2.grupo01.services.implementacion.UserService;
 
-import java.nio.charset.StandardCharsets;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import javax.crypto.spec.SecretKeySpec;
-
-
 @RestController
 public class LoginController {
-	
-	
-	 private static final String JWT_SECRET = System.getenv("JWT_SECRET");
 
-	    private final IUserRepository userRepository;
-	    private final UserService userService;
+  private final UserService userService;
 
-	    public LoginController(IUserRepository userRepository, UserService userService) {
-	        this.userRepository = userRepository;
-	        this.userService = userService;
-	    }
+  public LoginController(IUserRepository userRepository, UserService userService) {
+    this.userService = userService;
+  }
 
-	    @PostMapping("/login")
-	    public ResponseEntity<?> login(@RequestBody User user, HttpServletResponse response) {
-	        String username = user.getUsername();
-	        String password = user.getPassword();
-	        
-	        
-	        System.out.println("Received login request for username: " + username);
+  @PostMapping("/login")
+  public ResponseEntity<?> login(@RequestBody User user, HttpServletResponse response) {
+    String username = user.getUsername();
+    String password = user.getPassword();
 
-	        User storedUser = userService.findByUsername(username);
+    User storedUser = userService.findByUsername(username);
 
-	        if (storedUser == null || !userService.isPasswordCorrect(storedUser, password)) {
-	        	System.out.println("Invalid username or password");
-	        	return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
-	        }
+    if (storedUser == null || !userService.isPasswordCorrect(storedUser, password)) {
+      return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
+    }
 
-	        // Generate JWT token
-	        String token = userService.generateToken(storedUser);
+    // Generate JWT token
+    String token = userService.generateToken(storedUser);
 
-	        // Create and set the JWT token as a cookie
-	        ResponseCookie cookie = ResponseCookie.from("JWT", token)
-	                .httpOnly(true)
-	                .build();
+    // Create and set the JWT token as a cookie
+    ResponseCookie cookie = ResponseCookie.from("JWT", token)
+        .httpOnly(true)
+        .build();
 
-	        response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
+    response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
 
-	        Map<String, String> responseBody = new HashMap<>();
-	        responseBody.put("token", token);
-
-	        return ResponseEntity.ok(responseBody);
-	    }
+    return ResponseEntity.status(HttpStatus.OK).body("");
+  }
 }

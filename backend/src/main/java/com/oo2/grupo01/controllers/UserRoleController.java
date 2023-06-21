@@ -14,24 +14,25 @@ import com.oo2.grupo01.repositories.IUserRepository;
 @RequestMapping("/user-role")
 public class UserRoleController {
 
-	 private final IUserRepository userRepository;
-	    
-	    public UserRoleController(IUserRepository userRepository) {
-	        this.userRepository = userRepository;
-	    }
-	    
-	    @GetMapping("/{username}")
-	    public ResponseEntity<?> getUserRole(@PathVariable String username) {
-	        if (username == null) {
-	            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("'username' is not a string or is missing in request body");
-	        }
-	        
-	        User user = userRepository.findByUsername(username);
-	        if (user == null) {
-	            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username");
-	        }
-	        
-	        return ResponseEntity.ok().body("userRole: " + user.getRole());
-	    }
-	
+  private final IUserRepository userRepository;
+
+  public UserRoleController(IUserRepository userRepository) {
+    this.userRepository = userRepository;
+  }
+
+  @GetMapping("/{username}")
+  public ResponseEntity<?> getUserRole(@PathVariable String username) {
+    if (username == null) {
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+          .body("'username' is not a string or is missing in request body");
+    }
+
+    User user = userRepository.findByUsername(username);
+    if (user == null) {
+      return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username");
+    }
+
+    return ResponseEntity.ok().body("userRole: " + user.getRole());
+  }
+
 }
