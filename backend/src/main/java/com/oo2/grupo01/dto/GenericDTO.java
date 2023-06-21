@@ -15,13 +15,15 @@ import lombok.Getter;
 @Getter
 public abstract class GenericDTO {
 	protected Long id;
-	protected Lugares type;
+	protected String nombre;
+	protected String type;
 	protected Set<Sensor> sensores;
 	protected Set<Registro> registros;
 
-	protected GenericDTO(Long id, Lugares type, Set<Sensor> sensores) {
+	protected GenericDTO(Long id,String nombre, Lugares type, Set<Sensor> sensores) {
 		this.id = id;
-		this.type = type;
+		this.nombre = nombre;
+		this.type = Integer.toString(type.ordinal());
 
 		for (var sensor : sensores) {
 			switch (sensor.getTipo()) {

@@ -13,15 +13,17 @@ public class EspacioVerdeDTO extends GenericDTO {
 	private Double humedad;
 	private Boolean luces;
 	private Boolean aspersoresEncendidos;
+	private Boolean sueloHumedo;
 
 	public EspacioVerdeDTO(EspacioVerde espacioVerde) {
-		super(espacioVerde.getIdLugar(), espacioVerde.getLugar(), espacioVerde.getSensores());
+		super(espacioVerde.getIdLugar(),espacioVerde.getUbicacion(), espacioVerde.getLugar(), espacioVerde.getSensores());
 		this.ubicacion = espacioVerde.getUbicacion();
 
 		this.humedad = null;
 		this.luces = null;
 		this.aspersoresEncendidos = null;
 		this.registros = null;
+		this.sueloHumedo = null;
 
 	}
 
@@ -35,6 +37,7 @@ public class EspacioVerdeDTO extends GenericDTO {
 
 					humedad = sensorHumedad.humedad();
 					aspersoresEncendidos = humedad < 50;
+					sueloHumedo = humedad > 60;
 
 					break;
 				case TIEMPO:

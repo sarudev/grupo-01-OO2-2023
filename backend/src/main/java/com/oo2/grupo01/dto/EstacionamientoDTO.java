@@ -8,13 +8,11 @@ import lombok.Getter;
 
 @Getter
 public class EstacionamientoDTO extends GenericDTO {
-	private Integer numero;
 	private Boolean ocupado;
 
 	public EstacionamientoDTO(Estacionamiento est) {
-		super(est.getIdLugar(), est.getLugar(), est.getSensores());
-		this.numero = est.getNumero();
-
+		super(est.getIdLugar(),Integer.toString(est.getNumero()) , est.getLugar(), est.getSensores());
+		
 		this.ocupado = null;
 		this.registros = null;
 

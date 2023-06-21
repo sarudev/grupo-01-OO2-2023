@@ -11,13 +11,11 @@ import lombok.Getter;
 
 @Getter
 public class EdificioDTO extends GenericDTO {
-	private String nombre;
 	private Boolean luces;
 	private List<AulaDTO> aulas;
 
 	public EdificioDTO(Edificio edificio) {
-		super(edificio.getIdLugar(), edificio.getLugar(), edificio.getSensores());
-		this.nombre = edificio.getNombre();
+		super(edificio.getIdLugar(),edificio.getNombre(), edificio.getLugar(), edificio.getSensores());
 
 		this.aulas = AulaMapeos.toDtoList(edificio.getAulas());
 

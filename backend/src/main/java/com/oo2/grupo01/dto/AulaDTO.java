@@ -8,13 +8,11 @@ import lombok.Getter;
 
 @Getter
 public class AulaDTO extends GenericDTO {
-	private String nombre;
 	private Boolean luces;
 	private Boolean persianasAbiertas;
 
 	public AulaDTO(Aula aula) {
-		super(aula.getIdLugar(), aula.getLugar(), aula.getSensores());
-		this.nombre = aula.getNombre();
+		super(aula.getIdLugar(),aula.getNombre(), aula.getLugar(), aula.getSensores());
 
 		this.luces = null;
 		this.persianasAbiertas = null;
