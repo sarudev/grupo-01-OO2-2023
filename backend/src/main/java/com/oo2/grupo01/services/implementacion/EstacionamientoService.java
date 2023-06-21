@@ -15,9 +15,9 @@ import lombok.AllArgsConstructor;
 public class EstacionamientoService implements IEstacionamientoService {
   private IEstacionamientoRepository repository;
 
-  public void agregar(Lugares lugar, Parking parking, Integer numero) {
+  public void agregar(Lugares tipo, Parking lugar, String numero) {
     if (numero != null)
-      repository.save(new Estacionamiento(lugar, parking, numero.intValue()));
+      repository.save(new Estacionamiento(tipo, lugar, numero));
   }
 
   @Override

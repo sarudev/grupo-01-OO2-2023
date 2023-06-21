@@ -11,10 +11,10 @@ import com.oo2.grupo01.entities.Aula;
 @Repository("aulaRepository")
 public interface IAulaRepository extends JpaRepository<Aula, Long> {
 
-	@Query("FROM Aula a "
-			+ "inner join fetch a.edificio "
-			+ "inner join fetch a.sensores s "
-			+ "inner join fetch s.registros "
-			+ "where a.idLugar=?1")
-	public Optional<Aula> traerConDependencias(Long idLugar);
+  @Query("FROM Aula a "
+      + "inner join fetch a.lugar "
+      + "inner join fetch a.sensores "
+      + "inner join fetch a.historial "
+      + "where a.idLugar=?1")
+  public Optional<Aula> traerConDependencias(Long idLugar);
 }

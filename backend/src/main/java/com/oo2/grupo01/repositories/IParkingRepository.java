@@ -10,15 +10,14 @@ import com.oo2.grupo01.entities.Parking;
 
 @Repository("parkingRepository")
 public interface IParkingRepository extends JpaRepository<Parking, Long> {
-	
-	//implementar query que traiga el parking con los estacionamientos
-	// y los sensores del parking y de cada estacionamiento
-	@Query("FROM Parking p "
-			+ "inner join fetch p.estacionamientos e "
-			+ "inner join fetch p.sensores s "
-			+ "inner join fetch e.sensores "
-			+ "inner join fetch s.registros "
-			+ "WHERE p.idLugar=?1")
-	public Optional<Parking> traerConDependencias(Long idLugar);
-	
+
+  // implementar query que traiga el parking con los estacionamientos
+  // y los sensores del parking y de cada estacionamiento
+  @Query("FROM Parking p "
+      + "inner join fetch p.estacionamientos "
+      + "inner join fetch p.sensores "
+      + "inner join fetch p.historial "
+      + "WHERE p.idLugar=?1")
+  public Optional<Parking> traerConDependencias(Long idLugar);
+
 }

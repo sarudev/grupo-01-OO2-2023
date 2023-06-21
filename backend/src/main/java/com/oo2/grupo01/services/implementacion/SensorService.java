@@ -21,7 +21,7 @@ public class SensorService implements ISensorService {
     Sensor sensor = repository.findById(id).orElse(null);
 
     if (sensor != null) {
-      sensor.setActivo(!sensor.isActivo());
+      sensor.setActivo(!sensor.getActivo());
 
       repository.save(sensor);
     }

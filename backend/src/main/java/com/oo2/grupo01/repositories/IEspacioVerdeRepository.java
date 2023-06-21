@@ -10,12 +10,11 @@ import com.oo2.grupo01.entities.EspacioVerde;
 
 @Repository("espacioVerdeRepository")
 public interface IEspacioVerdeRepository extends JpaRepository<EspacioVerde, Long> {
-	
-	@Query("FROM EspacioVerde ev "
-			+ "inner join fetch ev.sensores s "
-			+ "inner join fetch s.registros "
-			+ "WHERE ev.idLugar=?1")
-	public Optional<EspacioVerde> traerConDependencias(Long idLugar);
-	
-	
+
+  @Query("FROM EspacioVerde ev "
+      + "inner join fetch ev.sensores "
+      + "inner join fetch ev.historial "
+      + "WHERE ev.idLugar=?1")
+  public Optional<EspacioVerde> traerConDependencias(Long idLugar);
+
 }
