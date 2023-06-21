@@ -1,5 +1,7 @@
 package com.oo2.grupo01.entities;
 
+import java.time.LocalDateTime;
+
 import com.oo2.grupo01.entities.enums.Sensores;
 
 import jakarta.persistence.Column;
@@ -12,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
@@ -21,45 +24,41 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "sensor")
-
+@Table(name = "historial")
+@PrimaryKeyJoinColumn(referencedColumnName = "idHistorial")
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Sensor {
+public class Historial {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @EqualsAndHashCode.Include
+  @EqualsAndHashCode.Include()
   @Setter(AccessLevel.PROTECTED)
-  private Long idSensor;
+  protected Long idHistorial;
 
+  // planeo dejarlo como un enum y no hacer un join directamente con el sensor
+  // ya que como no vamos a hacer el delete de sensores, no tenemos la
+  // necesidad de borrar el historial
+  @Column(name = "tipo", nullable = false)
   @Enumerated(EnumType.STRING)
-  @Column(name = "tipo")
   private Sensores tipo;
 
-  @Column(name = "activo")
-  private Boolean activo;
+  @Column(name = "descripcion", nullable = false)
+  private String descripcion;
 
-  // fk lugar
+  @Column(name = "fecha", nullable = false)
+  private LocalDateTime fecha;
+
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "idLugar")
-  Lugar lugar;
+  private Lugar lugar;
 
-  public Sensor(Sensores tipo, Lugar lugar) {
-    super();
+  public Historial(Sensores tipo, String descripcion, LocalDateTime fecha) {
     this.tipo = tipo;
-    this.activo = null;
-    this.lugar = lugar;
+    this.descripcion = descripcion;
+    this.fecha = fecha;
   }
-
-  public Sensor(Sensor sensor) {
-    this.idSensor = sensor.idSensor;
-    this.tipo = sensor.tipo;
-    this.activo = sensor.activo;
-    this.lugar = sensor.lugar;
-  }
-
 }

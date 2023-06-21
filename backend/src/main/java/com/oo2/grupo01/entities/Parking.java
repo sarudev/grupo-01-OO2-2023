@@ -2,7 +2,8 @@ package com.oo2.grupo01.entities;
 
 import java.util.Set;
 
-import jakarta.persistence.Column;
+import com.oo2.grupo01.entities.enums.Lugares;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
@@ -22,21 +23,12 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper =  true)
+@EqualsAndHashCode(callSuper = true)
 public class Parking extends Lugar {
-	
-	@Column(name = "ubicacion")
-	private String ubicacion;
-	
-	// fk estacionamiento
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "parking")
-	Set<Estacionamiento> estacionamientos;
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
+  Set<Estacionamiento> estacionamientos;
 
-	public Parking(Lugares lugar, String ubicacion) {
-		super(lugar);
-		this.ubicacion = ubicacion;
-	}
-
-	
-
+  public Parking(Lugares tipo, String ubicacion) {
+    super(tipo, ubicacion);
+  }
 }

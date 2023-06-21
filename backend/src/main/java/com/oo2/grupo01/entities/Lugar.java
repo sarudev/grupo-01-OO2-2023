@@ -2,6 +2,9 @@ package com.oo2.grupo01.entities;
 
 import java.util.Set;
 
+import com.oo2.grupo01.entities.enums.Lugares;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -24,7 +27,6 @@ import lombok.ToString;
 @Entity
 @Table(name = "lugar")
 @PrimaryKeyJoinColumn(referencedColumnName = "idLugar")
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -39,13 +41,21 @@ public class Lugar {
   @Setter(AccessLevel.PROTECTED)
   protected Long idLugar;
 
+  @Column(name = "nombre", nullable = false)
+  private String nombre;
+
+  @Column(name = "tipo", nullable = false)
+  @Enumerated(EnumType.STRING)
+  protected Lugares tipo;
+
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
-  protected Set<Sensor> sensores;
+  private Set<Sensor> sensores;
 
-  @Enumerated(EnumType.ORDINAL)
-  protected Lugares lugar;
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
+  private Set<Historial> historial;
 
-  public Lugar(Lugares lugar) {
-    this.lugar = lugar;
+  public Lugar(Lugares tipo, String nombre) {
+    this.tipo = tipo;
+    this.nombre = nombre;
   }
 }

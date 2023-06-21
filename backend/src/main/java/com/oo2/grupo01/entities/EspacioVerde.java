@@ -1,6 +1,7 @@
 package com.oo2.grupo01.entities;
 
-import jakarta.persistence.Column;
+import com.oo2.grupo01.entities.enums.Lugares;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
@@ -13,22 +14,13 @@ import lombok.ToString;
 @Entity
 @Table(name = "espacioVerde")
 @PrimaryKeyJoinColumn(referencedColumnName = "idLugar")
-
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 public class EspacioVerde extends Lugar {
-
-	@Column(name = "ubicacion")
-	private String ubicacion;
-
-	public EspacioVerde(Lugares lugar, String ubicacion) {
-		super( lugar);
-		this.ubicacion = ubicacion;
-	}
-
-	
-	
+  public EspacioVerde(Lugares tipo, String ubicacion) {
+    super(tipo, ubicacion);
+  }
 }

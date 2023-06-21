@@ -1,6 +1,7 @@
 package com.oo2.grupo01.entities;
 
-import jakarta.persistence.Column;
+import com.oo2.grupo01.entities.enums.Lugares;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
@@ -16,26 +17,18 @@ import lombok.ToString;
 @Entity
 @Table(name = "estacionamiento")
 @PrimaryKeyJoinColumn(referencedColumnName = "idLugar")
-
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 public class Estacionamiento extends Lugar {
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "id_parking")
+  private Parking lugar;
 
-	// fk parking
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_parking")
-	private Parking parking;
-
-	@Column(name = "numero")
-	private int numero;
-
-	public Estacionamiento(Lugares lugar, Parking parking, int numero) {
-		super( lugar);
-		this.parking = parking;
-		this.numero = numero;
-	}
-
+  public Estacionamiento(Lugares tipo, Parking lugar, String numero) {
+    super(tipo, numero);
+    this.lugar = lugar;
+  }
 }

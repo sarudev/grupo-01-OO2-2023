@@ -2,48 +2,41 @@ package com.oo2.grupo01.dto;
 
 import java.util.List;
 
-import com.oo2.grupo01.Utils.Util;
 import com.oo2.grupo01.entities.Edificio;
-import com.oo2.grupo01.mapeos.AulaMapeos;
-import com.oo2.grupo01.models.SensorTiempo;
 
 import lombok.Getter;
 
 @Getter
-public class EdificioDTO extends GenericDTO {
-	private String nombre;
-	private Boolean luces;
-	private List<AulaDTO> aulas;
+public class EdificioDTO extends LugarDTO {
+  private Boolean luces;
+  private List<AulaDTO> aulas;
 
-	public EdificioDTO(Edificio edificio) {
-		super(edificio.getIdLugar(), edificio.getLugar(), edificio.getSensores());
-		this.nombre = edificio.getNombre();
+  public EdificioDTO(Edificio edif) {
+    super(edif.getIdLugar(), edif.getNombre(), edif.getTipo(), edif.getSensores(),
+        edif.getHistorial());
 
-		this.aulas = AulaMapeos.toDtoList(edificio.getAulas());
+    this.aulas = edif.getAulas().stream().map(au -> new AulaDTO(au)).toList();
+    this.luces = null;
+  }
 
-		this.luces = null;
-		this.registros = null;
+  @Override
+  public void inicializarVariables() {
+    // for (var sensor : sensores) {
+    // if (sensor.isActivo()) {
 
-	}
+    // switch (sensor.getTipo()) {
+    // case TIEMPO:
+    // SensorTiempo s = (SensorTiempo) Util.convertirSensor(sensor);
+    // luces = s.hayLuzSolar();
+    // break;
 
-	@Override
-	public void inicializarVariables() {
-		for (var sensor : sensores) {
-			if (sensor.isActivo()) {
+    // default:
+    // break;
 
-				switch (sensor.getTipo()) {
-				case TIEMPO:
-					SensorTiempo s = (SensorTiempo) Util.convertirSensor(sensor);
-					luces = s.hayLuzSolar();
-					break;
+    // }
 
-				default:
-					break;
-
-				}
-
-			}
-		}
-	}
+    // }
+    // }
+  }
 
 }

@@ -20,8 +20,6 @@ import com.oo2.grupo01.services.IUserService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.io.Decoders;
-import io.jsonwebtoken.io.Encoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -55,7 +53,6 @@ public class UserService implements IUserService, UserDetailsService {
     return Jwts.builder()
         .setClaims(claims)
         .signWith(key, SignatureAlgorithm.HS256)
-        // .signWith(SignatureAlgorithm.HS256, key)
         .compact();
   }
 
