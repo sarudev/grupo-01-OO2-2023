@@ -11,7 +11,7 @@ public class EstacionamientoDTO extends GenericDTO {
 	private Boolean ocupado;
 
 	public EstacionamientoDTO(Estacionamiento est) {
-		super(est.getIdLugar(),Integer.toString(est.getNumero()) , est.getLugar(), est.getSensores());
+		super(est.getIdLugar(), Integer.toString(est.getNumero()) , est.getLugar(), est.getSensores());
 		
 		this.ocupado = null;
 		this.registros = null;
