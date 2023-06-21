@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
+import org.springframework.security.config.annotation.web.configurers.HttpBasicConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -43,13 +44,16 @@ public class SecurityConfig {
 		}
 
 		
-	    @Bean
-	    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-	        http.authorizeHttpRequests().requestMatchers("/account/login", "/login").permitAll().anyRequest().authenticated()
-	            .and()
-	                .logout().logoutUrl("/logout").logoutSuccessUrl("/logout").permitAll();
-	        return http.build();
-	    }
+		  @Bean
+		    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		        http.authorizeHttpRequests()
+		            .anyRequest()
+		            .authenticated()
+		            .and()
+		            .httpBasic();
+		        return http.build();
+		    }
+
 	    
 	    
 }
