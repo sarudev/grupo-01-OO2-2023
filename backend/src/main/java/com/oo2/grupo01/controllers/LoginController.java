@@ -10,6 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,11 +44,15 @@ public class LoginController {
 	    public ResponseEntity<?> login(@RequestBody User user, HttpServletResponse response) {
 	        String username = user.getUsername();
 	        String password = user.getPassword();
+	        
+	        
+	        System.out.println("Received login request for username: " + username);
 
-	        User storedUser = userRepository.findByUsername(username);
+	        User storedUser = userService.findByUsername(username);
 
 	        if (storedUser == null || !userService.isPasswordCorrect(storedUser, password)) {
-	            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
+	        	System.out.println("Invalid username or password");
+	        	return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
 	        }
 
 	        // Generate JWT token

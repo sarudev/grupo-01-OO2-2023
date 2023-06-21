@@ -7,7 +7,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.oo2.grupo01.configuration", "com.oo2.grupo01.services.implementacion"})
 public class Grupo01Application {
   public static void main(String[] args) {
     SpringApplication.run(Grupo01Application.class, args);
