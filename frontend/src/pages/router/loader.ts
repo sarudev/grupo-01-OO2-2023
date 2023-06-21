@@ -17,6 +17,7 @@ export default function loader (path: (params: Params<string>) => string): Loade
       if (err instanceof AxiosError) {
         const status = err.response?.status ?? 500
         response = { lugar: null, status, userRole: null, serverWorking: status !== 500 }
+        return response
       }
       response = { lugar: null, status: 500, userRole: null, serverWorking: false }
     }

@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect } from 'react'
+import { useState, useLayoutEffect, useCallback } from 'react'
 import { ReactComponent as Campus } from '../assets/campus.svg'
 import useBuildingSelector from '../hooks/useBuildingSelector'
 import useBuildingNameSelector from '../hooks/useBuildingNameSelector'
@@ -13,6 +13,7 @@ import { type UserData } from '../types/types'
 
 export default function Index () {
   const [currentBuilding, setCurrentBuilding] = useState('')
+  const [serverWorking, setServerWorking] = useState<boolean | null>(null)
   const [userRole, setUserRole] = useState<UserRole | null>(null)
   const [loggedIn, setLoggedIn] = useState<boolean>(false)
   useBuildingSelector()
@@ -25,11 +26,16 @@ export default function Index () {
     const request = async () => {
       try {
         const { data } = await axios.get(Routes.BaseUrl + Routes.UserData, { withCredentials: true }) as { data: UserData }
-        setUserRole(data.role)
+        setServerWorking(true)
         setLoggedIn(true)
+        setUserRole(data.role)
       } catch (err: unknown) {
         if (err instanceof AxiosError) {
           if (err.response?.status === 401) {
+            setServerWorking(true)
+            setLoggedIn(false)
+          } else if (err.code === 'ERR_NETWORK') {
+            setServerWorking(false)
             setLoggedIn(false)
           }
         }
@@ -38,12 +44,20 @@ export default function Index () {
     void request()
   }, [])
 
+  const LoginSession = useCallback(() => {
+    return (
+      <>
+        {loggedIn ? <span>Sesión iniciada como {userRole}</span> : <span>Sesión no iniciada</span>}
+        <Link className="logout" to={loggedIn ? Routes.Logout : Routes.Login}>{loggedIn ? 'Cerrar' : 'Iniciar'} sesión</Link>
+      </>
+    )
+  }, [loggedIn])
+
   return (
     <div className="campus-container">
       <MouseCartelito text={currentBuilding} />
       <div className="session">
-        {loggedIn ? <span>Sesión iniciada como {userRole}</span> : <span>Sesión no iniciada</span>}
-        <Link className="logout" to={loggedIn ? Routes.Logout : Routes.Login}>{loggedIn ? 'Cerrar' : 'Iniciar'} sesión</Link>
+        {serverWorking == null ? <span>Cargando...</span> : serverWorking ? <LoginSession /> : <span>El servidor no está funcionando.</span>}
       </div>
       <Campus />
     </div>

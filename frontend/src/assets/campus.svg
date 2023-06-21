@@ -10,7 +10,7 @@
       fill="#C2DFB3" />
     <g id="calles">
       <path id="Calles" fill-rule="evenodd" clip-rule="evenodd"
-        d="M157.001 663.231L192 667V942L563 917V881H684.5L689 887.5L746 850C749.5 846.667 756.1 837.9 754.5 829.5C752.9 821.1 748.167 813.333 746 810.5C742.833 805.333 736.2 794.2 735 791C734.698 790.196 734.073 788.684 733.255 786.704C730.003 778.839 723.698 763.59 722.5 756C721.3 748.4 722 716.833 722.5 702V262.5C722.167 257.333 718.8 247 708 247H616C611.5 246.833 601 245.4 595 241C587.5 235.5 582 228.5 581 226C580.81 225.525 580.529 224.923 580.196 224.208C578.777 221.164 576.405 216.074 576 210C575.6 204 575.833 197.5 576 195C576 190 573 187 568 187H498H309V111H566C571 111 576 107 576 102V94H593V204C592.667 212.5 596.8 229.9 616 231.5C621.2 233.1 682.167 232.833 712 232.5C714.833 232.667 721.3 233.7 724.5 236.5C728.5 240 730.5 242.5 731.5 244.5C732.5 246.5 733.5 249 733.5 256C733.5 261.6 733.833 281.333 734 290.5C734 293 735.7 298 742.5 298H1080.5V376.5L979.5 376V321.37H943.5L931.5 337.5H795.5V321.5H746.5C743.167 321.5 736.5 324.5 736.5 332.5C736.5 341.3 737.833 610.5 738.5 744C739.333 755 743.7 780.6 754.5 795C765.3 809.4 766.667 811.333 766 810.5C769 814.5 775.5 822.7 777.5 823.5C780 824.5 807 836 812.5 841C812.739 841.218 812.985 841.44 813.237 841.667C818.765 846.664 826.978 854.087 826.5 867C826 880.5 822.5 884.5 819.5 887C819.138 887.302 818.703 887.712 818.196 888.192C814.497 891.688 806.931 898.836 795.5 894C785.1 889.6 777.833 877.833 775.5 872.5C774.833 869.833 773 864.4 771 864C768.5 863.5 766.5 863.5 764.5 864.5C762.9 865.3 719.833 897.5 698.5 913.5L708 926.5L666.158 933.301L668.404 954.935L654.367 956.434L652.391 935.685L193 983.5L139.5 915L163.452 683.183L147.52 681.617L149.052 662.46L157.001 663.231ZM800.5 881C807.404 881 813 875.404 813 868.5C813 861.596 807.404 856 800.5 856C793.596 856 788 861.596 788 868.5C788 875.404 793.596 881 800.5 881Z"
+        d="M157.001 663.231L192 667V942L563 917V881H684.5L689 887.5L746 850C749.5 846.667 756.1 837.9 754.5 829.5C752.9 821.1 748.167 813.333 746 810.5C742.833 805.333 736.2 794.2 735 791C734.698 790.196 734.073 788.684 733.255 786.704C730.003 778.839 723.698 763.59 722.5 756C721.3 748.4 722 716.833 722.5 702V262.5C722.167 257.333 718.8 247 708 247H616C611.5 246.833 601 245.4 595 241C587.5 235.5 582 228.5 581 226C580.81 225.525 580.529 224.923 580.196 224.208C578.777 221.164 576.405 216.074 576 210C575.6 204 575.833 197.5 576 195C576 190 573 187 568 187H498H309V111H566C571 111 576 107 576 102V94H593V204C592.667 212.5 596.8 229.9 616 231.5C621.2 233.1 682.167 232.833 712 232.5C714.833 232.667 721.3 233.7 724.5 236.5C728.5 240 730.5 242.5 731.5 244.5C732.5 246.5 733.5 249 733.5 256C733.5 261.6 733.833 281.333 734 290.5C734 293 735.7 298 742.5 298H1080.5V376H979.5V321.37H943.5L931.5 337.5H795.5V321.5H746.5C743.167 321.5 736.5 324.5 736.5 332.5C736.5 341.3 737.833 610.5 738.5 744C739.333 755 743.7 780.6 754.5 795C765.3 809.4 766.667 811.333 766 810.5C769 814.5 775.5 822.7 777.5 823.5C780 824.5 807 836 812.5 841C812.739 841.218 812.985 841.44 813.237 841.667C818.765 846.664 826.978 854.087 826.5 867C826 880.5 822.5 884.5 819.5 887C819.138 887.302 818.703 887.712 818.196 888.192C814.497 891.688 806.931 898.836 795.5 894C785.1 889.6 777.833 877.833 775.5 872.5C774.833 869.833 773 864.4 771 864C768.5 863.5 766.5 863.5 764.5 864.5C762.9 865.3 719.833 897.5 698.5 913.5L708 926.5L666.158 933.301L668.404 954.935L654.367 956.434L652.391 935.685L193 983.5L139.5 915L163.452 683.183L147.52 681.617L149.052 662.46L157.001 663.231ZM800.5 881C807.404 881 813 875.404 813 868.5C813 861.596 807.404 856 800.5 856C793.596 856 788 861.596 788 868.5C788 875.404 793.596 881 800.5 881Z"
         fill="white" />
     </g>
     <g id="outline">
@@ -20,150 +20,298 @@
     </g>
     <g id="caminos">
       <path id="Subtract" fill-rule="evenodd" clip-rule="evenodd"
-        d="M741 323.424V744C741 757.6 751.667 779.667 757 789L779 818L896 775H1074V834H1095V828H1080V721H1095V715H1080V606H1095V600H1080V474H1094V468H1080V397H1094V391H1080V376.498L1074 376.468V769H896L780.5 810.5C775.667 803.833 764.2 787.8 757 777C749.8 766.2 747.333 750.5 747 744V321.5H746.5C745.029 321.5 742.91 322.084 741 323.424ZM942 323.386V385H927V391H948H950V385H948V321.37H943.5L942 323.386ZM948 298V281H969V275H948V215H942V275H922V281H942V298H948ZM747 298V159H751V153H741V210H612V102H606V216H741V297.912C741.47 297.97 741.969 298 742.5 298H747ZM341 187V494L300 582V674H199V776H205V680H327V674H306V589H327V583H306L347 494V341H363V335H347V187H341ZM531 187L503 236V314H509V236L537 187H531ZM565 187V335H547V341H565V411H509V417H565V475H553V481H565V584H526V590H565V672H526V678H565V813H404V819H413V901H404V907H419V819H565V872H511V884H517V878H565V881H571V794H581V788H571V767H725.58C724.852 764.896 724.196 762.863 723.665 761H571V718H722V712H571V417H722V411H571V187.425C570.104 187.145 569.1 187 568 187H565ZM722.5 326H714V332H722.5V326ZM508 475V481H527V475H508ZM360 776H354V698H360V776ZM722 268H715V274H722V268ZM680 946L675 946.5V935L713.5 930L705.5 915.5L767.5 867.5L787.5 900.5L843.5 895L844 900L786 906.5L766.5 875.5L712.5 916.5L720 930V935L680 940V946ZM1037 275H1117V281H1037V275Z"
+        d="M741 323.424V744C741 757.6 751.667 779.667 757 789L779 818L896 775H1074V834H1095V828H1080V721H1095V715H1080V606H1095V600H1080V474H1094V468H1080V397H1094V391H1080V376H1074V769H896L780.5 810.5C775.667 803.833 764.2 787.8 757 777C749.8 766.2 747.333 750.5 747 744V321.5H746.5C745.029 321.5 742.91 322.084 741 323.424ZM942 323.386V385H927V391H948H950V385H948V321.37H943.5L942 323.386ZM948 298V281H969V275H948V215H942V275H922V281H942V298H948ZM747 298V159H751V153H741V210H612V102H606V216H741V297.912C741.47 297.97 741.969 298 742.5 298H747ZM341 187V494L300 582V674H199V776H205V680H327V674H306V589H327V583H306L347 494V341H363V335H347V187H341ZM531 187L503 236V314H509V236L537 187H531ZM565 187V335H547V341H565V411H509V417H565V475H553V481H565V584H526V590H565V672H526V678H565V813H404V819H413V901H404V907H419V819H565V872H511V884H517V878H565V881H571V794H581V788H571V767H725.58C724.852 764.896 724.196 762.863 723.665 761H571V718H722.046L722.215 712H571V417H722.5V411H571V187.425C570.104 187.145 569.1 187 568 187H565ZM722.5 326H714V332H722.5V326ZM508 475V481H527V475H508ZM360 776H354V698H360V776ZM722.5 268H715V274H722.5V268ZM680 946L675 946.5V935L713.5 930L705.5 915.5L767.5 867.5L787.5 900.5L843.5 895L844 900L786 906.5L766.5 875.5L712.5 916.5L720 930V935L680 940V946ZM1037 275H1117V281H1037V275Z"
         fill="#B2B0BA" />
     </g>
-    <g id="buildings">
-      <g class="building" data-building-number="29" data-building-name="N/A">
+    <g id="parkings">
+      <g class="svg-lugar" data-lugar-tipo="parking" data-lugar-num="37"
+        data-lugar-nombre="Canchas">
+        <path class="background" d="M1078.5 374H981.5V300.01H1078.5V374Z" />
+        <text class="num"
+          font-family="sans-serif" font-size="24" font-weight="bold">
+          <tspan x="1014" y="345.227">37</tspan>
+        </text>
+        <path class="background" data-invisible="true" d="M1078.5 374H981.5V300.01H1078.5V374Z" />
+      </g>
+      <g class="svg-lugar" data-lugar-tipo="parking" data-lugar-num="36"
+        data-lugar-nombre="Comedor">
+        <path class="background" d="M797.5 300V335.5H929.421L942 319.5V300H797.5Z" />
+        <text class="num"
+          font-family="sans-serif" font-size="24" font-weight="bold">
+          <tspan x="854" y="326.227">36</tspan>
+        </text>
+        <path class="background" data-invisible="true"
+          d="M797.5 300V335.5H929.421L942 319.5V300H797.5Z" />
+      </g>
+      <g class="svg-lugar" data-lugar-tipo="parking" data-lugar-num="35"
+        data-lugar-nombre="Pablo Nogu&#233;s">
+        <path class="background" d="M566 113H311V185H566V113Z" />
+        <text class="num"
+          font-family="sans-serif" font-size="24" font-weight="bold">
+          <tspan x="423" y="157.227">35</tspan>
+        </text>
+        <path class="background" data-invisible="true" d="M566 113H311V185H566V113Z" />
+      </g>
+      <g class="svg-lugar" data-lugar-tipo="parking" data-lugar-num="34"
+        data-lugar-nombre="29 de Septiembre">
+        <path class="background"
+          d="M565 919L193 944L194 981L651.5 933.5L666 931L703 925L696.5 915.5L688 889L683 883H565V919Z" />
+        <text class="num"
+          font-family="sans-serif" font-size="24" font-weight="bold">
+          <tspan x="604" y="918.227">34</tspan>
+        </text>
+        <path class="background" data-invisible="true"
+          d="M565 919L193 944L194 981L651.5 933.5L666 931L703 925L696.5 915.5L688 889L683 883H565V919Z" />
+      </g>
+    </g>
+    <g id="espacios-verdes">
+      <g class="svg-lugar" data-lugar-tipo="espacio verde" data-lugar-num="33"
+        data-lugar-nombre="Ortiz y Jauretche">
+        <path class="background" d="M563 680H528V700H362V774H406V811H563V680Z" />
+        <text class="num"
+          font-family="sans-serif" font-size="24" font-weight="bold">
+          <tspan x="447" y="754.227">33</tspan>
+        </text>
+        <path class="background" data-invisible="true" d="M563 680H528V700H362V774H406V811H563V680Z" />
+      </g>
+      <g class="svg-lugar" data-lugar-tipo="espacio verde" data-lugar-num="32"
+        data-lugar-nombre="Macedonio y Ortiz">
+        <path class="background" d="M480 882V920.5L406 925.5V909H421V821H563V870H509V882H480Z" />
+        <text class="num"
+          font-family="sans-serif" font-size="24" font-weight="bold">
+          <tspan x="444" y="865.227">32</tspan>
+        </text>
+        <path class="background" data-invisible="true"
+          d="M480 882V920.5L406 925.5V909H421V821H563V870H509V882H480Z" />
+      </g>
+      <g class="svg-lugar" data-lugar-tipo="espacio verde" data-lugar-num="31"
+        data-lugar-nombre="Casa del estudiante">
+        <path class="background"
+          d="M573 808V879L686 879L689.5 883.5L744.5 848.5C750.333 844.333 758.5 831.2 744.5 812C730.5 792.8 725 775.396 724 769.093H613V808H573Z" />
+        <text class="num"
+          font-family="sans-serif" font-size="24" font-weight="bold">
+          <tspan x="644" y="834.227">31</tspan>
+        </text>
+        <path class="background" data-invisible="true"
+          d="M573 808V879L686 879L689.5 883.5L744.5 848.5C750.333 844.333 758.5 831.2 744.5 812C730.5 792.8 725 775.396 724 769.093H613V808H573Z" />
+      </g>
+      <g class="svg-lugar" data-lugar-tipo="espacio verde" data-lugar-num="30"
+        data-lugar-nombre="Jauretche y Ugarte">
+        <path class="background" d="M720.5 419H573V710H720.5V419Z" />
+        <text class="num"
+          font-family="sans-serif" font-size="24" font-weight="bold">
+          <tspan x="630" y="573.227">30</tspan>
+        </text>
+        <path class="background" data-invisible="true" d="M720.5 419H573V710H720.5V419Z" />
+      </g>
+      <g class="svg-lugar" data-lugar-tipo="espacio verde" data-lugar-num="29"
+        data-lugar-nombre="Manso y Kirchner">
+        <path class="background"
+          d="M983 417L749 417V744C749.833 748 751.391 759.209 754.5 767.5C757.5 775.5 773.167 797.833 781 808L895 767H1072V504H983V417Z" />
+        <text class="num"
+          font-family="sans-serif" font-size="24" font-weight="bold">
+          <tspan x="895" y="621.227">29</tspan>
+        </text>
+        <path
+          class="background" data-invisible="true"
+          d="M983 417L749 417V744C749.833 748 751.391 759.209 754.5 767.5C757.5 775.5 773.167 797.833 781 808L895 767H1072V504H983V417Z" />
+      </g>
+    </g>
+    <g id="edificios">
+      <g class="svg-lugar" data-lugar-tipo="edificio" data-lugar-num="-1"
+        data-lugar-nombre="">
         <rect class="background" x="527" y="462" width="26" height="31" />
       </g>
-      <g class="building" data-building-number="28" data-building-name="N&#233;stor Kirchner">
+      <g class="svg-lugar" data-lugar-tipo="edificio" data-lugar-num="28"
+        data-lugar-nombre="N&#233;stor Kirchner">
         <path fill-rule="evenodd" clip-rule="evenodd" class="background"
           d="M1054 425H985V502H1054V425ZM1035 447H1003V480H1035V447Z" />
         <rect class="background" data-invisible="true" x="985" y="425" width="69" height="77" />
-        <text class="num" fill="#423E3F" xml:space="preserve" style="white-space: pre"
-          font-family="Inter" font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="1004.01" y="472.227">28</tspan></text>
+        <text class="num" fill="#423E3F"
+          font-family="sans-serif" font-size="24" font-weight="bold">
+          <tspan x="1004.01" y="472.227">28</tspan>
+        </text>
       </g>
-      <g class="building" data-building-number="27" data-building-name="Pascual Contursi">
+      <g class="svg-lugar" data-lugar-tipo="edificio" data-lugar-num="27"
+        data-lugar-nombre="Pascual Contursi">
         <rect class="background" x="678" y="257" width="37" height="31" />
-        <text class="num" fill="white" xml:space="preserve" style="white-space: pre"
-          font-family="Inter"
-          font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="682.305" y="281.227">27</tspan></text>
+        <text class="num" fill="white"
+          font-family="sans-serif"
+          font-size="24" font-weight="bold">
+          <tspan x="682.305" y="281.227">27</tspan>
+        </text>
         <rect class="background" data-invisible="true" x="678" y="257" width="37" height="31" />
       </g>
-      <g class="building" data-building-number="26" data-building-name="Juana Azurduy">
+      <g class="svg-lugar" data-lugar-tipo="edificio" data-lugar-num="26"
+        data-lugar-nombre="Juana Azurduy">
         <rect class="background" x="663" y="313" width="51" height="31" />
-        <text class="num" fill="white" xml:space="preserve" style="white-space: pre"
-          font-family="Inter"
-          font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="673.02" y="337.227">26</tspan></text>
+        <text class="num" fill="white"
+          font-family="sans-serif"
+          font-size="24" font-weight="bold">
+          <tspan x="673.02" y="337.227">26</tspan>
+        </text>
         <rect class="background" data-invisible="true" x="663" y="313" width="51" height="31" />
       </g>
-      <g class="building" data-building-number="25" data-building-name="Leopoldo Marechal">
+      <g class="svg-lugar" data-lugar-tipo="edificio" data-lugar-num="25"
+        data-lugar-nombre="Leopoldo Marechal">
         <rect class="background" x="363" y="315" width="184" height="46" />
-        <text class="num" fill="white" xml:space="preserve" style="white-space: pre"
-          font-family="Inter"
-          font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="439.207" y="346.227">25</tspan></text>
+        <text class="num" fill="white"
+          font-family="sans-serif"
+          font-size="24" font-weight="bold">
+          <tspan x="439.207" y="346.227">25</tspan>
+        </text>
         <rect class="background" data-invisible="true" x="363" y="315" width="184" height="46" />
       </g>
-      <g class="building" data-building-number="24" data-building-name="Ortega Pe&#241;a">
+      <g class="svg-lugar" data-lugar-tipo="edificio" data-lugar-num="24"
+        data-lugar-nombre="Ortega Pe&#241;a">
         <rect class="background" x="454" y="398" width="55" height="32" />
-        <text class="num" fill="white" xml:space="preserve" style="white-space: pre"
-          font-family="Inter"
-          font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="466.496" y="422.227">24</tspan></text>
+        <text class="num" fill="white"
+          font-family="sans-serif"
+          font-size="24" font-weight="bold">
+          <tspan x="466.496" y="422.227">24</tspan>
+        </text>
         <rect class="background" data-invisible="true" x="454" y="398" width="55" height="32" />
       </g>
-      <g class="building" data-building-number="23" data-building-name="Homero Manzi">
+      <g class="svg-lugar" data-lugar-tipo="edificio" data-lugar-num="23"
+        data-lugar-nombre="Homero Manzi">
         <rect class="background" x="422" y="462" width="86" height="31" />
-        <text class="num" fill="white" xml:space="preserve" style="white-space: pre"
-          font-family="Inter"
-          font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="449.031" y="486.227">23</tspan></text>
+        <text class="num" fill="white"
+          font-family="sans-serif"
+          font-size="24" font-weight="bold">
+          <tspan x="449.031" y="486.227">23</tspan>
+        </text>
         <rect class="background" data-invisible="true" x="422" y="462" width="86" height="31" />
       </g>
-      <g class="building" data-building-number="22" data-building-name="Manuel Ugarte">
+      <g class="svg-lugar" data-lugar-tipo="edificio" data-lugar-num="22"
+        data-lugar-nombre="Manuel Ugarte">
         <rect class="background" x="327" y="564" width="199" height="46" />
-        <text class="num" fill="white" xml:space="preserve" style="white-space: pre"
-          font-family="Inter"
-          font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="411.383" y="595.227">22</tspan></text>
+        <text class="num" fill="white"
+          font-family="sans-serif"
+          font-size="24" font-weight="bold">
+          <tspan x="411.383" y="595.227">22</tspan>
+        </text>
         <rect class="background" data-invisible="true" x="327" y="564" width="199" height="46" />
       </g>
-      <g class="building" data-building-number="21" data-building-name="Arturo Jauretche">
+      <g class="svg-lugar" data-lugar-tipo="edificio" data-lugar-num="21"
+        data-lugar-nombre="Arturo Jauretche">
         <rect class="background" x="327" y="653" width="199" height="45" />
-        <text class="num" fill="white" xml:space="preserve" style="white-space: pre"
-          font-family="Inter"
-          font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="413.07" y="684.227">21</tspan></text>
+        <text class="num" fill="white"
+          font-family="sans-serif"
+          font-size="24" font-weight="bold">
+          <tspan x="413.07" y="684.227">21</tspan>
+        </text>
         <rect class="background" data-invisible="true" x="327" y="653" width="199" height="45" />
       </g>
-      <g class="building" data-building-number="20" data-building-name="Ra&#250;l Scalabrini Ortiz">
+      <g class="svg-lugar" data-lugar-tipo="edificio" data-lugar-num="20"
+        data-lugar-nombre="Ra&#250;l Scalabrini Ortiz">
         <rect class="background" x="192" y="776" width="212" height="78" />
-        <text class="num" fill="white" xml:space="preserve" style="white-space: pre"
-          font-family="Inter"
-          font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="282.18" y="823.227">20</tspan></text>
+        <text class="num" fill="white"
+          font-family="sans-serif"
+          font-size="24" font-weight="bold">
+          <tspan x="282.18" y="823.227">20</tspan>
+        </text>
         <rect class="background" data-invisible="true" x="192" y="776" width="212" height="78" />
       </g>
-      <g class="building" data-building-number="19" data-building-name="Macedonio Fern&#225;ndez">
+      <g class="svg-lugar" data-lugar-tipo="edificio" data-lugar-num="19"
+        data-lugar-nombre="Macedonio Fern&#225;ndez">
         <rect class="background" x="192" y="884" width="212" height="36" />
-        <text class="num" fill="white" xml:space="preserve" style="white-space: pre"
-          font-family="Inter"
-          font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="284.207" y="910.227">19</tspan></text>
+        <text class="num" fill="white"
+          font-family="sans-serif"
+          font-size="24" font-weight="bold">
+          <tspan x="284.207" y="910.227">19</tspan>
+        </text>
         <rect class="background" data-invisible="true" x="192" y="884" width="212" height="36" />
       </g>
-      <g class="building" data-building-number="18" data-building-name="Lisandro de la Torre">
+      <g class="svg-lugar" data-lugar-tipo="edificio" data-lugar-num="18"
+        data-lugar-nombre="Lisandro de la Torre">
         <rect class="background" x="482" y="884" width="55" height="31" />
-        <text class="num" fill="white" xml:space="preserve" style="white-space: pre"
-          font-family="Inter"
-          font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="496.195" y="908.227">18</tspan></text>
+        <text class="num" fill="white"
+          font-family="sans-serif"
+          font-size="24" font-weight="bold">
+          <tspan x="496.195" y="908.227">18</tspan>
+        </text>
         <rect class="background" data-invisible="true" x="482" y="884" width="55" height="31" />
       </g>
-      <g class="building" data-building-number="17" data-building-name="Casa del Estudiante">
+      <g class="svg-lugar" data-lugar-tipo="edificio" data-lugar-num="17"
+        data-lugar-nombre="Casa del Estudiante">
         <rect class="background" x="581" y="776" width="30" height="30" />
-        <text class="num" fill="white" xml:space="preserve" style="white-space: pre"
-          font-family="Inter"
-          font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="582.492" y="799.227">17</tspan></text>
+        <text class="num" fill="white"
+          font-family="sans-serif"
+          font-size="24" font-weight="bold">
+          <tspan x="582.492" y="799.227">17</tspan>
+        </text>
         <rect class="background" data-invisible="true" x="581" y="776" width="30" height="30" />
       </g>
-      <g class="building" data-building-number="16" data-building-name="Cine Tita Merello">
+      <g class="svg-lugar" data-lugar-tipo="edificio" data-lugar-num="16"
+        data-lugar-nombre="Cine Tita Merello">
         <rect class="background" x="723" y="910.496" width="53.2471" height="33.1629"
           transform="rotate(-33.6381 723 910.496)" />
-        <text class="num" fill="white" xml:space="preserve" style="white-space: pre"
-          font-family="Inter"
-          font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="740.207" y="918.227">16</tspan></text>
+        <text class="num" fill="white"
+          font-family="sans-serif"
+          font-size="24" font-weight="bold">
+          <tspan x="740.207" y="918.227">16</tspan>
+        </text>
         <rect class="background" data-invisible="true" x="723" y="910.496" width="53.2471"
           height="33.1629"
           transform="rotate(-33.6381 723 910.496)" />
       </g>
-      <g class="building" data-building-number="15" data-building-name="H&#233;ctor Oesterheld">
+      <g class="svg-lugar" data-lugar-tipo="edificio" data-lugar-num="15"
+        data-lugar-nombre="H&#233;ctor Oesterheld">
         <rect class="background" x="843" y="889.15" width="60.2713" height="32.0318"
           transform="rotate(-5.85632 843 889.15)" />
-        <text class="num" fill="white" xml:space="preserve" style="white-space: pre"
-          font-family="Inter"
-          font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="861.395" y="910.227">15</tspan></text>
+        <text class="num" fill="white"
+          font-family="sans-serif"
+          font-size="24" font-weight="bold">
+          <tspan x="861.395" y="910.227">15</tspan>
+        </text>
         <rect class="background" data-invisible="true" x="843" y="889.15" width="60.2713"
           height="32.0318"
           transform="rotate(-5.85632 843 889.15)" />
       </g>
-      <g class="building" data-building-number="14"
-        data-building-name="Jard&#237;n Maternal A. Villaflor">
+      <g class="svg-lugar" data-lugar-tipo="edificio" data-lugar-num="14"
+        data-lugar-nombre="Jard&#237;n Maternal A. Villaflor">
         <rect class="background" x="919" y="823" width="31" height="86" />
-        <text class="num" fill="white" xml:space="preserve" style="white-space: pre"
-          font-family="Inter"
-          font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="920.496" y="874.227">14</tspan></text>
+        <text class="num" fill="white"
+          font-family="sans-serif"
+          font-size="24" font-weight="bold">
+          <tspan x="920.496" y="874.227">14</tspan>
+        </text>
         <rect class="background" data-invisible="true" x="919" y="823" width="31" height="86" />
       </g>
-      <g class="building" data-building-number="13" data-building-name="Oscar Varsavsky">
+      <g class="svg-lugar" data-lugar-tipo="edificio" data-lugar-num="13"
+        data-lugar-nombre="Oscar Varsavsky">
         <path fill-rule="evenodd" clip-rule="evenodd" class="background"
           d="M1164 792H1095V869H1164V792ZM1145 814H1113V847H1145V814Z"
         />
         <rect class="background" data-invisible="true" x="1095" y="792" width="69" height="77" />
-        <text class="num" fill="#423E3F" xml:space="preserve" style="white-space: pre"
-          font-family="Inter" font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="1116.22" y="839.227">13</tspan></text>
+        <text class="num" fill="#423E3F"
+          font-family="sans-serif" font-size="24" font-weight="bold">
+          <tspan x="1116.22" y="839.227">13</tspan>
+        </text>
       </g>
-      <g class="building" data-building-number="12" data-building-name="Leonardo Wethein">
+      <g class="svg-lugar" data-lugar-tipo="edificio" data-lugar-num="12"
+        data-lugar-nombre="Leonardo Wethein">
         <path fill-rule="evenodd" clip-rule="evenodd" class="background"
           d="M1164 680H1095V757H1164V680ZM1145 702H1113V735H1145V702Z"
         />
         <rect class="background" data-invisible="true" x="1095" y="680" width="69" height="77" />
-        <text class="num" fill="#423E3F" xml:space="preserve" style="white-space: pre"
-          font-family="Inter" font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="1116.07" y="727.227">12</tspan></text>
+        <text class="num" fill="#423E3F"
+          font-family="sans-serif" font-size="24" font-weight="bold">
+          <tspan x="1116.07" y="727.227">12</tspan>
+        </text>
       </g>
-      <g class="building" data-building-number="11" data-building-name="Irma Laciar de Carrica">
+      <g class="svg-lugar" data-lugar-tipo="edificio" data-lugar-num="11"
+        data-lugar-nombre="Irma Laciar de Carrica">
         <path fill-rule="evenodd" clip-rule="evenodd" class="background"
           d="M1164 564H1095V641H1164V564ZM1145 586H1113V619H1145V586Z" />
         <rect class="background" data-invisible="true" x="1095" y="564" width="69" height="77" />
-        <text class="num" fill="#423E3F" xml:space="preserve" style="white-space: pre"
-          font-family="Inter" font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="1118.26" y="611.227">11</tspan></text>
+        <text class="num" fill="#423E3F"
+          font-family="sans-serif" font-size="24" font-weight="bold">
+          <tspan x="1118.26" y="611.227">11</tspan>
+        </text>
       </g>
-      <g class="building" data-building-number="10"
-        data-building-name="Campo de deportes Delfo Cabrera">
+      <g class="svg-lugar" data-lugar-tipo="edificio" data-lugar-num="10"
+        data-lugar-nombre="Campo de deportes Delfo Cabrera">
         <rect class="background" x="1094" y="372" width="107" height="154" />
         <g class="canchas">
           <path id="Cancha"
@@ -174,274 +322,409 @@
             stroke="black" />
         </g>
         <rect class="background" data-invisible="true" x="1094" y="372" width="152" height="154" />
-        <text class="num" fill="#423E3F" xml:space="preserve" style="white-space: pre"
-          font-family="Inter" font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="1217.37" y="395.227">10</tspan></text>
+        <text class="num" fill="#423E3F"
+          font-family="sans-serif" font-size="24" font-weight="bold">
+          <tspan x="1217.37" y="395.227">10</tspan>
+        </text>
       </g>
-      <g class="building" data-building-number="9" data-building-name="Inadi">
+      <g class="svg-lugar" data-lugar-tipo="edificio" data-lugar-num="9"
+        data-lugar-nombre="Inadi">
         <rect class="background" x="950" y="361" width="26" height="33" />
-        <text class="num" fill="white" xml:space="preserve" style="white-space: pre"
-          font-family="Inter"
-          font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="955.078" y="386.227">9</tspan></text>
+        <text class="num" fill="white"
+          font-family="sans-serif"
+          font-size="24" font-weight="bold">
+          <tspan x="955.078" y="386.227">9</tspan>
+        </text>
         <rect class="background" data-invisible="true" x="950" y="361" width="26" height="33" />
       </g>
-      <g class="building" data-building-number="8" data-building-name="Juana Manso">
+      <g class="svg-lugar" data-lugar-tipo="edificio" data-lugar-num="8"
+        data-lugar-nombre="Juana Manso">
         <rect class="background" x="751" y="363" width="176" height="52" />
-        <text class="num" fill="white" xml:space="preserve" style="white-space: pre"
-          font-family="Inter"
-          font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="831.066" y="397.227">8</tspan></text>
+        <text class="num" fill="white"
+          font-family="sans-serif"
+          font-size="24" font-weight="bold">
+          <tspan x="831.066" y="397.227">8</tspan>
+        </text>
         <rect class="background" data-invisible="true" x="751" y="363" width="176" height="52" />
       </g>
-      <g class="building" data-building-number="7" data-building-name="Quincho Roberto Fontanarrosa">
+      <g class="svg-lugar" data-lugar-tipo="edificio" data-lugar-num="7"
+        data-lugar-nombre="Quincho Roberto Fontanarrosa">
         <rect class="background" x="1425" y="100" width="48" height="33" />
-        <text class="num" fill="white" xml:space="preserve" style="white-space: pre"
-          font-family="Inter"
-          font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="1441.36" y="125.227">7</tspan></text>
+        <text class="num" fill="white"
+          font-family="sans-serif"
+          font-size="24" font-weight="bold">
+          <tspan x="1441.36" y="125.227">7</tspan>
+        </text>
         <rect class="background" data-invisible="true" x="1425" y="100" width="48" height="33" />
       </g>
-      <g class="building" data-building-number="6" data-building-name="Gimnasio Comunitario Gatica">
+      <g class="svg-lugar" data-lugar-tipo="edificio" data-lugar-num="6"
+        data-lugar-nombre="Gimnasio Comunitario Gatica">
         <rect class="background" x="1335" y="100" width="80" height="33" />
-        <text class="num" fill="white" xml:space="preserve" style="white-space: pre"
-          font-family="Inter"
-          font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="1367.08" y="125.227">6</tspan></text>
+        <text class="num" fill="white"
+          font-family="sans-serif"
+          font-size="24" font-weight="bold">
+          <tspan x="1367.08" y="125.227">6</tspan>
+        </text>
         <rect class="background" data-invisible="true" x="1335" y="100" width="80" height="33" />
       </g>
-      <g class="building" data-building-number="5" data-building-name="Hernandez Arregui">
+      <g class="svg-lugar" data-lugar-tipo="edificio" data-lugar-num="5"
+        data-lugar-nombre="Hernandez Arregui">
         <rect class="background" x="1267" y="100" width="59" height="33" />
-        <text class="num" fill="white" xml:space="preserve" style="white-space: pre"
-          font-family="Inter"
-          font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="1289.27" y="125.227">5</tspan></text>
+        <text class="num" fill="white"
+          font-family="sans-serif"
+          font-size="24" font-weight="bold">
+          <tspan x="1289.27" y="125.227">5</tspan>
+        </text>
         <rect class="background" data-invisible="true" x="1267" y="100" width="59" height="33" />
       </g>
-      <g class="building" data-building-number="4" data-building-name="Lola Mora">
+      <g class="svg-lugar" data-lugar-tipo="edificio" data-lugar-num="4"
+        data-lugar-nombre="Lola Mora">
         <rect class="background" x="1117" y="256" width="23" height="31" />
-        <text class="num" fill="white" xml:space="preserve" style="white-space: pre"
-          font-family="Inter"
-          font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="1120.37" y="280.227">4</tspan></text>
+        <text class="num" fill="white"
+          font-family="sans-serif"
+          font-size="24" font-weight="bold">
+          <tspan x="1120.37" y="280.227">4</tspan>
+        </text>
         <rect class="background" data-invisible="true" x="1117" y="256" width="23" height="31" />
       </g>
-      <g class="building" data-building-number="3"
-        data-building-name="Estudio de Grabaci&#243;n E.S. Disc&#233;polo">
+      <g class="svg-lugar" data-lugar-tipo="edificio" data-lugar-num="3"
+        data-lugar-nombre="Estudio de Grabaci&#243;n E.S. Disc&#233;polo">
         <rect class="background" x="969" y="256" width="68" height="31" />
-        <text class="num" fill="white" xml:space="preserve" style="white-space: pre"
-          font-family="Inter"
-          font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="995.09" y="280.227">3</tspan></text>
+        <text class="num" fill="white"
+          font-family="sans-serif"
+          font-size="24" font-weight="bold">
+          <tspan x="995.09" y="280.227">3</tspan>
+        </text>
         <rect class="background" data-invisible="true" x="969" y="256" width="68" height="31" />
       </g>
-      <g class="building" data-building-number="2"
-        data-building-name="Comedor Universitario Padre Mujica">
+      <g class="svg-lugar" data-lugar-tipo="edificio" data-lugar-num="2"
+        data-lugar-nombre="Comedor Universitario Padre Mujica">
         <rect class="background" x="832" y="256" width="90" height="31" />
-        <text class="num" fill="white" xml:space="preserve" style="white-space: pre"
-          font-family="Inter" font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="869.441" y="280.227">2</tspan></text>
+        <text class="num" fill="white"
+          font-family="sans-serif" font-size="24" font-weight="bold">
+          <tspan x="869.441" y="280.227">2</tspan>
+        </text>
         <rect class="background" data-invisible="true" x="832" y="256" width="90" height="31" />
       </g>
-      <g class="building" data-building-number="1" data-building-name="Jos&#233; Hern&#225;ndez">
+      <g class="svg-lugar" data-lugar-tipo="edificio" data-lugar-num="1"
+        data-lugar-nombre="Jos&#233; Hern&#225;ndez">
         <rect class="background" x="751" y="100" width="497" height="115" />
-        <text class="num" fill="white" xml:space="preserve" style="white-space: pre"
-          font-family="Inter" font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="994.129" y="166.227">1</tspan></text>
+        <text class="num" fill="white"
+          font-family="sans-serif" font-size="24" font-weight="bold">
+          <tspan x="994.129" y="166.227">1</tspan>
+        </text>
         <rect class="background" data-invisible="true" x="751" y="100" width="497" height="115" />
       </g>
     </g>
-    <g id="buildings-names">
-      <g class="building-name" data-building-number="28" data-building-name="N&#233;stor Kirchner">
-        <rect class="background" x="1511" y="871" width="461" height="29" />
-        <text class="text" fill="#423E3F" xml:space="preserve"
-          style="white-space: pre" font-family="Inter" font-size="24" font-weight="bold"
-          letter-spacing="0em"><tspan x="1511" y="894.227">28 - Néstor Kirchner</tspan></text>
+    <g id="lugares-nombres">
+      <g id="parkings">
+        <g class="svg-lugar-text" data-lugar-tipo="parking" data-lugar-num="37"
+          data-lugar-nombre="Canchas">
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1701" y="909.273">37 - Canchas</tspan>
+          </text>
+        </g>
+        <g class="svg-lugar-text" data-lugar-tipo="parking" data-lugar-num="36"
+          data-lugar-nombre="Comedor">
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1701" y="885.273">36 - Comedor</tspan>
+          </text>
+        </g>
+        <g class="svg-lugar-text" data-lugar-tipo="parking" data-lugar-num="35"
+          data-lugar-nombre="Pablo Nogu&#xe9;s">
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1701" y="861.273">35 - Pablo Nogu&#xe9;s</tspan>
+          </text>
+        </g>
+        <g class="svg-lugar-text" data-lugar-tipo="parking" data-lugar-num="34"
+          data-lugar-nombre="29 de Septiembre">
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1701" y="837.273">34 - 29 de Septiembre</tspan>
+          </text>
+        </g>
+        <text fill="#423E3F" font-family="sans-serif" font-size="24" font-weight="bold">
+          <tspan x="1701" y="804.227">Parkings:</tspan>
+        </text>
       </g>
-      <g class="building-name" data-building-number="27" data-building-name="Pascual Contursi">
-        <rect class="background" x="1511" y="842" width="461" height="29" />
-        <text class="text" fill="#423E3F" xml:space="preserve"
-          style="white-space: pre" font-family="Inter" font-size="24" font-weight="bold"
-          letter-spacing="0em"><tspan x="1511" y="865.227">27 - Pascual Contursi</tspan></text>
+      <g id="espaciosVerdes">
+        <g class="svg-lugar-text" data-lugar-tipo="espacio verde" data-lugar-num="33"
+          data-lugar-nombre="Ortiz y Jauretche">
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1377" y="926.273">33 - Ortiz y Jauretche</tspan>
+          </text>
+        </g>
+        <g class="svg-lugar-text" data-lugar-tipo="espacio verde" data-lugar-num="32"
+          data-lugar-nombre="Macedonio y Ortiz">
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1377" y="902.273">32 - Macedonio y Ortiz</tspan>
+          </text>
+        </g>
+        <g class="svg-lugar-text" data-lugar-tipo="espacio verde" data-lugar-num="31"
+          data-lugar-nombre="Casa del estudiante">
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1377" y="878.273">31 - Casa del estudiante</tspan>
+          </text>
+        </g>
+        <g class="svg-lugar-text" data-lugar-tipo="espacio verde" data-lugar-num="30"
+          data-lugar-nombre="Jauretche y Ugarte">
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1377" y="854.273">30 - Jauretche y Ugarte</tspan>
+          </text>
+        </g>
+        <g class="svg-lugar-text" data-lugar-tipo="espacio verde" data-lugar-num="29"
+          data-lugar-nombre="Manso y Kirchner">
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1377" y="830.273">29 - Manso y Kirchner</tspan>
+          </text>
+        </g>
+        <text fill="#423E3F" font-family="sans-serif" font-size="24" font-weight="bold">
+          <tspan x="1377" y="797.227">Espacios Verdes:</tspan>
+        </text>
       </g>
-      <g class="building-name" data-building-number="26" data-building-name="Juana Azurduy">
-        <rect class="background" x="1511" y="813" width="461" height="29" />
-        <text class="text" fill="#423E3F" xml:space="preserve"
-          style="white-space: pre" font-family="Inter" font-size="24" font-weight="bold"
-          letter-spacing="0em"><tspan x="1511" y="836.227">26 - Juana Azurduy</tspan></text>
-      </g>
-      <g class="building-name" data-building-number="25" data-building-name="Leopoldo Marechal">
-        <rect class="background" x="1511" y="784" width="461" height="29" />
-        <text class="text" fill="#423E3F" xml:space="preserve"
-          style="white-space: pre" font-family="Inter" font-size="24" font-weight="bold"
-          letter-spacing="0em"><tspan x="1511" y="807.227">25 - Leopoldo Marechal</tspan></text>
-      </g>
-      <g class="building-name" data-building-number="24" data-building-name="Ortega Pe&#241;a">
-        <rect class="background" x="1511" y="755" width="461" height="29" />
-        <text class="text" fill="#423E3F" xml:space="preserve" style="white-space: pre"
-          font-family="Inter" font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="1511" y="778.227">24 - Ortega Peña</tspan></text>
-      </g>
-      <g class="building-name" data-building-number="23" data-building-name="Homero Manzi">
-        <rect class="background" x="1511" y="726" width="461" height="29" />
-        <text class="text" fill="#423E3F" xml:space="preserve" style="white-space: pre"
-          font-family="Inter" font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="1511" y="749.227">23 - Homero Manzi</tspan></text>
-      </g>
-      <g class="building-name" data-building-number="22" data-building-name="Manuel Ugarte">
-        <rect class="background" x="1511" y="697" width="461" height="29" />
-        <text class="text" fill="#423E3F" xml:space="preserve"
-          style="white-space: pre" font-family="Inter" font-size="24" font-weight="bold"
-          letter-spacing="0em"><tspan x="1511" y="720.227">22 - Manuel Ugarte</tspan></text>
-      </g>
-      <g class="building-name" data-building-number="21" data-building-name="Arturo Jauretche">
-        <rect class="background" x="1511" y="668" width="461" height="29" />
-        <text class="text" fill="#423E3F" xml:space="preserve"
-          style="white-space: pre" font-family="Inter" font-size="24" font-weight="bold"
-          letter-spacing="0em"><tspan x="1511" y="691.227">21 - Artura Jauretche</tspan></text>
-      </g>
-      <g class="building-name" data-building-number="20"
-        data-building-name="Ra&#250;l Scalabrini Ortiz">
-        <rect class="background" x="1511" y="639" width="461" height="29" />
-        <text class="text" fill="#423E3F" xml:space="preserve"
-          style="white-space: pre" font-family="Inter" font-size="24" font-weight="bold"
-          letter-spacing="0em"><tspan x="1511" y="662.227">20 - Raúl Scalabrini Ortiz</tspan></text>
-      </g>
-      <g class="building-name" data-building-number="19"
-        data-building-name="Macedonio Fern&#225;ndez">
-        <rect class="background" x="1511" y="610" width="461" height="29" />
-        <text class="text" fill="#423E3F" xml:space="preserve"
-          style="white-space: pre" font-family="Inter" font-size="24" font-weight="bold"
-          letter-spacing="0em"><tspan x="1511" y="633.227">19 - Macedonio Fernández</tspan></text>
-      </g>
-      <g class="building-name" data-building-number="18" data-building-name="Lisandro de la Torre">
-        <rect class="background" x="1511" y="581" width="461" height="29" />
-        <text class="text" fill="#423E3F" xml:space="preserve"
-          style="white-space: pre" font-family="Inter" font-size="24" font-weight="bold"
-          letter-spacing="0em"><tspan x="1511" y="604.227">18 - Lisandro de la Torre</tspan></text>
-      </g>
-      <g class="building-name" data-building-number="17" data-building-name="Casa del Estudiante">
-        <rect class="background" x="1511" y="552" width="461" height="29" />
-        <text class="text" fill="#423E3F" xml:space="preserve"
-          style="white-space: pre" font-family="Inter" font-size="24" font-weight="bold"
-          letter-spacing="0em"><tspan x="1511" y="575.227">17 - Casa del Estudiante</tspan></text>
-      </g>
-      <g class="building-name" data-building-number="16" data-building-name="Cine Tita Merello">
-        <rect class="background" x="1511" y="523" width="461" height="29" />
-        <text class="text" fill="#423E3F" xml:space="preserve"
-          style="white-space: pre" font-family="Inter" font-size="24" font-weight="bold"
-          letter-spacing="0em"><tspan x="1511" y="546.227">16 - Cine Tita Merello</tspan></text>
-      </g>
-      <g class="building-name" data-building-number="15" data-building-name="H&#233;ctor Oesterheld">
-        <rect class="background" x="1511" y="494" width="461" height="29" />
-        <text class="text" fill="#423E3F" xml:space="preserve"
-          style="white-space: pre" font-family="Inter" font-size="24" font-weight="bold"
-          letter-spacing="0em"><tspan x="1511" y="517.227">15 - Héctor Oesterheld</tspan></text>
-      </g>
-      <g class="building-name" data-building-number="14"
-        data-building-name="Jard&#237;n Maternal A. Villaflor">
-        <rect class="background" x="1511" y="465" width="461" height="29" />
-        <text class="text" fill="#423E3F" xml:space="preserve"
-          style="white-space: pre" font-family="Inter" font-size="24" font-weight="bold"
-          letter-spacing="0em"><tspan x="1511" y="488.227">14 - Jardín Maternal A. Villaflor</tspan></text>
-      </g>
-      <g class="building-name" data-building-number="13" data-building-name="Oscar Varsavsky">
-        <rect class="background" x="1511" y="436" width="461" height="29" />
-        <text class="text" fill="#423E3F" xml:space="preserve"
-          style="white-space: pre" font-family="Inter" font-size="24" font-weight="bold"
-          letter-spacing="0em"><tspan x="1511" y="459.227">13 - Oscar Varsavsky</tspan></text>
-      </g>
-      <g class="building-name" data-building-number="12" data-building-name="Leonardo Wethein">
-        <rect class="background" x="1511" y="407" width="461" height="29" />
-        <text class="text" fill="#423E3F" xml:space="preserve"
-          style="white-space: pre" font-family="Inter" font-size="24" font-weight="bold"
-          letter-spacing="0em"><tspan x="1511" y="430.227">12 - Leonardo Wethein</tspan></text>
-      </g>
-      <g class="building-name" data-building-number="11" data-building-name="Irma Laciar de Carrica">
-        <rect class="background" x="1511" y="378" width="461" height="29" />
-        <text class="text" fill="#423E3F" xml:space="preserve"
-          style="white-space: pre" font-family="Inter" font-size="24" font-weight="bold"
-          letter-spacing="0em"><tspan x="1511" y="401.227">11 - Irma Laciar de Carrica</tspan></text>
-      </g>
-      <g class="building-name" data-building-number="10"
-        data-building-name="Campo de deportes Delfo Cabrera">
-        <rect class="background" x="1511" y="349" width="461" height="29" />
-        <text class="text" fill="#423E3F" xml:space="preserve"
-          style="white-space: pre" font-family="Inter" font-size="24" font-weight="bold"
-          letter-spacing="0em"><tspan x="1511" y="372.227">10 - Campo de deportes Delfo Cabrera</tspan></text>
-      </g>
-      <g class="building-name" data-building-number="9" data-building-name="Inadi">
-        <rect class="background" x="1511" y="320" width="461" height="29" />
-        <text class="text" fill="#423E3F" xml:space="preserve" style="white-space: pre"
-          font-family="Inter" font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="1511" y="343.227">9 - Inadi</tspan></text>
-      </g>
-      <g class="building-name" data-building-number="8" data-building-name="Juana Manso">
-        <rect class="background" x="1511" y="291" width="461" height="29" />
-        <text class="text" fill="#423E3F" xml:space="preserve" style="white-space: pre"
-          font-family="Inter" font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="1511" y="314.227">8 - Juana Manso</tspan></text>
-      </g>
-      <g class="building-name" data-building-number="7"
-        data-building-name="Quincho Roberto Fontanarrosa">
-        <rect class="background" x="1511" y="262" width="461" height="29" />
-        <text class="text" fill="#423E3F" xml:space="preserve"
-          style="white-space: pre" font-family="Inter" font-size="24" font-weight="bold"
-          letter-spacing="0em"><tspan x="1511" y="285.227">7 - Quincho Roberto Fontanarrosa</tspan></text>
-      </g>
-      <g class="building-name" data-building-number="6"
-        data-building-name="Gimnasio Comunitario Gatica">
-        <rect class="background" x="1511" y="233" width="461" height="29" />
-        <text class="text" fill="#423E3F" xml:space="preserve"
-          style="white-space: pre" font-family="Inter" font-size="24" font-weight="bold"
-          letter-spacing="0em"><tspan x="1511" y="256.227">6 - Gimnasio Comunitario Gatica</tspan></text>
-      </g>
-      <g class="building-name" data-building-number="5" data-building-name="Hernandez Arregui">
-        <rect class="background" x="1511" y="204" width="461" height="29" />
-        <text class="text" fill="#423E3F" xml:space="preserve"
-          style="white-space: pre" font-family="Inter" font-size="24" font-weight="bold"
-          letter-spacing="0em"><tspan x="1511" y="227.227">5 - Hernández Arregui</tspan></text>
-      </g>
-      <g class="building-name" data-building-number="4" data-building-name="Lola Mora">
-        <rect class="background" x="1511" y="175" width="461" height="29" />
-        <text class="text" fill="#423E3F" xml:space="preserve" style="white-space: pre"
-          font-family="Inter" font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="1511" y="198.227">4 - Lola Mora</tspan></text>
-      </g>
-      <g class="building-name" data-building-number="3"
-        data-building-name="Estudio de Grabaci&#243;n E.S. Disc&#233;polo">
-        <rect class="background" x="1511" y="146" width="461" height="29" />
-        <text class="text" fill="#423E3F" xml:space="preserve"
-          style="white-space: pre" font-family="Inter" font-size="24" font-weight="bold"
-          letter-spacing="0em"><tspan x="1511" y="169.227">3 - Estudio de Grabación E.S. Discépolo</tspan></text>
-      </g>
-      <g class="building-name" data-building-number="2"
-        data-building-name="Comedor Universitario Padre Mujica">
-        <rect class="background" x="1511" y="117" width="461" height="29" />
-        <text class="text" fill="#423E3F" xml:space="preserve"
-          style="white-space: pre" font-family="Inter" font-size="24" font-weight="bold"
-          letter-spacing="0em"><tspan x="1511" y="140.227">2 - Comedor Universitario Padre Mujica</tspan></text>
-      </g>
-      <g class="building-name" data-building-number="1"
-        data-building-name="Jos&#233; Hern&#225;ndez">
-        <rect class="background" x="1511" y="88" width="461" height="29" />
-        <text class="text" fill="#423E3F" xml:space="preserve"
-          style="white-space: pre" font-family="Inter" font-size="24" font-weight="bold"
-          letter-spacing="0em"><tspan x="1511" y="111.227">1 - José Hernández</tspan></text>
+      <g id="edificios">
+        <g class="svg-lugar-text" data-lugar-tipo="edificio" data-lugar-num="28"
+          data-lugar-nombre="N&#xe9;stor Kirchner">
+          <path d="M1909 728H1524V752H1909V728Z" />
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1524" y="747.273">28 - N&#xe9;stor Kirchner</tspan>
+          </text>
+        </g>
+        <g class="svg-lugar-text" data-lugar-tipo="edificio" data-lugar-num="27"
+          data-lugar-nombre="Pascual Contursi">
+          <path d="M1909 704H1524V728H1909V704Z" />
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1524" y="723.273">27 - Pascual Contursi</tspan>
+          </text>
+        </g>
+        <g class="svg-lugar-text" data-lugar-tipo="edificio" data-lugar-num="26"
+          data-lugar-nombre="Juana Azurduy">
+          <path d="M1909 680H1524V704H1909V680Z" />
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1524" y="699.273">26 - Juana Azurduy</tspan>
+          </text>
+        </g>
+        <g class="svg-lugar-text" data-lugar-tipo="edificio" data-lugar-num="25"
+          data-lugar-nombre="Leopoldo Marechal">
+          <path d="M1909 656H1524V680H1909V656Z" />
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1524" y="675.273">25 - Leopoldo Marechal</tspan>
+          </text>
+        </g>
+        <g class="svg-lugar-text" data-lugar-tipo="edificio" data-lugar-num="24"
+          data-lugar-nombre="Ortega Pe&#xf1;a">
+          <path d="M1909 632H1524V656H1909V632Z" />
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1524" y="651.273">24 - Ortega Pe&#xf1;a</tspan>
+          </text>
+        </g>
+        <g class="svg-lugar-text" data-lugar-tipo="edificio" data-lugar-num="23"
+          data-lugar-nombre="Homero Manzi">
+          <path d="M1909 608H1524V632H1909V608Z" />
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1524" y="627.273">23 - Homero Manzi</tspan>
+          </text>
+        </g>
+        <g class="svg-lugar-text" data-lugar-tipo="edificio" data-lugar-num="22"
+          data-lugar-nombre="Manuel Ugarte">
+          <path d="M1909 584H1524V608H1909V584Z" />
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1524" y="603.273">22 - Manuel Ugarte</tspan>
+          </text>
+        </g>
+        <g class="svg-lugar-text" data-lugar-tipo="edificio" data-lugar-num="21"
+          data-lugar-nombre="Arturo Jauretche">
+          <path d="M1909 560H1524V584H1909V560Z" />
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1524" y="579.273">21 - Arturo Jauretche</tspan>
+          </text>
+        </g>
+        <g class="svg-lugar-text" data-lugar-tipo="edificio" data-lugar-num="20"
+          data-lugar-nombre="Ra&#xfa;l Scalabrini Ortiz">
+          <path d="M1909 536H1524V560H1909V536Z" />
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1524" y="555.273">20 - Ra&#xfa;l Scalabrini Ortiz</tspan>
+          </text>
+        </g>
+        <g class="svg-lugar-text" data-lugar-tipo="edificio" data-lugar-num="19"
+          data-lugar-nombre="Macedonio Fern&#xe1;ndez">
+          <path d="M1909 512H1524V536H1909V512Z" />
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1524" y="531.273">19 - Macedonio Fern&#xe1;ndez</tspan>
+          </text>
+        </g>
+        <g class="svg-lugar-text" data-lugar-tipo="edificio" data-lugar-num="18"
+          data-lugar-nombre="Lisandro de la Torre">
+          <path d="M1909 488H1524V512H1909V488Z" />
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1524" y="507.273">18 - Lisandro de la Torre</tspan>
+          </text>
+        </g>
+        <g class="svg-lugar-text" data-lugar-tipo="edificio" data-lugar-num="17"
+          data-lugar-nombre="Casa del Estudiante">
+          <path d="M1909 464H1524V488H1909V464Z" />
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1524" y="483.273">17 - Casa del Estudiante</tspan>
+          </text>
+        </g>
+        <g class="svg-lugar-text" data-lugar-tipo="edificio" data-lugar-num="16"
+          data-lugar-nombre="Cine Tita Merello">
+          <path d="M1909 440H1524V464H1909V440Z" />
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1524" y="459.273">16 - Cine Tita Merello</tspan>
+          </text>
+        </g>
+        <g class="svg-lugar-text" data-lugar-tipo="edificio" data-lugar-num="15"
+          data-lugar-nombre="H&#xe9;ctor Oesterheld">
+          <path d="M1909 416H1524V440H1909V416Z" />
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1524" y="435.273">15 - H&#xe9;ctor Oesterheld</tspan>
+          </text>
+        </g>
+        <g class="svg-lugar-text" data-lugar-tipo="edificio" data-lugar-num="14"
+          data-lugar-nombre="Jard&#xed;n Maternal A. Villaflor">
+          <path d="M1909 392H1524V416H1909V392Z" />
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1524" y="411.273">14 - Jard&#xed;n Maternal A. Villaflor</tspan>
+          </text>
+        </g>
+        <g class="svg-lugar-text" data-lugar-tipo="edificio" data-lugar-num="13"
+          data-lugar-nombre="Oscar Varsavsky">
+          <path d="M1909 368H1524V392H1909V368Z" />
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1524" y="387.273">13 - Oscar Varsavsky</tspan>
+          </text>
+        </g>
+        <g class="svg-lugar-text" data-lugar-tipo="edificio" data-lugar-num="12"
+          data-lugar-nombre="Leonardo Wethein">
+          <path d="M1909 344H1524V368H1909V344Z" />
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1524" y="363.273">12 - Leonardo Wethein</tspan>
+          </text>
+        </g>
+        <g class="svg-lugar-text" data-lugar-tipo="edificio" data-lugar-num="11"
+          data-lugar-nombre="Irma Laciar de Carrica">
+          <path d="M1909 320H1524V344H1909V320Z" />
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1524" y="339.273">11 - Irma Laciar de Carrica</tspan>
+          </text>
+        </g>
+        <g class="svg-lugar-text" data-lugar-tipo="edificio" data-lugar-num="10"
+          data-lugar-nombre="Campo de deportes Delfo Cabrera">
+          <path d="M1909 296H1524V320H1909V296Z" />
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1524" y="315.273">10 - Campo de deportes Delfo Cabrera</tspan>
+          </text>
+        </g>
+        <g class="svg-lugar-text" data-lugar-tipo="edificio" data-lugar-num="9"
+          data-lugar-nombre="Inadi">
+          <path d="M1909 272H1524V296H1909V272Z" />
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1524" y="291.273">9 - Inadi</tspan>
+          </text>
+        </g>
+        <g class="svg-lugar-text" data-lugar-tipo="edificio" data-lugar-num="8"
+          data-lugar-nombre="Juana Manso">
+          <path d="M1909 248H1524V272H1909V248Z" />
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1524" y="267.273">8 - Juana Manso</tspan>
+          </text>
+        </g>
+        <g class="svg-lugar-text" data-lugar-tipo="edificio" data-lugar-num="7"
+          data-lugar-nombre="Quincho Roberto Fontanarrosa">
+          <path d="M1909 224H1524V248H1909V224Z" />
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1524" y="243.273">7 - Quincho Roberto Fontanarrosa</tspan>
+          </text>
+        </g>
+        <g class="svg-lugar-text" data-lugar-tipo="edificio" data-lugar-num="6"
+          data-lugar-nombre="Gimnasio Comunitario Gatica">
+          <path d="M1909 200H1524V224H1909V200Z" />
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1524" y="219.273">6 - Gimnasio Comunitario Gatica</tspan>
+          </text>
+        </g>
+        <g class="svg-lugar-text" data-lugar-tipo="edificio" data-lugar-num="5"
+          data-lugar-nombre="Hern&#xe1;ndez Arregui">
+          <path d="M1909 176H1524V200H1909V176Z" />
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1524" y="195.273">5 - Hern&#xe1;ndez Arregui</tspan>
+          </text>
+        </g>
+        <g class="svg-lugar-text" data-lugar-tipo="edificio" data-lugar-num="4"
+          data-lugar-nombre="Lola Mora">
+          <path d="M1909 152H1524V176H1909V152Z" />
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1524" y="171.273">4 - Lola Mora</tspan>
+          </text>
+        </g>
+        <g class="svg-lugar-text" data-lugar-tipo="edificio" data-lugar-num="3"
+          data-lugar-nombre="Estudio de Grabaci&#xf3;n E.S. Disc&#xe9;polo">
+          <path d="M1909 128H1524V152H1909V128Z" />
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1524" y="147.273">3 - Estudio de Grabaci&#xf3;n E.S. Disc&#xe9;polo</tspan>
+          </text>
+        </g>
+        <g class="svg-lugar-text" data-lugar-tipo="edificio" data-lugar-num="2"
+          data-lugar-nombre="Comedor Universitario Padre Mujica">
+          <path d="M1909 104H1524V128H1909V104Z" />
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1524" y="123.273">2 - Comedor Universitario Padre Mujica</tspan>
+          </text>
+        </g>
+        <g class="svg-lugar-text" data-lugar-tipo="edificio" data-lugar-num="1"
+          data-lugar-nombre="Jos&#xe9; Hern&#xe1;ndez">
+          <path d="M1909 80H1524V104H1909V80Z" />
+          <text fill="#423E3F" font-family="sans-serif" font-size="20" font-weight="bold">
+            <tspan x="1524" y="99.2727">1 - Jos&#xe9; Hern&#xe1;ndez</tspan>
+          </text>
+        </g>
+        <text fill="#423E3F" font-family="sans-serif" font-size="24" font-weight="bold">
+          <tspan x="1524" y="66.2273">Edificios:</tspan>
+        </text>
       </g>
     </g>
     <g id="flechas">
-      <path d="M595.5 66.5H571.5L583.5 51.5L595.5 66.5Z" fill="#BA0822" />
-      <path d="M595.5 73.5H571.5L583.5 88.5L595.5 73.5Z" fill="#BA0822" />
-      <path d="M1242.5 62.5L1257.5 77.5L1270.5 62.5H1242.5Z" fill="#BA0822" />
-      <path d="M678.5 970.5L651.5 973.5L662.5 958.5L678.5 970.5Z" fill="#BA0822" />
-      <path d="M135.5 680.5L138.5 656.5L122.5 666.5L135.5 680.5Z" fill="#BA0822" />
+      <path id="Vector" d="M595.5 66.5H571.5L583.5 51.5L595.5 66.5Z" fill="#BA0822" />
+      <path id="Vector_2" d="M595.5 73.5H571.5L583.5 88.5L595.5 73.5Z" fill="#BA0822" />
+      <path id="Vector_3" d="M1242.5 62.5L1257.5 77.5L1270.5 62.5H1242.5Z" fill="#BA0822" />
+      <path id="Vector_4" d="M678.5 970.5L651.5 973.5L662.5 958.5L678.5 970.5Z" fill="#BA0822" />
+      <path id="Vector_5" d="M135.5 680.5L138.5 656.5L122.5 666.5L135.5 680.5Z" fill="#BA0822" />
     </g>
     <g id="nombres-de-las-calles">
-      <text id="calle-pablo-nogues" fill="#423E3F" xml:space="preserve" style="white-space: pre"
-        font-family="Inter" font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="273.285" y="63.2273">Calle Pablo Nogués</tspan></text>
-      <text id="calle-malabia" fill="#423E3F" xml:space="preserve" style="white-space: pre"
-        font-family="Inter" font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="30.4688" y="769.227">Malabia</tspan></text>
-      <text id="calle-av-29-septiembre" fill="#423E3F" xml:space="preserve" style="white-space: pre"
-        font-family="Inter" font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="744.359" y="984.227">Av. 29 de Septiembre</tspan></text>
+      <text id="calle-pablo-nogues" fill="#423E3F"
+        font-family="sans-serif" font-size="24" font-weight="bold">
+        <tspan x="273.285" y="62.4546">Calle Pablo Nogu&#xe9;s</tspan>
+      </text>
+      <text id="calle-malabia" fill="#423E3F"
+        font-family="sans-serif" font-size="24" font-weight="bold">
+        <tspan x="30.4688" y="768.454">Malabia</tspan>
+      </text>
+      <text id="calle-av-29-septiembre" fill="#423E3F"
+        font-family="sans-serif" font-size="24" font-weight="bold"
+      >
+        <tspan x="744.359" y="983.454">Av. 29 de Septiembre</tspan>
+      </text>
     </g>
     <g id="rosa-de-los-vientos">
       <path id="Ejes"
-        d="M94.5 406.5H116M180.5 406.5H159M137.5 406.5H159M137.5 406.5H116M137.5 406.5V385.5M137.5 406.5V427.5M137.5 364.5V385.5M137.5 448.5V427.5M159 406.5C159 389.7 144.667 385.5 137.5 385.5M159 406.5C159 413.5 154.7 427.5 137.5 427.5M116 406.5C116 399.5 120.3 385.5 137.5 385.5M116 406.5C116 423.3 130.333 427.5 137.5 427.5M137.5 385.5V427.5"
-        stroke="black" stroke-width="3" />
-      <text id="O" fill="#423E3F" xml:space="preserve" style="white-space: pre" font-family="Inter"
-        font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="128" y="356.227">O</tspan></text>
-      <text id="E" fill="#423E3F" xml:space="preserve" style="white-space: pre" font-family="Inter"
-        font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="130" y="475.227">E</tspan></text>
-      <text id="S" fill="#423E3F" xml:space="preserve" style="white-space: pre" font-family="Inter"
-        font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="70" y="416.227">S</tspan></text>
-      <text id="N" fill="#423E3F" xml:space="preserve" style="white-space: pre" font-family="Inter"
-        font-size="24" font-weight="bold" letter-spacing="0em"><tspan x="188" y="416.227">N</tspan></text>
+        d="M94.5 406.5H116M116 406.5H137.5M116 406.5C116 399.5 120.3 385.5 137.5 385.5M116 406.5C116 423.3 130.333 427.5 137.5 427.5M180.5 406.5H159M159 406.5H137.5M159 406.5C159 389.7 144.667 385.5 137.5 385.5M159 406.5C159 413.5 154.7 427.5 137.5 427.5M137.5 406.5V385.5M137.5 406.5V427.5M137.5 385.5V364.5M137.5 385.5V427.5M137.5 427.5V448.5"
+        stroke-width="3" />
+      <text id="O" fill="#423E3F"
+        font-family="sans-serif" font-size="24" font-weight="bold">
+        <tspan x="128" y="355.454">O</tspan>
+      </text>
+      <text id="E" fill="#423E3F"
+        font-family="sans-serif" font-size="24" font-weight="bold">
+        <tspan x="130" y="474.454">E</tspan>
+      </text>
+      <text id="S" fill="#423E3F"
+        font-family="sans-serif" font-size="24" font-weight="bold">
+        <tspan x="70" y="415.454">S</tspan>
+      </text>
+      <text id="N" fill="#423E3F"
+        font-family="sans-serif" font-size="24" font-weight="bold">
+        <tspan x="188" y="415.454">N</tspan>
+      </text>
     </g>
   </g>
 </svg>

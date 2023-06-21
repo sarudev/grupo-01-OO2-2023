@@ -45,39 +45,87 @@
     width: min(1200px, 100%);
     height: max-content;
 
-    .building {
-      &.selected .background[data-invisible] {
-        stroke: cornflowerblue;
+    .svg-lugar {
+      &[data-lugar-tipo="edificio"] {
+        &.selected .background[data-invisible] {
+          stroke: cornflowerblue;
+        }
+
+        .background {
+          fill: #423E3F;
+
+          &:hover {
+            stroke: cornflowerblue;
+          }
+        }
+      }
+
+      &[data-lugar-tipo="espacio verde"] {
+        &.selected .background[data-invisible] {
+          stroke: #67aa78;
+        }
+
+        .background {
+          fill: #b3dfbe;
+
+          &:hover {
+            stroke: #67aa78;
+          }
+        }
+      }
+
+      &[data-lugar-tipo="parking"] {
+        &.selected .background[data-invisible] {
+          stroke: #8b8b8b;
+        }
+
+        .background {
+          fill: #d4d4d488;
+
+          &:hover {
+            stroke: #8b8b8b;
+          }
+        }
+      }
+
+      &[data-lugar-tipo="espacio verde"],
+      &[data-lugar-tipo="parking"] {
+        .num {
+          fill: #423E3F;
+        }
       }
 
       .background {
-        fill: #423E3F;
         stroke: transparent;
         stroke-width: 5px;
         transition: stroke .25s ease;
         cursor: pointer;
 
-        &:hover {
-          stroke: cornflowerblue;
+        & ~ .num {
+          user-select: none;
         }
 
         &[data-invisible] {
           fill: black;
           fill-opacity: 0;
 
-          & + .num {
+          & ~ .num {
             fill: #423E3F;
           }
         }
       }
 
-      &[data-building-number="10"] .background {
-        fill: #9D9AA1;
-      }
-
-      &[data-building-number="29"] .background {
+      &[data-lugar-num="-1"] .background {
         stroke: transparent;
         cursor: default;
+
+        &:hover {
+          stroke: transparent;
+        }
+      }
+
+      &[data-lugar-num="10"] .background {
+        fill: #9D9AA1;
       }
 
       .canchas,
@@ -90,11 +138,35 @@
       }
     }
 
-    .building-name {
+    .svg-lugar-text {
       cursor: pointer;
 
+      &[data-lugar-tipo="edificio"] > text {
+
+        &.selected,
+        &:hover {
+          fill: cornflowerblue;
+        }
+      }
+
+      &[data-lugar-tipo="espacio verde"] > text {
+
+        &.selected,
+        &:hover {
+          fill: #67aa78;
+        }
+      }
+
+      &[data-lugar-tipo="parking"] > text {
+
+        &.selected,
+        &:hover {
+          fill: #8b8b8b;
+        }
+      }
+
       &:hover {
-        .text {
+        text {
           fill: cornflowerblue;
         }
       }
@@ -104,7 +176,7 @@
         fill-opacity: 0;
       }
 
-      .text {
+      text {
         fill: #423E3F;
         stroke: cornflowerblue;
         stroke-width: 0px;

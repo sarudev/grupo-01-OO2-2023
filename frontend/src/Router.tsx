@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom'
 import Index from './pages/Index'
-import NotFound from './pages/NotFound'
+import Status from './pages/Status'
 import Login from './pages/Login'
 import Lugar from './pages/Lugar'
 import loader from './pages/router/loader'
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
   },
   {
     path: '*',
-    element: <NotFound />
+    element: <Status code={404} goto='/' gotoMessage='Volver al campus' statusMessage='Página no encontrada' />
   }
 ])
 

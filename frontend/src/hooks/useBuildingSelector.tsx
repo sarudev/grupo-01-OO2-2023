@@ -3,23 +3,23 @@ import { getBuildingDataset } from '../utils/utils'
 
 export default function useBuildingSelector () {
   useEffect(() => {
-    const svgs = document.querySelectorAll('.building')
-    const svgtext = (buildingNumber: string) => document.querySelector(`.building-name[data-building-number="${buildingNumber}"]>.text`)
+    const svgs = document.querySelectorAll('.svg-lugar')
+    const svgtext = (buildingNumber: string) => document.querySelector(`.svg-lugar-text[data-lugar-num="${buildingNumber}"]>text`)
 
     function mouseEnter (e: Event) {
       const { dataset } = getBuildingDataset(e)
-      if (dataset.buildingName === 'N/A') return
+      if (dataset.lugarNombre === '') return
 
-      const text = svgtext(dataset.buildingNumber)!
+      const text = svgtext(dataset.lugarNum)!
 
       text.classList.add('selected')
     }
 
     function mouseLeave (e: Event) {
       const { dataset } = getBuildingDataset(e)
-      if (dataset.buildingName === 'N/A') return
+      if (dataset.lugarNombre === '') return
 
-      const text = svgtext(dataset.buildingNumber)!
+      const text = svgtext(dataset.lugarNum)!
 
       text.classList.remove('selected')
     }

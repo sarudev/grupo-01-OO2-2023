@@ -38,9 +38,8 @@ export default function AddLugar ({ lugar }: { lugar: Lugares }) {
         const dependencias = isEdificio(data) ? data.aulas : isParking(data) ? data.estacionamientos : null
         dispatch(setDependencias(dependencias))
         dispatch(closeModal())
-      } catch (e: any) {
-        console.log(e)
-        setError(`Ya existe un ${lugar.tipo} con ese nombre. `)
+      } catch (e: unknown) {
+        setError(`Ya existe un ${dependenciaTipo} con ese nombre. `)
       }
     }
 

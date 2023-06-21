@@ -6,14 +6,14 @@ export default function useBuildingNavigation () {
   const navigate = useNavigate()
 
   useEffect(() => {
-    const buildings = document.querySelectorAll('.building')
-    const texts = document.querySelectorAll('.building-name')
+    const buildings = document.querySelectorAll('.svg-lugar')
+    const texts = document.querySelectorAll('.svg-lugar-text')
 
     function click (e: Event) {
       const { dataset } = getBuildingDataset(e)
-      if (dataset.buildingName === 'N/A') return
+      if (dataset.lugarNombre === '') return
 
-      navigate(`/edificio/${dataset.buildingName.replaceAll(' ', '-')}`)
+      navigate(`/${dataset.lugarTipo.replace(' ', '').replace('v', 'V')}/${dataset.lugarNombre.replaceAll(' ', '-')}`)
     }
 
     for (const building of buildings) {

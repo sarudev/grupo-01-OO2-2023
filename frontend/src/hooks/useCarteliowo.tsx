@@ -3,20 +3,20 @@ import { getBuildingDataset } from '../utils/utils'
 
 export default function useCartelitowo (cartelitoId: string, setCurrentBuilding: React.Dispatch<React.SetStateAction<string>>) {
   useLayoutEffect(() => {
-    const svgs = document.querySelectorAll('.building')
+    const svgs = document.querySelectorAll('.svg-lugar')
     const cartelitowo = document.querySelector(`#${cartelitoId}`) as HTMLDivElement
 
     function mouseEnter (e: Event) {
       const { dataset } = getBuildingDataset(e)
-      if (dataset.buildingName === 'N/A') return
+      if (dataset.lugarNombre === '') return
 
-      setCurrentBuilding(dataset.buildingName)
+      setCurrentBuilding(dataset.lugarNombre)
       cartelitowo.classList.add('visible')
     }
 
     function mouseLeave (e: Event) {
       const { dataset } = getBuildingDataset(e)
-      if (dataset.buildingName === 'N/A') return
+      if (dataset.lugarNombre === '') return
 
       cartelitowo.classList.remove('visible')
     }
@@ -25,7 +25,7 @@ export default function useCartelitowo (cartelitoId: string, setCurrentBuilding:
       const e = event as MouseEvent
 
       const { dataset } = getBuildingDataset(e)
-      if (dataset.buildingName === 'N/A') return
+      if (dataset.lugarNombre === '') return
 
       const { pageX: x, pageY: y } = e
 

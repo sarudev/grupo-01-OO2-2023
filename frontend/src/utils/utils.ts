@@ -1,9 +1,15 @@
 import { ILugarTipo, Routes } from '../types/enums'
 import { type Lugares } from '../types/types'
 
+interface LugarDataset {
+  lugarTipo: string
+  lugarNum: string
+  lugarNombre: string
+}
+
 export function getBuildingDataset (e: Event) {
   const elem = e.currentTarget as SVGGElement
-  const dataset = elem.dataset as { buildingName: string, buildingNumber: string }
+  const dataset = elem.dataset as unknown as LugarDataset
 
   return {
     elem,
