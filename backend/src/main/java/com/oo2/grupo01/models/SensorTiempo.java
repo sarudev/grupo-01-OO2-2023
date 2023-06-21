@@ -4,9 +4,9 @@ import java.time.LocalTime;
 
 import com.oo2.grupo01.entities.Sensor;
 
-import lombok.ToString;
+import lombok.Getter;
 
-@ToString
+@Getter
 public class SensorTiempo extends Sensor {
 
 	private LocalTime horaActual;
@@ -25,4 +25,9 @@ public class SensorTiempo extends Sensor {
 		return horaActual.isAfter(comienzaDia) && horaActual.isBefore(comienzaNoche);
 	}
 
+	@Override
+	public String toString() {
+		return "hayLuzSolar=" + hayLuzSolar;
+	}
+	
 }

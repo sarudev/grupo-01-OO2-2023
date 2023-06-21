@@ -10,7 +10,7 @@ import com.oo2.grupo01.models.SensorTiempo;
 import lombok.Getter;
 
 @Getter
-public class EdificioDTO extends GenericDTO<Edificio> {
+public class EdificioDTO extends GenericDTO {
 	private String nombre;
 	private Boolean luces;
 	private List<AulaDTO> aulas;
@@ -22,7 +22,12 @@ public class EdificioDTO extends GenericDTO<Edificio> {
 		this.aulas = AulaMapeos.toDtoList(edificio.getAulas());
 
 		this.luces = null;
+		this.registros = null;
 
+	}
+
+	@Override
+	public void inicializarVariables() {
 		for (var sensor : sensores) {
 			if (sensor.isActivo()) {
 
@@ -31,7 +36,7 @@ public class EdificioDTO extends GenericDTO<Edificio> {
 					SensorTiempo s = (SensorTiempo) Util.convertirSensor(sensor);
 					luces = s.hayLuzSolar();
 					break;
-				
+
 				default:
 					break;
 
@@ -40,4 +45,5 @@ public class EdificioDTO extends GenericDTO<Edificio> {
 			}
 		}
 	}
+
 }

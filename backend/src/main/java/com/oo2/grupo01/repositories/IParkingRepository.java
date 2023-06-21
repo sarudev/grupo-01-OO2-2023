@@ -13,10 +13,12 @@ public interface IParkingRepository extends JpaRepository<Parking, Long> {
 	
 	//implementar query que traiga el parking con los estacionamientos
 	// y los sensores del parking y de cada estacionamiento
-	@Query(value = "SELECT * FROM Parking p WHERE p.ubicacion=?1", nativeQuery = true)
-	public Optional<Parking> traerPorUbicacion(String ubicacion);
-	
-	
-	public Optional<Parking> findByUbicacion(String ubicacion);
+	@Query("FROM Parking p "
+			+ "inner join fetch p.estacionamientos e "
+			+ "inner join fetch p.sensores s "
+			+ "inner join fetch e.sensores "
+			+ "inner join fetch s.registros "
+			+ "WHERE p.idLugar=?1")
+	public Optional<Parking> traerConDependencias(Long idLugar);
 	
 }

@@ -8,7 +8,7 @@ import com.oo2.grupo01.models.SensorTiempo;
 import lombok.Getter;
 
 @Getter
-public class EspacioVerdeDTO extends GenericDTO<EspacioVerde> {
+public class EspacioVerdeDTO extends GenericDTO {
 	private String ubicacion;
 	private Double humedad;
 	private Boolean luces;
@@ -21,6 +21,12 @@ public class EspacioVerdeDTO extends GenericDTO<EspacioVerde> {
 		this.humedad = null;
 		this.luces = null;
 		this.aspersoresEncendidos = null;
+		this.registros = null;
+
+	}
+
+	@Override
+	public void inicializarVariables() {
 		for (var sensor : sensores) {
 			if (sensor.isActivo()) {
 				switch (sensor.getTipo()) {
@@ -42,4 +48,5 @@ public class EspacioVerdeDTO extends GenericDTO<EspacioVerde> {
 			}
 		}
 	}
+
 }

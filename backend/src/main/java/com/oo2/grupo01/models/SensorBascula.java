@@ -2,17 +2,19 @@ package com.oo2.grupo01.models;
 
 import com.oo2.grupo01.entities.Sensor;
 
-import lombok.ToString;
+import lombok.Getter;
 
-@ToString
+@Getter
 public class SensorBascula extends Sensor {
 
-	public final static double pesoLimite = 300;
+	private final static double pesoLimite = 300;
 	private double pesoActual;
+	private boolean superoLimite;
 	
 	public SensorBascula(Sensor sensor) {
 		super(sensor);
 		pesoActual = pesoActual();
+		superoLimite = superoLimite();
 	}
 
 	public double pesoActual() {
@@ -23,4 +25,11 @@ public class SensorBascula extends Sensor {
 		return pesoActual >= pesoLimite;
 	}
 
+	@Override
+	public String toString() {
+		return "pesoActual=" + pesoActual + ", superoLimite=" + superoLimite;
+	}
+
+	
+	
 }
