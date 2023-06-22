@@ -1,18 +1,14 @@
-package com.oo2.grupo01.controllers;
+package com.oo2.grupo01.controllers.account;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 
-@RestController
-@RequestMapping("/logout")
-public class LogoutController {
-  @GetMapping
+@Component
+public class AccountLogout {
   public ResponseEntity<?> logout(@CookieValue(value = "JWT", required = false) Cookie jwtCookie,
       HttpServletResponse response) {
     if (jwtCookie != null) {

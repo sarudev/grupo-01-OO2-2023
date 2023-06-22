@@ -37,6 +37,8 @@ public class UserData {
       return 1;
     if (role.toLowerCase().equals("user"))
       return 0;
+    if (role.toLowerCase().equals(""))
+      return -1;
     return null;
   }
 }

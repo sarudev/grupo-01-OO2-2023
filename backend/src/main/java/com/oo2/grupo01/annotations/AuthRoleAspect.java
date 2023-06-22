@@ -24,40 +24,41 @@ public class AuthRoleAspect {
 
   @Around("authRoleAnnotation()")
   public Object logAuthRoleAccess(ProceedingJoinPoint joinPoint) throws Throwable {
-    // Obtener el argumento jwtCookie desde la anotación @CookieValue
-    String jwtCookieValue = null;
-    Object[] args = joinPoint.getArgs();
-    for (Object arg : args) {
-      if (arg instanceof Cookie) {
-        Cookie cookie = (Cookie) arg;
-        if (cookie.getName().equals("JWT")) {
-          jwtCookieValue = cookie.getValue();
-          break;
-        }
-      }
-    }
-
-    // Verificar si el valor del jwtCookie está presente
-    if (jwtCookieValue == null) {
-      // Devolver una respuesta de error y detener la ejecución del endpoint
-      return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-          .body("{\"error\":\"Token missing\"}");
-    }
-
-    var userData = UserData.toMap(UserData.decodeJWTpayload(jwtCookieValue));
-    var jwtRole = UserData.roleToValue((String) userData.get("role"));
     var annRole = UserData.roleToValue(getAnnotationRole(joinPoint));
 
-    if (jwtRole == null) {
-      return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-          .body("{\"error\":\"Invalid token\"}");
-    }
+    if (annRole > -1) {
+      // Obtener el argumento jwtCookie desde la anotación @CookieValue
+      String jwtCookieValue = null;
+      Object[] args = joinPoint.getArgs();
+      for (Object arg : args) {
+        if (arg instanceof Cookie) {
+          Cookie cookie = (Cookie) arg;
+          if (cookie.getName().equals("JWT")) {
+            jwtCookieValue = cookie.getValue();
+            break;
+          }
+        }
+      }
 
-    if (jwtRole < annRole) {
-      System.out.println(jwtRole);
-      System.out.println(annRole);
-      return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-          .body("{\"error\":\"Permission missing\"}");
+      // Verificar si el valor del jwtCookie está presente
+      if (jwtCookieValue == null || jwtCookieValue.equals("")) {
+        // Devolver una respuesta de error y detener la ejecución del endpoint
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+            .body("{\"error\":\"Token missing\"}");
+      }
+
+      var userData = UserData.toMap(UserData.decodeJWTpayload(jwtCookieValue));
+      var jwtRole = UserData.roleToValue((String) userData.get("role"));
+
+      if (jwtRole == null) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+            .body("{\"error\":\"Invalid token\"}");
+      }
+
+      if (jwtRole < annRole) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+            .body("{\"error\":\"Permission missing\"}");
+      }
     }
 
     // Continuar con la ejecución del método anotado

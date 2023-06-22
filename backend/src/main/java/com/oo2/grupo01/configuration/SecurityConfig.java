@@ -40,14 +40,6 @@ public class SecurityConfig {
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http.authorizeHttpRequests().anyRequest().permitAll()
-        // .requestMatchers(HttpMethod.POST, "/account/login").permitAll()
-        // .requestMatchers(HttpMethod.GET,
-        // "/account/userData").hasAnyAuthority("ADMIN", "USER")
-        // // .hasAnyAuthority(UserRole.USER, UserRole.ADMIN)
-        // .requestMatchers(HttpMethod.GET, "/account/logout").permitAll()
-        // .requestMatchers(HttpMethod.POST).hasAuthority(UserRole.ADMIN.toString())
-        // .requestMatchers(HttpMethod.GET).hasAnyAuthority(UserRole.USER.toString(),
-        // UserRole.ADMIN.toString())
         .and().csrf().disable().cors();
     return http.build();
   }

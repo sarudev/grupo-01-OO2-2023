@@ -1,28 +1,23 @@
-package com.oo2.grupo01.controllers;
+package com.oo2.grupo01.controllers.account;
 
 import jakarta.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.oo2.grupo01.entities.User;
 import com.oo2.grupo01.services.implementacion.UserService;
 
-@RestController
-public class LoginController {
+@Component
+public class AccountLogin {
+  @Autowired
+  private UserService userService;
 
-  private final UserService userService;
-
-  public LoginController(UserService userService) {
-    this.userService = userService;
-  }
-
-  @PostMapping("/login")
   public ResponseEntity<?> login(@RequestBody User user, HttpServletResponse response) {
     String username = user.getUsername();
     String password = user.getPassword();

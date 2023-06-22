@@ -5,8 +5,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.oo2.grupo01.annotations.AuthRole;
+import com.oo2.grupo01.controllers.account.AccountLogin;
+import com.oo2.grupo01.controllers.account.AccountLogout;
+import com.oo2.grupo01.controllers.account.AccountUserData;
 import com.oo2.grupo01.entities.User;
-import com.oo2.grupo01.models.UserData;
 
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -17,31 +19,30 @@ import jakarta.servlet.http.HttpServletRequest;
 @RestController
 @RequestMapping("/account")
 public class AccountController {
+  @Autowired
+  private AccountLogin login;
 
   @Autowired
-  private LoginController loginController;
+  private AccountLogout logout;
 
   @Autowired
-  private LogoutController logoutController;
+  private AccountUserData userData;
 
   @PostMapping("/login")
   public ResponseEntity<?> login(@RequestBody User user, HttpServletResponse response) {
-    return loginController.login(user, response);
+    return login.login(user, response);
   }
 
   @AuthRole("user")
   @GetMapping("/userData")
   public ResponseEntity<?> userData(@CookieValue(value = "JWT", required = false) Cookie jwtCookie,
       HttpServletResponse response, HttpServletRequest request) throws Exception {
-    var payload = UserData.toMap(UserData.decodeJWTpayload(jwtCookie.getValue()));
-
-    return ResponseEntity.ok(payload);
+    return userData.userData(jwtCookie, response, request);
   }
 
   @GetMapping("/logout")
   public ResponseEntity<?> logout(@CookieValue(value = "JWT", required = false) Cookie jwtCookie,
       HttpServletResponse response) {
-    return logoutController.logout(jwtCookie, response);
+    return logout.logout(jwtCookie, response);
   }
-
 }
