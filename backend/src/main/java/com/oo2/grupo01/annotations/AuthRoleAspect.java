@@ -50,7 +50,7 @@ public class AuthRoleAspect {
 
     if (jwtRole == null) {
       return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-          .body("{\"error\":\"Invalid missing\"}");
+          .body("{\"error\":\"Invalid token\"}");
     }
 
     if (jwtRole < annRole) {
