@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,8 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-
-import com.oo2.grupo01.entities.UserRole;
 import com.oo2.grupo01.services.implementacion.UserService;
 
 @Configuration
@@ -42,13 +39,16 @@ public class SecurityConfig {
 
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    http.authorizeHttpRequests()
-    .requestMatchers(HttpMethod.POST, "/login").permitAll()
-    .requestMatchers(HttpMethod.GET, "/logout").permitAll()
-    .requestMatchers(HttpMethod.POST).hasAuthority(UserRole.ADMIN.name())
-    .requestMatchers(HttpMethod.GET).hasAnyAuthority(UserRole.USER.name(),UserRole.ADMIN.name())
-    .and()
-    .csrf().disable();
+    http.authorizeHttpRequests().anyRequest().permitAll()
+        // .requestMatchers(HttpMethod.POST, "/account/login").permitAll()
+        // .requestMatchers(HttpMethod.GET,
+        // "/account/userData").hasAnyAuthority("ADMIN", "USER")
+        // // .hasAnyAuthority(UserRole.USER, UserRole.ADMIN)
+        // .requestMatchers(HttpMethod.GET, "/account/logout").permitAll()
+        // .requestMatchers(HttpMethod.POST).hasAuthority(UserRole.ADMIN.toString())
+        // .requestMatchers(HttpMethod.GET).hasAnyAuthority(UserRole.USER.toString(),
+        // UserRole.ADMIN.toString())
+        .and().csrf().disable().cors();
     return http.build();
   }
 
