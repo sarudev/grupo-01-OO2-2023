@@ -1,10 +1,11 @@
 package com.oo2.grupo01.services;
 
-public interface IGenericService<T, TDTO> {
-  
-  public T traerConDependencias(Long id);
-  
-  public T traer(Long id);
+import java.util.List;
 
-  public void eliminar(Long id);
+public interface IGenericService<T, TDTO> {
+  public TDTO toDto(T lugar);
+
+  public List<TDTO> toTdoList(List<T> lugares);
+
+  public List<T> getAll();
 }

@@ -22,11 +22,11 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 public class Aula extends Lugar {
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "id_edificio")
+  @JoinColumn(name = "idEdificio")
   private Edificio lugar;
 
-  public Aula(Lugares tipo, Edificio lugar, String nombre) {
-    super(tipo, nombre);
+  public Aula(Edificio lugar, String nombre) {
+    super(Lugares.aula, nombre);
     this.lugar = lugar;
   }
 }

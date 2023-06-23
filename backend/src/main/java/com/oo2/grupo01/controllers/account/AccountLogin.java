@@ -4,13 +4,12 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.oo2.grupo01.Utils.JWT;
 import com.oo2.grupo01.entities.User;
 import com.oo2.grupo01.services.implementacion.UserService;
 
@@ -29,7 +28,7 @@ public class AccountLogin {
       return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
     }
 
-    String token = userService.generateToken(storedUser);
+    String token = JWT.generateToken(storedUser);
 
     Cookie jwtCookie = new Cookie("JWT", token);
     jwtCookie.setHttpOnly(true);

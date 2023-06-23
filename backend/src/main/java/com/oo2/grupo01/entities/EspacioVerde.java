@@ -20,7 +20,7 @@ import lombok.ToString;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 public class EspacioVerde extends Lugar {
-  public EspacioVerde(Lugares tipo, String ubicacion) {
-    super(tipo, ubicacion);
+  public EspacioVerde(String ubicacion) {
+    super(Lugares.espacioVerde, ubicacion);
   }
 }

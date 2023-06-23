@@ -6,8 +6,6 @@ import org.springframework.stereotype.Service;
 
 import com.oo2.grupo01.dto.ParkingDTO;
 import com.oo2.grupo01.entities.Parking;
-import com.oo2.grupo01.entities.enums.Lugares;
-import com.oo2.grupo01.mapeos.ParkingMapeo;
 import com.oo2.grupo01.repositories.IParkingRepository;
 import com.oo2.grupo01.services.IParkingService;
 
@@ -18,31 +16,26 @@ import lombok.AllArgsConstructor;
 public class ParkingService implements IParkingService {
   private IParkingRepository repository;
 
-  public void agregar(Lugares lugar, String ubicacion) {
-    if (ubicacion != null) {
-      repository.save(new Parking(lugar, ubicacion));
-    }
+  @Override
+  public void add(String nombre) {
+    repository.save(new Parking(nombre));
   }
 
   @Override
-  public void eliminar(Long id) {
-    repository.deleteById(id);
+  public List<Parking> getAll() {
+    return repository.findAll();
   }
 
   @Override
-  public Parking traerConDependencias(Long id) {
-    Parking parking = repository.traerConDependencias(id).orElse(null);
-    return parking;
+  public Parking get(String nombre) {
+    return repository.findByName(nombre);
   }
 
-  @Override
-  public List<ParkingDTO> traerTodos() {
-    // TODO Auto-generated method stub
-    return ParkingMapeo.toDtoList(repository.findAll());
+  public ParkingDTO toDto(Parking parking) {
+    return new ParkingDTO(parking);
   }
 
-  @Override
-  public Parking traer(Long id) {
-    return repository.findById(id).orElse(null);
+  public List<ParkingDTO> toTdoList(List<Parking> lugares) {
+    return lugares.stream().map(l -> new ParkingDTO(l)).toList();
   }
 }

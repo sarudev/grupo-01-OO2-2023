@@ -26,19 +26,19 @@ public abstract class LugarDTO {
 
     for (var sensor : sensores) {
       switch (sensor.getTipo()) {
-        case BASCULA:
+        case bascula:
           this.sensores.add(new SensorBascula(sensor));
           break;
-        case CAMARA:
+        case camara:
           this.sensores.add(new SensorCamara(sensor));
           break;
-        case HUMEDAD:
+        case humedad:
           this.sensores.add(new SensorHumedad(sensor));
           break;
-        case TIEMPO:
+        case tiempo:
           this.sensores.add(new SensorTiempo(sensor));
           break;
-        case TEMPERATURA:
+        case temperatura:
           this.sensores.add(new SensorTemperatura(sensor));
       }
     }

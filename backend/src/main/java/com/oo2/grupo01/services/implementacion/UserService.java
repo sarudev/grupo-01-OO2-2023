@@ -1,6 +1,5 @@
 package com.oo2.grupo01.services.implementacion;
 
-import java.security.Key;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -17,10 +16,6 @@ import com.oo2.grupo01.entities.enums.UserRole;
 import com.oo2.grupo01.repositories.IUserRepository;
 import com.oo2.grupo01.services.IUserService;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
@@ -38,22 +33,6 @@ public class UserService implements IUserService, UserDetailsService {
 
   public boolean isPasswordCorrect(User user, String password) {
     return passwordEncoder.matches(password, user.getPassword());
-  }
-
-  public String generateToken(User user) {
-    Claims claims = Jwts.claims();
-    claims.put("id", user.getId());
-    claims.put("username", user.getUsername());
-    claims.put("role", user.getRole());
-
-    byte[] keyBytes = "secret_excesivamente_largo_para_que_spring_no_rompa_las_bolas_con_el_largo_de_los_bytes"
-        .getBytes();
-    Key key = Keys.hmacShaKeyFor(keyBytes);
-
-    return Jwts.builder()
-        .setClaims(claims)
-        .signWith(key, SignatureAlgorithm.HS256)
-        .compact();
   }
 
   @Override

@@ -4,7 +4,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import com.oo2.grupo01.Utils.JWT;
-import com.oo2.grupo01.models.UserData;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -12,8 +11,8 @@ import jakarta.servlet.http.HttpServletRequest;
 public class AccountUserData {
   public ResponseEntity<?> userData(HttpServletRequest req) throws Exception {
     var cookie = JWT.getJwt(req);
-    var payload = UserData
-        .toMap(UserData.decodeJWTpayload(cookie.getValue()));
+    var payload = JWT
+        .toMap(JWT.decodeJWTpayload(cookie.getValue()));
 
     return ResponseEntity.ok(payload);
   }

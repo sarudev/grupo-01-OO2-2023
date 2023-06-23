@@ -6,8 +6,6 @@ import org.springframework.stereotype.Service;
 
 import com.oo2.grupo01.dto.EspacioVerdeDTO;
 import com.oo2.grupo01.entities.EspacioVerde;
-import com.oo2.grupo01.entities.enums.Lugares;
-import com.oo2.grupo01.mapeos.EspacioVerdeMapeo;
 import com.oo2.grupo01.repositories.IEspacioVerdeRepository;
 import com.oo2.grupo01.services.IEspacioVerdeService;
 
@@ -18,32 +16,27 @@ import lombok.AllArgsConstructor;
 public class EspacioVerdeService implements IEspacioVerdeService {
   private IEspacioVerdeRepository repository;
 
-  public void agregar(Lugares lugar, String ubicacion) throws Exception {
-    if (ubicacion != null)
-      throw new Exception("Error: la ubicacion es requerida");
-
-    repository.save(new EspacioVerde(lugar, ubicacion));
+  @Override
+  public void add(String nombre) {
+    repository.save(new EspacioVerde(nombre));
   }
 
   @Override
-  public void eliminar(Long id) {
-    repository.deleteById(id);
+  public List<EspacioVerde> getAll() {
+    return repository.findAll();
   }
 
   @Override
-  public List<EspacioVerdeDTO> traerTodos() {
-    return EspacioVerdeMapeo.toDtoList(repository.findAll());
+  public EspacioVerde get(String nombre) {
+    return repository.findByName(nombre);
   }
 
-  @Override
-  public EspacioVerde traerConDependencias(Long id) {
-    EspacioVerde espacioVerde = repository.traerConDependencias(id).orElse(null);
-    return espacioVerde;
+  public EspacioVerdeDTO toDto(EspacioVerde espacioVerde) {
+    return new EspacioVerdeDTO(espacioVerde);
   }
 
-  @Override
-  public EspacioVerde traer(Long id) {
-    return repository.findById(id).orElse(null);
+  public List<EspacioVerdeDTO> toTdoList(List<EspacioVerde> lugares) {
+    return lugares.stream().map(l -> new EspacioVerdeDTO(l)).toList();
   }
 
 }

@@ -1,10 +1,12 @@
 package com.oo2.grupo01.services.implementacion;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
+import com.oo2.grupo01.dto.AulaDTO;
 import com.oo2.grupo01.entities.Aula;
 import com.oo2.grupo01.entities.Edificio;
-import com.oo2.grupo01.entities.enums.Lugares;
 import com.oo2.grupo01.repositories.IAulaRepository;
 import com.oo2.grupo01.services.IAulaService;
 
@@ -15,26 +17,29 @@ import lombok.AllArgsConstructor;
 public class AulaService implements IAulaService {
   private IAulaRepository repository;
 
-  public void agregar(Lugares lugar, Edificio edificio, String nombre) {
-    if (nombre != null) {
-      repository.save(new Aula(lugar, edificio, nombre));
-    }
+  @Override
+  public void add(Edificio edificio, String nombre) {
+    repository.save(new Aula(edificio, nombre));
   }
 
   @Override
-  public void eliminar(Long id) {
-    repository.deleteById(id);
+  public List<Aula> getAll() {
+    return repository.findAll();
   }
 
   @Override
-  public Aula traerConDependencias(Long id) {
-    Aula aula = repository.traerConDependencias(id).orElse(null);
-
-    return aula;
+  public Aula get(Edificio edificio, String nombre) throws Exception {
+    if (edificio == null)
+      throw new Exception("Edificio no encontrado");
+    System.out.println("edificio nombre: " + edificio.getNombre());
+    return repository.findByName(nombre, edificio.getNombre());
   }
 
-  @Override
-  public Aula traer(Long id) {
-    return repository.findById(id).orElse(null);
+  public AulaDTO toDto(Aula aula) {
+    return new AulaDTO(aula);
+  }
+
+  public List<AulaDTO> toTdoList(List<Aula> lugares) {
+    return lugares.stream().map(l -> new AulaDTO(l)).toList();
   }
 }

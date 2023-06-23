@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.oo2.grupo01.Utils.JWT;
 import com.oo2.grupo01.annotations.AuthRole;
+import com.oo2.grupo01.repositories.IEdificioRepository;
+import com.oo2.grupo01.services.implementacion.EdificioService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -23,17 +24,22 @@ public class EdificioController {
   @Autowired
   HttpServletResponse res;
 
+  @Autowired
+  EdificioService service;
+
+  @Autowired
+  IEdificioRepository repo;
+
   @AuthRole("user")
   @GetMapping
   public ResponseEntity<?> getAll() {
-    System.out.println(JWT.getJwt(req).getValue());
-    return ResponseEntity.ok("user get edificio");
+    return ResponseEntity.ok(service.getAll());
   }
 
   @AuthRole("user")
   @GetMapping("/{nombreLugar}")
   public ResponseEntity<?> get(@PathVariable("nombreLugar") String nombreLugar) {
-    return ResponseEntity.ok("user get all edificio");
+    return ResponseEntity.ok(service.get(nombreLugar.replaceAll("-", " ")));
   }
 
   @AuthRole("admin")

@@ -28,7 +28,7 @@ public class Parking extends Lugar {
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
   Set<Estacionamiento> estacionamientos;
 
-  public Parking(Lugares tipo, String ubicacion) {
-    super(tipo, ubicacion);
+  public Parking(String ubicacion) {
+    super(Lugares.parking, ubicacion);
   }
 }

@@ -6,8 +6,6 @@ import org.springframework.stereotype.Service;
 
 import com.oo2.grupo01.dto.EdificioDTO;
 import com.oo2.grupo01.entities.Edificio;
-import com.oo2.grupo01.entities.enums.Lugares;
-import com.oo2.grupo01.mapeos.EdificioMapeo;
 import com.oo2.grupo01.repositories.IEdificioRepository;
 import com.oo2.grupo01.services.IEdificioService;
 
@@ -18,31 +16,27 @@ import lombok.AllArgsConstructor;
 public class EdificioService implements IEdificioService {
   private IEdificioRepository repository;
 
-  public void agregar(Lugares lugar, String nombre) {
-    if (nombre != null) {
-      repository.save(new Edificio(lugar, nombre));
-    }
+  @Override
+  public void add(String nombre) {
+    repository.save(new Edificio(nombre));
   }
 
   @Override
-  public void eliminar(Long id) {
-    repository.deleteById(id);
+  public List<Edificio> getAll() {
+    return repository.findAll();
   }
 
   @Override
-  public Edificio traerConDependencias(Long id) {
-    Edificio edificio = repository.traerConDependencias(id).orElse(null);
-
-    return edificio;
+  public Edificio get(String nombre) {
+    System.out.println("edificio: " + repository.findByName(nombre));
+    return repository.findByName(nombre);
   }
 
-  @Override
-  public List<EdificioDTO> traerTodos() {
-    return EdificioMapeo.toDtoList(repository.findAll());
+  public EdificioDTO toDto(Edificio edificio) {
+    return new EdificioDTO(edificio);
   }
 
-  @Override
-  public Edificio traer(Long id) {
-    return repository.findById(id).orElse(null);
+  public List<EdificioDTO> toTdoList(List<Edificio> lugares) {
+    return lugares.stream().map(l -> new EdificioDTO(l)).toList();
   }
 }

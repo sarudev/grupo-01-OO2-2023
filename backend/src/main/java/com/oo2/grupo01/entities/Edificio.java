@@ -21,13 +21,13 @@ import lombok.ToString;
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
+@ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 public class Edificio extends Lugar {
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
   private Set<Aula> aulas;
 
-  public Edificio(Lugares tipo, String nombre) {
-    super(tipo, nombre);
+  public Edificio(String nombre) {
+    super(Lugares.edificio, nombre);
   }
 }
