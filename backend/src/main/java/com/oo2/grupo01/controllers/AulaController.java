@@ -41,7 +41,7 @@ public class AulaController {
     if (ed == null)
       return ResponseEntity.status(HttpStatus.NOT_FOUND).body("edificio no encontrado");
     try {
-      var au = service.get(ed, nombreLugar.replaceAll("-", " "));
+      var au = service.get(nombreLugar.replaceAll("-", " "), nombreDependencia.replaceAll("-", " "));
       System.out.println("aula: " + au);
       return ResponseEntity.ok(au);
     } catch (Exception err) {

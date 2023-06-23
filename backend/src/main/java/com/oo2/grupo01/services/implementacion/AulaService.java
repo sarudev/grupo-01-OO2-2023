@@ -28,11 +28,12 @@ public class AulaService implements IAulaService {
   }
 
   @Override
-  public Aula get(Edificio edificio, String nombre) throws Exception {
+  public Aula get(String edificio, String nombre) throws Exception {
     if (edificio == null)
       throw new Exception("Edificio no encontrado");
-    System.out.println("edificio nombre: " + edificio.getNombre());
-    return repository.findByName(nombre, edificio.getNombre());
+    System.out.println("aula nombre: " + nombre);
+    System.out.println("edificio nombre: " + edificio);
+    return repository.findByName(nombre, edificio);
   }
 
   public AulaDTO toDto(Aula aula) {
