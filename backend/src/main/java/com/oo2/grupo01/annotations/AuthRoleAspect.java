@@ -6,17 +6,21 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+import com.oo2.grupo01.Utils.JWT;
 import com.oo2.grupo01.models.UserData;
 
-import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 
 @Aspect
 @Component
 public class AuthRoleAspect {
+  @Autowired
+  HttpServletRequest req;
 
   @Pointcut("@annotation(com.oo2.grupo01.annotations.AuthRole)")
   public void authRoleAnnotation() {
@@ -27,25 +31,16 @@ public class AuthRoleAspect {
     var annRole = UserData.roleToValue(getAnnotationRole(joinPoint));
 
     if (annRole > -1) {
-      // Obtener el argumento jwtCookie desde la anotación @CookieValue
-      String jwtCookieValue = null;
-      Object[] args = joinPoint.getArgs();
-      for (Object arg : args) {
-        if (arg instanceof Cookie) {
-          Cookie cookie = (Cookie) arg;
-          if (cookie.getName().equals("JWT")) {
-            jwtCookieValue = cookie.getValue();
-            break;
-          }
-        }
-      }
+      var cookie = JWT.getJwt(req);
+      System.out.println(cookie);
 
-      // Verificar si el valor del jwtCookie está presente
-      if (jwtCookieValue == null || jwtCookieValue.equals("")) {
-        // Devolver una respuesta de error y detener la ejecución del endpoint
+      if (cookie == null || cookie.getValue().equals("")) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
             .body("{\"error\":\"Token missing\"}");
       }
+
+      String jwtCookieValue = cookie.getValue();
+      System.out.println(jwtCookieValue);
 
       var userData = UserData.toMap(UserData.decodeJWTpayload(jwtCookieValue));
       var jwtRole = UserData.roleToValue((String) userData.get("role"));
@@ -61,10 +56,7 @@ public class AuthRoleAspect {
       }
     }
 
-    // Continuar con la ejecución del método anotado
-    Object result = joinPoint.proceed();
-
-    return result;
+    return joinPoint.proceed();
   }
 
   private String getAnnotationRole(ProceedingJoinPoint joinPoint) {

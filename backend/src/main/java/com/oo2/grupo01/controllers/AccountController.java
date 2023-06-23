@@ -4,18 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.oo2.grupo01.Utils.JWT;
 import com.oo2.grupo01.annotations.AuthRole;
 import com.oo2.grupo01.controllers.account.AccountLogin;
 import com.oo2.grupo01.controllers.account.AccountLogout;
 import com.oo2.grupo01.controllers.account.AccountUserData;
 import com.oo2.grupo01.entities.User;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletRequest;
-
-@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
 @RestController
 @RequestMapping("/account")
 public class AccountController {
@@ -28,21 +26,26 @@ public class AccountController {
   @Autowired
   private AccountUserData userData;
 
+  @Autowired
+  HttpServletRequest req;
+
+  @Autowired
+  HttpServletResponse res;
+
   @PostMapping("/login")
-  public ResponseEntity<?> login(@RequestBody User user, HttpServletResponse response) {
-    return login.login(user, response);
+  public ResponseEntity<?> login(@RequestBody User user) {
+    return login.login(res, user);
   }
 
   @AuthRole("user")
   @GetMapping("/userData")
-  public ResponseEntity<?> userData(@CookieValue(value = "JWT", required = false) Cookie jwtCookie,
-      HttpServletResponse response, HttpServletRequest request) throws Exception {
-    return userData.userData(jwtCookie, response, request);
+  public ResponseEntity<?> userData() throws Exception {
+    System.out.println(JWT.getJwt(req));
+    return userData.userData(req);
   }
 
   @GetMapping("/logout")
-  public ResponseEntity<?> logout(@CookieValue(value = "JWT", required = false) Cookie jwtCookie,
-      HttpServletResponse response) {
-    return logout.logout(jwtCookie, response);
+  public ResponseEntity<?> logout() {
+    return logout.logout(req, res);
   }
 }

@@ -1,5 +1,6 @@
 package com.oo2.grupo01.controllers.account;
 
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class AccountLogin {
   @Autowired
   private UserService userService;
 
-  public ResponseEntity<?> login(@RequestBody User user, HttpServletResponse response) {
+  public ResponseEntity<?> login(HttpServletResponse res, @RequestBody User user) {
     String username = user.getUsername();
     String password = user.getPassword();
 
@@ -28,16 +29,14 @@ public class AccountLogin {
       return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
     }
 
-    // Generate JWT token
     String token = userService.generateToken(storedUser);
 
-    // Create and set the JWT token as a cookie
-    ResponseCookie cookie = ResponseCookie.from("JWT", token)
-        .httpOnly(true)
-        .build();
+    Cookie jwtCookie = new Cookie("JWT", token);
+    jwtCookie.setHttpOnly(true);
+    jwtCookie.setPath("/");
 
-    response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
+    res.addCookie(jwtCookie);
 
-    return ResponseEntity.status(HttpStatus.OK).body("");
+    return ResponseEntity.status(HttpStatus.OK).body("login");
   }
 }
