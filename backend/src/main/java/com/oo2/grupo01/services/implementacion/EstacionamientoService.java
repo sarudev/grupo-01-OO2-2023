@@ -17,19 +17,16 @@ import lombok.AllArgsConstructor;
 public class EstacionamientoService implements IEstacionamientoService {
   private IEstacionamientoRepository repository;
 
-  @Override
   public void add(Parking parking, String nombre) {
     repository.save(new Estacionamiento(parking, nombre));
   }
 
-  @Override
   public List<Estacionamiento> getAll() {
     return repository.findAll();
   }
 
-  @Override
   public Estacionamiento get(Parking parking, String nombre) {
-    return repository.findByName(nombre, parking.getNombre());
+    return /* repository.findByName(nombre, parking.getNombre()) */null;
   }
 
   public EstacionamientoDTO toDto(Estacionamiento estacionamiento) {

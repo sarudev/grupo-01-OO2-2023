@@ -16,17 +16,14 @@ import lombok.AllArgsConstructor;
 public class EspacioVerdeService implements IEspacioVerdeService {
   private IEspacioVerdeRepository repository;
 
-  @Override
   public void add(String nombre) {
     repository.save(new EspacioVerde(nombre));
   }
 
-  @Override
   public List<EspacioVerde> getAll() {
     return repository.findAll();
   }
 
-  @Override
   public EspacioVerde get(String nombre) {
     return repository.findByName(nombre);
   }

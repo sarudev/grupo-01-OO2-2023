@@ -17,17 +17,14 @@ import lombok.AllArgsConstructor;
 public class AulaService implements IAulaService {
   private IAulaRepository repository;
 
-  @Override
-  public void add(Edificio edificio, String nombre) {
+  public void add(Edificio edificio, String nombre) throws Exception {
     repository.save(new Aula(edificio, nombre));
   }
 
-  @Override
   public List<Aula> getAll() {
     return repository.findAll();
   }
 
-  @Override
   public Aula get(String edificio, String nombre) throws Exception {
     if (edificio == null)
       throw new Exception("Edificio no encontrado");

@@ -16,7 +16,6 @@ public class DatabaseUtils {
     JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
     jdbcTemplate.execute("SET FOREIGN_KEY_CHECKS = 0;");
 
-    System.out.println("Truncated: lugar");
     jdbcTemplate.execute("TRUNCATE TABLE sensor;");
     System.out.println("Truncated: sensor");
     jdbcTemplate.execute("TRUNCATE TABLE historial;");
@@ -32,6 +31,9 @@ public class DatabaseUtils {
     jdbcTemplate.execute("TRUNCATE TABLE espacio_verde;");
     System.out.println("Truncated: espacio_verde");
     jdbcTemplate.execute("TRUNCATE TABLE lugar;");
+    System.out.println("Truncated: lugar");
+    jdbcTemplate.execute("TRUNCATE TABLE user;");
+    System.out.println("Truncated: user");
 
     jdbcTemplate.execute("SET FOREIGN_KEY_CHECKS = 1;");
   }

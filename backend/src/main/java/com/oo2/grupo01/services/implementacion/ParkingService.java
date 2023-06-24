@@ -16,17 +16,14 @@ import lombok.AllArgsConstructor;
 public class ParkingService implements IParkingService {
   private IParkingRepository repository;
 
-  @Override
   public void add(String nombre) {
     repository.save(new Parking(nombre));
   }
 
-  @Override
   public List<Parking> getAll() {
     return repository.findAll();
   }
 
-  @Override
   public Parking get(String nombre) {
     return repository.findByName(nombre);
   }

@@ -8,12 +8,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.oo2.grupo01.Utils.DatabaseUtils;
+import com.oo2.grupo01.entities.User;
 import com.oo2.grupo01.entities.enums.Lugares;
+import com.oo2.grupo01.entities.enums.UserRole;
 import com.oo2.grupo01.services.implementacion.AulaService;
 import com.oo2.grupo01.services.implementacion.EdificioService;
 import com.oo2.grupo01.services.implementacion.EspacioVerdeService;
 import com.oo2.grupo01.services.implementacion.EstacionamientoService;
 import com.oo2.grupo01.services.implementacion.ParkingService;
+import com.oo2.grupo01.services.implementacion.UserService;
 
 @RestController
 @RequestMapping("/loadDB")
@@ -34,10 +37,13 @@ public class BaiscLoadDatabaseController {
   EstacionamientoService estacionamientoService;
 
   @Autowired
+  UserService userService;
+
+  @Autowired
   DatabaseUtils db;
 
   @GetMapping
-  public ResponseEntity<?> loadDB() {
+  public ResponseEntity<?> loadDB() throws Exception {
     String[] edificios = {
         "Néstor Kirchner",
         "Pascual Contursi",
@@ -101,8 +107,23 @@ public class BaiscLoadDatabaseController {
       System.out.println("espacioVerde: " + espa);
     }
 
-    aulaService.add(edificioService.get("José Hernández"), "11");
-    System.out.println("aula: 11");
+    var ed = edificioService.get("José Hernández");
+    if (ed != null) {
+
+      aulaService.add(ed, "11");
+      System.out.println("aula: 11");
+
+      aulaService.add(ed, "123123");
+      System.out.println("aula: 123123");
+    } else {
+      System.out.println("\n\nEDIFICIO IS NULL\n\n");
+    }
+
+    userService.add(new User("user", userService.encodePassword("user"), UserRole.user, true));
+    System.out.println("account: user");
+
+    userService.add(new User("admin", userService.encodePassword("admin"), UserRole.admin, true));
+    System.out.println("account: admin");
 
     return ResponseEntity.ok("Datos creados");
   }

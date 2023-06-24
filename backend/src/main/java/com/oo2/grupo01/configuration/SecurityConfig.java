@@ -32,11 +32,6 @@ public class SecurityConfig {
   @Qualifier("userService")
   private UserService userService;
 
-  @Autowired
-  public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-    auth.userDetailsService(userService).passwordEncoder(new BCryptPasswordEncoder());
-  }
-
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http.authorizeHttpRequests().anyRequest().permitAll()

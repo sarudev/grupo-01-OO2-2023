@@ -16,18 +16,16 @@ import lombok.AllArgsConstructor;
 public class EdificioService implements IEdificioService {
   private IEdificioRepository repository;
 
-  @Override
   public void add(String nombre) {
     repository.save(new Edificio(nombre));
   }
 
-  @Override
   public List<Edificio> getAll() {
     return repository.findAll();
   }
 
-  @Override
   public Edificio get(String nombre) {
+    System.out.println("edificio nombre: " + nombre);
     System.out.println("edificio: " + repository.findByName(nombre));
     return repository.findByName(nombre);
   }

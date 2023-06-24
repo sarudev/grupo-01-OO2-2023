@@ -27,8 +27,10 @@ public class Aula extends Lugar {
   @JoinColumn(name = "idEdificio")
   private Edificio lugar;
 
-  public Aula(Edificio lugar, String nombre) {
+  public Aula(Edificio lugar, String nombre) throws Exception {
     super(Lugares.aula, nombre);
+    if (lugar == null)
+      throw new Exception("edificio null");
     this.lugar = lugar;
   }
 }
