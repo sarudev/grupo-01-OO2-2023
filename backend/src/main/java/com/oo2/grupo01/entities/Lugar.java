@@ -56,11 +56,11 @@ public class Lugar {
   protected Lugares tipo;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
-  @JsonBackReference
+  @JsonManagedReference
   private List<Sensor> sensores;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
-  @JsonIgnore
+  @JsonManagedReference
   private List<Historial> historial;
 
   public Lugar(Lugares tipo, String nombre) {
