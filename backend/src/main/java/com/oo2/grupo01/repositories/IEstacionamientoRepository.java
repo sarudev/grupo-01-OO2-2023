@@ -9,7 +9,7 @@ import com.oo2.grupo01.entities.Estacionamiento;
 
 @Repository("estacionamientoRepository")
 public interface IEstacionamientoRepository extends JpaRepository<Estacionamiento, Long> {
-  @Query("from Estacionamiento e inner join fetch e.lugar p where e.nombre=:nombre and p.nombre=:lugar")
-  public Estacionamiento findByName(@Param("nombre") String nombre, @Param("lugar") String lugar);
+  @Query("from Estacionamiento e inner join fetch e.lugar p where e.idLugar=:idEstacionamiento and p.idLugar=:idParking")
+  public Estacionamiento get(@Param("idParking") Long idParking, @Param("idEstacionamiento") Long idEstacionamiento);
 
 }

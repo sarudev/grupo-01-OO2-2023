@@ -25,12 +25,8 @@ public class AulaService implements IAulaService {
     return repository.findAll();
   }
 
-  public List<Aula> getAll(String lugar) {
-    return repository.findAll(lugar);
-  }
-
-  public Aula get(String edificio, String nombre) {
-    return repository.findByName(nombre, edificio);
+  public Aula get(Long idEdificio, Long idAula) {
+    return repository.get(idEdificio, idAula);
   }
 
   public AulaDTO toDto(Aula aula) {

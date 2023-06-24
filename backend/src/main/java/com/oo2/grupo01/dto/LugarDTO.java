@@ -11,6 +11,9 @@ import com.oo2.grupo01.models.SensorHumedad;
 import com.oo2.grupo01.models.SensorTemperatura;
 import com.oo2.grupo01.models.SensorTiempo;
 
+import lombok.Getter;
+
+@Getter
 public abstract class LugarDTO {
   protected Long id;
   protected Lugares tipo;

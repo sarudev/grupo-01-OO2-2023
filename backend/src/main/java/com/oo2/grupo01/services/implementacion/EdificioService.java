@@ -24,8 +24,8 @@ public class EdificioService implements IEdificioService {
     return repository.findAll();
   }
 
-  public Edificio get(String nombre) {
-    return repository.traerPorNombre(nombre);
+  public Edificio get(Long id) {
+    return repository.findById(id).orElse(null);
   }
 
   public EdificioDTO toDto(Edificio edificio) {

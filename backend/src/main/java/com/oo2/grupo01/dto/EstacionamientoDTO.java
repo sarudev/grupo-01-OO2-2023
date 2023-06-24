@@ -7,11 +7,13 @@ import lombok.Getter;
 @Getter
 public class EstacionamientoDTO extends LugarDTO {
   private Boolean libre;
+  private ParkingDTO lugar;
 
   public EstacionamientoDTO(Estacionamiento est) {
     super(est.getIdLugar(), est.getNombre(), est.getTipo(), est.getSensores(), est.getHistorial());
 
     this.libre = null;
+    this.lugar = new ParkingDTO(est.getLugar());
   }
 
   @Override

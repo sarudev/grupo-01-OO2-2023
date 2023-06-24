@@ -1,6 +1,7 @@
 package com.oo2.grupo01.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.oo2.grupo01.annotations.AuthRole;
+import com.oo2.grupo01.dto.ErrorDTO;
 import com.oo2.grupo01.repositories.IEdificioRepository;
 import com.oo2.grupo01.services.implementacion.EdificioService;
 
@@ -33,17 +35,33 @@ public class EdificioController {
   @AuthRole("user")
   @GetMapping
   public ResponseEntity<?> getAll() {
-    return ResponseEntity.ok(service.getAll());
+    var edificios = service.getAll();
+
+    return ResponseEntity.ok(service.toTdoList(edificios));
   }
 
   @AuthRole("user")
-  @GetMapping("/{nombreLugar}")
-  public ResponseEntity<?> get(@PathVariable("nombreLugar") String nombreLugar) {
-    return ResponseEntity.ok(service.get(nombreLugar.replaceAll("-", " ")));
+  @GetMapping("/{idLugar}")
+  public ResponseEntity<?> get(@PathVariable("idLugar") String idLugar) {
+    Long id;
+
+    try {
+      id = Long.parseLong(idLugar);
+    } catch (NumberFormatException exception) {
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDTO("'idLugar' it's not a Long"));
+    }
+
+    var ed = service.get(id);
+
+    if (ed == null) {
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorDTO("Edificio not found"));
+    }
+
+    return ResponseEntity.ok(service.toDto(ed));
   }
 
   @AuthRole("admin")
-  @PostMapping("/{nombreLugar}/sensor")
+  @PostMapping("/{idLugar}/sensor")
   public ResponseEntity<?> sensor(@PathVariable("nombreLugar") String nombreLugar) {
     return ResponseEntity.ok("admin post sensor edificio");
   }

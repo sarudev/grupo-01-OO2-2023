@@ -9,6 +9,7 @@ public class AulaDTO extends LugarDTO {
   private String nombre;
   private Boolean luces;
   private Boolean persianas;
+  private EdificioDTO lugar;
 
   public AulaDTO(Aula aula) {
     super(aula.getIdLugar(), aula.getNombre(), aula.getTipo(), aula.getSensores(), aula.getHistorial());
@@ -16,6 +17,7 @@ public class AulaDTO extends LugarDTO {
 
     this.luces = null;
     this.persianas = null;
+    this.lugar = new EdificioDTO(aula.getLugar());
   }
 
   @Override

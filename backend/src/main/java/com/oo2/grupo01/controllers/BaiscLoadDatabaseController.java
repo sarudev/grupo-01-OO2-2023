@@ -43,34 +43,34 @@ public class BaiscLoadDatabaseController {
   @GetMapping
   public ResponseEntity<?> loadDB() throws Exception {
     String[] edificios = {
-        "Néstor Kirchner",
-        "Pascual Contursi",
-        "Juana Azurduy",
-        "Leopoldo Marechal",
-        "Ortega Peña",
-        "Homero Manzi",
-        "Manuel Ugarte",
-        "Arturo Jauretche",
-        "Raúl Scalabrini Ortiz",
-        "Macedonio Fernández",
-        "Lisandro de la Torre",
-        "Casa del Estudiante",
-        "Cine Tita Merello",
-        "Héctor Oesterheld",
-        "Jardín Maternal A. Villaflor",
-        "Oscar Varsavsky",
-        "Leonardo Wethein",
-        "Irma Laciar de Carrica",
-        "Campo de deportes Delfo Cabrera",
-        "Inadi",
-        "Juana Manso",
-        "Quincho Roberto Fontanarrosa",
-        "Gimnasio Comunitario Gatica",
-        "Hernandez Arregui",
-        "Lola Mora",
-        "Estudio de Grabación E.S. Discépolo",
+        "José Hernández",
         "Comedor Universitario Padre Mujica",
-        "José Hernández"
+        "Estudio de Grabación E.S. Discépolo",
+        "Lola Mora",
+        "Hernandez Arregui",
+        "Gimnasio Comunitario Gatica",
+        "Quincho Roberto Fontanarrosa",
+        "Juana Manso",
+        "Inadi",
+        "Campo de deportes Delfo Cabrera",
+        "Irma Laciar de Carrica",
+        "Leonardo Wethein",
+        "Oscar Varsavsky",
+        "Jardín Maternal A. Villaflor",
+        "Héctor Oesterheld",
+        "Cine Tita Merello",
+        "Casa del Estudiante",
+        "Lisandro de la Torre",
+        "Macedonio Fernández",
+        "Raúl Scalabrini Ortiz",
+        "Arturo Jauretche",
+        "Manuel Ugarte",
+        "Homero Manzi",
+        "Ortega Peña",
+        "Leopoldo Marechal",
+        "Juana Azurduy",
+        "Pascual Contursi",
+        "Néstor Kirchner"
     };
 
     String[] parkings = {
@@ -105,7 +105,7 @@ public class BaiscLoadDatabaseController {
       System.out.println("espacioVerde: " + espa);
     }
 
-    var ed = edificioService.get("José Hernández");
+    var ed = edificioService.get(1l);
     if (ed != null) {
 
       aulaService.add(ed, "11");
