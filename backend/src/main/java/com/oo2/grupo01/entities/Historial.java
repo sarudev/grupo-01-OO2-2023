@@ -56,6 +56,7 @@ public class Historial {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "idLugar")
+  @JsonIgnore
   private Lugar lugar;
 
   public Historial(Sensores tipo, String descripcion, LocalDateTime fecha) {

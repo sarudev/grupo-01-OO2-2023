@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -62,15 +63,23 @@ public class EdificioController {
       return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorDTO("Edificio not found"));
     }
 
-    var aulas = aulaService.getAllById(id);
-    ed.setAulas(aulas);
+    // var aulas = aulaService.getAllById(id);
+    // ed.setAulas(aulas);
 
     return ResponseEntity.ok(new EdificioDTO(ed, true));
   }
 
   @AuthRole("admin")
   @PostMapping("/{idLugar}/sensor")
-  public ResponseEntity<?> sensor(@PathVariable("nombreLugar") String nombreLugar) {
+  public ResponseEntity<?> sensor(@PathVariable("idLugar") String idLugar, @RequestBody String tipo) {
+    // validar tipo de sensor ya que llega como un string
+    // crear un sensor del tipo que llega en el @RequestBody
+    // crear/insertar el sensor en el lugar idLugar
+    // devolver ResponseEntity.ok("");
+
+    // en caso de que el lugar sea una dependencia (aula / estacionamiento)
+    // seguir los mismos pasos pero usar la id idDependencia en lugar de idLugar
+
     return ResponseEntity.ok("admin post sensor edificio");
   }
 }
