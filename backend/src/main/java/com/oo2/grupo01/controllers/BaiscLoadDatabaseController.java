@@ -73,19 +73,19 @@ public class BaiscLoadDatabaseController {
         "Néstor Kirchner"
     };
 
+    String[] espaciosVerdes = {
+        "Manso y Kirchner",
+        "Jauretche y Ugarte",
+        "Casa del estudiante",
+        "Macedonio y Ortiz",
+        "Ortiz y Jauretche"
+    };
+
     String[] parkings = {
         "29 de Septiembre",
         "Pablo Nogués",
         "Comedor",
         "Canchas"
-    };
-
-    String[] espaciosVerdes = {
-        "Ortiz y Jauretche",
-        "Macedonio y Ortiz",
-        "Casa del estudiante",
-        "Jauretche y Ugarte",
-        "Manso y Kirchner"
     };
 
     db.truncateAllTables();
@@ -95,14 +95,14 @@ public class BaiscLoadDatabaseController {
       System.out.println("edificio: " + edif);
     }
 
-    for (var park : parkings) {
-      parkingService.add(park);
-      System.out.println("parking: " + park);
-    }
-
     for (var espa : espaciosVerdes) {
       espacioVerdeService.add(espa);
       System.out.println("espacioVerde: " + espa);
+    }
+
+    for (var park : parkings) {
+      parkingService.add(park);
+      System.out.println("parking: " + park);
     }
 
     var ed = edificioService.get(1l);
@@ -117,14 +117,14 @@ public class BaiscLoadDatabaseController {
       System.out.println("\n\nEDIFICIO IS NULL\n\n");
     }
 
-    var pa = parkingService.get(29l);
+    var pa = parkingService.get(34l);
     if (pa != null) {
 
       estacionamientoService.add(pa, "123");
-      System.out.println("aula: 123");
+      System.out.println("estacionamiento: 123");
 
       estacionamientoService.add(pa, "321");
-      System.out.println("aula: 321");
+      System.out.println("estacionamiento: 321");
     } else {
       System.out.println("\n\nPARKING IS NULL\n\n");
     }

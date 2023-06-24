@@ -24,12 +24,12 @@ public class DatabaseUtils {
     System.out.println("Truncated: aula");
     jdbcTemplate.execute("TRUNCATE TABLE edificio;");
     System.out.println("Truncated: edificio");
-    // jdbcTemplate.execute("TRUNCATE TABLE estacionamiento;");
-    // System.out.println("Truncated: estacionamiento");
-    // jdbcTemplate.execute("TRUNCATE TABLE parking;");
-    // System.out.println("Truncated: parking");
-    // jdbcTemplate.execute("TRUNCATE TABLE espacio_verde;");
-    // System.out.println("Truncated: espacio_verde");
+    jdbcTemplate.execute("TRUNCATE TABLE estacionamiento;");
+    System.out.println("Truncated: estacionamiento");
+    jdbcTemplate.execute("TRUNCATE TABLE parking;");
+    System.out.println("Truncated: parking");
+    jdbcTemplate.execute("TRUNCATE TABLE espacio_verde;");
+    System.out.println("Truncated: espacio_verde");
     jdbcTemplate.execute("TRUNCATE TABLE lugar;");
     System.out.println("Truncated: lugar");
     jdbcTemplate.execute("TRUNCATE TABLE user;");

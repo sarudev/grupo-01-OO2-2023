@@ -26,6 +26,7 @@ export default function Bot ({ lugar, userRole }: { lugar: Lugares, userRole: Us
 
   useLayoutEffect(() => {
     const deps = isEdificio(lugar) ? lugar.aulas : isParking(lugar) ? lugar.estacionamientos : null
+    console.log(lugar)
     dispatch(setDependencias(deps))
     dispatch(setSensores(lugar.sensores))
     dispatch(setHistorial(lugar.historial))

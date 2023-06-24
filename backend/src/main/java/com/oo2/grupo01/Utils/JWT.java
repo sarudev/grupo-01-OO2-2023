@@ -28,8 +28,9 @@ public class JWT {
     Cookie jwtCookieValue = null;
     for (Cookie cookie : cookies) {
       if (cookie.getName().equals("JWT") || cookie.getName().equals("jwt")) {
+        if (cookie.getValue().equals(""))
+          continue;
         jwtCookieValue = cookie;
-        break;
       }
     }
     return jwtCookieValue;

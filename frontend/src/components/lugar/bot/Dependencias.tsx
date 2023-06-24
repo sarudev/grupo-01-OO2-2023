@@ -36,7 +36,7 @@ export default function Dependencias ({ lugar, userRole, visible }: { lugar: Lug
           return (
             <>
               <div className="nombre">{d.nombre}</div>
-              <Link className='link' to={`${nombreDependenciaS!}/${d.nombre}`}>
+              <Link className='link' to={`${nombreDependenciaS!}/${d.id}`}>
                 Visitar
               </Link>
             </>

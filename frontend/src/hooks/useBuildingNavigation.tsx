@@ -13,7 +13,7 @@ export default function useBuildingNavigation () {
       const { dataset } = getBuildingDataset(e)
       if (dataset.lugarNombre === '') return
 
-      navigate(`/${dataset.lugarTipo.replace(' ', '').replace('v', 'V')}/${dataset.lugarNombre.replaceAll(' ', '-')}`)
+      navigate(`/${dataset.lugarTipo.replace(' ', '').replace('v', 'V')}/${dataset.lugarNum}`)
     }
 
     for (const building of buildings) {

@@ -11,14 +11,14 @@ export default function Lugar () {
   const { pathname } = useLocation()
   console.log(status)
 
-  if (status === 500 || !serverWorking) return <Status code={status} statusMessage='El servidor no está funcionando' goto={'/'} gotoMessage='Volver al campus' />
-  if (status === 401 || userRole == null) return <Status code={status} statusMessage='No haz iniciado sesión' goto={Routes.Login} gotoState={pathname} gotoMessage='Iniciar sesión' />
-  if (status === 404 || lugar == null) return <Status code={status} statusMessage='Página no encontrada' goto='/' gotoMessage='Volver al campus' />
+  if (status === 404) return <Status code={404} statusMessage='Página no encontrada' goto='/' gotoMessage='Volver al campus' />
+  if (status === 500) return <Status code={500} statusMessage='El servidor no está funcionando' goto={'/'} gotoMessage='Volver al campus' />
+  if (status === 401) return <Status code={401} statusMessage='No haz iniciado sesión' goto={Routes.Login} gotoState={pathname} gotoMessage='Iniciar sesión' />
 
   return (
     <div className='container'>
-      <Top lugar={lugar} userRole={userRole} />
-      <Bot lugar={lugar} userRole={userRole} />
+      <Top lugar={lugar!} userRole={userRole!} />
+      <Bot lugar={lugar!} userRole={userRole!} />
     </div>
   )
 }

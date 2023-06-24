@@ -17,7 +17,7 @@ export default function Top ({ lugar, userRole }: { lugar: Lugares, userRole: Us
           <div className="description">{lugar.nombre}</div>
         </div>
         <div className="session-container">
-          <Link className="back" to={lugar.lugar == null ? '/' : `/${lugar.lugar.tipo}/${lugar.lugar.nombre}`}>Volver a {lugar?.lugar?.nombre ?? 'Campus'}</Link>
+          <Link className="back" to={lugar.lugar == null ? '/' : `/${lugar.lugar.tipo}/${lugar.lugar.id}`}>Volver a {lugar?.lugar?.nombre ?? 'Campus'}</Link>
           <div className="session">
             <span>Sesión iniciada como {userRole}</span>
             <Link className="logout" to={Routes.Logout}>Cerrar sesión</Link>

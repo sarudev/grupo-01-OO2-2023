@@ -40,6 +40,9 @@ public class EspacioVerdeController {
 
     var esp = espacioVerdeService.get(id);
 
+    if (esp == null)
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorDTO("'espacioVerde' not found"));
+
     return ResponseEntity.ok(espacioVerdeService.toDto(esp));
   }
 
