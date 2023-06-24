@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.oo2.grupo01.annotations.AuthRole;
-import com.oo2.grupo01.dto.EdificioDTO;
 import com.oo2.grupo01.dto.ErrorDTO;
 import com.oo2.grupo01.repositories.IEdificioRepository;
 import com.oo2.grupo01.services.AulaService;
@@ -63,10 +62,8 @@ public class EdificioController {
       return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorDTO("Edificio not found"));
     }
 
-    // var aulas = aulaService.getAllById(id);
-    // ed.setAulas(aulas);
-
-    return ResponseEntity.ok(new EdificioDTO(ed, true));
+    return ResponseEntity.ok(ed);
+    // return ResponseEntity.ok(new EdificioDTO(ed, true));
   }
 
   @AuthRole("admin")

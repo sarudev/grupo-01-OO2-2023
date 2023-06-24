@@ -48,9 +48,6 @@ public class ParkingController {
       return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorDTO("Edificio not found"));
     }
 
-    var estacionamientos = estacionamientoService.getAllById(id);
-    parking.setEstacionamientos(estacionamientos);
-
     return ResponseEntity.ok(parkingService.toDto(parking));
   }
 

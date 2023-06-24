@@ -43,8 +43,6 @@ public class AulaController {
     var aulas = aulaService.getAllById(id);
 
     for (var a : aulas) {
-      System.out.println(a.getNombre());
-      System.out.println(a.getNombre());
       if (a.getNombre().equals(nombre) && a.getLugar().getIdLugar() == id)
         return ResponseEntity.status(HttpStatus.CONFLICT).body("aula ya existe");
     }
@@ -94,7 +92,8 @@ public class AulaController {
       return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorDTO("Aula not found"));
     }
 
-    return ResponseEntity.ok(aulaService.toDto(au));
+    return ResponseEntity.ok(au);
+    // return ResponseEntity.ok(aulaService.toDto(au));
   }
 
   @AuthRole("admin")

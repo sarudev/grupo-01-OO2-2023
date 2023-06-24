@@ -3,7 +3,6 @@ package com.oo2.grupo01.entities;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.oo2.grupo01.entities.enums.Sensores;
 
 import jakarta.persistence.Column;

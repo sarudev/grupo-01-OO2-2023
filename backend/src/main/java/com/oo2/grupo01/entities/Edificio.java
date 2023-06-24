@@ -3,6 +3,9 @@ package com.oo2.grupo01.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.oo2.grupo01.entities.enums.Lugares;
 
 import jakarta.persistence.Entity;
@@ -24,6 +27,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idLugar")
+@JsonIgnoreProperties({ "hibernateLazyInitializer" })
 public class Edificio extends Lugar {
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
   private List<Aula> aulas = new ArrayList<>();
