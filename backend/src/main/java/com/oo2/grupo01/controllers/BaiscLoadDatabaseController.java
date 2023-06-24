@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.oo2.grupo01.Utils.DatabaseUtils;
 import com.oo2.grupo01.entities.User;
 import com.oo2.grupo01.entities.enums.UserRole;
-import com.oo2.grupo01.services.implementacion.AulaService;
-import com.oo2.grupo01.services.implementacion.EdificioService;
-import com.oo2.grupo01.services.implementacion.EspacioVerdeService;
-import com.oo2.grupo01.services.implementacion.EstacionamientoService;
-import com.oo2.grupo01.services.implementacion.ParkingService;
-import com.oo2.grupo01.services.implementacion.UserService;
+import com.oo2.grupo01.services.AulaService;
+import com.oo2.grupo01.services.EdificioService;
+import com.oo2.grupo01.services.EspacioVerdeService;
+import com.oo2.grupo01.services.EstacionamientoService;
+import com.oo2.grupo01.services.ParkingService;
+import com.oo2.grupo01.services.UserService;
 
 @RestController
 @RequestMapping("/loadDB")
@@ -115,6 +115,18 @@ public class BaiscLoadDatabaseController {
       System.out.println("aula: 123123");
     } else {
       System.out.println("\n\nEDIFICIO IS NULL\n\n");
+    }
+
+    var pa = parkingService.get(29l);
+    if (pa != null) {
+
+      estacionamientoService.add(pa, "123");
+      System.out.println("aula: 123");
+
+      estacionamientoService.add(pa, "321");
+      System.out.println("aula: 321");
+    } else {
+      System.out.println("\n\nPARKING IS NULL\n\n");
     }
 
     userService.add(new User("user", userService.encodePassword("user"), UserRole.user, true));

@@ -1,6 +1,6 @@
 package com.oo2.grupo01.entities;
 
-import java.util.Set;
+import java.util.List;
 
 import com.oo2.grupo01.entities.enums.Lugares;
 
@@ -49,10 +49,10 @@ public class Lugar {
   protected Lugares tipo;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
-  private Set<Sensor> sensores;
+  private List<Sensor> sensores;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
-  private Set<Historial> historial;
+  private List<Historial> historial;
 
   public Lugar(Lugares tipo, String nombre) {
     this.tipo = tipo;

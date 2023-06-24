@@ -11,9 +11,12 @@ public class ParkingDTO extends LugarDTO {
   private Boolean luces;
   private List<EstacionamientoDTO> estacionamientos;
 
-  public ParkingDTO(Parking parking) {
+  public ParkingDTO(Parking parking, boolean conEstacionamiento) {
     super(parking.getIdLugar(), parking.getNombre(), parking.getTipo(), parking.getSensores(), parking.getHistorial());
-    this.estacionamientos = parking.getEstacionamientos().stream().map(est -> new EstacionamientoDTO(est)).toList();
+
+    if (conEstacionamiento)
+      this.estacionamientos = parking.getEstacionamientos().stream().map(est -> new EstacionamientoDTO(est, false))
+          .toList();
 
     this.luces = null;
   }

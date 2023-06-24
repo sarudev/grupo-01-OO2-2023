@@ -1,14 +1,13 @@
-package com.oo2.grupo01.services.implementacion;
+package com.oo2.grupo01.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.oo2.grupo01.entities.User;
 import com.oo2.grupo01.repositories.IUserRepository;
-import com.oo2.grupo01.services.IUserService;
 
 @Service("userService")
-public class UserService implements IUserService {
+public class UserService {
 
   @Autowired
   private IUserRepository userRepository;

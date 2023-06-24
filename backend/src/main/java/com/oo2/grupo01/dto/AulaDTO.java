@@ -11,13 +11,14 @@ public class AulaDTO extends LugarDTO {
   private Boolean persianas;
   private EdificioDTO lugar;
 
-  public AulaDTO(Aula aula) {
+  public AulaDTO(Aula aula, boolean conLugar) {
     super(aula.getIdLugar(), aula.getNombre(), aula.getTipo(), aula.getSensores(), aula.getHistorial());
     this.nombre = aula.getNombre();
 
     this.luces = null;
     this.persianas = null;
-    this.lugar = new EdificioDTO(aula.getLugar());
+    if (conLugar)
+      this.lugar = new EdificioDTO(aula.getLugar(), false);
   }
 
   @Override

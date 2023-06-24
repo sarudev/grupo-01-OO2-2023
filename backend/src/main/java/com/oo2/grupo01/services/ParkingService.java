@@ -1,4 +1,4 @@
-package com.oo2.grupo01.services.implementacion;
+package com.oo2.grupo01.services;
 
 import java.util.List;
 
@@ -7,13 +7,12 @@ import org.springframework.stereotype.Service;
 import com.oo2.grupo01.dto.ParkingDTO;
 import com.oo2.grupo01.entities.Parking;
 import com.oo2.grupo01.repositories.IParkingRepository;
-import com.oo2.grupo01.services.IParkingService;
 
 import lombok.AllArgsConstructor;
 
 @Service("parkingService")
 @AllArgsConstructor
-public class ParkingService implements IParkingService {
+public class ParkingService {
   private IParkingRepository repository;
 
   public void add(String nombre) {
@@ -24,15 +23,15 @@ public class ParkingService implements IParkingService {
     return repository.findAll();
   }
 
-  public Parking get(String nombre) {
-    return repository.findByName(nombre);
+  public Parking get(Long id) {
+    return repository.findById(id).orElse(null);
   }
 
   public ParkingDTO toDto(Parking parking) {
-    return new ParkingDTO(parking);
+    return new ParkingDTO(parking, true);
   }
 
-  public List<ParkingDTO> toTdoList(List<Parking> lugares) {
-    return lugares.stream().map(l -> new ParkingDTO(l)).toList();
+  public List<ParkingDTO> toDtoList(List<Parking> lugares) {
+    return lugares.stream().map(l -> new ParkingDTO(l, false)).toList();
   }
 }

@@ -1,7 +1,5 @@
 package com.oo2.grupo01.configuration;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -10,7 +8,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import com.oo2.grupo01.services.implementacion.UserService;
 
 @Configuration
 @EnableWebSecurity
@@ -26,10 +23,6 @@ public class SecurityConfig {
   public PasswordEncoder securityPasswordEncoder() {
     return new BCryptPasswordEncoder();
   }
-
-  @Autowired
-  @Qualifier("userService")
-  private UserService userService;
 
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {

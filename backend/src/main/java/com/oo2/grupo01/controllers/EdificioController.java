@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.oo2.grupo01.annotations.AuthRole;
+import com.oo2.grupo01.dto.EdificioDTO;
 import com.oo2.grupo01.dto.ErrorDTO;
 import com.oo2.grupo01.repositories.IEdificioRepository;
-import com.oo2.grupo01.services.implementacion.EdificioService;
+import com.oo2.grupo01.services.AulaService;
+import com.oo2.grupo01.services.EdificioService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -27,7 +29,10 @@ public class EdificioController {
   HttpServletResponse res;
 
   @Autowired
-  EdificioService service;
+  EdificioService edificioService;
+
+  @Autowired
+  AulaService aulaService;
 
   @Autowired
   IEdificioRepository repo;
@@ -35,9 +40,9 @@ public class EdificioController {
   @AuthRole("user")
   @GetMapping
   public ResponseEntity<?> getAll() {
-    var edificios = service.getAll();
+    var edificios = edificioService.getAll();
 
-    return ResponseEntity.ok(service.toTdoList(edificios));
+    return ResponseEntity.ok(edificioService.toDtoList(edificios));
   }
 
   @AuthRole("user")
@@ -51,13 +56,16 @@ public class EdificioController {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDTO("'idLugar' it's not a Long"));
     }
 
-    var ed = service.get(id);
+    var ed = edificioService.get(id);
 
     if (ed == null) {
       return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorDTO("Edificio not found"));
     }
 
-    return ResponseEntity.ok(service.toDto(ed));
+    var aulas = aulaService.getAllById(id);
+    ed.setAulas(aulas);
+
+    return ResponseEntity.ok(new EdificioDTO(ed, true));
   }
 
   @AuthRole("admin")

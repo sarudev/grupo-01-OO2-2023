@@ -1,6 +1,7 @@
 package com.oo2.grupo01.entities;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.oo2.grupo01.entities.enums.Lugares;
 
@@ -25,7 +26,7 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 public class Edificio extends Lugar {
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
-  private Set<Aula> aulas;
+  private List<Aula> aulas = new ArrayList<>();
 
   public Edificio(String nombre) {
     super(Lugares.edificio, nombre);

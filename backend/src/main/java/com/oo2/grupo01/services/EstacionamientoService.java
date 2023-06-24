@@ -1,4 +1,4 @@
-package com.oo2.grupo01.services.implementacion;
+package com.oo2.grupo01.services;
 
 import java.util.List;
 
@@ -8,13 +8,12 @@ import com.oo2.grupo01.dto.EstacionamientoDTO;
 import com.oo2.grupo01.entities.Estacionamiento;
 import com.oo2.grupo01.entities.Parking;
 import com.oo2.grupo01.repositories.IEstacionamientoRepository;
-import com.oo2.grupo01.services.IEstacionamientoService;
 
 import lombok.AllArgsConstructor;
 
 @Service("estacionamientoService")
 @AllArgsConstructor
-public class EstacionamientoService implements IEstacionamientoService {
+public class EstacionamientoService {
   private IEstacionamientoRepository repository;
 
   public void add(Parking parking, String nombre) {
@@ -25,15 +24,19 @@ public class EstacionamientoService implements IEstacionamientoService {
     return repository.findAll();
   }
 
-  public Estacionamiento get(String parking, String nombre) {
-    return repository.findByName(nombre, parking);
+  public List<Estacionamiento> getAllById(Long idParking) {
+    return repository.getAllById(idParking);
+  }
+
+  public Estacionamiento get(Long idParking, Long idEstacionamiento) {
+    return repository.get(idParking, idEstacionamiento);
   }
 
   public EstacionamientoDTO toDto(Estacionamiento estacionamiento) {
-    return new EstacionamientoDTO(estacionamiento);
+    return new EstacionamientoDTO(estacionamiento, true);
   }
 
-  public List<EstacionamientoDTO> toTdoList(List<Estacionamiento> lugares) {
-    return lugares.stream().map(l -> new EstacionamientoDTO(l)).toList();
+  public List<EstacionamientoDTO> toDtoList(List<Estacionamiento> lugares) {
+    return lugares.stream().map(l -> new EstacionamientoDTO(l, false)).toList();
   }
 }

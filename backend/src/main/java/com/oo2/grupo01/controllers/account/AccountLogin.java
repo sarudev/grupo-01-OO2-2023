@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.oo2.grupo01.Utils.JWT;
 import com.oo2.grupo01.entities.User;
-import com.oo2.grupo01.services.implementacion.UserService;
+import com.oo2.grupo01.services.UserService;
 
 @Component
 public class AccountLogin {

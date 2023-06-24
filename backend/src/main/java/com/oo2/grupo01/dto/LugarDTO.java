@@ -1,7 +1,7 @@
 package com.oo2.grupo01.dto;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.oo2.grupo01.entities.Historial;
 import com.oo2.grupo01.entities.Sensor;
@@ -19,10 +19,10 @@ public abstract class LugarDTO {
   protected Long id;
   protected Lugares tipo;
   protected String nombre;
-  protected Set<Sensor> sensores = new HashSet<>();
-  protected Set<Historial> historial = new HashSet<>();
+  protected List<Sensor> sensores = new ArrayList<>();
+  protected List<Historial> historial = new ArrayList<>();
 
-  protected LugarDTO(Long id, String nombre, Lugares tipo, Set<Sensor> sensores, Set<Historial> historial) {
+  protected LugarDTO(Long id, String nombre, Lugares tipo, List<Sensor> sensores, List<Historial> historial) {
     this.id = id;
     this.nombre = nombre;
     this.tipo = tipo;

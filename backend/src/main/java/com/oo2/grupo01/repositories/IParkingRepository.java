@@ -9,7 +9,5 @@ import com.oo2.grupo01.entities.Parking;
 
 @Repository("parkingRepository")
 public interface IParkingRepository extends JpaRepository<Parking, Long> {
-  @Query("from Parking p where p.nombre=:nombre")
-  public Parking findByName(@Param("nombre") String nombre);
 
 }
