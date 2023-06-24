@@ -55,7 +55,7 @@ public class Sensor {
   // fk lugar
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "idLugar")
-  @JsonManagedReference
+  @JsonIgnore
   private Lugar lugar;
 
   public Sensor(Sensores tipo, Lugar lugar) {
