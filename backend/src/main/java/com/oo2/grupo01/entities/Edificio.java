@@ -25,10 +25,13 @@ import lombok.ToString;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 public class Edificio extends Lugar {
+
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
   private List<Aula> aulas = new ArrayList<>();
 
   public Edificio(String nombre) {
     super(Lugares.edificio, nombre);
   }
+  
+  
 }
