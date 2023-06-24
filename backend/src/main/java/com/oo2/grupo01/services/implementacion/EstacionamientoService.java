@@ -25,8 +25,8 @@ public class EstacionamientoService implements IEstacionamientoService {
     return repository.findAll();
   }
 
-  public Estacionamiento get(Parking parking, String nombre) {
-    return /* repository.findByName(nombre, parking.getNombre()) */null;
+  public Estacionamiento get(String parking, String nombre) {
+    return repository.findByName(nombre, parking);
   }
 
   public EstacionamientoDTO toDto(Estacionamiento estacionamiento) {

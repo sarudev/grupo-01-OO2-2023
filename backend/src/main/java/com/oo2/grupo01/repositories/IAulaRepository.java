@@ -1,5 +1,7 @@
 package com.oo2.grupo01.repositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -9,13 +11,9 @@ import com.oo2.grupo01.entities.Aula;
 
 @Repository("aulaRepository")
 public interface IAulaRepository extends JpaRepository<Aula, Long> {
-  // @Query(value = "from Aula a " +
-  // "inner join fetch a.lugar e " +
-  // "where e.nombre=:lugar " +
-  // "and a.nombre=:nombre ")
-  // @Query(value = "SELECT * FROM aula a inner join lugar l where
-  // a.id_lugar=l.id_lugar and l.nombre=:nombre or l.nombre=:lugar", nativeQuery =
-  // true)
-  @Query("from Aula a inner join fetch a.lugar l where a.nombre=:nombre and l.nombre=:lugar")
+  @Query("from Aula a inner join fetch a.lugar e where a.nombre=:nombre and e.nombre=:lugar")
   public Aula findByName(@Param("nombre") String nombre, @Param("lugar") String lugar);
+
+  @Query("from Aula a inner join fetch a.lugar e where e.nombre=:lugar")
+  public List<Aula> findAll(@Param("lugar") String lugar);
 }

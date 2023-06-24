@@ -9,7 +9,7 @@ import com.oo2.grupo01.entities.EspacioVerde;
 
 @Repository("espacioVerdeRepository")
 public interface IEspacioVerdeRepository extends JpaRepository<EspacioVerde, Long> {
-  @Query("from EspacioVerde e inner join fetch Lugar l where e.idLugar=l.idLugar and l.nombre=:nombre")
+  @Query("from EspacioVerde e where e.nombre=:nombre")
   public EspacioVerde findByName(@Param("nombre") String nombre);
 
 }

@@ -31,4 +31,7 @@ public class Util {
     return retorno;
   }
 
+  public static String urlToName(String str) {
+    return str.replaceAll("-", " ");
+  }
 }

@@ -7,5 +7,5 @@ import com.oo2.grupo01.entities.Parking;
 public interface IEstacionamientoService extends IGenericService<Estacionamiento, EstacionamientoDTO> {
   void add(Parking parking, String nombre);
 
-  public Estacionamiento get(Parking parking, String nombre);
+  public Estacionamiento get(String parking, String nombre);
 }

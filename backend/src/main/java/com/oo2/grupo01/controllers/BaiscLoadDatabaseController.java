@@ -1,6 +1,5 @@
 package com.oo2.grupo01.controllers;
 
-import org.hibernate.boot.model.relational.Database;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.oo2.grupo01.Utils.DatabaseUtils;
 import com.oo2.grupo01.entities.User;
-import com.oo2.grupo01.entities.enums.Lugares;
 import com.oo2.grupo01.entities.enums.UserRole;
 import com.oo2.grupo01.services.implementacion.AulaService;
 import com.oo2.grupo01.services.implementacion.EdificioService;

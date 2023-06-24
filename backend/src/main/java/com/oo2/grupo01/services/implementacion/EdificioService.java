@@ -25,9 +25,7 @@ public class EdificioService implements IEdificioService {
   }
 
   public Edificio get(String nombre) {
-    System.out.println("edificio nombre: " + nombre);
-    System.out.println("edificio: " + repository.findByName(nombre));
-    return repository.findByName(nombre);
+    return repository.traerPorNombre(nombre);
   }
 
   public EdificioDTO toDto(Edificio edificio) {

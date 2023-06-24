@@ -25,11 +25,11 @@ public class AulaService implements IAulaService {
     return repository.findAll();
   }
 
-  public Aula get(String edificio, String nombre) throws Exception {
-    if (edificio == null)
-      throw new Exception("Edificio no encontrado");
-    System.out.println("aula nombre: " + nombre);
-    System.out.println("edificio nombre: " + edificio);
+  public List<Aula> getAll(String lugar) {
+    return repository.findAll(lugar);
+  }
+
+  public Aula get(String edificio, String nombre) {
     return repository.findByName(nombre, edificio);
   }
 
