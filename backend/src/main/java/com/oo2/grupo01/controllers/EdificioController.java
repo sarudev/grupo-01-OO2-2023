@@ -12,9 +12,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.oo2.grupo01.annotations.AuthRole;
 import com.oo2.grupo01.dto.ErrorDTO;
+import com.oo2.grupo01.entities.Sensor;
+import com.oo2.grupo01.entities.enums.Sensores;
+import com.oo2.grupo01.models.SensorCamara;
+import com.oo2.grupo01.models.SensorTemperatura;
+import com.oo2.grupo01.models.SensorTiempo;
 import com.oo2.grupo01.repositories.IEdificioRepository;
 import com.oo2.grupo01.services.AulaService;
 import com.oo2.grupo01.services.EdificioService;
+import com.oo2.grupo01.services.LugarService;
+import com.oo2.grupo01.services.SensorService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -35,7 +42,13 @@ public class EdificioController {
   AulaService aulaService;
 
   @Autowired
+  LugarService lugarService;
+  
+  @Autowired
   IEdificioRepository repo;
+  
+  @Autowired
+  SensorService sensorService;
 
   @AuthRole("user")
   @GetMapping
@@ -70,13 +83,31 @@ public class EdificioController {
   @PostMapping("/{idLugar}/sensor")
   public ResponseEntity<?> sensor(@PathVariable("idLugar") String idLugar, @RequestBody String tipo) {
     // validar tipo de sensor ya que llega como un string
-    // crear un sensor del tipo que llega en el @RequestBody
+	  // crear un sensor del tipo que llega en el @RequestBody
+	  
+	  
+	  System.out.println("ENTRE 1");
+	  Long id = Long.parseLong(idLugar);
+	  if(tipo.equalsIgnoreCase(Sensores.camara.toString())) {
+		  SensorCamara sensorCamara = new SensorCamara(new Sensor(Sensores.camara, edificioService.get(id)));
+		  sensorService.addSensor(sensorCamara);
+	  }else if(tipo.equalsIgnoreCase(Sensores.temperatura.toString())) {
+		  SensorTemperatura sensorTemperatura = new SensorTemperatura(new Sensor(Sensores.temperatura, edificioService.get(id)));
+		  sensorService.addSensor(sensorTemperatura);
+	  }else if(tipo.equalsIgnoreCase(Sensores.tiempo.toString())) {
+		  System.out.println("Entre 5");
+		  SensorTiempo sensorTiempo = new SensorTiempo(new Sensor(Sensores.tiempo, edificioService.get(id)));
+		  System.out.println("entre 4");
+		  sensorService.addSensor(sensorTiempo);
+	  }
+
     // crear/insertar el sensor en el lugar idLugar
     // devolver ResponseEntity.ok("");
 
     // en caso de que el lugar sea una dependencia (aula / estacionamiento)
     // seguir los mismos pasos pero usar la id idDependencia en lugar de idLugar
 
+	  System.out.println("ENTRE 3");
     return ResponseEntity.ok("admin post sensor edificio");
   }
 }

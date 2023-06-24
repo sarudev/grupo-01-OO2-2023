@@ -21,6 +21,10 @@ public class SensorService {
   public List<Sensor> getAll() {
     return sensorRepository.findAll();
   }
+  
+  public Sensor addSensor(Sensor sensor) {
+	  return sensorRepository.save(sensor);
+  }
 
   public List<Sensor> getAllById(Long id) {
     // return sensorRepository.getAllById(id);
