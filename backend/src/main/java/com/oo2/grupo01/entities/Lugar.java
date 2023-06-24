@@ -2,6 +2,12 @@ package com.oo2.grupo01.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.oo2.grupo01.entities.enums.Lugares;
 
 import jakarta.persistence.Column;
@@ -26,13 +32,14 @@ import lombok.ToString;
 
 @Entity
 @Table(name = "lugar")
-@PrimaryKeyJoinColumn(referencedColumnName = "idLugar")
 @Getter
 @Setter
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idLugar")
+@JsonIgnoreProperties({ "hibernateLazyInitializer" })
 public class Lugar {
 
   @Id
@@ -49,9 +56,11 @@ public class Lugar {
   protected Lugares tipo;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
+  @JsonManagedReference
   private List<Sensor> sensores;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
+  @JsonManagedReference
   private List<Historial> historial;
 
   public Lugar(Lugares tipo, String nombre) {

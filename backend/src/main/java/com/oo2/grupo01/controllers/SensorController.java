@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.oo2.grupo01.dto.ErrorDTO;
 import com.oo2.grupo01.entities.Sensor;
+import com.oo2.grupo01.services.EstacionamientoService;
 import com.oo2.grupo01.services.LugarService;
+import com.oo2.grupo01.services.ParkingService;
 import com.oo2.grupo01.services.SensorService;
 
 @RestController
@@ -22,6 +24,9 @@ public class SensorController {
 
   @Autowired
   private SensorService sensorService;
+
+  @Autowired
+  LugarService lugarService;
 
   @GetMapping("/listar")
   public List<Sensor> listar() {
@@ -46,8 +51,8 @@ public class SensorController {
 
   @GetMapping("/{lugarId}/sensores")
   public ResponseEntity<?> getSensoresById(@PathVariable long lugarId) {
-    // List<Sensor> sensores = lugarService.findSensoresByLugarId(lugarId);
-    return ResponseEntity.ok(null);
+    List<Sensor> sensores = lugarService.findSensoresByLugarId(lugarId);
+    return ResponseEntity.ok(sensores);
   }
 
 }

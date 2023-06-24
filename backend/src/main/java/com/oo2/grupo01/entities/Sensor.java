@@ -1,5 +1,11 @@
 package com.oo2.grupo01.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.oo2.grupo01.entities.enums.Sensores;
 
 import jakarta.persistence.Column;
@@ -25,12 +31,12 @@ import lombok.ToString;
 
 @Entity
 @Table(name = "sensor")
-
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idSensor")
 public class Sensor {
 
   @Id
@@ -49,10 +55,10 @@ public class Sensor {
   // fk lugar
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "idLugar")
-  Lugar lugar;
+  @JsonManagedReference
+  private Lugar lugar;
 
   public Sensor(Sensores tipo, Lugar lugar) {
-    super();
     this.tipo = tipo;
     this.activo = null;
     this.lugar = lugar;
@@ -64,5 +70,4 @@ public class Sensor {
     this.activo = sensor.activo;
     this.lugar = sensor.lugar;
   }
-
 }

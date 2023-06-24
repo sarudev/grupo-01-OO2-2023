@@ -13,5 +13,5 @@ import com.oo2.grupo01.entities.Sensor;
 public interface ISensorRepository extends JpaRepository<Sensor, Long> {
 
   // @Query("from Sensor s where s.idugar=:idLugar")
-  public List<Sensor> getAllById(@Param("idLugar") Long idLugar);
+  // public List<Sensor> getAllById(@Param("idLugar") Long idLugar);
 }

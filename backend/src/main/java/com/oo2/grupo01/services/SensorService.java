@@ -23,7 +23,8 @@ public class SensorService {
   }
 
   public List<Sensor> getAllById(Long id) {
-    return sensorRepository.getAllById(id);
+    // return sensorRepository.getAllById(id);
+    return null;
   }
 
   public Optional<Sensor> findSensorById(long id) {
