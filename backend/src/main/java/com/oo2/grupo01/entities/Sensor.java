@@ -1,5 +1,6 @@
 package com.oo2.grupo01.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.oo2.grupo01.entities.enums.Sensores;
 
 import jakarta.persistence.Column;

@@ -7,6 +7,7 @@ import com.oo2.grupo01.entities.User;
 import com.oo2.grupo01.repositories.IUserRepository;
 
 @Service("userService")
+
 public class UserService {
 
   @Autowired

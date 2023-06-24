@@ -2,6 +2,8 @@ package com.oo2.grupo01.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.oo2.grupo01.entities.enums.Lugares;
 
 import jakarta.persistence.Column;
@@ -33,6 +35,7 @@ import lombok.ToString;
 @Inheritance(strategy = InheritanceType.JOINED)
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class Lugar {
 
   @Id
@@ -49,9 +52,11 @@ public class Lugar {
   protected Lugares tipo;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
+  @JsonIgnore
   private List<Sensor> sensores;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
+  @JsonIgnore
   private List<Historial> historial;
 
   public Lugar(Lugares tipo, String nombre) {
