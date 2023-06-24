@@ -1,5 +1,7 @@
 package com.oo2.grupo01.services.implementacion;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -19,6 +21,21 @@ public class AulaService implements IAulaService {
 
   public void add(Edificio edificio, String nombre) throws Exception {
     repository.save(new Aula(edificio, nombre));
+  }
+
+  public List<Aula> getAll(Long idEdificio) {
+    var aulas = repository.findAll();
+
+    List<Aula> res = new ArrayList<Aula>();
+
+    for (var a : aulas) {
+      System.out.println(a);
+      if (a.getLugar() != null && a.getLugar().getIdLugar() == idEdificio) {
+        res.add(a);
+      }
+    }
+
+    return res;
   }
 
   public List<Aula> getAll() {

@@ -11,5 +11,4 @@ import com.oo2.grupo01.entities.Aula;
 public interface IAulaRepository extends JpaRepository<Aula, Long> {
   @Query("from Aula a inner join fetch a.lugar e where a.idLugar=:idAula and e.idLugar=:idEdificio")
   public Aula get(@Param("idEdificio") Long idEdificio, @Param("idAula") Long idAula);
-
 }

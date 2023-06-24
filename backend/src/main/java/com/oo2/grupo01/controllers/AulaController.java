@@ -56,7 +56,19 @@ public class AulaController {
 
   @AuthRole("user")
   @GetMapping
-  public ResponseEntity<?> getAll() {
+  public ResponseEntity<?> getAll(@PathVariable("idLugar") String idLugar) {
+    // Long id;
+
+    // try {
+    // id = Long.parseLong(idLugar);
+    // } catch (NumberFormatException exception) {
+    // return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new
+    // ErrorDTO("'idLugar' it's not a Long"));
+    // }
+
+    // var aulas = service.getAll(id);
+
+    // return ResponseEntity.ok(service.toTdoList(aulas));
     return ResponseEntity.ok(service.getAll());
   }
 

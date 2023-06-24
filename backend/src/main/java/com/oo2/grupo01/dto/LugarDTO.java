@@ -1,5 +1,6 @@
 package com.oo2.grupo01.dto;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import com.oo2.grupo01.entities.Historial;
@@ -18,8 +19,8 @@ public abstract class LugarDTO {
   protected Long id;
   protected Lugares tipo;
   protected String nombre;
-  protected Set<Sensor> sensores;
-  protected Set<Historial> historial;
+  protected Set<Sensor> sensores = new HashSet<>();
+  protected Set<Historial> historial = new HashSet<>();
 
   protected LugarDTO(Long id, String nombre, Lugares tipo, Set<Sensor> sensores, Set<Historial> historial) {
     this.id = id;

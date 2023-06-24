@@ -14,7 +14,7 @@ public class EdificioDTO extends LugarDTO {
   public EdificioDTO(Edificio edif) {
     super(edif.getIdLugar(), edif.getNombre(), edif.getTipo(), edif.getSensores(),
         edif.getHistorial());
-
+    System.out.println(edif);
     this.aulas = edif.getAulas().stream().map(au -> new AulaDTO(au)).toList();
     this.luces = null;
   }
