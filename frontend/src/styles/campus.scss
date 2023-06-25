@@ -1,0 +1,192 @@
+.campus-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  #cartelitowo {
+    position: absolute;
+    background-color: #242424;
+    color: white;
+    font-size: 1rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(10%) translateY(-110%);
+    padding: 10px;
+    border-radius: 10px;
+    transition: opacity .25s ease;
+
+    &.visible {
+      opacity: 1;
+    }
+  }
+
+  .session {
+    color: white;
+    width: 100%;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 24px;
+
+    a {
+      font-size: 16px;
+    }
+  }
+
+  .campus {
+    width: min(1200px, 100%);
+    height: max-content;
+
+    .svg-lugar {
+      &[data-lugar-tipo="edificio"] {
+        &.selected .background[data-invisible] {
+          stroke: cornflowerblue;
+        }
+
+        .background {
+          fill: #423E3F;
+
+          &:hover {
+            stroke: cornflowerblue;
+          }
+        }
+      }
+
+      &[data-lugar-tipo="espacio verde"] {
+        &.selected .background[data-invisible] {
+          stroke: #67aa78;
+        }
+
+        .background {
+          fill: #b3dfbe;
+
+          &:hover {
+            stroke: #67aa78;
+          }
+        }
+      }
+
+      &[data-lugar-tipo="parking"] {
+        &.selected .background[data-invisible] {
+          stroke: #8b8b8b;
+        }
+
+        .background {
+          fill: #d4d4d488;
+
+          &:hover {
+            stroke: #8b8b8b;
+          }
+        }
+      }
+
+      &[data-lugar-tipo="espacio verde"],
+      &[data-lugar-tipo="parking"] {
+        .num {
+          fill: #423E3F;
+        }
+      }
+
+      .background {
+        stroke: transparent;
+        stroke-width: 5px;
+        transition: stroke .25s ease;
+        cursor: pointer;
+
+        & ~ .num {
+          user-select: none;
+        }
+
+        &[data-invisible] {
+          fill: black;
+          fill-opacity: 0;
+
+          & ~ .num {
+            fill: #423E3F;
+          }
+        }
+      }
+
+      &[data-lugar-num="-1"] .background {
+        stroke: transparent;
+        cursor: default;
+
+        &:hover {
+          stroke: transparent;
+        }
+      }
+
+      &[data-lugar-num="10"] .background {
+        fill: #9D9AA1;
+      }
+
+      .canchas,
+      .num {
+        pointer-events: none;
+      }
+
+      .num {
+        fill: white;
+      }
+    }
+
+    .svg-lugar-text {
+      cursor: pointer;
+
+      &[data-lugar-tipo="edificio"] > text {
+
+        &.selected,
+        &:hover {
+          fill: cornflowerblue;
+        }
+      }
+
+      &[data-lugar-tipo="espacio verde"] > text {
+
+        &.selected,
+        &:hover {
+          fill: #67aa78;
+        }
+      }
+
+      &[data-lugar-tipo="parking"] > text {
+
+        &.selected,
+        &:hover {
+          fill: #8b8b8b;
+        }
+      }
+
+      &:hover {
+        text {
+          fill: cornflowerblue;
+        }
+      }
+
+      .background {
+        fill: black;
+        fill-opacity: 0;
+      }
+
+      text {
+        fill: #423E3F;
+        stroke: cornflowerblue;
+        stroke-width: 0px;
+        transition: all .25s ease;
+
+        &.selected {
+          fill: cornflowerblue;
+        }
+      }
+    }
+
+  }
+}

@@ -1,0 +1,134 @@
+form {
+  position: relative;
+  background: rgba(255, 255, 255, 0.21);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(7.4px);
+  -webkit-backdrop-filter: blur(7.4px);
+  width: 500px;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 20px;
+  padding: 20px;
+  z-index: 1000;
+
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    > span {
+      width: 100%;
+      height: 50px;
+      color: black;
+      font-size: 35px;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: monospace;
+      font-weight: bold;
+      color: white;
+    }
+  }
+
+  > .inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: max-content;
+
+    > .container-input {
+      box-sizing: border-box;
+      position: relative;
+      width: 100%;
+      height: 40px;
+      cursor: text;
+
+      > .input {
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25);
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        flex-grow: 1;
+        padding: 5px;
+        font-size: 15px;
+        resize: none;
+        color: white;
+        border: none;
+        font-weight: bold;
+
+        &:focus-visible {
+          outline: none;
+        }
+
+        &:hover,
+        &:focus {
+          background: rgba(255, 255, 255, 0.4);
+        }
+
+        option {
+          color: black;
+        }
+      }
+    }
+  }
+
+  > .send {
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7.4px);
+    -webkit-backdrop-filter: blur(7.4px);
+    height: 40px;
+    width: 100%;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    margin-right: 0;
+    font-weight: bolder;
+    font-size: 25px;
+    border: none;
+
+    &:hover {
+      color: black;
+      background: linear-gradient(315deg,
+          rgba(198, 222, 241, 1) 5%,
+          rgba(250, 155, 207, 1) 25%,
+          rgba(198, 222, 241, 1) 50%,
+          rgba(250, 155, 207, 1) 75%,
+          rgba(198, 222, 241, 1) 95%);
+      background-size: 500%;
+      background-position: center center;
+      animation: gradient 45s linear infinite;
+    }
+  }
+
+  .error {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(219, 164, 175, 0.1);
+    border-radius: 10px;
+    font-size: 16px;
+    color: white;
+    width: 100%;
+    padding: 10px;
+  }
+
+  @keyframes gradient {
+
+    0%,
+    100% {
+      background-position: 0%;
+    }
+
+    50% {
+      background-position: 500%;
+    }
+  }
+}

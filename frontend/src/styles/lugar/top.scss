@@ -1,0 +1,67 @@
+.top {
+  width: 100%;
+  flex-grow: 0;
+  flex-shrink: 0;
+  height: max-content;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+
+  .icon {
+    flex-shrink: 0;
+    width: 100px;
+    aspect-ratio: 1;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 80%;
+      aspect-ratio: 1;
+      fill: #d4d4d4;
+    }
+  }
+
+  .text {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    gap: 15px;
+
+    .text-container {
+      display: flex;
+      flex-direction: column;
+
+      .title {
+        font-size: 3rem;
+      }
+
+      .description {
+        font-size: 1.25rem;
+      }
+    }
+
+    .session-container {
+      width: max-content;
+      text-align: center;
+
+      .back {
+        width: max-content;
+        height: max-content;
+        font-size: 24px;
+      }
+
+      .session {
+        width: 100%;
+        margin-top: 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        font-size: 16px;
+      }
+    }
+  }
+}
