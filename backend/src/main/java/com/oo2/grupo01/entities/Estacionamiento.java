@@ -24,7 +24,7 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 public class Estacionamiento extends Lugar {
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "idParking")
+  @JoinColumn(name = "id_parking")
   private Parking lugar;
 
   public Estacionamiento(Parking lugar, String numero) {

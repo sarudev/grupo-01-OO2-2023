@@ -3,14 +3,13 @@ package com.oo2.grupo01.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.oo2.grupo01.Utils.SensorUtil;
+import com.oo2.grupo01.Utils.Util;
 import com.oo2.grupo01.entities.Historial;
+import com.oo2.grupo01.entities.Lugar;
 import com.oo2.grupo01.entities.Sensor;
 import com.oo2.grupo01.entities.enums.Lugares;
-import com.oo2.grupo01.models.SensorBascula;
-import com.oo2.grupo01.models.SensorCamara;
-import com.oo2.grupo01.models.SensorHumedad;
-import com.oo2.grupo01.models.SensorTemperatura;
-import com.oo2.grupo01.models.SensorTiempo;
+import com.oo2.grupo01.entities.enums.Sensores;
 
 import lombok.Getter;
 
@@ -29,25 +28,17 @@ public abstract class LugarDTO {
     this.historial = historial;
 
     for (var sensor : sensores) {
-      switch (sensor.getTipo()) {
-        case bascula:
-          this.sensores.add(new SensorBascula(sensor));
-          break;
-        case camara:
-          this.sensores.add(new SensorCamara(sensor));
-          break;
-        case humedad:
-          this.sensores.add(new SensorHumedad(sensor));
-          break;
-        case tiempo:
-          this.sensores.add(new SensorTiempo(sensor));
-          break;
-        case temperatura:
-          this.sensores.add(new SensorTemperatura(sensor));
-      }
+      var sen = SensorUtil.convertirSensor(sensor);
+
+      if (sen != null)
+        this.sensores.add(sen);
     }
 
   }
 
-  public abstract void inicializarVariables();
+  public abstract void inicializarVariables(Lugar lugar, Util.SaveHistorial lambda);
+
+  protected List<Historial> getBy(Sensores tipo) {
+    return historial.stream().filter(h -> h.getTipo().equals(tipo)).toList();
+  }
 }

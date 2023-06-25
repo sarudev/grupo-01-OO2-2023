@@ -10,17 +10,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.oo2.grupo01.Utils.SensorUtil;
 import com.oo2.grupo01.annotations.AuthRole;
+import com.oo2.grupo01.dto.EdificioDTO;
 import com.oo2.grupo01.dto.ErrorDTO;
-import com.oo2.grupo01.entities.Sensor;
-import com.oo2.grupo01.entities.enums.Sensores;
-import com.oo2.grupo01.models.SensorCamara;
-import com.oo2.grupo01.models.SensorTemperatura;
-import com.oo2.grupo01.models.SensorTiempo;
+import com.oo2.grupo01.dto.MessageDTO;
 import com.oo2.grupo01.repositories.IEdificioRepository;
 import com.oo2.grupo01.services.AulaService;
 import com.oo2.grupo01.services.EdificioService;
-import com.oo2.grupo01.services.LugarService;
 import com.oo2.grupo01.services.SensorService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -36,26 +33,23 @@ public class EdificioController {
   HttpServletResponse res;
 
   @Autowired
-  EdificioService edificioService;
+  IEdificioRepository repo;
+
+  @Autowired
+  EdificioService service;
 
   @Autowired
   AulaService aulaService;
 
-  @Autowired
-  LugarService lugarService;
-  
-  @Autowired
-  IEdificioRepository repo;
-  
   @Autowired
   SensorService sensorService;
 
   @AuthRole("user")
   @GetMapping
   public ResponseEntity<?> getAll() {
-    var edificios = edificioService.getAll();
+    var edificios = service.getAll();
 
-    return ResponseEntity.ok(edificioService.toDtoList(edificios));
+    return ResponseEntity.ok(service.toDtoList(edificios));
   }
 
   @AuthRole("user")
@@ -69,45 +63,58 @@ public class EdificioController {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDTO("'idLugar' it's not a Long"));
     }
 
-    var ed = edificioService.get(id);
+    var ed = service.get(id);
 
     if (ed == null) {
       return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorDTO("Edificio not found"));
     }
 
     return ResponseEntity.ok(ed);
-    // return ResponseEntity.ok(new EdificioDTO(ed, true));
+  }
+
+  @AuthRole("admin")
+  @GetMapping("/{idDependencia}/sensor")
+  public ResponseEntity<?> getSensores() {
+    return ResponseEntity.ok(EdificioDTO.allowedSensores);
   }
 
   @AuthRole("admin")
   @PostMapping("/{idLugar}/sensor")
   public ResponseEntity<?> sensor(@PathVariable("idLugar") String idLugar, @RequestBody String tipo) {
-    // validar tipo de sensor ya que llega como un string
-	  // crear un sensor del tipo que llega en el @RequestBody
-	  
-	  
-	  System.out.println("ENTRE 1");
-	  Long id = Long.parseLong(idLugar);
-	  if(tipo.equalsIgnoreCase(Sensores.camara.toString())) {
-		  SensorCamara sensorCamara = new SensorCamara(new Sensor(Sensores.camara, edificioService.get(id)));
-		  sensorService.addSensor(sensorCamara);
-	  }else if(tipo.equalsIgnoreCase(Sensores.temperatura.toString())) {
-		  SensorTemperatura sensorTemperatura = new SensorTemperatura(new Sensor(Sensores.temperatura, edificioService.get(id)));
-		  sensorService.addSensor(sensorTemperatura);
-	  }else if(tipo.equalsIgnoreCase(Sensores.tiempo.toString())) {
-		  System.out.println("Entre 5");
-		  SensorTiempo sensorTiempo = new SensorTiempo(new Sensor(Sensores.tiempo, edificioService.get(id)));
-		  System.out.println("entre 4");
-		  sensorService.addSensor(sensorTiempo);
-	  }
+    Long id;
 
-    // crear/insertar el sensor en el lugar idLugar
-    // devolver ResponseEntity.ok("");
+    try {
+      id = Long.parseLong(idLugar);
+    } catch (NumberFormatException exception) {
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDTO("'idLugar' it's not a Long"));
+    }
 
-    // en caso de que el lugar sea una dependencia (aula / estacionamiento)
-    // seguir los mismos pasos pero usar la id idDependencia en lugar de idLugar
+    if (SensorUtil.isSensorTipo(tipo)) {
+      var sensorTipo = SensorUtil.toSensorTipo(tipo);
 
-	  System.out.println("ENTRE 3");
-    return ResponseEntity.ok("admin post sensor edificio");
+      if (!EdificioDTO.allowedSensores.contains(sensorTipo)) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDTO("invalid sensor for this edificio"));
+      }
+
+      var lugar = service.get(id);
+
+      if (lugar == null) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDTO("lugar is null"));
+      }
+
+      for (var s : lugar.getSensores()) {
+        if (s.getTipo().equals(sensorTipo)) {
+          return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+              .body(new ErrorDTO("ese sensor ya existe en este edificio"));
+        }
+      }
+
+      sensorService.add(lugar, sensorTipo);
+
+      return ResponseEntity.status(HttpStatus.OK)
+          .body(new MessageDTO("ok"));
+    } else {
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDTO("tipo de sensor no valido"));
+    }
   }
 }

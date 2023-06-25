@@ -58,7 +58,8 @@ public class Historial {
   @JsonIgnore
   private Lugar lugar;
 
-  public Historial(Sensores tipo, String descripcion, LocalDateTime fecha) {
+  public Historial(Lugar lugar, Sensores tipo, String descripcion, LocalDateTime fecha) {
+    this.lugar = lugar;
     this.tipo = tipo;
     this.descripcion = descripcion;
     this.fecha = fecha;

@@ -29,8 +29,6 @@ public class Aula extends Lugar {
 
   public Aula(Edificio lugar, String nombre) throws Exception {
     super(Lugares.aula, nombre);
-    if (lugar == null)
-      throw new Exception("edificio null");
     this.lugar = lugar;
   }
 }

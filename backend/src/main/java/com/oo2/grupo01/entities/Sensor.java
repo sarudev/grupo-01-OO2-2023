@@ -44,7 +44,7 @@ public class Sensor {
   private Sensores tipo;
 
   @Column(name = "activo")
-  private Boolean activo;
+  private boolean activo;
 
   // fk lugar
   @ManyToOne(fetch = FetchType.LAZY)
@@ -54,7 +54,7 @@ public class Sensor {
 
   public Sensor(Sensores tipo, Lugar lugar) {
     this.tipo = tipo;
-    this.activo = null;
+    this.activo = false;
     this.lugar = lugar;
   }
 

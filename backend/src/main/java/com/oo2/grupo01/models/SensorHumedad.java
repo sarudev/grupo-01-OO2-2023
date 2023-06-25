@@ -15,7 +15,11 @@ public class SensorHumedad extends Sensor {
   }
 
   public double humedad() {
-    return Math.random() % 75 + 25;
+    return Math.round(Math.random() * 100);
+  }
+
+  public boolean humedadBaja() {
+    return this.humedad <= 30;
   }
 
   @Override
