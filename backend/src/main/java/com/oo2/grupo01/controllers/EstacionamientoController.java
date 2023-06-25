@@ -51,8 +51,6 @@ public class EstacionamientoController {
     var estacionamientos = service.getAllById(id);
 
     for (var est : estacionamientos) {
-      System.out.println(est.getNombre());
-      System.out.println(est.getNombre());
       if (est.getNombre().equals(body.getNombre()) && est.getLugar().getIdLugar() == id)
         return ResponseEntity.status(HttpStatus.CONFLICT).body("estacionamiento ya existe");
     }
@@ -60,7 +58,6 @@ public class EstacionamientoController {
     try {
       service.add(parking, body.getNombre());
     } catch (Exception err) {
-      System.out.println("error?");
     }
 
     return ResponseEntity.status(HttpStatus.CREATED).body(null);

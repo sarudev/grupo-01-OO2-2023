@@ -42,7 +42,6 @@ public class EstacionamientoDTO extends LugarDTO {
             lambda.save(espacioOcupado);
           }
         } else {
-          System.out.println("Invalid sensor: " + s.getTipo());
         }
       }
     }

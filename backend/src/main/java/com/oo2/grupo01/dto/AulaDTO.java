@@ -133,7 +133,6 @@ public class AulaDTO extends LugarDTO {
             }
           }
         } else {
-          System.out.println("Invalid sensor: " + s.getTipo());
         }
       }
     }

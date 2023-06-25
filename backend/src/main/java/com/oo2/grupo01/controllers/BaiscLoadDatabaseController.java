@@ -13,11 +13,12 @@ import com.oo2.grupo01.services.AulaService;
 import com.oo2.grupo01.services.EdificioService;
 import com.oo2.grupo01.services.EspacioVerdeService;
 import com.oo2.grupo01.services.EstacionamientoService;
+import com.oo2.grupo01.services.LoadedDBService;
 import com.oo2.grupo01.services.ParkingService;
 import com.oo2.grupo01.services.UserService;
 
 @RestController
-@RequestMapping("/loadDB")
+@RequestMapping
 public class BaiscLoadDatabaseController {
   @Autowired
   EdificioService edificioService;
@@ -38,10 +39,19 @@ public class BaiscLoadDatabaseController {
   UserService userService;
 
   @Autowired
+  LoadedDBService loadedDbService;
+
+  @Autowired
   DatabaseUtils db;
 
-  @GetMapping
+  @GetMapping("/loadDB")
   public ResponseEntity<?> loadDB() throws Exception {
+    var ok = ResponseEntity.ok("Datos creados");
+
+    if (loadedDbService.loaded()) {
+      return ok;
+    }
+
     String[] edificios = {
         "José Hernández",
         "Comedor Universitario Padre Mujica",
@@ -135,6 +145,13 @@ public class BaiscLoadDatabaseController {
     userService.add(new User("admin", userService.encodePassword("admin"), UserRole.admin, true));
     System.out.println("account: admin");
 
-    return ResponseEntity.ok("Datos creados");
+    loadedDbService.load();
+
+    return ok;
+  }
+
+  @GetMapping("/loadedDB")
+  public ResponseEntity<?> loadedDB() {
+    return ResponseEntity.ok(loadedDbService.loaded());
   }
 }

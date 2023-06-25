@@ -78,7 +78,6 @@ public class EdificioDTO extends LugarDTO {
             }
           }
         } else {
-          System.out.println("Invalid sensor: " + s.getTipo());
         }
       }
     }

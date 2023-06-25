@@ -58,7 +58,6 @@ public class AulaController {
     try {
       service.add(edif, body.getNombre());
     } catch (Exception err) {
-      System.out.println("error?");
     }
 
     return ResponseEntity.status(HttpStatus.CREATED).body(null);

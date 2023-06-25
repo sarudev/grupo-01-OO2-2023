@@ -86,7 +86,6 @@ public class EspacioVerdeDTO extends LugarDTO {
             lambda.save(aspersoresH);
           }
         } else {
-          System.out.println("Invalid sensor: " + s.getTipo());
         }
       }
     }

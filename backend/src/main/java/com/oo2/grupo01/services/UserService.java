@@ -16,7 +16,6 @@ public class UserService {
   private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
   public User findByUsername(String username) {
-    System.out.println("Searching user by username: " + username);
     return userRepository.findByUsername(username);
   }
 

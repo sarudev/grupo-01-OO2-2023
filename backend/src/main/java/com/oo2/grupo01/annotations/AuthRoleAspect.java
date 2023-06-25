@@ -39,7 +39,6 @@ public class AuthRoleAspect {
       }
 
       String jwtCookieValue = cookie.getValue();
-      // System.out.println(jwtCookieValue);
 
       var userData = JWT.toMap(JWT.decodeJWTpayload(jwtCookieValue));
       var jwtRole = UserData.roleToValue((String) userData.get("role"));
