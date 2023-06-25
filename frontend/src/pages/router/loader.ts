@@ -1,4 +1,4 @@
-import { type LoaderFunction, type Params } from 'react-router-dom'
+import { redirect, type LoaderFunction, type Params } from 'react-router-dom'
 import { type UserData, type LoaderResponse } from '../../types/types'
 import axios, { AxiosError } from 'axios'
 import { Routes } from '../../types/enums'
@@ -6,6 +6,10 @@ import { Routes } from '../../types/enums'
 export default function loader (path: (params: Params<string>) => string): LoaderFunction {
   return async ({ params }) => {
     let response: LoaderResponse
+
+    const { data: loadedDB } = await axios.get(Routes.BaseUrl + '/loadedDB') as { data: boolean }
+
+    if (!loadedDB) return redirect(Routes.Campus)
 
     try {
       const res = await axios.get(Routes.BaseUrl + path(params), { withCredentials: true })

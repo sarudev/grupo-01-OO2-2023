@@ -8,10 +8,13 @@ import ErrorBoundary from './pages/router/ErrorBoundary'
 import { useCallback } from 'react'
 import { Routes } from './types/enums'
 import Logout from './pages/Logout'
+import LoadingDB from './pages/LoadingDB'
+import IndexLoader from './pages/router/IndexLoader'
 
 const router = createBrowserRouter([
   {
     path: '/',
+    loader: IndexLoader(),
     element: <Index />
   },
   {
@@ -32,6 +35,10 @@ const router = createBrowserRouter([
   {
     path: Routes.Logout,
     element: <Logout />
+  },
+  {
+    path: Routes.LoadDB,
+    element: <LoadingDB />
   },
   {
     path: '*',

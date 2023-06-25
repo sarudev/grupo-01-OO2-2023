@@ -25,10 +25,14 @@ export const LugarDependencia: Record<ILugarTipo, string | null> = {
 export const enum Routes {
   BaseUrl = 'http://localhost:5282',
 
+  Campus = '/',
+
   Login = '/account/login',
   UserRole = '/account/userRole/:username',
   UserData = '/account/userData',
   Logout = '/account/logout',
+
+  LoadDB = '/loadDB',
 
   Sensor = '/sensor',
   Building = '/:buildingType/:buildingName',
