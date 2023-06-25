@@ -1,7 +1,10 @@
-export default function MouseCartelito ({ text }: { text: string }) {
+import { firstUpper } from '../utils/utils'
+
+export default function MouseCartelito ({ text, lugar }: { text: string, lugar: string }) {
   return (
     <div id='cartelitowo'>
-      {text}
+      <div className="lugar">{firstUpper(lugar)}:</div>
+      <div className="texto">{text}</div>
     </div>
   )
 }

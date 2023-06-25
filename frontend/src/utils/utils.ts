@@ -31,8 +31,8 @@ export function firstUpper (str: string) {
 
 export function apiUrl (lugar: Lugares) {
   let url = Routes.BaseUrl as string
-  if (lugar.tipo === ILugarTipo.Aula || lugar.tipo === ILugarTipo.Estacionamiento) url += `/${lugar.lugar.tipo}/${lugar.lugar.nombre.replaceAll(' ', '-')}/${lugar.tipo}/${lugar.nombre}`
-  else url += `/${lugar.tipo}/${lugar.nombre.replaceAll(' ', '-')}`
+  if (lugar.tipo === ILugarTipo.Aula || lugar.tipo === ILugarTipo.Estacionamiento) url += `/${lugar.lugar.tipo}/${lugar.lugar.id}/${lugar.tipo}/${lugar.id}`
+  else url += `/${lugar.tipo}/${lugar.id}`
 
   return url
 }

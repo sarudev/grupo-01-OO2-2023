@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.oo2.grupo01.Utils.SensorUtil;
 import com.oo2.grupo01.annotations.AuthRole;
 import com.oo2.grupo01.dto.AulaDTO;
 import com.oo2.grupo01.dto.ErrorDTO;
 import com.oo2.grupo01.dto.MessageDTO;
+import com.oo2.grupo01.models.Nombre;
+import com.oo2.grupo01.models.SensorType;
 import com.oo2.grupo01.services.AulaService;
 import com.oo2.grupo01.services.EdificioService;
 import com.oo2.grupo01.services.SensorService;
@@ -33,7 +34,7 @@ public class AulaController {
 
   @AuthRole("admin")
   @PostMapping
-  public ResponseEntity<?> post(@PathVariable("idLugar") String idLugar, @RequestBody String nombre) {
+  public ResponseEntity<?> post(@PathVariable("idLugar") String idLugar, @RequestBody Nombre body) {
     Long id;
 
     try {
@@ -50,12 +51,12 @@ public class AulaController {
     var aulas = service.getAllById(id);
 
     for (var a : aulas) {
-      if (a.getNombre().equals(nombre) && a.getLugar().getIdLugar() == id)
+      if (a.getNombre().equals(body.getNombre()) && a.getLugar().getIdLugar() == id)
         return ResponseEntity.status(HttpStatus.CONFLICT).body("aula ya existe");
     }
 
     try {
-      service.add(edif, nombre);
+      service.add(edif, body.getNombre());
     } catch (Exception err) {
       System.out.println("error?");
     }
@@ -102,8 +103,8 @@ public class AulaController {
     return ResponseEntity.ok(service.toDto(au));
   }
 
-  @AuthRole("admin")
-  @GetMapping("/{idDependencia}/sensor")
+  @AuthRole("user")
+  @GetMapping("/sensor")
   public ResponseEntity<?> getSensores() {
     return ResponseEntity.ok(AulaDTO.allowedSensores);
   }
@@ -111,7 +112,7 @@ public class AulaController {
   @AuthRole("admin")
   @PostMapping("/{idDependencia}/sensor")
   public ResponseEntity<?> sensor(@PathVariable("idLugar") String idLugar,
-      @PathVariable("idDependencia") String idDependencia, @RequestBody String tipo) {
+      @PathVariable("idDependencia") String idDependencia, @RequestBody SensorType body) {
     Long idEdificio;
     Long idAula;
 
@@ -123,32 +124,26 @@ public class AulaController {
           .body(new ErrorDTO("'idLugar' or 'idDependencia' it's not a Long"));
     }
 
-    if (SensorUtil.isSensorTipo(tipo)) {
-      var sensorTipo = SensorUtil.toSensorTipo(tipo);
-
-      if (!AulaDTO.allowedSensores.contains(sensorTipo)) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDTO("invalid sensor for this aula"));
-      }
-
-      var lugar = service.get(idEdificio, idAula);
-
-      if (lugar == null) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDTO("lugar is null"));
-      }
-
-      for (var s : lugar.getSensores()) {
-        if (s.getTipo().equals(sensorTipo)) {
-          return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-              .body(new ErrorDTO("ese sensor ya existe en este edificio"));
-        }
-      }
-
-      sensorService.add(lugar, sensorTipo);
-
-      return ResponseEntity.status(HttpStatus.OK)
-          .body(new MessageDTO("ok"));
-    } else {
-      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDTO("tipo de sensor no valido"));
+    if (!AulaDTO.allowedSensores.contains(body.getSensorTipo())) {
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDTO("invalid sensor for this aula"));
     }
+
+    var lugar = service.get(idEdificio, idAula);
+
+    if (lugar == null) {
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDTO("lugar is null"));
+    }
+
+    for (var s : lugar.getSensores()) {
+      if (s.getTipo().equals(body)) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+            .body(new ErrorDTO("ese sensor ya existe en este edificio"));
+      }
+    }
+
+    sensorService.add(lugar, body.getSensorTipo());
+
+    return ResponseEntity.status(HttpStatus.OK)
+        .body(new MessageDTO("ok"));
   }
 }

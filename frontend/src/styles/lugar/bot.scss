@@ -269,6 +269,13 @@
             .tipo {
               border-left: none;
               text-align: center;
+              font-size: 20px;
+            }
+
+            .descripcion {
+              display: flex;
+              align-items: center;
+              font-size: 20px;
             }
           }
 

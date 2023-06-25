@@ -117,7 +117,7 @@ public class AulaDTO extends LugarDTO {
                 LocalDateTime.now());
             this.aireAcondicionado = true;
           } else if (temp <= 25) {
-            aireAcondicionado = new Historial(lugar, sen.getTipo(), "Se encendió el aire acondicionado",
+            aireAcondicionado = new Historial(lugar, sen.getTipo(), "Se apagó el aire acondicionado",
                 LocalDateTime.now());
             this.aireAcondicionado = false;
           }

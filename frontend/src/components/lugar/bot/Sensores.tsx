@@ -2,18 +2,18 @@ import axios from 'axios'
 import { useAppDispatch, useAppSelector } from '../../../hooks/Redux.'
 import { type Lugares, type ISensor } from '../../../types/types'
 import List from '../../List'
-import { useLayoutEffect, useState } from 'react'
+import { useLayoutEffect, useMemo, useState } from 'react'
 import { Routes, UserRole } from '../../../types/enums'
 import { setSensores } from '../../../redux/reducer/sensores'
 import Modal from '../../Modal'
 import AddSensor from '../../modal/AddSensor'
 import AddButton from '../../AddButton'
 import useSelect from '../../../hooks/useSelect'
-import { apiUrl } from '../../../utils/utils'
+import { apiUrl, firstUpper } from '../../../utils/utils'
 
 export default function Sensores ({ lugar, userRole, visible }: { lugar: Lugares, userRole: UserRole, visible: boolean }) {
   const sensores = useAppSelector(s => s.sensores)
-  const { Select, option } = useSelect(['Todos', 'Activo', 'Inactivo'])
+  const { Select, option } = useSelect(useMemo(() => ['Todos', 'Activo', 'Inactivo'], []))
   const [sortedSensores, setSortedSensores] = useState(sensores)
 
   const dispatch = useAppDispatch()
@@ -32,10 +32,7 @@ export default function Sensores ({ lugar, userRole, visible }: { lugar: Lugares
   const handleToggle = (s: ISensor) => {
     const url = apiUrl(lugar)
 
-    void axios.put(Routes.BaseUrl + '/sensor', {
-      sensorId: s.id,
-      activo: !s.activo
-    }, { withCredentials: true }).then(() => {
+    void axios.put(Routes.BaseUrl + `/sensor/${s.idSensor}`, '', { withCredentials: true }).then(() => {
       void axios.get(url, { withCredentials: true }).then(({ data }: { data: Lugares }) => {
         dispatch(setSensores(data.sensores))
       }).catch(e => console.error(e))
@@ -59,7 +56,7 @@ export default function Sensores ({ lugar, userRole, visible }: { lugar: Lugares
             <>
               <div className='info'>
                 <div className="activo" data-activo={s.activo} />
-                <div className="tipo">{s.tipo}</div>
+                <div className="tipo">{firstUpper(s.tipo)}</div>
               </div>
               {userRole === UserRole.Admin && <button onClick={() => handleToggle(s)} className='btn'>{s.activo ? 'Desactivar' : 'Activar'}</button>}
             </>

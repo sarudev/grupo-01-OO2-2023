@@ -26,7 +26,6 @@ export default function Bot ({ lugar, userRole }: { lugar: Lugares, userRole: Us
 
   useLayoutEffect(() => {
     const deps = isEdificio(lugar) ? lugar.aulas : isParking(lugar) ? lugar.estacionamientos : null
-    console.log(lugar)
     dispatch(setDependencias(deps))
     dispatch(setSensores(lugar.sensores))
     dispatch(setHistorial(lugar.historial))
@@ -41,7 +40,7 @@ export default function Bot ({ lugar, userRole }: { lugar: Lugares, userRole: Us
         <Estado lugar={lugar} visible={isEstado} />
         <Dependencias lugar={lugar} userRole={userRole} visible={isDependencia} />
         <Sensores lugar={lugar} userRole={userRole} visible={isSensor} />
-        <Historial visible={isHistorial} />
+        <Historial lugar={lugar} visible={isHistorial} />
       </div>
     </div>
   )

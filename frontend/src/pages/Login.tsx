@@ -1,3 +1,4 @@
+import { useLayoutEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import '../styles/modalcontent.scss'
 import useErrorMessage from '../hooks/useErrorMessage'
@@ -8,6 +9,10 @@ export default function Login () {
   const { Message, setError } = useErrorMessage()
   const { state } = useLocation()
   const navigate = useNavigate()
+
+  useLayoutEffect(() => {
+    document.title = 'Login'
+  }, [])
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault()
@@ -24,10 +29,7 @@ export default function Login () {
 
     void axios.post(Routes.BaseUrl + Routes.Login, loginForm, {
       withCredentials: true
-    }).then(res => {
-      console.log(res)
-      console.log(res.headers)
-      console.log(res)
+    }).then(() => {
       navigate(state?.from ?? '/')
     })
       .catch((err: unknown) => {

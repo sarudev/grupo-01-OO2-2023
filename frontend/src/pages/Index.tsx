@@ -12,7 +12,7 @@ import axios, { AxiosError } from 'axios'
 import { type UserData } from '../types/types'
 
 export default function Index () {
-  const [currentBuilding, setCurrentBuilding] = useState('')
+  const [currentBuilding, setCurrentBuilding] = useState({ type: '---', name: '---' })
   const [serverWorking, setServerWorking] = useState<boolean | null>(null)
   const [userRole, setUserRole] = useState<UserRole | null>(null)
   const [loggedIn, setLoggedIn] = useState<boolean>(false)
@@ -42,6 +42,7 @@ export default function Index () {
       }
     }
     void request()
+    document.title = 'Campus'
   }, [])
 
   const LoginSession = useCallback(() => {
@@ -55,7 +56,7 @@ export default function Index () {
 
   return (
     <div className="campus-container">
-      <MouseCartelito text={currentBuilding} />
+      <MouseCartelito text={currentBuilding.name} lugar={currentBuilding.type} />
       <div className="session">
         {serverWorking == null ? <span>Cargando...</span> : serverWorking ? <LoginSession /> : <span>El servidor no está funcionando.</span>}
       </div>

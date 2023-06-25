@@ -1,28 +1,42 @@
-import { SensorType } from '../../types/enums'
+import { ILugarTipo, Routes } from '../../types/enums'
 import { type Lugares } from '../../types/types'
 import { useAppDispatch } from '../../hooks/Redux.'
 import { setSensores } from '../../redux/reducer/sensores'
 import { closeModal } from '../../redux/reducer/modal'
-import { apiUrl } from '../../utils/utils'
+import { apiUrl, firstUpper } from '../../utils/utils'
 import useErrorMessage from '../../hooks/useErrorMessage'
 import axios from 'axios'
 import '../../styles/modalcontent.scss'
+import { useState, useEffect } from 'react'
 
 export default function AddLugar ({ lugar }: { lugar: Lugares }) {
+  const [sensoresTipos, setSensoresTipos] = useState([])
   const { Message, setError } = useErrorMessage()
   const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    let url = Routes.BaseUrl as string
+
+    if (lugar.tipo === ILugarTipo.Aula || lugar.tipo === ILugarTipo.Estacionamiento) url += `/${lugar.lugar.tipo}/${lugar.lugar.id}/${lugar.tipo}`
+    else url += `/${lugar.tipo}`
+    const sensTipos = async () => {
+      const { data } = await axios.get(url + '/sensor', { withCredentials: true })
+      setSensoresTipos(data)
+    }
+    void sensTipos()
+  }, [])
 
   const handleCreate: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault()
     const form = e.target as HTMLFormElement
     const input = form[0] as HTMLInputElement
-    const sensorType = input.value
+    const sensorTipo = input.value
 
     const url = apiUrl(lugar)
-    console.log(url)
+
     async function request () {
       try {
-        await axios.post(url + '/sensor', { sensorType }, { withCredentials: true })
+        await axios.post(url + '/sensor', { sensorTipo }, { withCredentials: true })
 
         const { data } = await axios.get(url, { withCredentials: true })
 
@@ -31,7 +45,7 @@ export default function AddLugar ({ lugar }: { lugar: Lugares }) {
         dispatch(closeModal())
       } catch (e: any) {
         console.log(e)
-        setError(`Ya existe un sensor ${sensorType} para este ${lugar.tipo}`)
+        setError(`Ya existe un sensor ${sensorTipo} para este ${lugar.tipo}`)
       }
     }
 
@@ -46,11 +60,7 @@ export default function AddLugar ({ lugar }: { lugar: Lugares }) {
       <div className="inputs">
         <div className="container-input">
         <select className="input">
-          <option value={SensorType.Bascula}>{SensorType.Bascula}</option>
-          <option value={SensorType.Camara}>{SensorType.Camara}</option>
-          <option value={SensorType.Humedad}>{SensorType.Humedad}</option>
-          <option value={SensorType.Temperatura}>{SensorType.Temperatura}</option>
-          <option value={SensorType.Tiempo}>{SensorType.Tiempo}</option>
+          {sensoresTipos.map(s => <option key={firstUpper(s)} value={s}>{firstUpper(s)}</option>)}
         </select>
         </div>
       </div>

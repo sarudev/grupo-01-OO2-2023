@@ -40,4 +40,4 @@ export const enum UserRole {
   User = 'user'
 }
 
-export const lugarProperties = ['tipo', 'historial', 'id', 'lugar', 'lugarId', 'nombre', 'sensores', 'aulas', 'estacionamientos']
+export const lugarProperties = ['tipo', 'historial', 'id', 'idLugar', 'lugar', 'lugarId', 'nombre', 'sensores', 'aulas', 'estacionamientos']

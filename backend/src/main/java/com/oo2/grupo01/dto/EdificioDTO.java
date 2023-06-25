@@ -16,7 +16,7 @@ import lombok.Getter;
 
 @Getter
 public class EdificioDTO extends LugarDTO {
-  private Boolean luces;
+  private Boolean luces = null;
   private List<AulaDTO> aulas = new ArrayList<>();
 
   public static List<Sensores> allowedSensores = Arrays.asList(new Sensores[] { Sensores.tiempo });
@@ -26,7 +26,6 @@ public class EdificioDTO extends LugarDTO {
         edif.getHistorial());
     if (conAulas)
       this.aulas = edif.getAulas().stream().map(au -> new AulaDTO(au, false)).toList();
-    this.luces = null;
   }
 
   @Override
@@ -50,7 +49,7 @@ public class EdificioDTO extends LugarDTO {
           // si ahora es despues de las 6
           if (now.isAfter(diaToday)) {
             // si el último registro no fue hoy a las 6
-            if (lastHistorialWasToday6) {
+            if (!lastHistorialWasToday6) {
               // crear registro para hoy a las 6
               diaLuces = new Historial(lugar, sen.getTipo(), "Se apagaron las luces", diaToday);
             }
@@ -58,7 +57,7 @@ public class EdificioDTO extends LugarDTO {
             // si ahora es despues de las 18
             if (now.isAfter(nocheToday)) {
               // si el último registro no fue hoy a las 18
-              if (lastHistorialWasToday18) {
+              if (!lastHistorialWasToday18) {
                 // crear registro para hoy a las 18
                 nocheLuces = new Historial(lugar, sen.getTipo(), "Se encendieron las luces", nocheToday);
               }

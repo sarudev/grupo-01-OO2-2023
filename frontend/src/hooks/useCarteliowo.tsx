@@ -1,7 +1,7 @@
 import { useLayoutEffect } from 'react'
 import { getBuildingDataset } from '../utils/utils'
 
-export default function useCartelitowo (cartelitoId: string, setCurrentBuilding: React.Dispatch<React.SetStateAction<string>>) {
+export default function useCartelitowo (cartelitoId: string, setCurrentBuilding: React.Dispatch<React.SetStateAction<{ type: string, name: string }>>) {
   useLayoutEffect(() => {
     const svgs = document.querySelectorAll('.svg-lugar')
     const cartelitowo = document.querySelector(`#${cartelitoId}`) as HTMLDivElement
@@ -10,7 +10,7 @@ export default function useCartelitowo (cartelitoId: string, setCurrentBuilding:
       const { dataset } = getBuildingDataset(e)
       if (dataset.lugarNombre === '') return
 
-      setCurrentBuilding(dataset.lugarNombre)
+      setCurrentBuilding({ type: dataset.lugarTipo, name: dataset.lugarNombre })
       cartelitowo.classList.add('visible')
     }
 

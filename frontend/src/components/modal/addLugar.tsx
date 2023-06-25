@@ -25,15 +25,15 @@ export default function AddLugar ({ lugar }: { lugar: Lugares }) {
     e.preventDefault()
     const form = e.target as HTMLFormElement
     const input = form[0] as HTMLInputElement
-    const dependencyName = input.value
+    const nombre = input.value
 
     const dependenciaTipo = lugar.tipo === ILugarTipo.Edificio ? ILugarTipo.Aula : ILugarTipo.Estacionamiento
 
     async function requests () {
       try {
-        await axios.post(`${Routes.BaseUrl}/${lugar.tipo}/${lugar.nombre}/${dependenciaTipo}`, { dependencyName }, { withCredentials: true })
+        await axios.post(`${Routes.BaseUrl}/${lugar.tipo}/${lugar.id}/${dependenciaTipo}`, { nombre }, { withCredentials: true })
 
-        const { data } = await axios.get(`${Routes.BaseUrl}/${lugar.tipo}/${lugar.nombre}`, { withCredentials: true }) as { data: Lugares }
+        const { data } = await axios.get(`${Routes.BaseUrl}/${lugar.tipo}/${lugar.id}`, { withCredentials: true }) as { data: Lugares }
 
         const dependencias = isEdificio(data) ? data.aulas : isParking(data) ? data.estacionamientos : null
         dispatch(setDependencias(dependencias))

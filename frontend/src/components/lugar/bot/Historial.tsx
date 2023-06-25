@@ -2,15 +2,19 @@ import { useState, useCallback, useEffect, useMemo, useLayoutEffect, useRef } fr
 import { useAppSelector } from '../../../hooks/Redux.'
 import useInput from '../../../hooks/useInput'
 import useSelect from '../../../hooks/useSelect'
-import { SensorType } from '../../../types/enums'
+import { ILugarTipo, Routes } from '../../../types/enums'
 import List from '../../List'
+import { firstUpper } from '../../../utils/utils'
+import { type Lugares } from '../../../types/types'
+import axios from 'axios'
 
-export default function Historial ({ visible }: { visible: boolean }) {
+export default function Historial ({ visible, lugar }: { visible: boolean, lugar: Lugares }) {
   const historial = useAppSelector(s => s.historial)
   const [sortedHistorial, setSortedHistorial] = useState(historial)
+  const [sensoresTipos, setSensoresTipos] = useState([' '])
 
-  const { Select, option } = useSelect(['Todos', 'Tipo del sensor', 'Descripción', 'Fecha'])
-  const { Select: SelectTipo, option: optionTipo } = useSelect([SensorType.Bascula, SensorType.Camara, SensorType.Humedad, SensorType.Temperatura, SensorType.Tiempo])
+  const { Select, option } = useSelect(useMemo(() => ['Todos', 'Tipo del sensor', 'Descripción', 'Fecha'], []))
+  const { Select: SelectTipo, option: optionTipo } = useSelect(useMemo(() => sensoresTipos.map(s => firstUpper(s)), [sensoresTipos]))
   const { Input, input: inputNombre } = useInput('Descripción')
 
   const todayDate = useMemo(() => new Date(Date.now()).toISOString().slice(0, -8), [])
@@ -18,13 +22,26 @@ export default function Historial ({ visible }: { visible: boolean }) {
   const { Calendar: CalendarDesde, date: dateDesde } = useCalendar('', dateHastaRender)
   const { Calendar: CalendarHasta, date: dateHasta } = useCalendar(dateDesde === '' ? todayDate : dateDesde, todayDate)
 
+  useLayoutEffect(() => {
+    let url = Routes.BaseUrl as string
+
+    if (lugar.tipo === ILugarTipo.Aula || lugar.tipo === ILugarTipo.Estacionamiento) url += `/${lugar.lugar.tipo}/${lugar.lugar.id}/${lugar.tipo}`
+    else url += `/${lugar.tipo}`
+
+    const sensTipos = async () => {
+      const { data } = await axios.get(url + '/sensor', { withCredentials: true })
+      setSensoresTipos(data)
+    }
+    void sensTipos()
+  }, [])
+
   useEffect(() => {
     if (dateHasta !== '') setDateHastaRender(dateHasta)
   }, [dateHasta])
 
   useLayoutEffect(() => {
     if (option === 'Todos') setSortedHistorial(historial.toSorted((a, b) => a.descripcion.localeCompare(b.descripcion)))
-    else if (option === 'Tipo del sensor') setSortedHistorial(historial.filter(el => el.sensorTipo === optionTipo))
+    else if (option === 'Tipo del sensor') setSortedHistorial(historial.filter(el => el.tipo.toLocaleLowerCase() === optionTipo.toLocaleLowerCase()))
     else if (option === 'Descripción') setSortedHistorial(historial.filter(el => el.descripcion.toLowerCase().includes(inputNombre.toLowerCase())))
     else if (option === 'Fecha') setSortedHistorial(historial.filter(el => el.fecha.localeCompare(dateDesde) > 0 && el.fecha.localeCompare(dateHasta) < 0))
   }, [historial, option, optionTipo, inputNombre, dateDesde, dateHasta])
@@ -52,8 +69,8 @@ export default function Historial ({ visible }: { visible: boolean }) {
           return (
             <>
               <div className="sensor-tipo">
-                <div className="tipo">{h.sensorTipo}</div>
-                <div className="activo">{h.descripcion}</div>
+                <div className="tipo">{firstUpper(h.tipo)}</div>
+                <div className="descripcion">{h.descripcion}</div>
               </div>
               <div className="fecha">{fecha.replace(', ', ' - ')}</div>
             </>
