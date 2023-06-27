@@ -51,6 +51,8 @@ Después del símbolo `=` se deben agregar los datos requeridos para una correct
 
 Para empezar, se recomienda ejecutar el `backend` desde un IDE como `Eclipse` o `Spring Tool Suite`, y el frontend desde la terminal del sistema operativo.
 
+Para ejecutar el `backend`, se debe ejecutar el archivo `backend/src/main/java/com/oo2/grupo01/Grupo01Application.java` con una de las herramientas mencionadas anteriormente.
+
 Antes de poner en mancha el `frontend`, es necesario instalar las dependencias, para hacer esto hay que dirigirse a la ruta del frontend (`/frontend`).
 
 Una vez en la carpeta del `frontend`, primero se deben instalar las dependencias con el comando `npm i`
