@@ -25,47 +25,52 @@ import lombok.Setter;
 @NoArgsConstructor
 public class User implements UserDetails {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int id;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-  private String username;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
-  private String password;
+	private String username;
 
-  @Enumerated(EnumType.STRING)
-  private UserRole role;
+	private String password;
 
-  private boolean enabled;
+	@Enumerated(EnumType.STRING)
+	private UserRole role;
 
-  public User(String username, String password, UserRole role, boolean enabled) {
-    this.username = username;
-    this.password = password;
-    this.role = role;
-    this.enabled = enabled;
-  }
+	private boolean enabled;
 
-  @Override
-  public Collection<? extends GrantedAuthority> getAuthorities() {
-    return Collections.singleton(new SimpleGrantedAuthority(role.name()));
-  }
+	public User(String username, String password, UserRole role, boolean enabled) {
+		this.username = username;
+		this.password = password;
+		this.role = role;
+		this.enabled = enabled;
+	}
 
-  @Override
-  public boolean isAccountNonExpired() {
-    // TODO Auto-generated method stub
-    return true;
-  }
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return Collections.singleton(new SimpleGrantedAuthority(role.name()));
+	}
 
-  @Override
-  public boolean isAccountNonLocked() {
-    // TODO Auto-generated method stub
-    return true;
-  }
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
 
-  @Override
-  public boolean isCredentialsNonExpired() {
-    // TODO Auto-generated method stub
-    return true;
-  }
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
 
 }

@@ -30,10 +30,10 @@ import lombok.ToString;
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idLugar")
 @JsonIgnoreProperties({ "hibernateLazyInitializer" })
 public class Parking extends Lugar {
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
-  List<Estacionamiento> estacionamientos = new ArrayList<>();
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
+	private List<Estacionamiento> estacionamientos = new ArrayList<>();
 
-  public Parking(String ubicacion) {
-    super(Lugares.parking, ubicacion);
-  }
+	public Parking(String ubicacion) {
+		super(Lugares.parking, ubicacion);
+	}
 }

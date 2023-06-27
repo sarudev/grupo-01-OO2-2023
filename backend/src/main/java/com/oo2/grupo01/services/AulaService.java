@@ -2,49 +2,43 @@ package com.oo2.grupo01.services;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.oo2.grupo01.dto.AulaDTO;
 import com.oo2.grupo01.entities.Aula;
 import com.oo2.grupo01.entities.Edificio;
 import com.oo2.grupo01.repositories.IAulaRepository;
-import com.oo2.grupo01.repositories.IHistorialRepository;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Service("aulaService")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class AulaService {
-  @Autowired
-  IAulaRepository repository;
+	private final IAulaRepository repository;
 
-  @Autowired
-  IHistorialRepository historialRepository;
+	public void add(Edificio edificio, String nombre) throws Exception {
+		repository.save(new Aula(edificio, nombre));
+	}
 
-  public void add(Edificio edificio, String nombre) throws Exception {
-    repository.save(new Aula(edificio, nombre));
-  }
+	public List<Aula> getAll() {
+		return repository.findAll();
+	}
 
-  public List<Aula> getAll() {
-    return repository.findAll();
-  }
+	public List<Aula> getAllById(Long idEdificio) {
+		return repository.getAllById(idEdificio);
+	}
 
-  public List<Aula> getAllById(Long idEdificio) {
-    return repository.getAllById(idEdificio);
-  }
+	public Aula get(Long idEdificio, Long idAula) {
+		return repository.get(idEdificio, idAula);
+	}
 
-  public Aula get(Long idEdificio, Long idAula) {
-    return repository.get(idEdificio, idAula);
-  }
+	public AulaDTO toDto(Aula aula) {
+		var aulaDto = new AulaDTO(aula, true);
+		aulaDto.inicializarVariables();
+		return aulaDto;
+	}
 
-  public AulaDTO toDto(Aula aula) {
-    var aulaDto = new AulaDTO(aula, true);
-    aulaDto.inicializarVariables(aula, (h) -> historialRepository.save(h));
-    return aulaDto;
-  }
-
-  public List<AulaDTO> toDtoList(List<Aula> aula) {
-    return aula.stream().map(a -> new AulaDTO(a, false)).toList();
-  }
+	public List<AulaDTO> toDtoList(List<Aula> aula) {
+		return aula.stream().map(a -> new AulaDTO(a, false)).toList();
+	}
 }

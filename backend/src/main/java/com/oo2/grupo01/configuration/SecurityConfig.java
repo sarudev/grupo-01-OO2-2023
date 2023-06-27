@@ -16,41 +16,30 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableMethodSecurity
 public class SecurityConfig {
 
-  @Bean
-  public WebMvcConfigurer corsConfigurer() {
-    return new WebMvcConfigurer() {
-      @Override
-      public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("*").allowedOrigins("http://localhost:5173", "http://127.0.0.1:5173");
-      }
-    };
-  }
+	@Bean
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("*").allowedOrigins("http://localhost:5173", "http://127.0.0.1:5173");
+			}
+		};
+	}
 
-  @Bean
-  public BCryptPasswordEncoder passwordEncoder() {
-    return new BCryptPasswordEncoder();
-  }
+	@Bean
+	public BCryptPasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
-  @Bean
-  public PasswordEncoder securityPasswordEncoder() {
-    return new BCryptPasswordEncoder();
-  }
+	@Bean
+	public PasswordEncoder securityPasswordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
-  // @Qualifier("userService")
-  // private UserService userService;
-
-  // @Autowired
-  // public void configureGlobal(AuthenticationManagerBuilder auth) throws
-  // Exception {
-  // auth.userDetailsService(userService).passwordEncoder(new
-  // BCryptPasswordEncoder());
-  // }
-
-  @Bean
-  public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    http.authorizeHttpRequests().anyRequest().permitAll()
-        .and().csrf().disable().cors();
-    return http.build();
-  }
+	@Bean
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		http.authorizeHttpRequests().anyRequest().permitAll().and().csrf().disable().cors();
+		return http.build();
+	}
 
 }

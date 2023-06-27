@@ -23,12 +23,12 @@ import lombok.ToString;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 public class Estacionamiento extends Lugar {
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "id_parking")
-  private Parking lugar;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_parking")
+	private Parking lugar;
 
-  public Estacionamiento(Parking lugar, String numero) {
-    super(Lugares.estacionamiento, numero);
-    this.lugar = lugar;
-  }
+	public Estacionamiento(Parking lugar, String numero) {
+		super(Lugares.estacionamiento, numero);
+		this.lugar = lugar;
+	}
 }

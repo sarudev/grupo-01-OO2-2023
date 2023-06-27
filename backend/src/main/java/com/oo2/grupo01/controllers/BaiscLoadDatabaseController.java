@@ -1,6 +1,5 @@
 package com.oo2.grupo01.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,141 +16,129 @@ import com.oo2.grupo01.services.LoadedDBService;
 import com.oo2.grupo01.services.ParkingService;
 import com.oo2.grupo01.services.UserService;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
 @RequestMapping
+@RequiredArgsConstructor
 public class BaiscLoadDatabaseController {
-  @Autowired
-  EdificioService edificioService;
+	private final EdificioService edificioService;
+	private final ParkingService parkingService;
+	private final EspacioVerdeService espacioVerdeService;
+	private final AulaService aulaService;
+	private final EstacionamientoService estacionamientoService;
+	private final UserService userService;
+	private final LoadedDBService loadedDbService;
+	private final DatabaseUtils db;
 
-  @Autowired
-  ParkingService parkingService;
+	@GetMapping("/loadDB")
+	public ResponseEntity<?> loadDB() throws Exception {
+		var ok = ResponseEntity.ok("Datos creados");
 
-  @Autowired
-  EspacioVerdeService espacioVerdeService;
+		if (loadedDbService.loaded()) {
+			return ok;
+		}
 
-  @Autowired
-  AulaService aulaService;
+		String[] edificios = { 
+				"José Hernández",
+				"Comedor Universitario Padre Mujica",
+				"Estudio de Grabación E.S. Discépolo",
+				"Lola Mora",
+				"Hernandez Arregui",
+				"Gimnasio Comunitario Gatica",
+				"Quincho Roberto Fontanarrosa",
+				"Juana Manso",
+				"Inadi", 
+				"Campo de deportes Delfo Cabrera",
+				"Irma Laciar de Carrica", 
+				"Leonardo Wethein", 
+				"Oscar Varsavsky", 
+				"Jardín Maternal A. Villaflor",
+				"Héctor Oesterheld", 
+				"Cine Tita Merello", 
+				"Casa del Estudiante", 
+				"Lisandro de la Torre",
+				"Macedonio Fernández", 
+				"Raúl Scalabrini Ortiz", 
+				"Arturo Jauretche", 
+				"Manuel Ugarte", 
+				"Homero Manzi",
+				"Ortega Peña", 
+				"Leopoldo Marechal", 
+				"Juana Azurduy", 
+				"Pascual Contursi", 
+				"Néstor Kirchner" 
+				};
 
-  @Autowired
-  EstacionamientoService estacionamientoService;
+		String[] espaciosVerdes = { 
+				"Manso y Kirchner", 
+				"Jauretche y Ugarte", 
+				"Casa del estudiante",
+				"Macedonio y Ortiz", 
+				"Ortiz y Jauretche" 
+				};
 
-  @Autowired
-  UserService userService;
+		String[] parkings = { 
+				"29 de Septiembre", 
+				"Pablo Nogués", 
+				"Comedor", 
+				"Canchas"
+				};
 
-  @Autowired
-  LoadedDBService loadedDbService;
+		db.truncateAllTables();
 
-  @Autowired
-  DatabaseUtils db;
+		for (var edif : edificios) {
+			edificioService.add(edif);
+			System.out.println("edificio: " + edif);
+		}
 
-  @GetMapping("/loadDB")
-  public ResponseEntity<?> loadDB() throws Exception {
-    var ok = ResponseEntity.ok("Datos creados");
+		for (var espa : espaciosVerdes) {
+			espacioVerdeService.add(espa);
+			System.out.println("espacioVerde: " + espa);
+		}
 
-    if (loadedDbService.loaded()) {
-      return ok;
-    }
+		for (var park : parkings) {
+			parkingService.add(park);
+			System.out.println("parking: " + park);
+		}
 
-    String[] edificios = {
-        "José Hernández",
-        "Comedor Universitario Padre Mujica",
-        "Estudio de Grabación E.S. Discépolo",
-        "Lola Mora",
-        "Hernandez Arregui",
-        "Gimnasio Comunitario Gatica",
-        "Quincho Roberto Fontanarrosa",
-        "Juana Manso",
-        "Inadi",
-        "Campo de deportes Delfo Cabrera",
-        "Irma Laciar de Carrica",
-        "Leonardo Wethein",
-        "Oscar Varsavsky",
-        "Jardín Maternal A. Villaflor",
-        "Héctor Oesterheld",
-        "Cine Tita Merello",
-        "Casa del Estudiante",
-        "Lisandro de la Torre",
-        "Macedonio Fernández",
-        "Raúl Scalabrini Ortiz",
-        "Arturo Jauretche",
-        "Manuel Ugarte",
-        "Homero Manzi",
-        "Ortega Peña",
-        "Leopoldo Marechal",
-        "Juana Azurduy",
-        "Pascual Contursi",
-        "Néstor Kirchner"
-    };
+		var ed = edificioService.get(1l);
+		if (ed != null) {
 
-    String[] espaciosVerdes = {
-        "Manso y Kirchner",
-        "Jauretche y Ugarte",
-        "Casa del estudiante",
-        "Macedonio y Ortiz",
-        "Ortiz y Jauretche"
-    };
+			aulaService.add(ed, "11");
+			System.out.println("aula: 11");
 
-    String[] parkings = {
-        "29 de Septiembre",
-        "Pablo Nogués",
-        "Comedor",
-        "Canchas"
-    };
+			aulaService.add(ed, "123123");
+			System.out.println("aula: 123123");
+		} else {
+			System.out.println("\n\nEDIFICIO IS NULL\n\n");
+		}
 
-    db.truncateAllTables();
+		var pa = parkingService.get(34l);
+		if (pa != null) {
 
-    for (var edif : edificios) {
-      edificioService.add(edif);
-      System.out.println("edificio: " + edif);
-    }
+			estacionamientoService.add(pa, "123");
+			System.out.println("estacionamiento: 123");
 
-    for (var espa : espaciosVerdes) {
-      espacioVerdeService.add(espa);
-      System.out.println("espacioVerde: " + espa);
-    }
+			estacionamientoService.add(pa, "321");
+			System.out.println("estacionamiento: 321");
+		} else {
+			System.out.println("\n\nPARKING IS NULL\n\n");
+		}
 
-    for (var park : parkings) {
-      parkingService.add(park);
-      System.out.println("parking: " + park);
-    }
+		userService.add(new User("user", userService.encodePassword("user"), UserRole.user, true));
+		System.out.println("account: user");
 
-    var ed = edificioService.get(1l);
-    if (ed != null) {
+		userService.add(new User("admin", userService.encodePassword("admin"), UserRole.admin, true));
+		System.out.println("account: admin");
 
-      aulaService.add(ed, "11");
-      System.out.println("aula: 11");
+		loadedDbService.load();
 
-      aulaService.add(ed, "123123");
-      System.out.println("aula: 123123");
-    } else {
-      System.out.println("\n\nEDIFICIO IS NULL\n\n");
-    }
+		return ok;
+	}
 
-    var pa = parkingService.get(34l);
-    if (pa != null) {
-
-      estacionamientoService.add(pa, "123");
-      System.out.println("estacionamiento: 123");
-
-      estacionamientoService.add(pa, "321");
-      System.out.println("estacionamiento: 321");
-    } else {
-      System.out.println("\n\nPARKING IS NULL\n\n");
-    }
-
-    userService.add(new User("user", userService.encodePassword("user"), UserRole.user, true));
-    System.out.println("account: user");
-
-    userService.add(new User("admin", userService.encodePassword("admin"), UserRole.admin, true));
-    System.out.println("account: admin");
-
-    loadedDbService.load();
-
-    return ok;
-  }
-
-  @GetMapping("/loadedDB")
-  public ResponseEntity<?> loadedDB() {
-    return ResponseEntity.ok(loadedDbService.loaded());
-  }
+	@GetMapping("/loadedDB")
+	public ResponseEntity<?> loadedDB() {
+		return ResponseEntity.ok(loadedDbService.loaded());
+	}
 }

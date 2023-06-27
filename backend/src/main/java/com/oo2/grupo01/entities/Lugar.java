@@ -36,29 +36,29 @@ import lombok.ToString;
 @JsonIgnoreProperties({ "hibernateLazyInitializer" })
 public class Lugar {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @EqualsAndHashCode.Include()
-  @Setter(AccessLevel.PROTECTED)
-  protected Long idLugar;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@EqualsAndHashCode.Include()
+	@Setter(AccessLevel.PROTECTED)
+	protected Long idLugar;
 
-  @Column(name = "nombre", nullable = false)
-  private String nombre;
+	@Column(name = "nombre", nullable = false)
+	protected String nombre;
 
-  @Column(name = "tipo", nullable = false)
-  @Enumerated(EnumType.STRING)
-  protected Lugares tipo;
+	@Column(name = "tipo", nullable = false)
+	@Enumerated(EnumType.STRING)
+	protected Lugares tipo;
 
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
-  @JsonManagedReference
-  private List<Sensor> sensores;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
+	@JsonManagedReference
+	protected List<Sensor> sensores;
 
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
-  @JsonManagedReference
-  private List<Historial> historial;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lugar")
+	@JsonManagedReference
+	protected List<Historial> historial;
 
-  public Lugar(Lugares tipo, String nombre) {
-    this.tipo = tipo;
-    this.nombre = nombre;
-  }
+	public Lugar(Lugares tipo, String nombre) {
+		this.tipo = tipo;
+		this.nombre = nombre;
+	}
 }

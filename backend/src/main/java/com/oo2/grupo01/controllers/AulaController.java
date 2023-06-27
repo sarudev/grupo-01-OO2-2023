@@ -1,6 +1,5 @@
 package com.oo2.grupo01.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,135 +13,137 @@ import com.oo2.grupo01.annotations.AuthRole;
 import com.oo2.grupo01.dto.AulaDTO;
 import com.oo2.grupo01.dto.ErrorDTO;
 import com.oo2.grupo01.dto.MessageDTO;
+import com.oo2.grupo01.entities.Aula;
 import com.oo2.grupo01.models.Nombre;
 import com.oo2.grupo01.models.SensorType;
 import com.oo2.grupo01.services.AulaService;
 import com.oo2.grupo01.services.EdificioService;
+import com.oo2.grupo01.services.HistorialService;
 import com.oo2.grupo01.services.SensorService;
+
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/edificio/{idLugar}/aula")
+@RequiredArgsConstructor
 public class AulaController {
-  @Autowired
-  EdificioService edificioService;
+	private final EdificioService edificioService;
+	private final AulaService service;
+	private final SensorService sensorService;
+	private final HistorialService historialService;
 
-  @Autowired
-  AulaService service;
+	@AuthRole("admin") @PostMapping public ResponseEntity<?> post(@PathVariable("idLugar") String idLugar,
+			@RequestBody Nombre body) {
+		Long id;
 
-  @Autowired
-  SensorService sensorService;
+		try {
+			id = Long.parseLong(idLugar);
+		} catch (NumberFormatException exception) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDTO("'idLugar' it's not a Long"));
+		}
 
-  @AuthRole("admin")
-  @PostMapping
-  public ResponseEntity<?> post(@PathVariable("idLugar") String idLugar, @RequestBody Nombre body) {
-    Long id;
+		var edif = edificioService.get(id);
 
-    try {
-      id = Long.parseLong(idLugar);
-    } catch (NumberFormatException exception) {
-      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDTO("'idLugar' it's not a Long"));
-    }
+		if (edif == null)
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("edificio no existe");
 
-    var edif = edificioService.get(id);
+		var aulas = service.getAllById(id);
 
-    if (edif == null)
-      return ResponseEntity.status(HttpStatus.NOT_FOUND).body("edificio no existe");
+		for (var a : aulas) {
+			if (a.getNombre().equals(body.getNombre()) && a.getLugar().getIdLugar() == id)
+				return ResponseEntity.status(HttpStatus.CONFLICT).body("aula ya existe");
+		}
 
-    var aulas = service.getAllById(id);
+		try {
+			service.add(edif, body.getNombre());
+		} catch (Exception err) {
+		}
 
-    for (var a : aulas) {
-      if (a.getNombre().equals(body.getNombre()) && a.getLugar().getIdLugar() == id)
-        return ResponseEntity.status(HttpStatus.CONFLICT).body("aula ya existe");
-    }
+		return ResponseEntity.status(HttpStatus.CREATED).body(null);
+	}
 
-    try {
-      service.add(edif, body.getNombre());
-    } catch (Exception err) {
-    }
+	@AuthRole("user")
+	@GetMapping
+	public ResponseEntity<?> getAll(@PathVariable("idLugar") String idLugar) {
+		Long id;
 
-    return ResponseEntity.status(HttpStatus.CREATED).body(null);
-  }
+		try {
+			id = Long.parseLong(idLugar);
+		} catch (NumberFormatException exception) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDTO("'idLugar' it's not a Long"));
+		}
 
-  @AuthRole("user")
-  @GetMapping
-  public ResponseEntity<?> getAll(@PathVariable("idLugar") String idLugar) {
-    Long id;
+		var aulas = service.getAllById(id);
+		return ResponseEntity.ok(service.toDtoList(aulas));
+	}
 
-    try {
-      id = Long.parseLong(idLugar);
-    } catch (NumberFormatException exception) {
-      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDTO("'idLugar' it's not a Long"));
-    }
+	@AuthRole("user")
+	@GetMapping("/{idDependencia}")
+	public ResponseEntity<?> get(@PathVariable("idLugar") String idLugar,
+			@PathVariable("idDependencia") String idDependencia) {
+		Long idEdificio;
+		Long idAula;
 
-    var aulas = service.getAllById(id);
-    return ResponseEntity.ok(service.toDtoList(aulas));
-  }
+		try {
+			idEdificio = Long.parseLong(idLugar);
+			idAula = Long.parseLong(idDependencia);
+		} catch (NumberFormatException exception) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+					.body(new ErrorDTO("'idLugar' or 'idDependencia' it's not a Long"));
+		}
 
-  @AuthRole("user")
-  @GetMapping("/{idDependencia}")
-  public ResponseEntity<?> get(@PathVariable("idLugar") String idLugar,
-      @PathVariable("idDependencia") String idDependencia) {
-    Long idEdificio;
-    Long idAula;
+		Aula au = service.get(idEdificio, idAula);
 
-    try {
-      idEdificio = Long.parseLong(idLugar);
-      idAula = Long.parseLong(idDependencia);
-    } catch (NumberFormatException exception) {
-      return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-          .body(new ErrorDTO("'idLugar' or 'idDependencia' it's not a Long"));
-    }
+		if (au == null) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorDTO("Aula not found"));
+		}
+		
+		AulaDTO aDTO = service.toDto(au);
+		historialService.agregarHistorial(au, aDTO);
+		
+		return ResponseEntity.ok(aDTO);
+	}
 
-    var au = service.get(idEdificio, idAula);
+	@AuthRole("user")
+	@GetMapping("/sensor")
+	public ResponseEntity<?> getSensores() {
+		return ResponseEntity.ok(AulaDTO.allowedSensores);
+	}
 
-    if (au == null) {
-      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorDTO("Aula not found"));
-    }
+	@AuthRole("admin")
+	@PostMapping("/{idDependencia}/sensor")
+	public ResponseEntity<?> sensor(@PathVariable("idLugar") String idLugar,
+			@PathVariable("idDependencia") String idDependencia, @RequestBody SensorType body) {
+		Long idEdificio;
+		Long idAula;
 
-    return ResponseEntity.ok(service.toDto(au));
-  }
+		try {
+			idEdificio = Long.parseLong(idLugar);
+			idAula = Long.parseLong(idDependencia);
+		} catch (NumberFormatException exception) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+					.body(new ErrorDTO("'idLugar' or 'idDependencia' it's not a Long"));
+		}
 
-  @AuthRole("user")
-  @GetMapping("/sensor")
-  public ResponseEntity<?> getSensores() {
-    return ResponseEntity.ok(AulaDTO.allowedSensores);
-  }
+		if (!AulaDTO.allowedSensores.contains(body.getSensorTipo())) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDTO("invalid sensor for this aula"));
+		}
 
-  @AuthRole("admin")
-  @PostMapping("/{idDependencia}/sensor")
-  public ResponseEntity<?> sensor(@PathVariable("idLugar") String idLugar,
-      @PathVariable("idDependencia") String idDependencia, @RequestBody SensorType body) {
-    Long idEdificio;
-    Long idAula;
+		var lugar = service.get(idEdificio, idAula);
 
-    try {
-      idEdificio = Long.parseLong(idLugar);
-      idAula = Long.parseLong(idDependencia);
-    } catch (NumberFormatException exception) {
-      return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-          .body(new ErrorDTO("'idLugar' or 'idDependencia' it's not a Long"));
-    }
+		if (lugar == null) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDTO("lugar is null"));
+		}
 
-    if (!AulaDTO.allowedSensores.contains(body.getSensorTipo())) {
-      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDTO("invalid sensor for this aula"));
-    }
+		for (var s : lugar.getSensores()) {
+			if (s.getTipo().equals(body)) {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+						.body(new ErrorDTO("ese sensor ya existe en este edificio"));
+			}
+		}
 
-    var lugar = service.get(idEdificio, idAula);
+		sensorService.add(lugar, body.getSensorTipo());
 
-    if (lugar == null) {
-      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDTO("lugar is null"));
-    }
-
-    for (var s : lugar.getSensores()) {
-      if (s.getTipo().equals(body)) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-            .body(new ErrorDTO("ese sensor ya existe en este edificio"));
-      }
-    }
-
-    sensorService.add(lugar, body.getSensorTipo());
-
-    return ResponseEntity.status(HttpStatus.OK)
-        .body(new MessageDTO("ok"));
-  }
+		return ResponseEntity.status(HttpStatus.OK).body(new MessageDTO("ok"));
+	}
 }

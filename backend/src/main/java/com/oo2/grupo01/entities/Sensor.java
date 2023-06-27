@@ -33,35 +33,35 @@ import lombok.ToString;
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idSensor")
 public class Sensor {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @EqualsAndHashCode.Include
-  @Setter(AccessLevel.PROTECTED)
-  private Long idSensor;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@EqualsAndHashCode.Include
+	@Setter(AccessLevel.PROTECTED)
+	private Long idSensor;
 
-  @Enumerated(EnumType.STRING)
-  @Column(name = "tipo")
-  private Sensores tipo;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "tipo")
+	private Sensores tipo;
 
-  @Column(name = "activo")
-  private boolean activo;
+	@Column(name = "activo")
+	private boolean activo;
 
-  // fk lugar
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "idLugar")
-  @JsonIgnore
-  private Lugar lugar;
+	// fk lugar
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idLugar")
+	@JsonIgnore
+	private Lugar lugar;
 
-  public Sensor(Sensores tipo, Lugar lugar) {
-    this.tipo = tipo;
-    this.activo = false;
-    this.lugar = lugar;
-  }
+	public Sensor(Sensores tipo, Lugar lugar) {
+		this.tipo = tipo;
+		this.activo = false;
+		this.lugar = lugar;
+	}
 
-  public Sensor(Sensor sensor) {
-    this.idSensor = sensor.idSensor;
-    this.tipo = sensor.tipo;
-    this.activo = sensor.activo;
-    this.lugar = sensor.lugar;
-  }
+	public Sensor(Sensor sensor) {
+		this.idSensor = sensor.idSensor;
+		this.tipo = sensor.tipo;
+		this.activo = sensor.activo;
+		this.lugar = sensor.lugar;
+	}
 }

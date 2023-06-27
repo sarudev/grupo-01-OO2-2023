@@ -1,6 +1,5 @@
 package com.oo2.grupo01.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,83 +13,89 @@ import com.oo2.grupo01.annotations.AuthRole;
 import com.oo2.grupo01.dto.ErrorDTO;
 import com.oo2.grupo01.dto.EspacioVerdeDTO;
 import com.oo2.grupo01.dto.MessageDTO;
+import com.oo2.grupo01.entities.EspacioVerde;
 import com.oo2.grupo01.models.SensorType;
 import com.oo2.grupo01.services.EspacioVerdeService;
+import com.oo2.grupo01.services.HistorialService;
 import com.oo2.grupo01.services.SensorService;
+
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/espacioVerde")
+@RequiredArgsConstructor
 public class EspacioVerdeController {
-  @Autowired
-  EspacioVerdeService service;
+	private final EspacioVerdeService service;
+	private final SensorService sensorService;
+	private final HistorialService historialService;
+	
+	@AuthRole("user")
+	@GetMapping
+	public ResponseEntity<?> getAll() {
+		var esp = service.getAll();
 
-  @Autowired
-  SensorService sensorService;
+		return ResponseEntity.ok(service.toDtoList(esp));
+	}
 
-  @AuthRole("user")
-  @GetMapping
-  public ResponseEntity<?> getAll() {
-    var esp = service.getAll();
+	@AuthRole("user")
+	@GetMapping("/{idLugar}")
+	public ResponseEntity<?> get(@PathVariable("idLugar") String idLugar) {
+		Long id;
 
-    return ResponseEntity.ok(service.toDtoList(esp));
-  }
+		try {
+			id = Long.parseLong(idLugar);
+		} catch (NumberFormatException exception) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDTO("'idLugar' it's not a Long"));
+		}
 
-  @AuthRole("user")
-  @GetMapping("/{idLugar}")
-  public ResponseEntity<?> get(@PathVariable("idLugar") String idLugar) {
-    Long id;
+		EspacioVerde esp = service.get(id);
 
-    try {
-      id = Long.parseLong(idLugar);
-    } catch (NumberFormatException exception) {
-      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDTO("'idLugar' it's not a Long"));
-    }
+		if (esp == null)
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorDTO("'espacioVerde' not found"));
 
-    var esp = service.get(id);
+		EspacioVerdeDTO evDTO = service.toDto(esp);
+		historialService.agregarHistorial(esp, evDTO);
+		
+		return ResponseEntity.ok(evDTO);
+	}
 
-    if (esp == null)
-      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorDTO("'espacioVerde' not found"));
+	@AuthRole("user")
+	@GetMapping("/sensor")
+	public ResponseEntity<?> getSensores() {
+		return ResponseEntity.ok(EspacioVerdeDTO.allowedSensores);
+	}
 
-    return ResponseEntity.ok(service.toDto(esp));
-  }
+	@AuthRole("admin")
+	@PostMapping("/{idLugar}/sensor")
+	public ResponseEntity<?> sensor(@PathVariable("idLugar") String idLugar, @RequestBody SensorType body) {
+		Long id;
 
-  @AuthRole("user")
-  @GetMapping("/sensor")
-  public ResponseEntity<?> getSensores() {
-    return ResponseEntity.ok(EspacioVerdeDTO.allowedSensores);
-  }
+		try {
+			id = Long.parseLong(idLugar);
+		} catch (NumberFormatException exception) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDTO("'idLugar' it's not a Long"));
+		}
 
-  @AuthRole("admin")
-  @PostMapping("/{idLugar}/sensor")
-  public ResponseEntity<?> sensor(@PathVariable("idLugar") String idLugar, @RequestBody SensorType body) {
-    Long id;
+		if (!EspacioVerdeDTO.allowedSensores.contains(body.getSensorTipo())) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+					.body(new ErrorDTO("invalid sensor for this espacioVerde"));
+		}
 
-    try {
-      id = Long.parseLong(idLugar);
-    } catch (NumberFormatException exception) {
-      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDTO("'idLugar' it's not a Long"));
-    }
+		var lugar = service.get(id);
 
-    if (!EspacioVerdeDTO.allowedSensores.contains(body.getSensorTipo())) {
-      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDTO("invalid sensor for this espacioVerde"));
-    }
+		if (lugar == null) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDTO("lugar is null"));
+		}
 
-    var lugar = service.get(id);
+		for (var s : lugar.getSensores()) {
+			if (s.getTipo().equals(body.getSensorTipo())) {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+						.body(new ErrorDTO("ese sensor ya existe en este edificio"));
+			}
+		}
 
-    if (lugar == null) {
-      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDTO("lugar is null"));
-    }
+		sensorService.add(lugar, body.getSensorTipo());
 
-    for (var s : lugar.getSensores()) {
-      if (s.getTipo().equals(body.getSensorTipo())) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-            .body(new ErrorDTO("ese sensor ya existe en este edificio"));
-      }
-    }
-
-    sensorService.add(lugar, body.getSensorTipo());
-
-    return ResponseEntity.status(HttpStatus.OK)
-        .body(new MessageDTO("ok"));
-  }
+		return ResponseEntity.status(HttpStatus.OK).body(new MessageDTO("ok"));
+	}
 }

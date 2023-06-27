@@ -11,10 +11,10 @@ import com.oo2.grupo01.entities.Estacionamiento;
 
 @Repository("estacionamientoRepository")
 public interface IEstacionamientoRepository extends JpaRepository<Estacionamiento, Long> {
-  @Query("from Estacionamiento e inner join fetch e.lugar p where e.idLugar=:idEstacionamiento and p.idLugar=:idParking")
-  public Estacionamiento get(@Param("idParking") Long idParking, @Param("idEstacionamiento") Long idEstacionamiento);
+	@Query("from Estacionamiento e inner join fetch e.lugar p where e.idLugar=:idEstacionamiento and p.idLugar=:idParking")
+	public Estacionamiento get(@Param("idParking") Long idParking, @Param("idEstacionamiento") Long idEstacionamiento);
 
-  @Query("from Estacionamiento e inner join fetch e.lugar p where p.idLugar=:idEdificio")
-  public List<Estacionamiento> getAllById(@Param("idEdificio") Long idEdificio);
+	@Query("from Estacionamiento e inner join fetch e.lugar p where p.idLugar=:idEdificio")
+	public List<Estacionamiento> getAllById(@Param("idEdificio") Long idEdificio);
 
 }
