@@ -117,7 +117,7 @@ Aquí se pueden ver los eventos generados por los sensores, dichos eventos son g
 - Cada sensor se encarga de actualizar diferentes estados:
   - `Tiempo`: Luces y cortinas.
   - `Temperatura`: Aire acondicionado y estufas.
-  - `Humedad`: Pasto regado (Espacio verde).
+  - `Humedad`: Aspersores.
   - `Báscula`: Libre (Estacionamiento). 
 - Al agregar un sensor, se debe actualizar la página para ver el cambio de estado reflejado.
 - Exactamente lo mismo con los eventos del historial, solo se pueden ver nuevos eventos al recargar la página.
