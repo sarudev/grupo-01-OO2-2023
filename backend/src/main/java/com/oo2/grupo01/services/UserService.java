@@ -10,24 +10,24 @@ import com.oo2.grupo01.repositories.IUserRepository;
 
 public class UserService {
 
-  @Autowired
-  private IUserRepository userRepository;
+	@Autowired
+	private IUserRepository userRepository;
 
-  private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-  public User findByUsername(String username) {
-    return userRepository.findByUsername(username);
-  }
+	public User findByUsername(String username) {
+		return userRepository.findByUsername(username);
+	}
 
-  public boolean isPasswordCorrect(User user, String password) {
-    return passwordEncoder.matches(password, user.getPassword());
-  }
+	public boolean isPasswordCorrect(User user, String password) {
+		return passwordEncoder.matches(password, user.getPassword());
+	}
 
-  public void add(User user) {
-    userRepository.save(user);
-  }
+	public void add(User user) {
+		userRepository.save(user);
+	}
 
-  public String encodePassword(String password) {
-    return passwordEncoder.encode(password);
-  }
+	public String encodePassword(String password) {
+		return passwordEncoder.encode(password);
+	}
 }

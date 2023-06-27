@@ -19,54 +19,51 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @Component
 public class JWT {
-  public static Cookie getJwt(HttpServletRequest req) {
-    var cookies = req.getCookies();
+	public static Cookie getJwt(HttpServletRequest req) {
+		var cookies = req.getCookies();
 
-    if (cookies == null || cookies.length == 0)
-      return null;
+		if (cookies == null || cookies.length == 0)
+			return null;
 
-    Cookie jwtCookieValue = null;
-    for (Cookie cookie : cookies) {
-      if (cookie.getName().equals("JWT") || cookie.getName().equals("jwt")) {
-        if (cookie.getValue().equals(""))
-          continue;
-        jwtCookieValue = cookie;
-      }
-    }
-    return jwtCookieValue;
-  }
+		Cookie jwtCookieValue = null;
+		for (Cookie cookie : cookies) {
+			if (cookie.getName().equals("JWT") || cookie.getName().equals("jwt")) {
+				if (cookie.getValue().equals(""))
+					continue;
+				jwtCookieValue = cookie;
+			}
+		}
+		return jwtCookieValue;
+	}
 
-  public static String generateToken(User user) {
-    Claims claims = Jwts.claims();
-    claims.put("id", user.getId());
-    claims.put("username", user.getUsername());
-    claims.put("role", user.getRole());
+	public static String generateToken(User user) {
+		Claims claims = Jwts.claims();
+		claims.put("id", user.getId());
+		claims.put("username", user.getUsername());
+		claims.put("role", user.getRole());
 
-    byte[] keyBytes = "secret_excesivamente_largo_para_que_spring_no_rompa_las_bolas_con_el_largo_de_los_bytes"
-        .getBytes();
-    Key key = Keys.hmacShaKeyFor(keyBytes);
+		byte[] keyBytes = "secret_excesivamente_largo_para_que_spring_no_rompa_las_bolas_con_el_largo_de_los_bytes"
+				.getBytes();
+		Key key = Keys.hmacShaKeyFor(keyBytes);
 
-    return Jwts.builder()
-        .setClaims(claims)
-        .signWith(key, SignatureAlgorithm.HS256)
-        .compact();
-  }
+		return Jwts.builder().setClaims(claims).signWith(key, SignatureAlgorithm.HS256).compact();
+	}
 
-  static public Map<String, Object> toMap(String userData) throws Exception {
-    ObjectMapper objectMapper = new ObjectMapper();
-    Map<String, Object> mapa = objectMapper.readValue(userData, new TypeReference<Map<String, Object>>() {
-    });
+	static public Map<String, Object> toMap(String userData) throws Exception {
+		ObjectMapper objectMapper = new ObjectMapper();
+		Map<String, Object> mapa = objectMapper.readValue(userData, new TypeReference<Map<String, Object>>() {
+		});
 
-    return mapa;
-  }
+		return mapa;
+	}
 
-  static public String decodeJWTpayload(String token) {
-    String[] chunks = token.split("\\.");
+	static public String decodeJWTpayload(String token) {
+		String[] chunks = token.split("\\.");
 
-    Base64.Decoder decoder = Base64.getUrlDecoder();
+		Base64.Decoder decoder = Base64.getUrlDecoder();
 
-    String payload = new String(decoder.decode(chunks[1]));
+		String payload = new String(decoder.decode(chunks[1]));
 
-    return payload;
-  }
+		return payload;
+	}
 }

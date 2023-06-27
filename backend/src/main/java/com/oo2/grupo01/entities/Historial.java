@@ -34,34 +34,31 @@ import lombok.ToString;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Historial {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @EqualsAndHashCode.Include()
-  @Setter(AccessLevel.PROTECTED)
-  protected Long idHistorial;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@EqualsAndHashCode.Include()
+	@Setter(AccessLevel.PROTECTED)
+	protected Long idHistorial;
 
-  // planeo dejarlo como un enum y no hacer un join directamente con el sensor
-  // ya que como no vamos a hacer el delete de sensores, no tenemos la
-  // necesidad de borrar el historial
-  @Column(name = "tipo", nullable = false)
-  @Enumerated(EnumType.STRING)
-  private Sensores tipo;
+	@Column(name = "tipo", nullable = false)
+	@Enumerated(EnumType.STRING)
+	private Sensores tipo;
 
-  @Column(name = "descripcion", nullable = false)
-  private String descripcion;
+	@Column(name = "descripcion", nullable = false)
+	private String descripcion;
 
-  @Column(name = "fecha", nullable = false)
-  private LocalDateTime fecha;
+	@Column(name = "fecha", nullable = false)
+	private LocalDateTime fecha;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "idLugar")
-  @JsonIgnore
-  private Lugar lugar;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idLugar")
+	@JsonIgnore
+	private Lugar lugar;
 
-  public Historial(Lugar lugar, Sensores tipo, String descripcion, LocalDateTime fecha) {
-    this.lugar = lugar;
-    this.tipo = tipo;
-    this.descripcion = descripcion;
-    this.fecha = fecha;
-  }
+	public Historial(Lugar lugar, Sensores tipo, String descripcion, LocalDateTime fecha) {
+		this.lugar = lugar;
+		this.tipo = tipo;
+		this.descripcion = descripcion;
+		this.fecha = fecha;
+	}
 }

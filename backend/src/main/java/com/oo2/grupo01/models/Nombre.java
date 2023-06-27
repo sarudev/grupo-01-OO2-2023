@@ -4,5 +4,5 @@ import lombok.Getter;
 
 @Getter
 public class Nombre {
-  private String nombre;
+	private String nombre;
 }

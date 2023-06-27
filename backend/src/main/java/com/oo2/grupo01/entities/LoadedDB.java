@@ -23,16 +23,16 @@ import lombok.ToString;
 @ToString(callSuper = true)
 public class LoadedDB {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @EqualsAndHashCode.Include()
-  @Setter(AccessLevel.PROTECTED)
-  protected Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@EqualsAndHashCode.Include()
+	@Setter(AccessLevel.PROTECTED)
+	protected Long id;
 
-  @Column(name = "loaded", nullable = false)
-  private boolean loaded;
+	@Column(name = "loaded", nullable = false)
+	private boolean loaded;
 
-  public LoadedDB(boolean loaded) {
-    this.loaded = loaded;
-  }
+	public LoadedDB(boolean loaded) {
+		this.loaded = loaded;
+	}
 }

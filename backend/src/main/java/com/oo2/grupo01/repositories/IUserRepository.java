@@ -9,5 +9,5 @@ import com.oo2.grupo01.entities.User;
 
 @Repository("userRepository")
 public interface IUserRepository extends JpaRepository<User, Serializable> {
-  public User findByUsername(String username);
+	public User findByUsername(String username);
 }

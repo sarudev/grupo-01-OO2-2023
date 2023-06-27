@@ -4,5 +4,5 @@ import lombok.Getter;
 
 @Getter
 public class ToggleSensor {
-  private Boolean activo;
+	private Boolean activo;
 }

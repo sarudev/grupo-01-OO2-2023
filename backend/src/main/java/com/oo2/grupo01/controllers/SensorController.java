@@ -1,6 +1,5 @@
 package com.oo2.grupo01.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,31 +11,34 @@ import com.oo2.grupo01.annotations.AuthRole;
 import com.oo2.grupo01.dto.ErrorDTO;
 import com.oo2.grupo01.services.SensorService;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
 @RequestMapping("/sensor")
+@RequiredArgsConstructor
 public class SensorController {
-  @Autowired
-  SensorService sensorService;
 
-  @AuthRole("admin")
-  @PutMapping("/{idSensor}")
-  public ResponseEntity<?> toggle(@PathVariable("idSensor") String idSensor) {
-    Long id;
+	private final SensorService sensorService;
 
-    try {
-      id = Long.parseLong(idSensor);
-    } catch (NumberFormatException exception) {
-      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDTO("'idSensor' it's not a Long"));
-    }
-    var sensor = sensorService.get(id);
+	@AuthRole("admin")
+	@PutMapping("/{idSensor}")
+	public ResponseEntity<?> toggle(@PathVariable("idSensor") String idSensor) {
+		Long id;
 
-    if (sensor == null) {
-      return ResponseEntity.status(HttpStatus.NOT_FOUND)
-          .body(new ErrorDTO("'sensor' with id " + idSensor + " was not found"));
-    }
+		try {
+			id = Long.parseLong(idSensor);
+		} catch (NumberFormatException exception) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDTO("'idSensor' it's not a Long"));
+		}
+		var sensor = sensorService.get(id);
 
-    sensorService.toggle(sensor);
+		if (sensor == null) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND)
+					.body(new ErrorDTO("'sensor' with id " + idSensor + " was not found"));
+		}
 
-    return ResponseEntity.ok("toggled");
-  }
+		sensorService.toggle(sensor);
+
+		return ResponseEntity.ok("toggled");
+	}
 }

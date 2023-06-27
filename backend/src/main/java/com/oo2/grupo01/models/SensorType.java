@@ -6,5 +6,5 @@ import lombok.Getter;
 
 @Getter
 public class SensorType {
-  private Sensores sensorTipo;
+	private Sensores sensorTipo;
 }

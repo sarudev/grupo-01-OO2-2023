@@ -6,9 +6,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ErrorDTO {
-  private String error;
+	private String error;
 
-  public ErrorDTO(String message) {
-    this.error = message;
-  }
+	public ErrorDTO(String message) {
+		this.error = message;
+	}
 }
