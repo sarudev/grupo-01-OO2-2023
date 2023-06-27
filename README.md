@@ -32,7 +32,7 @@ enviroment.db.host.password =
 
 # NO MODIFICAR ESTOS VALORES
 spring.jpa.hibernate.ddl-auto = update
-spring.datasource.url = jdbc:mysql://${enviroment.db_host_url}:${enviroment.db_host_port}/campus?serverTimezone=GMT-3
+spring.datasource.url = jdbc:mysql://${enviroment.db.host.url}:${enviroment.db.host.port}/campus?serverTimezone=GMT-3
 spring.datasource.username = ${enviroment.db.host.username}
 spring.datasource.password = ${enviroment.db.host.password}
 spring.datasource.driver-class-name = com.mysql.cj.jdbc.Driver
@@ -58,6 +58,8 @@ Antes de poner en mancha el `frontend`, es necesario instalar las dependencias, 
 Una vez en la carpeta del `frontend`, primero se deben instalar las dependencias con el comando `npm i`
 
 Ahora si, para ponerlo en marcha, se debe ejecutar el comando `npm run dev`
+
+Una vez ejecutado, la consola dirá donde se estará ejecutando el `frontend`, por defecto debería ser `http://localhost:5173`
 
 # Inicialización del contenido
 
@@ -103,4 +105,20 @@ Aquí se pueden ver los eventos generados por los sensores, dichos eventos son g
 - Descripción: se puede filtrar por la descripción del evento.
 - Fecha: se puede elegir entre que fechas filtrar los eventos.
 
- 
+# Aclaraciones
+
+- Los sensores que se pueden añadir a una localización, así como su respectivo filtrado en el historial, depende del tipo de sensores admitidos por el lugar.
+  - Lista de sensores adminitos por lugar:
+    - `Edificio`: Tiempo.
+    - `Aula`: Tiempo y Temperatura.
+    - `Espacio verde`: Tiempo y Humedad.
+    - `Parking`: Tiempo
+    - `Estacionamiento`: Báscula
+- Cada sensor se encarga de actualizar diferentes estados:
+  - `Tiempo`: Luces y cortinas.
+  - `Temperatura`: Aire acondicionado y estufas.
+  - `Humedad`: Pasto regado (Espacio verde).
+  - `Báscula`: Libre (Estacionamiento). 
+- Al agregar un sensor, se debe actualizar la página para ver el cambio de estado reflejado.
+- Exactamente lo mismo con los eventos del historial, solo se pueden ver nuevos eventos al recargar la página.
+- Cuando se añade un aula/estacionamiento, o se cambia el estado de un sensor, es posible experimentar un poco de retraso en la respuesta.
