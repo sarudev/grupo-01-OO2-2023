@@ -1,5 +1,7 @@
 package com.oo2.grupo01.dto;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,4 +41,19 @@ public abstract class LugarDTO {
 	protected List<Historial> getBy(Sensores tipo) {
 		return historial.stream().filter(h -> h.getTipo().equals(tipo)).toList();
 	}
+	
+	protected boolean hayHistorialReciente(Sensores tipoSensor) {
+		// si el tipo coincide y la diferencia de tiempo es menor o igual a 2 minutos, 45 segundos, las
+		//variables se van a inicializar con la misma informacion
+		return historial.stream().anyMatch(
+				t -> ChronoUnit.SECONDS.between(t.getFecha(), LocalDateTime.now()) <= 180 && t.getTipo() == tipoSensor);
+	}
+	
+	protected List<Historial> traerHistorialReciente(Sensores tipo){
+		return historial.stream()
+				.filter(t -> ChronoUnit.SECONDS.between(t.getFecha(), LocalDateTime.now()) <= 180
+				&& t.getTipo() == tipo)
+		.toList();
+	}
+	
 }

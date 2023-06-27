@@ -1,10 +1,11 @@
 package com.oo2.grupo01.dto;
 
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
+import com.oo2.grupo01.Utils.DescRegs;
 import com.oo2.grupo01.entities.Aula;
+import com.oo2.grupo01.entities.Historial;
 import com.oo2.grupo01.entities.enums.Sensores;
 import com.oo2.grupo01.models.SensorTemperatura;
 import com.oo2.grupo01.models.SensorTiempo;
@@ -36,25 +37,60 @@ public class AulaDTO extends LugarDTO {
 		for (var s : sensores) {
 			if (s.isActivo()) {
 				if (s instanceof SensorTiempo) {
-					LocalDateTime now = LocalDateTime.now();
-					LocalDateTime diaToday = LocalDateTime.of(now.getYear(), now.getMonthValue(), now.getDayOfMonth(),
-							8, 0);
-					LocalDateTime nocheToday = LocalDateTime.of(now.getYear(), now.getMonthValue(), now.getDayOfMonth(),
-							18, 0);
+					if (hayHistorialReciente(s.getTipo())) {
+						List<Historial> registroReciente = traerHistorialReciente(s.getTipo());
 
-					// si ahora es despues de las 8 y antes de las 6
-					if (now.isAfter(diaToday) && now.isBefore(nocheToday)) {
-						this.luces = false;
+						if (!registroReciente.isEmpty()) {
+							String desc = registroReciente.get(0).getDescripcion();
+
+							if (desc.contains(DescRegs.LUCES_ON)) {
+								luces = true;
+							} else {
+								luces = false;
+							}
+
+						}
 
 					} else {
-						this.luces = true;
+						SensorTiempo sen = new SensorTiempo(s);
+
+						// si ahora es despues de las 8 y antes de las 6
+						if (sen.hayLuzSolar()) {
+							this.luces = false;
+
+						} else {
+							this.luces = true;
+						}
 					}
+
 				} else if (s instanceof SensorTemperatura) {
-					SensorTemperatura sen = new SensorTemperatura(s);
 
-					estufas = sen.getTemperatura() < 13;
+					if (hayHistorialReciente(s.getTipo())) {
+						System.out.println(1);
+						List<Historial> historialReciente = traerHistorialReciente(s.getTipo());
 
-					aireAcondicionado = sen.getTemperatura() > 25;
+						if (!historialReciente.isEmpty()) {
+							for (Historial h : historialReciente) {
+								String desc = h.getDescripcion();
+								if (desc.contains(DescRegs.ESTUFA_ON)) {
+									estufas = true;
+								} else if (desc.contains(DescRegs.AIRE_ON)) {
+									aireAcondicionado = true;
+								} else if (desc.contains(DescRegs.AIRE_OFF)) {
+									aireAcondicionado = false;
+								} else if (desc.contains(DescRegs.ESTUFA_OFF)) {
+									estufas = false;
+								}
+							}
+						}
+
+					} else {
+						SensorTemperatura sen = new SensorTemperatura(s);
+
+						estufas = sen.getTemperatura() < 13;
+
+						aireAcondicionado = sen.getTemperatura() > 25;
+					}
 
 				}
 			}
